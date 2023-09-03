@@ -1,0 +1,61 @@
+$main-tint: #EA4A55;
+$main: #DF2936;
+$main-shade: #91000B;
+
+$accent-tint: #59B4AA;
+$accent: #1A8E82;
+$accent-shade: #005D53;
+
+
+$dark-low: #2d080b; // dark low
+$dark-mid: #160405; // dark mid -- bg2
+$dark-high: #0c0a09; // dark high -- bg1
+
+$light-low: #f1f1f1; // light low
+$light-mid: #f9f9f9; // light mid -- bg2
+$light-high: #ffffff; // light high -- bg1
+
+
+$black: #2c1416;  // header
+$black-tint: #3c3c3c;
+
+$white: #f2f2f2; // header
+$white-tint: #ebebeb;
+
+$gray: rgba(60, 60, 60, .12);
+// #3c9342;
+// #bf262f
+// #e99114
+
+$gradient: linear-gradient(315deg, $main-shade 10%, $main-tint 100%);
+$gradient-rev: linear-gradient(315deg, $main-tint 10%, $main-shade 100%);
+
+$gradient-light: linear-gradient(315deg, $light-low 10%, $light-high 100%);
+$gradient-light-rev: linear-gradient(315deg, $light-high 10%, $light-low 100%);
+
+
+
+$shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+$shadow-hov: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+// transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+// box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+// box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+
+// icon 2.1rem
+// links 1.6rem
+// logo 3rem
+// header 8rem
+// gap 4rem
+// spacing 2rem
+
+// 16
+// 21
+// 32
+// 36
+// 48
+// 61
+// 78
+
+

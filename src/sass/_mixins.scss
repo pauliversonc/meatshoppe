@@ -1,0 +1,164 @@
+// MEDIA QUERY MANAGER
+// Mobile Phones (Portrait):
+// Breakpoint: 320px
+
+// Mobile Phones (Landscape):
+// Breakpoint: 480px
+
+// Tablets (Portrait):
+// Breakpoint: 768px
+
+// Tablets (Landscape):
+// Breakpoint: 1024px
+
+// Small Laptops and Desktops:
+// Breakpoint: 1280px
+
+@mixin respond($breakpoint) {
+
+  @if ($breakpoint==phone-port) {
+    @media only screen and (max-width: 20em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint==phone-land) {
+    @media only screen and (max-width: 30em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint==tab-port) {
+    @media only screen and (max-width: 48em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint==tab-land) {
+    @media only screen and (max-width: 64em) {
+      @content;
+    }
+  }
+
+
+}
+
+@mixin link-animate {
+  background-image: linear-gradient(to right,
+      $main 0%,
+      $main 50%,
+      $black 50%,
+      $black 50%);
+
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+
+
+  &::before {
+
+    content: '';
+    background: $main;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: all 0.3s ease-in-out;
+
+  }
+
+  &:hover,
+  &:active {
+    background-position: 0;
+  }
+
+  &:hover::before,
+  &:focus::before{
+    width: 100%;
+  }
+}
+
+
+@mixin link-icon-animate {
+  background-image: linear-gradient(to right,
+      $main 0%,
+      $main 50%,
+      $black 50%,
+      $black 50%);
+
+  background-size: 200% 100%;
+  background-position: -100%;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  fill: $black;
+  // stroke: transparent; // Replace with your desired color
+  transition: all 0.3s ease-in-out;
+
+
+  &::before {
+
+    content: '';
+    background: $main;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: all 0.3s ease-in-out;
+
+  }
+
+  &:hover,
+  &:active {
+    background-position: 0;
+    fill: $main;
+  }
+
+  &:hover::before,
+  &:focus::before{
+    width: 100%;
+  }
+}
+
+
+@mixin icon-hover {
+  &{
+    transition: all 0.2s ease;
+
+  }
+
+  &:hover, &:focus {
+    fill: $main;
+  }
+}
+
+@mixin span-gradient {
+  background: $gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+@mixin box-hover-animation {
+  & {
+
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1); 
+  }
+
+  &:hover {
+    transform: translateY(-.2rem);
+    box-shadow: $shadow;
+  }
+}
+
+
