@@ -9,7 +9,6 @@
 
     <!-- STORY WRAPPER -->
     <div class="about__background">
-
       <!-- 120 -->
       <div class="about__story">
         <!-- left -->
@@ -39,52 +38,165 @@
             srcset=""
           />
         </div>
-
       </div>
       <!-- ./120 -->
 
-      <br>
+      <br />
       <!-- centered heading -->
       <h5 class="about__heading u-center">Our Team</h5>
       <!-- 120 -->
       <div class="about__team">
-        
         <!-- MEMBERS -->
 
         <div class="about__member">
-          <img class="about__member--img" src="../../assets/images/about/member-1.jpg" alt="" srcset="">
+          <img
+            class="about__member--img"
+            src="../../assets/images/about/member-1-sm.jpg"
+            alt=""
+            srcset=""
+          />
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
         </div>
 
         <div class="about__member">
-          <img class="about__member--img" src="../../assets/images/about/member-2.jpg" alt="" srcset="">
+          <img
+            class="about__member--img"
+            src="../../assets/images/about/member-2-sm.jpg"
+            alt=""
+            srcset=""
+          />
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
         </div>
 
         <div class="about__member">
-          <img class="about__member--img" src="../../assets/images/about/member-3.jpg" alt="" srcset="">
+          <img
+            class="about__member--img"
+            src="../../assets/images/about/member-3-sm.jpg"
+            alt=""
+            srcset=""
+          />
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
         </div>
 
         <div class="about__member">
-          <img class="about__member--img" src="../../assets/images/about/member-4.jpg" alt="" srcset="">
+          <img
+            class="about__member--img"
+            src="../../assets/images/about/member-4-sm.jpg"
+            alt=""
+            srcset=""
+          />
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
         </div>
-
       </div>
 
       <!-- ./120 -->
     </div>
 
+    <!-- <h5 class="about__heading u-center">Meatshoppe Vision, Mission and Core Values</h5> -->
+
     <!-- ALIGNMENT WRAPPER -->
     <div class="about__alignment">
-      
-    </div>
+      <!-- 120 -->
+      <div class="about__story equal">
+        <!-- right -->
+        <div class="about__img-box">
+          <img
+            class="about__img"
+            src="../../assets/images/about/alignment-1.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
 
+        <!-- left -->
+        <div class="about__story-content">
+          <h5 class="about__heading">Our Vision</h5>
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+          <br />
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+        </div>
+      </div>
+      <!-- ./120 -->
+
+      <!-- 120 -->
+      <div class="about__story equal">
+        <!-- left -->
+        <div class="about__story-content">
+          <h5 class="about__heading">Our Mission</h5>
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+          <br />
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+        </div>
+
+        <!-- right -->
+        <div class="about__img-box">
+          <img
+            class="about__img"
+            src="../../assets/images/about/alignment-2.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
+      </div>
+      <!-- ./120 -->
+
+         <!-- 120 -->
+         <div class="about__story equal">
+        <!-- right -->
+        <div class="about__img-box">
+          <img
+            class="about__img"
+            src="../../assets/images/about/alignment-3.jpg"
+            alt=""
+            srcset=""
+          />
+        </div>
+
+        <!-- left -->
+        <div class="about__story-content">
+          <h5 class="about__heading">Our Core Values</h5>
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+          <br />
+          <p class="about__paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
+            officiis dignissimos sed odit optio a animi eaque error consequuntur
+            necessitatibus ad!
+          </p>
+        </div>
+      </div>
+      <!-- ./120 -->
+  
+    </div>
   </div>
 </template>
 
@@ -140,6 +252,14 @@ export default {
     gap: 4rem;
 
     margin-bottom: 4rem;
+
+    &.opposite {
+      grid-template-columns: 1.5fr 2fr;
+    }
+
+    &.equal {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   // LEFT
@@ -191,7 +311,7 @@ export default {
     flex-direction: column;
   }
   &__member--img {
-    width: 100%
+    width: 100%;
   }
   &__member--name {
     font-size: 1.8rem;
@@ -199,18 +319,21 @@ export default {
     padding: 0;
     // line-height: 1;
   }
+
   &__member--prof {
-    margin-top: -1rem;
+    // margin-top: -1rem;
     font-size: 1.6rem;
     font-style: italic;
-    // line-height: 1;
+    line-height: 1;
   }
 
-  
-  // STORY WRAPPER
+  // ALIGNMENT WRAPPER
   &__alignment {
     background-color: $light-mid;
     padding: 8rem 2rem;
+    box-shadow: $shadow;
   }
+
+  // ABOUT CARD
 }
 </style>
