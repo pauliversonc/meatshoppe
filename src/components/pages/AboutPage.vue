@@ -1,6 +1,24 @@
 <template>
   <div class="about">
-    <div class="about__cover">
+    <div class="about__cover"
+    v-motion
+      :initial="{
+    
+        opacity: 0,
+      }"
+      :enter="{
+  
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          stiffness: 250,
+          damping: 100,
+          mass: 1,
+          delay: 900,
+        },
+      }"
+    
+    >
       <BaseHeadingOne
         headingText="About Us"
         headingDesc="Lorem ipsum dolor nes bueast"
@@ -8,12 +26,36 @@
     </div>
 
     <!-- STORY WRAPPER -->
-    <div class="about__background">
+    <div
+      class="about__background"
+
+    >
       <!-- 120 -->
       <div class="about__story u-mt-0">
         <!-- left -->
-        <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Story">
+        <div class="about__story-content"
+        v-motion
+      :initial="{
+        x: -200,
+        opacity: 0,
+      }"
+      :enter="{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          stiffness: 250,
+          damping: 100,
+          mass: 1,
+          delay: 700,
+        },
+      }"
+        >
+          <h5
+            v-if="!isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Story"
+          >
             Our Story
           </h5>
           <p class="about__paragraph">
@@ -32,7 +74,31 @@
         </div>
 
         <!-- right -->
-        <div class="about__img-box">
+        <div class="about__img-box"
+        v-motion
+      :initial="{
+        x: 200,
+        opacity: 0,
+      }"
+      :enter="{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          stiffness: 250,
+          damping: 100,
+          mass: 1,
+          delay: 700,
+        },
+      }"
+        >
+          <h5
+            v-if="isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Story"
+          >
+            Our Story
+          </h5>
           <img
             class="about__img"
             src="../../assets/images/about/team-sm.png"
@@ -43,10 +109,27 @@
       </div>
       <!-- ./120 -->
 
-      <br />
-
       <!-- centered heading -->
-      <div class="about__heading-cont">
+      <div class="about__heading-cont"
+      v-motion
+    :initial="{
+      y: 200,
+      opacity: 0,
+    }"
+    :visibleOnce="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 100,
+      },
+    }"
+      
+      >
         <h5 class="about__heading center" data-before-text="Our Team">
           Our Team
         </h5>
@@ -55,7 +138,12 @@
       <div class="about__team">
         <!-- MEMBERS -->
 
-        <div class="about__member">
+        <BaseMember v-for="num in 4" :key="num"
+        member-name="Paul"
+        member-prof="Civil"
+        ></BaseMember>
+
+        <!-- <div class="about__member">
           <img
             class="about__member--img"
             src="../../assets/images/about/member-1-sm.jpg"
@@ -97,7 +185,9 @@
           />
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
-        </div>
+        </div> -->
+
+
       </div>
 
       <!-- ./120 -->
@@ -109,6 +199,13 @@
       <div class="about__story opposite u-mt-0">
         <!-- right -->
         <div class="about__img-box">
+          <h5
+            v-if="isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Vision"
+          >
+            Our Vision
+          </h5>
           <img
             class="about__img"
             src="../../assets/images/about/alignment-1.jpg"
@@ -119,7 +216,11 @@
 
         <!-- left -->
         <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Vision">
+          <h5
+            v-if="!isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Vision"
+          >
             Our Vision
           </h5>
           <p class="about__paragraph">
@@ -143,7 +244,11 @@
       <div class="about__story">
         <!-- left -->
         <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Mission">
+          <h5
+            v-if="!isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Mission"
+          >
             Our Mission
           </h5>
           <p class="about__paragraph">
@@ -163,6 +268,13 @@
 
         <!-- right -->
         <div class="about__img-box">
+          <h5
+            v-if="isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Mission"
+          >
+            Our Mission
+          </h5>
           <img
             class="about__img"
             src="../../assets/images/about/alignment-2.jpg"
@@ -177,6 +289,13 @@
       <div class="about__story opposite u-mb-0">
         <!-- right -->
         <div class="about__img-box">
+          <h5
+            v-if="isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Values"
+          >
+            Our Values
+          </h5>
           <img
             class="about__img"
             src="../../assets/images/about/alignment-3.jpg"
@@ -187,7 +306,11 @@
 
         <!-- left -->
         <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Values">
+          <h5
+            v-if="!isTabletView"
+            class="about__heading u-mb-2"
+            data-before-text="Our Values"
+          >
             Our Values
           </h5>
           <p class="about__paragraph">
@@ -211,13 +334,40 @@
 </template>
 
 <script>
+import BaseMember from "../base/BaseMember.vue";
 export default {
   name: "MeatshoppeAboutPage",
-  data() {
-    return {};
+  components: {
+    BaseMember,
   },
-  mounted() {},
-  methods: {},
+  data() {
+    return {
+      isTabletView: false,
+      members: [
+        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-1-sm.jpg'},
+        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-2-sm.jpg'},
+        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-3-sm.jpg'},
+        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-4-sm.jpg'},
+      ],
+    };
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResizeTab);
+    // Initial check for screen width on component mount
+    this.handleResizeTab();
+  },
+
+  methods: {
+    handleResizeTab() {
+      // Update the isTabletView value based on the screen width
+      this.isTabletView = window.innerWidth <= 600;
+    },
+  },
+
+  beforeUnmount() {
+    // Remove the window resize listener when the component is unmounted
+    window.removeEventListener("resize", this.handleResizeTab);
+  },
 };
 </script>
 
@@ -261,7 +411,12 @@ export default {
     grid-template-columns: 2fr 1.5fr;
     gap: 4rem;
     position: relative;
-    margin-bottom: 10rem;
+    margin-bottom: 14rem;
+
+    // 600 px and below
+    @media only screen and (max-width: 37.5em) {
+      gap: 0;
+    }
 
     &.u-mt-0 {
       margin-top: 0;
@@ -287,6 +442,11 @@ export default {
       @media only screen and (max-width: 54.0625em) {
         grid-template-columns: 1fr 2fr;
       }
+
+      // 600 and below
+      @media only screen and (max-width: 37.5em) {
+        grid-template-columns: 1fr;
+      }
     }
 
     // 865 and below
@@ -295,7 +455,7 @@ export default {
       margin-bottom: 14rem;
     }
 
-    // 726 and below
+    // 600 and below
     @media only screen and (max-width: 37.5em) {
       grid-template-columns: 1fr;
     }
@@ -391,17 +551,30 @@ export default {
   // RIGHT
 
   &__img-box {
-    text-align: right;
+    // text-align: right;
     object-position: right bottom;
+
+    // 600 px and below
+    @media only screen and (max-width: 37.5em) {
+      grid-row: 1;
+      margin-bottom: 2rem;
+    }
   }
 
   &__img {
     width: 100%;
 
+    // 865 px and below
     @media only screen and (max-width: 54.0625em) {
       height: 100%;
       object-fit: cover;
       object-position: center top;
+    }
+
+    // 600 px and below
+    @media only screen and (max-width: 37.5em) {
+      height: auto;
+      object-fit: contain;
     }
   }
 
@@ -413,28 +586,31 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
+
+    // 600 px and below
+    @media only screen and (max-width: 37.5em) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
-  &__member {
-    display: flex;
-    flex-direction: column;
-  }
-  &__member--img {
-    width: 100%;
-  }
-  &__member--name {
-    font-size: 1.8rem;
-    font-weight: 600;
-    padding: 0;
-    // line-height: 1;
-  }
+  // &__member {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+  // &__member--img {
+  //   width: 100%;
+  // }
+  // &__member--name {
+  //   font-size: 1.8rem;
+  //   font-weight: 600;
+  //   padding: 0;
+  // }
 
-  &__member--prof {
-    // margin-top: -1rem;
-    font-size: 1.6rem;
-    font-style: italic;
-    line-height: 1;
-  }
+  // &__member--prof {
+  //   font-size: 1.6rem;
+  //   font-style: italic;
+  //   line-height: 1;
+  // }
 
   // ALIGNMENT WRAPPER
   &__alignment {
