@@ -157,7 +157,8 @@ export default {
     @include respond(tab-port) {
       display: none;
     }
-
+    
+    //  600 px below
     @media only screen and (max-width: 37.5em) {
       display: block;
     }

@@ -139,7 +139,7 @@ export default {
     background-color: $light-mid;
     padding: 8rem 2rem;
 
-      // 576 px below
+  // 576 px below
   @media only screen and (max-width: 36.125em) {
     padding: 8rem 1.5rem;
   }
