@@ -20,7 +20,7 @@
   >
     <img
       class="member--img"
-      src="../../assets/images/about/member-3-sm.jpg"
+      :src="`src/assets/images/about/${memberImg}`"
       alt=""
       srcset=""
     />
@@ -37,7 +37,7 @@ export default {
     // Define the props and their types
     memberName: String,
     memberProf: String,
-    memberPic: String
+    memberImg: String
   },
 
   data() {

@@ -1,13 +1,12 @@
 <template>
   <div class="about">
-    <div class="about__cover"
-    v-motion
+    <div
+      class="about__cover"
+      v-motion
       :initial="{
-    
         opacity: 0,
       }"
       :enter="{
-  
         opacity: 1,
         transition: {
           type: 'spring',
@@ -17,7 +16,6 @@
           delay: 900,
         },
       }"
-    
     >
       <BaseHeadingOne
         headingText="About Us"
@@ -26,30 +24,28 @@
     </div>
 
     <!-- STORY WRAPPER -->
-    <div
-      class="about__background"
-
-    >
+    <div class="about__background">
       <!-- 120 -->
       <div class="about__story u-mt-0">
         <!-- left -->
-        <div class="about__story-content"
-        v-motion
-      :initial="{
-        x: -200,
-        opacity: 0,
-      }"
-      :enter="{
-        x: 0,
-        opacity: 1,
-        transition: {
-          type: 'spring',
-          stiffness: 250,
-          damping: 100,
-          mass: 1,
-          delay: 700,
-        },
-      }"
+        <div
+          class="about__story-content"
+          v-motion
+          :initial="{
+            x: -200,
+            opacity: 0,
+          }"
+          :enter="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
         >
           <h5
             v-if="!isTabletView"
@@ -74,23 +70,24 @@
         </div>
 
         <!-- right -->
-        <div class="about__img-box"
-        v-motion
-      :initial="{
-        x: 200,
-        opacity: 0,
-      }"
-      :enter="{
-        x: 0,
-        opacity: 1,
-        transition: {
-          type: 'spring',
-          stiffness: 250,
-          damping: 100,
-          mass: 1,
-          delay: 700,
-        },
-      }"
+        <div
+          class="about__img-box"
+          v-motion
+          :initial="{
+            x: 200,
+            opacity: 0,
+          }"
+          :enter="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
         >
           <h5
             v-if="isTabletView"
@@ -110,25 +107,25 @@
       <!-- ./120 -->
 
       <!-- centered heading -->
-      <div class="about__heading-cont"
-      v-motion
-    :initial="{
-      y: 200,
-      opacity: 0,
-    }"
-    :visibleOnce="{
-      y: 0,
-      opacity: 1,
+      <div
+        class="about__heading-cont"
+        v-motion
+        :initial="{
+          y: 200,
+          opacity: 0,
+        }"
+        :visibleOnce="{
+          y: 0,
+          opacity: 1,
 
-      transition: {
-        type: 'spring',
-        stiffness: 450,
-        damping: 100,
-        mass: 1,
-        delay: 100,
-      },
-    }"
-      
+          transition: {
+            type: 'spring',
+            stiffness: 450,
+            damping: 100,
+            mass: 1,
+            delay: 100,
+          },
+        }"
       >
         <h5 class="about__heading center" data-before-text="Our Team">
           Our Team
@@ -138,9 +135,12 @@
       <div class="about__team">
         <!-- MEMBERS -->
 
-        <BaseMember v-for="num in 4" :key="num"
-        member-name="Paul"
-        member-prof="Civil"
+        <BaseMember
+          v-for="(member, index) in members"
+          :key="index"
+          :member-name="member.name"
+          :member-prof="member.prof"
+          :member-img="member.img"
         ></BaseMember>
 
         <!-- <div class="about__member">
@@ -186,8 +186,6 @@
           <span class="about__member--name">Dr. John Smith</span>
           <span class="about__member--prof">Civil Engineer</span>
         </div> -->
-
-
       </div>
 
       <!-- ./120 -->
@@ -198,7 +196,25 @@
       <!-- 120 -->
       <div class="about__story opposite u-mt-0">
         <!-- right -->
-        <div class="about__img-box">
+        <div
+          class="about__img-box"
+          v-motion
+          :initial="{
+            x: -200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="isTabletView"
             class="about__heading u-mb-2"
@@ -215,7 +231,25 @@
         </div>
 
         <!-- left -->
-        <div class="about__story-content">
+        <div
+          class="about__story-content"
+          v-motion
+          :initial="{
+            x: 200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="!isTabletView"
             class="about__heading u-mb-2"
@@ -243,7 +277,25 @@
       <!-- 120 -->
       <div class="about__story">
         <!-- left -->
-        <div class="about__story-content">
+        <div
+          class="about__story-content"
+          v-motion
+          :initial="{
+            x: -200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="!isTabletView"
             class="about__heading u-mb-2"
@@ -267,7 +319,25 @@
         </div>
 
         <!-- right -->
-        <div class="about__img-box">
+        <div
+          class="about__img-box"
+          v-motion
+          :initial="{
+            x: 200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="isTabletView"
             class="about__heading u-mb-2"
@@ -288,7 +358,25 @@
       <!-- 120 -->
       <div class="about__story opposite u-mb-0">
         <!-- right -->
-        <div class="about__img-box">
+        <div
+          class="about__img-box"
+          v-motion
+          :initial="{
+            x: -200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="isTabletView"
             class="about__heading u-mb-2"
@@ -305,7 +393,25 @@
         </div>
 
         <!-- left -->
-        <div class="about__story-content">
+        <div
+          class="about__story-content"
+          v-motion
+          :initial="{
+            x: 200,
+            opacity: 0,
+          }"
+          :visibleOnce="{
+            x: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
+        >
           <h5
             v-if="!isTabletView"
             class="about__heading u-mb-2"
@@ -344,10 +450,26 @@ export default {
     return {
       isTabletView: false,
       members: [
-        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-1-sm.jpg'},
-        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-2-sm.jpg'},
-        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-3-sm.jpg'},
-        {name: 'Dr. John Smith', prof: 'Civil Engineer', imgName: 'member-4-sm.jpg'},
+        {
+          name: "Dr. John Smith",
+          prof: "Civil Engineer",
+          img: "member-1-sm.jpg",
+        },
+        {
+          name: "Dr. John Smith",
+          prof: "Civil Engineer",
+          img: "member-2-sm.jpg",
+        },
+        {
+          name: "Dr. John Smith",
+          prof: "Civil Engineer",
+          img: "member-3-sm.jpg",
+        },
+        {
+          name: "Dr. John Smith",
+          prof: "Civil Engineer",
+          img: "member-4-sm.jpg",
+        },
       ],
     };
   },
