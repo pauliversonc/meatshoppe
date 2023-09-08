@@ -162,7 +162,7 @@
             stiffness: 250,
             damping: 100,
             mass: 1,
-            delay: 800,
+            delay: 700,
           },
         }"
       >
