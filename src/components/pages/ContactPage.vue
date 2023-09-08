@@ -1,479 +1,489 @@
 <template>
-  <div class="about">
-    <div class="about__cover">
-      <BaseHeadingOne
-        headingText="About Us"
-        headingDesc="Lorem ipsum dolor nes bueast"
-      />
+  <div class="contact">
+    <div class="contact__wrapper">
+      <h6
+        class="contact__heading"
+        v-motion
+        :initial="{
+          x: -200,
+          opacity: 0,
+        }"
+        :enter="{
+          x: 0,
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            stiffness: 250,
+            damping: 100,
+            mass: 1,
+            delay: 700,
+          },
+        }"
+      >
+        <span class="contact__subhead">CONTACT US</span>
+        <span class="contact__mainhead"
+          >Get in Touch for Exceptional Service!</span
+        >
+        <p class="contact__para">
+          Send us a message and we'll get your questions answered as soon as
+          possible.
+        </p>
+      </h6>
+      <div class="contact__form">
+        <div class="contact__form-wrapper"
+        
+        v-motion
+        :initial="{
+          y: 200,
+          opacity: 0,
+        }"
+        :enter="{
+          y: 0,
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            stiffness: 250,
+            damping: 100,
+            mass: 1,
+            delay: 700,
+          },
+        }"
+        >
+          <el-form
+            label-position="top"
+            :model="form"
+            :rules="rules"
+            ref="myForm"
+          >
+            <el-row :gutter="10">
+              <el-col :span="12" :xs="24">
+                <el-form-item label="Name" prop="name">
+                  <el-input
+                    clearable
+                    v-model="form.name"
+                    placeholder="Input your first name"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12" :xs="24">
+                <el-form-item label="Last Name" prop="lname">
+                  <el-input
+                    clearable
+                    v-model="form.lname"
+                    placeholder="Input your last name"
+                  />
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="10">
+              <el-col :span="12" :xs="24">
+                <el-form-item label="Email" prop="email">
+                  <el-input
+                    clearable
+                    placeholder="Input your email address"
+                    v-model="form.email"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12" :xs="24">
+                <el-form-item label="Contact Number" prop="contact">
+                  <el-input
+                    v-model="form.contact"
+                    clearable
+                    maxlength="11"
+                    placeholder="09123456789"
+                    show-word-limit
+                    type="text"
+                  />
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row>
+              <el-col>
+                <el-form-item label="What is your concern?" prop="subject">
+                  <el-select
+                    style="width: 100%"
+                    v-model="form.subject"
+                    placeholder="Select subject"
+                  >
+                    <el-option
+                      v-for="subject in subjects"
+                      :key="subject.id"
+                      :label="subject.label"
+                      :value="subject.value"
+                    />
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row>
+              <el-col>
+                <el-form-item label="What may i help you?" prop="body">
+                  <el-input
+                    v-model="form.body"
+                    :rows="4"
+                    type="textarea"
+                    placeholder="Tell me more"
+                  />
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-form-item>
+              <el-button type="primary" @click="submitForm(myForm)"
+                >Submit</el-button
+              >
+              <el-button @click="resetForm(myForm)">Reset</el-button>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- STORY WRAPPER -->
-    <div class="about__background">
-      
-      <!-- 120 -->
-      <div class="about__story u-mt-0">
-        <!-- left -->
-        <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Story">
-            Our Story
-          </h5>
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+  <div class="faq">
+    <div class="faq__wrapper">
+      <ul class="faq__lists"
+      v-motion
+        :initial="{
+          x: -200,
+          opacity: 0,
+        }"
+        :enter="{
+          x: 0,
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            stiffness: 250,
+            damping: 100,
+            mass: 1,
+            delay: 800,
+          },
+        }"
+      >
+        <li class="faq__list">
+          <span class="faq__title">General Inquiries</span>
+          <p class="faq__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+            numquam totam! Ducimus!
           </p>
-          <br />
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+        </li>
+
+        <li class="faq__list">
+          <span class="faq__title">General Inquiries</span>
+          <p class="faq__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+            numquam totam! Ducimus!
           </p>
-        </div>
+        </li>
 
-        <!-- right -->
-        <div class="about__img-box">
-          <img
-            class="about__img"
-            src="../../assets/images/about/team-sm.png"
-            alt=""
-            srcset=""
-          />
-        </div>
-      </div>
-      <!-- ./120 -->
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-      <!-- centered heading -->
-      <div class="about__heading-cont">
-        <h5 class="about__heading center" data-before-text="Our Team">
-          Our Team
-        </h5>
-      </div>
-      <!-- 120 -->
-      <div class="about__team">
-        <!-- MEMBERS -->
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-1-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-2-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-3-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-4-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-      </div>
-
-      <!-- ./120 -->
-    </div>
-
-    <!-- ALIGNMENT WRAPPER -->
-    <div class="about__alignment">
-      <!-- 120 -->
-      <div class="about__story opposite u-mt-0">
-        <!-- right -->
-        <div class="about__img-box">
-          <img
-            class="about__img"
-            src="../../assets/images/about/alignment-1.jpg"
-            alt=""
-            srcset=""
-          />
-        </div>
-
-        <!-- left -->
-        <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Vision">
-            Our Vision
-          </h5>
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+        <li class="faq__list">
+          <span class="faq__title">General Inquiries</span>
+          <p class="faq__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+            numquam totam! Ducimus!
           </p>
-          <br />
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
-          </p>
-        </div>
-      </div>
-      <!-- ./120 -->
+        </li>
 
-      <!-- 120 -->
-      <div class="about__story">
-        <!-- left -->
-        <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Mission">
-            Our Mission
-          </h5>
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
-          </p>
-          <br />
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
-          </p>
-        </div>
+        <div class="faq__socials">
+          <span class="faq__title faq__title--sm">Follow us</span>
+          <ul class="social__lists">
+            <li class="social__list">
+              <a class="social__link" href="#">
+                <svg class="footer__icon">
+                  <use
+                    xlink:href="../../assets/icons/sprite.svg#icon-facebook"
+                  ></use>
+                </svg>
+              </a>
+            </li>
 
-        <!-- right -->
-        <div class="about__img-box">
-          <img
-            class="about__img"
-            src="../../assets/images/about/alignment-2.jpg"
-            alt=""
-            srcset=""
-          />
+            <li class="social__list">
+              <a class="social__link" href="#">
+                <svg class="footer__icon">
+                  <use
+                    xlink:href="../../assets/icons/sprite.svg#icon-instagram"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
         </div>
-      </div>
-      <!-- ./120 -->
-
-      <!-- 120 -->
-      <div class="about__story opposite u-mb-0">
-        <!-- right -->
-        <div class="about__img-box">
-          <img
-            class="about__img"
-            src="../../assets/images/about/alignment-3.jpg"
-            alt=""
-            srcset=""
-          />
-        </div>
-
-        <!-- left -->
-        <div class="about__story-content">
-          <h5 class="about__heading u-mb-2" data-before-text="Our Values">
-            Our Values
-          </h5>
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
-          </p>
-          <br />
-          <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
-          </p>
-        </div>
-      </div>
-      <!-- ./120 -->
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MeatshoppeAboutPage",
+  name: "MeatshoppeContactPage",
+
   data() {
-    return {};
+    return {
+      subjects: [
+        {
+          id: 1,
+          value: "option1",
+          label: "Option 1",
+        },
+
+        {
+          id: 2,
+          value: "option2",
+          label: "Option 2",
+        },
+      ],
+
+      form: {
+        name: "",
+        lname: "",
+        email: "",
+        contact: "",
+        subject: "",
+        body: "",
+        // Add more form fields as needed
+      },
+      rules: {
+        name: [
+          { required: true, message: "Firstname is required", trigger: "blur" },
+        ],
+
+        lname: [
+          { required: true, message: "Lastname is required", trigger: "blur" },
+        ],
+
+        email: [
+          { required: true, message: "Email is required", trigger: "blur" },
+          { type: "email", message: "Invalid email format", trigger: "blur" },
+        ],
+
+        contact: [
+          {
+            required: true,
+            message: "Contact num is required",
+            trigger: "blur",
+          },
+          {
+            validator: this.validateNumber,
+            trigger: "blur",
+          },
+        ],
+
+        subject: [
+          { required: true, message: "Subject is required", trigger: "change" },
+        ],
+
+        body: [
+          {
+            required: true,
+            message: "Message body is required",
+            trigger: "blur",
+          },
+        ],
+
+        // Add validation rules for other fields as needed
+      },
+    };
   },
+
   mounted() {},
 
-  methods: {},
+  methods: {
+    validateNumber(_, value, callback) {
+      // Define a regular expression pattern for exactly 11 digits.
+      var digitsPattern = /^\d{11}$/;
+
+      if (/^[A-Za-z]+$/.test(value)) {
+        console.log("Input consists of letters.");
+        callback(new Error("Contact num consists of letters"));
+      } else if (digitsPattern.test(value)) {
+        console.log("Input consists of exactly 11 digits");
+        callback(); // Validation passes
+      } else {
+        callback(new Error("Input is not valid"));
+        console.log("Contact num is not valid.");
+      }
+    },
+
+    submitForm() {
+      this.$refs.myForm.validate((valid) => {
+        if (valid) {
+          console.log("valid");
+          // Form is valid, submit the data or perform your action here
+        } else {
+          console.log("invalid");
+          // Form is not valid, display error messages
+        }
+      });
+    },
+
+    resetForm() {
+      this.$refs.myForm.resetFields();
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
-.about {
-  // background-color: red;
-  // padding-top: 7rem;
+.contact {
+  padding: 11rem 2rem 8rem 2rem;
+  background-color: $light-low;
+  // padding: 2rem;
 
-  &__cover {
-    margin: 0 auto;
-    // max-width: 120rem;
-    // padding-top: 7rem;
-
-    height: 37rem;
-
-    background-image: url(../../assets/images/about/about-us-xl.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
-    // margin-bottom: 8rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  // STORY WRAPPER
-  &__background {
-    // background-color: $light-mid;
-    padding: 8rem 2rem;
-    // background-color: red;
-  }
-
-  // STORY CONTENT
-  &__story {
-    margin: 0 auto;
+  &__wrapper {
     max-width: 120rem;
+    margin: 0 auto;
+    // border: 1px solid red;
 
     display: grid;
-    grid-template-columns: 2fr 1.5fr;
-    gap: 4rem;
-    position: relative;
-    margin-bottom: 10rem;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 8rem;
 
-    &.u-mt-0 {
-      margin-top: 0;
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        margin-top: 4rem;
-      }
+    // between 1084 px and 1024 px
+    @media only screen and (min-width: 64em) and (max-width: 67.75em) {
+      gap: 2rem;
     }
 
-    &.u-mb-0 {
-      margin-bottom: 0;
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        margin-bottom: 4rem;
-      }
+    //  852 = 53.25 px below
+    @media only screen and (max-width: 53.25em) {
+      gap: 4rem;
+      grid-template-columns: 1fr 1fr;
     }
 
-    &.opposite {
-      grid-template-columns: 1.5fr 2fr;
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        grid-template-columns: 1fr 2fr;
-      }
-    }
-
-    // 865 and below
-    @media only screen and (max-width: 54.0625em) {
-      grid-template-columns: 2fr 1fr;
-      margin-bottom: 14rem;
-    }
-
-    // 600 and below
-    @media only screen and (max-width: 37.5em) {
+    //  715 = 44.6875 px below
+    @media only screen and (max-width: 44.6875em) {
       grid-template-columns: 1fr;
     }
   }
 
-  // LEFT
-  &__story-content {
+  &__heading {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-right: 4rem;
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 30%;
-      height: 10px;
-      border-radius: 2px;
-      background-color: $light-low;
-      bottom: 0;
-
-      // 1107 to 1024 (exclusive of 700)
-      @media only screen and (min-width: 64.0625em) and (max-width: 69.1875em) {
-        transform: translateY(2rem);
-      }
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        height: 8px;
-        transform: translateY(4rem);
-      }
-    }
-
-    // 864 and below
-    @media only screen and (max-width: 56em) {
-      padding-right: 0;
-    }
+    gap: 2rem;
   }
 
-  &__heading-cont {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
+  &__subhead {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $main;
   }
 
-  &__heading {
-    font-size: 3.6rem;
+  &__mainhead {
+    font-size: 4.8rem;
     line-height: 1;
-
-    position: relative;
-    z-index: 9;
-
-    &.u-mb-2 {
-      margin-bottom: 2rem;
-    }
-
-    &::before {
-      content: attr(
-        data-before-text
-      ); /* Use the data attribute to store the text */
-      // z-index: 8;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100rem;
-      // width: calc(100% * 3);
-      transform: translate(0%, 4%);
-      font-size: 10.4rem;
-      z-index: -9;
-      color: $light-low;
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        font-size: 8.6rem;
-      }
-    }
-
-    &.center::before {
-      transform: translate(-15%, 4%);
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        transform: translate(-11%, 4%);
-      }
-    }
+    letter-spacing: -2px;
   }
 
-  &__paragraph {
+  &__para {
     font-size: 1.6rem;
+    font-weight: 400;
   }
 
-  // RIGHT
+  &__form {
+    position: relative;
 
-  &__img-box {
-    text-align: right;
-    object-position: right bottom;
-
-    // 600 px and below
-    @media only screen and (max-width: 37.5em) {
-      grid-row: 1;
-      margin-bottom: 2rem;
+    //  715 = 44.6875 px below
+    @media only screen and (max-width: 44.6875em) {
+      position: static;
     }
   }
 
-  &__img {
+  &__form-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
+    box-shadow: $shadow;
+    border-radius: 4px;
+    // min-height: 50rem;
+    background-color: $light-high;
 
-    // 865 px and below
-    @media only screen and (max-width: 54.0625em) {
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
+    padding: 2rem;
 
-    // 600 px and below
-    @media only screen and (max-width: 37.5em) {
-      // height: 30rem;
-      object-fit: contain;
-      // width: 50%;
-      // object-position: center top;
+    //  715 = 44.6875 px below
+    @media only screen and (max-width: 44.6875em) {
+      position: static;
     }
   }
+}
 
-  // 120
-  &__team {
-    margin: 0 auto;
+.faq {
+  background-color: $light-mid;
+  // min-height: 40rem;
+  padding: 8rem 2rem;
+
+  &__wrapper {
     max-width: 120rem;
+    margin: 0 auto;
+    // border: 1px solid red;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 8rem;
+
+    //  852 = 53.25 px below
+    @media only screen and (max-width: 53.25em) {
+      gap: 4rem;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    //  715 = 44.6875 px below
+    @media only screen and (max-width: 44.6875em) {
+      grid-template-columns: 1fr;
+    }
   }
 
-  &__member {
+  &__lists {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
   }
-  &__member--img {
-    width: 100%;
+  &__list {
+    list-style: none;
   }
-  &__member--name {
+  &__title {
     font-size: 1.8rem;
     font-weight: 600;
-    padding: 0;
-    // line-height: 1;
-  }
+    color: $black;
 
-  &__member--prof {
-    // margin-top: -1rem;
+    &--sm {
+      font-size: 1.6rem;
+    }
+  }
+  &__body {
     font-size: 1.6rem;
-    font-style: italic;
-    line-height: 1;
+    color: $black-tint;
   }
 
-  // ALIGNMENT WRAPPER
-  &__alignment {
-    background-color: $light-mid;
-    padding: 8rem 2rem;
-    box-shadow: $shadow;
-  }
+  &__socials {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 6rem;
 
-  // ABOUT CARD
+    .social__lists {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .social__list {
+      list-style: none;
+    }
+    .social__link {
+      text-decoration: none;
+    }
+    .footer__icon {
+      height: 2.4rem;
+      width: 2.4rem;
+    }
+  }
 }
 </style>

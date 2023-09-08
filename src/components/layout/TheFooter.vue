@@ -28,7 +28,7 @@
       </div>
 
       <address class="footer__contact">
-        <h4 class="heading__four">Contacts</h4>
+        <BaseHeadingFour heading-four="Contacts"></BaseHeadingFour>
 
         <ul class="footer__contact-wrap">
           <li class="footer__contact-list">
@@ -73,7 +73,7 @@
       </address>
 
       <div class="footer__nav">
-        <h4 class="heading__four">Links</h4>
+        <BaseHeadingFour heading-four="Links"></BaseHeadingFour>
 
         <ul class="footer__lists">
           <li class="footer__list">
@@ -89,7 +89,7 @@
       </div>
 
       <div class="footer__social">
-        <h4 class="heading__four">Socials</h4>
+        <BaseHeadingFour heading-four="Socials"></BaseHeadingFour>
 
 
         <ul class="footer__contact-wrap">
@@ -125,8 +125,7 @@
       </div>
 
       <div class="footer__need">
-        <h4 class="heading__four">Need a website?</h4>
-
+        <BaseHeadingFour heading-four="Need a website?"></BaseHeadingFour>
         <ul class="footer__contact-wrap">
           <li class="footer__contact-list">
  
@@ -205,9 +204,10 @@
 </template>
 
 <script>
+import BaseHeadingFour from '../base/BaseHeadingFour.vue';
 export default {
   name: "MeatshoppeTheFooter",
-
+  components: {BaseHeadingFour},
   data() {
     return {};
   },
