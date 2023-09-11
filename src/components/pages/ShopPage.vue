@@ -2,53 +2,82 @@
   <div class="shop">
     <div class="shop__wrapper">
       <!-- LEFT -->
-      <div class="filter">
-        <el-collapse v-model="activeNames" class="collapse__items" @change="handleCollapseChange">
-          <el-collapse-item title="CATEGORY" name="section1" >
-            <!-- Content for Section 1 -->
-            <el-radio-group  v-model="radio2">
-              <el-radio  label="1" border>Option A</el-radio>
-              <el-radio  label="2" border>Option B</el-radio>
-              <el-radio  label="3" border>Option C</el-radio>
-              <el-radio  label="4" border>Option D</el-radio>
+
+      <!-- <div class="filter"> -->
+      <el-scrollbar class="filter" height="90vh">
+        <el-collapse
+          v-model="activeNames"
+          class="collapse__items"
+          @change="handleCollapseChange"
+          style="border: none"
+        >
+          <el-collapse-item title="CATEGORY" name="section1">
+            <el-radio-group v-model="radio1">
+              <el-radio label="1" border>Option A</el-radio>
+              <el-radio label="2" border>Option B</el-radio>
+              <el-radio label="3" border>Option C</el-radio>
+              <el-radio label="4" border>Option D</el-radio>
             </el-radio-group>
           </el-collapse-item>
 
-
           <el-collapse-item title="CUT" name="section2">
-            <!-- Content for Section 2 -->
-            <p>This is the content of Section 2.</p>
+            <el-radio-group v-model="radio2">
+              <el-radio label="1" border>Option A</el-radio>
+              <el-radio label="2" border>Option B</el-radio>
+              <el-radio label="3" border>Option C</el-radio>
+              <el-radio label="4" border>Option D</el-radio>
+            </el-radio-group>
           </el-collapse-item>
 
           <el-collapse-item title="PACKAGING" name="section3">
-            <!-- Content for Section 3 -->
-            <p>This is the content of Section 3.</p>
+            <el-radio-group v-model="radio3">
+              <el-radio label="1" border>Option A</el-radio>
+              <el-radio label="2" border>Option B</el-radio>
+              <el-radio label="3" border>Option C</el-radio>
+              <el-radio label="4" border>Option D</el-radio>
+            </el-radio-group>
           </el-collapse-item>
 
           <el-collapse-item title="BRAND" name="section4">
-            <!-- Content for Section 4 -->
-            <p>This is the content of Section 4.</p>
+            <el-checkbox-group v-model="checkboxGroup1">
+              <el-checkbox label="Option1" border />
+              <el-checkbox label="Option2" border />
+            </el-checkbox-group>
           </el-collapse-item>
 
           <el-collapse-item title="SIZE" name="section5">
-            <!-- Content for Section 5 -->
-            <p>This is the content of Section 5.</p>
+            <el-checkbox-group v-model="checkboxGroup2">
+              <el-checkbox label="Option1" border />
+              <el-checkbox label="Option2" border />
+            </el-checkbox-group>
           </el-collapse-item>
 
           <el-collapse-item title="PRICE" name="section6">
-            <!-- Content for Section 6 -->
-            <p>This is the content of Section 6.</p>
+            <div class="price">
+              <div class="price__min">
+                <el-input v-model="minPrice" placeholder="Min"></el-input>
+              </div>
+              <div class="price__dash">&mdash;</div>
+
+              <div class="price__max">
+                <el-input v-model="maxPrice" placeholder="Max"></el-input>
+              </div>
+    
+            </div>
           </el-collapse-item>
-
-
         </el-collapse>
-      </div>
+
+      </el-scrollbar>
+      <!-- </div> -->
 
       <!-- RIGHT -->
       <main class="content">
-        <div class="search">search</div>
-        <div class="sort">sort</div>
-        <div class="products">products</div>
+        <div class="products">
+          <BaseProduct v-for="num in 20" :key="num" />
+        </div>
+        <div class="content__footer">
+          <el-pagination background layout="prev, pager, next" :total="1000" />
+        </div>
       </main>
     </div>
   </div>
@@ -60,9 +89,15 @@ export default {
 
   data() {
     return {
-      activeNames: ["section1","section2","section3","section4","section5","section6"], // Initially open Section 1
-
-      radio2:"",
+      activeNames: [],
+      radio1: "",
+      radio2: "",
+      radio3: "",
+      checkboxGroup1: [],
+      checkboxGroup2: [],
+      minPrice: "",
+      maxPrice: "",
+      loading: false,
     };
   },
 
@@ -79,10 +114,8 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/variables";
 .shop {
-  padding: 11rem 2rem 8rem 2rem;
+  padding: 7rem 2rem 8rem 2rem;
   background-color: $light-high;
-
-  
 
   &__wrapper {
     max-width: 120rem;
@@ -92,37 +125,58 @@ export default {
 
     // border-top: 1px solid #ebeef5;
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
   }
 }
 
 // LEFT
 .filter {
   width: 20%;
-  // padding: 0 2rem;
-  // min-height: 50vh;
   padding-right: 2rem;
-  border-right: 1px solid #ebeef5;
+  // max-height: 50rem;
+  position: sticky;
+  top: 7rem;
+}
 
+.price {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr;
+
+  &__dash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__range {
+    padding: 0 1.2rem;
+    grid-column: 1/-1;
+  }
 }
 
 // RIGHT
 .content {
   width: 80%;
-}
-.sort {
-}
 
-.search {
+  &__footer {
+    margin-top: 2rem;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
+  }
 }
-
-.products {
-}
-
-// .collapse__items {
-//   border: none;
+// .sort {
 // }
 
+// .search {
+// }
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
 
 
 </style>
+			

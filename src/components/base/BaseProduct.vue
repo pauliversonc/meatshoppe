@@ -1,7 +1,10 @@
 <template>
   <div
     class="product"
-    v-motion
+
+    >
+
+    <!-- v-motion
     :initial="{
       y: 50,
       opacity: 0,
@@ -17,8 +20,7 @@
         mass: 1,
         delay: 300,
       },
-    }"
-  >
+    }" -->
     <div class="product__img-box">
       <img
         class="product__img"
