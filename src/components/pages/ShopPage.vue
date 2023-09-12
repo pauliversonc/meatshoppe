@@ -62,11 +62,9 @@
               <div class="price__max">
                 <el-input v-model="maxPrice" placeholder="Max"></el-input>
               </div>
-    
             </div>
           </el-collapse-item>
         </el-collapse>
-
       </el-scrollbar>
       <!-- </div> -->
 
@@ -84,6 +82,8 @@
 </template>
 
 <script>
+import products from "../../data/products.json";
+
 export default {
   name: "MeatshoppeShopPage",
 
@@ -98,6 +98,8 @@ export default {
       minPrice: "",
       maxPrice: "",
       loading: false,
+
+      products: products,
     };
   },
 
@@ -176,7 +178,4 @@ export default {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
 }
-
-
 </style>
-			
