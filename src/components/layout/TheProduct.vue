@@ -24,7 +24,7 @@
         <Slide v-for="product in products" :key="product.id">
           <BaseProduct
             :id="product.id"
-            :title="product.title"
+            :name="product.name"
             :description="product.description"
             :price="product.price"
             :discount-percentage="product.discountPercentage"

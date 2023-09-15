@@ -48,7 +48,7 @@
         </li>
       </ul>
       <p class="product__name">
-        {{ title }}
+        {{ name }}
       </p>
       <div class="product__price-box">
         <span class="product__price-new">&#8369;{{ markdownPrice }}</span>
@@ -78,7 +78,7 @@ export default {
   name: "MeatshoppeBaseProduct",
   props: {
     id: Number,
-    title: {
+    name: {
       type: String,
       default: "Default Product Name",
     },
@@ -177,6 +177,7 @@ export default {
   text-align: left;
 
   max-width: 24rem;
+  // margin: 2px;
   // max-width: 100%;
 
   @include box-hover-animation;
