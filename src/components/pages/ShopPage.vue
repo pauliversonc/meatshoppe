@@ -2,7 +2,7 @@
   <div class="shop">
     <div class="shop__wrapper">
       <!-- LEFT -->
-
+      
       <!-- <div class="filter"> -->
       <el-scrollbar class="filter" height="60rem">
         <div class="tags" v-if="filterTags.length > 0">
@@ -293,7 +293,6 @@ export default {
 
       // if tag is an actual string
       if (typeof tag === "string") {
- 
         // if tag consist of php remove value
         if (tag.includes("PHP")) {
           // remove selected tags from v-model array
@@ -323,7 +322,10 @@ export default {
         this.brand =
         this.weight =
         this.filterTags =
+        this.price.tag =
           [];
+
+      this.price.minValue = this.price.maxValue = "";
     },
 
     // PRICE METHODS
@@ -338,10 +340,11 @@ export default {
           console.log("gj");
           console.log("product.price >= minValue");
 
-          this.filterTags.push(`PHP >= ${value}`);
+          // this.filterTags.push(`PHP >= ${value}`);
           // this.price.tag.push(`PHP >= ${value}`);
 
           this.price.tag = [`PHP >= ${value}`];
+          this.handleCheckboxChange();
         }
 
         // check if you put value in min and not yet on max
@@ -351,7 +354,7 @@ export default {
           // this.filterTags.push(`PHP <= ${value}`);
           // this.price.tag.push(`PHP <= ${value}`);
           this.price.tag = [`PHP <= ${value}`];
-
+          this.handleCheckboxChange();
         }
 
         // Check if min and max is both integers / numbers
@@ -360,8 +363,8 @@ export default {
           if (+max >= +min) {
             // Validation Success
             console.log("gj");
-            this.filterTags.push(`PHP ${min} - PHP ${max}`);
-            this.price.tag.push(`PHP ${min} - PHP ${max}`);
+            this.price.tag = [`PHP ${min} - PHP ${max}`];
+            this.handleCheckboxChange();
             this.$refs.priceForm.clearValidate(); // Clears all validation errors for the entire form
           } else {
             console.log("Max must be greater than Min");
@@ -378,7 +381,31 @@ export default {
       }
       // Run when clear an input price
       else {
-        console.log("gj");
+        // pag ni clear mo yung min - condition walang laman yung max
+        if (rule.field === "minValue") {
+          this.price.minValue = "";
+          this.price.tag = [];
+        }
+
+        // pag ni clear mo yung max - condition walang laman yung min
+        if (rule.field === "maxValue") {
+          this.price.maxValue = "";
+          this.price.tag = [];
+        }
+
+        // pag ni clear mo yung min - condition may laman yung max
+        if (rule.field === "minValue" && this.price.maxValue) {
+          console.log(`ni clear ko yung min kahit may max :${max}`);
+          this.price.tag = [`PHP <= ${max}`];
+        }
+
+        // pag ni clear mo yung max - condition may laman yung min
+        if (rule.field === "maxValue" && this.price.minValue) {
+          console.log(`ni clear ko yung min kahit may min :${min}`);
+          this.price.tag = [`PHP >= ${min}`];
+        }
+
+        this.handleCheckboxChange();
       }
     },
   },
