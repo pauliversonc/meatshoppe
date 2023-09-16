@@ -2,7 +2,7 @@
   <div class="shop">
     <div class="shop__wrapper">
       <!-- LEFT -->
-      
+
       <!-- <div class="filter"> -->
       <el-scrollbar class="filter" height="60rem">
         <div class="tags" v-if="filterTags.length > 0">
@@ -17,9 +17,9 @@
             size="large"
             closable
             effect="plain"
-            :key="tag"
+            :key="tag.name"
             class="custom-checkbox"
-            >{{ tag }}</el-tag
+            >{{ tag.name }}</el-tag
           >
         </div>
 
@@ -30,10 +30,9 @@
           style="border: none"
         >
           <el-collapse-item title="CATEGORY" name="category">
-            <el-checkbox-group v-model="category">
+            <el-checkbox-group v-model="filters.category">
               <el-checkbox
-                @change="handleCheckboxChange"
-                v-for="item in categoryOptions"
+                v-for="item in filterOptions.category"
                 :key="item"
                 :label="item"
                 :id="item"
@@ -44,10 +43,9 @@
           </el-collapse-item>
 
           <el-collapse-item title="PART" name="part">
-            <el-checkbox-group v-model="part">
+            <el-checkbox-group v-model="filters.part">
               <el-checkbox
-                @change="handleCheckboxChange"
-                v-for="item in partOptions"
+                v-for="item in filterOptions.part"
                 :key="item"
                 :label="item"
                 :id="item"
@@ -58,10 +56,9 @@
           </el-collapse-item>
 
           <el-collapse-item title="BRAND" name="brand">
-            <el-checkbox-group v-model="brand">
+            <el-checkbox-group v-model="filters.brand">
               <el-checkbox
-                @change="handleCheckboxChange"
-                v-for="item in brandOptions"
+                v-for="item in filterOptions.brand"
                 :key="item"
                 :label="item"
                 :id="item"
@@ -72,10 +69,9 @@
           </el-collapse-item>
 
           <el-collapse-item title="WEIGHT" name="weight">
-            <el-checkbox-group v-model="weight">
+            <el-checkbox-group v-model="filters.weight">
               <el-checkbox
-                @change="handleCheckboxChange"
-                v-for="item in weightOptions"
+                v-for="item in filterOptions.weight"
                 :key="item"
                 :id="`${item}a`"
                 :label="item"
@@ -88,7 +84,7 @@
           <el-collapse-item title="PRICE" name="price">
             <el-form
               label-position="top"
-              :model="price"
+              :model="filters.price"
               :rules="rules"
               ref="priceForm"
             >
@@ -97,7 +93,7 @@
                 <el-form-item class="price__min" label="" prop="minValue">
                   <el-input
                     clearable
-                    v-model="price.minValue"
+                    v-model="filters.price.minValue"
                     type="text"
                     placeholder="Min"
                   ></el-input>
@@ -110,7 +106,7 @@
                 <el-form-item class="price__max" label="" prop="maxValue">
                   <el-input
                     clearable
-                    v-model="price.maxValue"
+                    v-model="filters.price.maxValue"
                     type="text"
                     placeholder="Max"
                   ></el-input>
@@ -161,24 +157,85 @@ import products from "../../data/ck-products.json";
 
 export default {
   name: "MeatshoppeShopPage",
+  computed: {
+    filterTags() {
+      let category = [];
+      let part = [];
+      let brand = [];
+      let weight = [];
+      let tag = [];
+
+      // transform array to an object
+      if (this.filters.category.length > 0) {
+        const mutatedCategory = this.filters.category.map((name) => ({
+          name: name,
+          type: "category",
+        }));
+        category = mutatedCategory;
+      }
+
+      // transform array to an object
+      if (this.filters.part.length > 0) {
+        const mutatedPart = this.filters.part.map((name) => ({
+          name: name,
+          type: "part",
+        }));
+        part = mutatedPart;
+      }
+
+      // transform array to an object
+      if (this.filters.brand.length > 0) {
+        const mutatedBrand = this.filters.brand.map((name) => ({
+          name: name,
+          type: "brand",
+        }));
+        brand = mutatedBrand;
+      }
+
+      // transform array to an object
+      if (this.filters.weight.length > 0) {
+        const mutatedWeight = this.filters.weight.map((name) => ({
+          name: name,
+          type: "weight",
+        }));
+        weight = mutatedWeight;
+      }
+
+      // transform array to an object
+      if (this.filters.price.tag.length > 0) {
+        const mutatedTag = this.filters.price.tag.map((name) => ({
+          name: name,
+          type: "tag",
+        }));
+        tag = mutatedTag;
+      }
+
+      // return array of objects of filter tags
+      return [...category, ...part, ...brand, ...weight, ...tag];
+    },
+  },
 
   data() {
     return {
-      activeNames: ["price"], // Open Filter
-      category: [], // selected category
-      categoryOptions: [], // category choices
-      part: [], // selected part
-      partOptions: [], // part choices
-      brand: [], // selected brand
-      brandOptions: [], // brand choices
-      weight: [], // selected weight
-      weightOptions: [], // weight choices
-      filterTags: [], // list of filter tags
+      activeNames: ["price"], // Open Collapse Div
 
-      price: {
-        minValue: "",
-        maxValue: "",
-        tag: [],
+      filters: {
+        category: [], // selected category / checkbox / multiple value
+        part: [], // selected part / checkbox / multiple value
+        brand: [], // selected brand / checkbox / multiple value
+        weight: [], // selected weight / checkbox / multiple value
+        price: {
+          minValue: "", // only one value
+          maxValue: "", // only one value
+          tag: [], // only one tag
+        },
+      },
+
+      filterOptions: {
+        category: [], // category choices
+        part: [], // part choices
+        brand: [], // brand choices
+        weight: [], // weight choices
       },
 
       rules: {
@@ -200,10 +257,33 @@ export default {
     this.generateFilterChoices("weight", true);
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
-    this.handlePageChange(1);
+    // this.handlePageChange(1);
+    // this.test();
   },
 
   methods: {
+    test() {
+      const filteredTags = ["chicken", "liver", "skin"];
+
+      const newProducts = this.products.filter((products) => {
+        return (
+          // filteredTags.includes(products.brand) || // text
+          // filteredTags.includes(products.weight) || // array
+          // filteredTags.some(item => products.weight.includes(item)) ||
+          filteredTags.includes(products.price) && // int
+          // filteredTags.includes(products.category) || // array
+          filteredTags.some((item) => products.category.includes(item)) &&
+          filteredTags.includes(products.part) // text
+        );
+
+        // filteredTags.includes(products.category)
+
+        // console.log(filteredTags.includes(products.category))
+      });
+
+      // console.log(typeof newProducts)
+      console.log(newProducts);
+    },
     scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -211,43 +291,47 @@ export default {
       });
     },
 
+    // Seperate all products by page
     paginateProducts(pageNumber) {
       const startIndex = (pageNumber - 1) * this.perPage;
       const endIndex = startIndex + this.perPage;
+
+      // check if you need to paginate a products that has filter
+      console.log(this.filterTags.length);
+
       return this.products.slice(startIndex, endIndex);
     },
 
+    // Run when user click a page
     handlePageChange(newPage) {
-      // Handle page change, e.g., fetch data for the new page
+      // set clicked page as current page
       this.currentPage = newPage;
-
-      // extracted products
+      // get paginated products
       const products = this.paginateProducts(newPage);
-      // set paginate products to display
+      // set paginated products to display
       this.displayedProducts = products;
       // set the scroll to the top
       this.scrollToTop();
     },
 
+    // Set the collapse filter as active
     handleCollapseChange(activeNames) {
       this.activeNames = activeNames;
     },
 
+    // generate filter options uniquely depending on product key
     generateFilterChoices(key, isArray) {
       // Use the map function to extract the "weight" arrays
       let items = this.groupFilterOption(key);
-
       // check if "key" / "items" needs to be flatten
       if (isArray) {
         // Flatten the array of arrays into a single array
         items = [].concat(...items);
       }
-
       // Set will remove duplicate value, and will automatically returns unique array
       const uniqueItems = [...new Set(items)];
-      // console.log(uniqueItems);
 
-      this[key + "Options"] = uniqueItems;
+      this.filterOptions[key] = uniqueItems;
     },
 
     // Group products key this returns an array
@@ -256,82 +340,44 @@ export default {
       return items;
     },
 
-    handleCheckboxChange() {
-      // Update your filter tags
-      // spread category, part, brand, and weight
-      this.filterTags = [
-        ...this.category,
-        ...this.part,
-        ...this.brand,
-        ...this.weight,
-        ...this.price.tag,
-      ];
-    },
-
+    // Run when a filter tag is closed
     handleClose(tag) {
-      // check if tag is in this array
-      if (this.category.includes(tag)) {
-        // remove selected tags from v-model array
-        const filteredTags = this.filterArray("category", tag);
-        this.category = filteredTags;
+      // run when the clicked tag tag is filters.price
+      if (tag.type === "tag") {
+        // reset filters.price
+        this.filters.price.minValue = this.filters.price.maxValue = "";
+        this.filters.price.tag = [];
+      } else {
+        // remove specific value on filters array by tag name
+        const filteredFiltersType = this.filters[tag.type].filter(
+          (tagName) => tagName !== tag.name
+        );
+        this.filters[tag.type] = filteredFiltersType;
       }
-      if (this.part.includes(tag)) {
-        // remove selected tags from v-model array
-        const filteredTags = this.filterArray("part", tag);
-        this.part = filteredTags;
-      }
-      if (this.brand.includes(tag)) {
-        // remove selected tags from v-model array
-        const filteredTags = this.filterArray("brand", tag);
-        this.brand = filteredTags;
-      }
-      if (this.weight.includes(tag)) {
-        // remove selected tags from v-model array
-        const filteredTags = this.filterArray("weight", tag);
-        this.weight = filteredTags;
-      }
-
-      // if tag is an actual string
-      if (typeof tag === "string") {
-        // if tag consist of php remove value
-        if (tag.includes("PHP")) {
-          // remove selected tags from v-model array
-          this.price.minValue = this.price.maxValue = "";
-          this.price.tag = [];
-          this.$refs.priceForm.clearValidate(); // Clears all validation errors for the entire form
-        }
-      }
-
-      // remove click tags tags from filtered array
-      const filteredTags = this.filterArray("filterTags", tag);
-      // assign new filtered tags to current filter tags
-      this.filterTags = filteredTags;
-
-      console.log(this.filterTags);
     },
 
-    // filter data
+    // Remove close tags from filter array
     filterArray(arrayName, tag) {
       const filteredTags = this[arrayName].filter((item) => item != tag);
       return filteredTags;
     },
 
+    // Clear all tags / reset filtered tags
     clearFilter() {
-      this.category =
-        this.part =
-        this.brand =
-        this.weight =
-        this.filterTags =
-        this.price.tag =
+      this.filters.category =
+        this.filters.part =
+        this.filters.brand =
+        this.filters.weight =
+        this.filters.price.tag =
           [];
 
-      this.price.minValue = this.price.maxValue = "";
+      this.filters.price.minValue = this.filters.price.maxValue = "";
     },
 
-    // PRICE METHODS
+    // Price Filter Validation / put a value on filters.price.tag
     validatePrice(rule, value, callback) {
-      const min = this.price.minValue;
-      const max = this.price.maxValue;
+      const min = this.filters.price.minValue;
+      const max = this.filters.price.maxValue;
 
       // check current value if it doesnt contain letters
       if (/^[0-9]+$/.test(value)) {
@@ -343,8 +389,7 @@ export default {
           // this.filterTags.push(`PHP >= ${value}`);
           // this.price.tag.push(`PHP >= ${value}`);
 
-          this.price.tag = [`PHP >= ${value}`];
-          this.handleCheckboxChange();
+          this.filters.price.tag = [`PHP >= ${value}`];
         }
 
         // check if you put value in min and not yet on max
@@ -353,8 +398,7 @@ export default {
           console.log("product.price <= maxValue");
           // this.filterTags.push(`PHP <= ${value}`);
           // this.price.tag.push(`PHP <= ${value}`);
-          this.price.tag = [`PHP <= ${value}`];
-          this.handleCheckboxChange();
+          this.filters.price.tag = [`PHP <= ${value}`];
         }
 
         // Check if min and max is both integers / numbers
@@ -363,8 +407,8 @@ export default {
           if (+max >= +min) {
             // Validation Success
             console.log("gj");
-            this.price.tag = [`PHP ${min} - PHP ${max}`];
-            this.handleCheckboxChange();
+            this.filters.price.tag = [`PHP ${min} - PHP ${max}`];
+
             this.$refs.priceForm.clearValidate(); // Clears all validation errors for the entire form
           } else {
             console.log("Max must be greater than Min");
@@ -383,29 +427,27 @@ export default {
       else {
         // pag ni clear mo yung min - condition walang laman yung max
         if (rule.field === "minValue") {
-          this.price.minValue = "";
-          this.price.tag = [];
+          this.filters.price.minValue = "";
+          this.filters.price.tag = [];
         }
 
         // pag ni clear mo yung max - condition walang laman yung min
         if (rule.field === "maxValue") {
-          this.price.maxValue = "";
-          this.price.tag = [];
+          this.filters.price.maxValue = "";
+          this.filters.price.tag = [];
         }
 
         // pag ni clear mo yung min - condition may laman yung max
-        if (rule.field === "minValue" && this.price.maxValue) {
+        if (rule.field === "minValue" && this.filters.price.maxValue) {
           console.log(`ni clear ko yung min kahit may max :${max}`);
-          this.price.tag = [`PHP <= ${max}`];
+          this.filters.price.tag = [`PHP <= ${max}`];
         }
 
         // pag ni clear mo yung max - condition may laman yung min
-        if (rule.field === "maxValue" && this.price.minValue) {
+        if (rule.field === "maxValue" && this.filters.price.minValue) {
           console.log(`ni clear ko yung min kahit may min :${min}`);
-          this.price.tag = [`PHP >= ${min}`];
+          this.filters.price.tag = [`PHP >= ${min}`];
         }
-
-        this.handleCheckboxChange();
       }
     },
   },
