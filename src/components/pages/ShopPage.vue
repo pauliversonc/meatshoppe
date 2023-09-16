@@ -4,7 +4,7 @@
       <!-- LEFT -->
 
       <!-- <div class="filter"> -->
-      <el-scrollbar class="filter" height="60rem">
+      <el-scrollbar class="filter" height="84vh">
         <div class="tags" v-if="filterTags.length > 0">
           <div class="tags__header">
             <span class="tags__title">APPLIED FILTER</span>
@@ -123,7 +123,7 @@
       <main class="content">
         <div class="products">
           <BaseProduct
-            v-for="product in displayedProducts"
+            v-for="product in filteredProducts"
             :key="product.id"
             :id="product.id"
             :name="product.name"
@@ -213,6 +213,47 @@ export default {
       // return array of objects of filter tags
       return [...category, ...part, ...brand, ...weight, ...tag];
     },
+
+
+    filteredProducts(){
+
+      const t = this.products.filter(product => {
+        return (
+          // this.filters.category.length > 0 || product.category.some(filter => product.category.includes(filter)) &&
+          this.filters.category.length > 0 ||  this.filters.category.includes(product.category) &&
+          this.filters.part.length > 0 ||  product.part.includes(this.filters.part)
+          // this.filters.brand.length > 0 || product.filter(product => this.filters.brand.includes(product.brand)) &&
+          // this.filters.weight.length > 0 ||product.filter(product => this.filters.weight.some(filter => product.weight.includes(filter)))
+        )
+      });
+
+      console.log(t)
+      return t;
+
+      // let filteredProducts = [];
+
+      // if(this.filters.category.length > 0) {
+      //   filteredProducts = this.products.filter(product => this.filters.category.some(filter => product.category.includes(filter)));
+      // }
+
+      // if(this.filters.part.length > 0) {
+      //   filteredProducts = this.products.filter(product => this.filters.part.includes(product.part) );
+      // }
+
+      // if(this.filters.brand.length > 0) {
+      //   filteredProducts = this.products.filter(product => this.filters.brand.includes(product.brand));
+      // }
+
+      // if(this.filters.weight.length > 0) {
+      //   filteredProducts = this.products.filter(product => this.filters.weight.some(filter => product.weight.includes(filter)));
+      // }
+
+
+
+      // console.log(filteredProducts)
+
+      // return filteredProducts;
+    },
   },
 
   data() {
@@ -265,8 +306,10 @@ export default {
     test() {
       const filteredTags = ["chicken", "liver", "skin"];
 
-      const newProducts = this.products.filter((products) => {
+      const newProducts = this.products.filter((product) => {
         return (
+
+
           // filteredTags.includes(products.brand) || // text
           // filteredTags.includes(products.weight) || // array
           // filteredTags.some(item => products.weight.includes(item)) ||
@@ -284,6 +327,8 @@ export default {
       // console.log(typeof newProducts)
       console.log(newProducts);
     },
+
+
     scrollToTop() {
       window.scrollTo({
         top: 0,
