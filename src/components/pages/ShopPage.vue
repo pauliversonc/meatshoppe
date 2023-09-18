@@ -246,6 +246,16 @@ export default {
     },
   },
 
+  watch: {
+    filters: {
+      handler() {
+        // Handle the changes to filters here
+        this.scrollToTop();
+      },
+      deep: true, // Watch for changes deeply in the object
+    },
+  },
+
   data() {
     return {
       activeNames: ["price"], // Open Collapse Div
