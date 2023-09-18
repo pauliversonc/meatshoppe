@@ -2,6 +2,7 @@
   <div class="shop">
     <div class="shop__wrapper">
       <!-- LEFT -->
+    
 
       <!-- <div class="filter"> -->
       <el-scrollbar class="filter" height="84vh">
@@ -123,7 +124,7 @@
       <main class="content">
         <div class="products">
           <BaseProduct
-            v-for="product in filteredProducts"
+            v-for="product in paginatedProducts"
             :key="product.id"
             :id="product.id"
             :name="product.name"
@@ -138,12 +139,12 @@
             :images="product.images"
           />
         </div>
-        <div class="pagination">
+        <div class="pagination" v-if="paginatedProducts.length">
           <el-pagination
             v-model:current-page="currentPage"
             background
             layout="prev, pager, next"
-            :page-count="Math.ceil(products.length / perPage)"
+            :page-count="Math.ceil(filteredProducts.length / productsPerPage)"
             @current-change="handlePageChange"
           />
         </div>
@@ -158,6 +159,8 @@ import products from "../../data/ck-products.json";
 export default {
   name: "MeatshoppeShopPage",
   computed: {
+
+
     filterTags() {
       let category = [];
       let part = [];
@@ -216,43 +219,30 @@ export default {
 
 
     filteredProducts(){
+      const minPrice = parseFloat(this.filters.price.minValue);
+      const maxPrice = parseFloat(this.filters.price.maxValue);
 
-      const t = this.products.filter(product => {
-        return (
-          // this.filters.category.length > 0 || product.category.some(filter => product.category.includes(filter)) &&
-          this.filters.category.length > 0 ||  this.filters.category.includes(product.category) &&
-          this.filters.part.length > 0 ||  product.part.includes(this.filters.part)
-          // this.filters.brand.length > 0 || product.filter(product => this.filters.brand.includes(product.brand)) &&
-          // this.filters.weight.length > 0 ||product.filter(product => this.filters.weight.some(filter => product.weight.includes(filter)))
-        )
-      });
-
-      console.log(t)
-      return t;
-
-      // let filteredProducts = [];
-
-      // if(this.filters.category.length > 0) {
-      //   filteredProducts = this.products.filter(product => this.filters.category.some(filter => product.category.includes(filter)));
-      // }
-
-      // if(this.filters.part.length > 0) {
-      //   filteredProducts = this.products.filter(product => this.filters.part.includes(product.part) );
-      // }
-
-      // if(this.filters.brand.length > 0) {
-      //   filteredProducts = this.products.filter(product => this.filters.brand.includes(product.brand));
-      // }
-
-      // if(this.filters.weight.length > 0) {
-      //   filteredProducts = this.products.filter(product => this.filters.weight.some(filter => product.weight.includes(filter)));
-      // }
+      return this.products.filter((item) => {
+        const productPrice = parseFloat(item.price);
+       
+        return  (this.filters.part.length === 0 || this.filters.part.includes(item.part)) &&
+                (this.filters.brand.length === 0 || this.filters.brand.includes(item.brand)) && 
+                (this.filters.weight.length === 0 || this.filters.weight.some(value => item.weight.includes(value))) &&
+                (this.filters.category.length === 0 || this.filters.category.some(value => item.category.includes(value))) &&
+                (!minPrice || productPrice >= minPrice) &&
+                (!maxPrice || productPrice <= maxPrice)
+      })
 
 
+    },
 
-      // console.log(filteredProducts)
+    paginatedProducts() {
+      // Calculate the start and end indices of products for the current page
+      const startIndex = (this.currentPage - 1) * this.productsPerPage;
+      const endIndex = startIndex + this.productsPerPage;
 
-      // return filteredProducts;
+      // Slice the filtered products array to get the products for the current page
+      return this.filteredProducts.slice(startIndex, endIndex);
     },
   },
 
@@ -288,7 +278,10 @@ export default {
       products: products, // imported data of all chicken products
 
       currentPage: 1,
-      perPage: 12,
+      productsPerPage: 12,
+
+
+
     };
   },
 
@@ -299,35 +292,12 @@ export default {
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
     // this.handlePageChange(1);
-    // this.test();
+
+
+
   },
 
   methods: {
-    test() {
-      const filteredTags = ["chicken", "liver", "skin"];
-
-      const newProducts = this.products.filter((product) => {
-        return (
-
-
-          // filteredTags.includes(products.brand) || // text
-          // filteredTags.includes(products.weight) || // array
-          // filteredTags.some(item => products.weight.includes(item)) ||
-          filteredTags.includes(products.price) && // int
-          // filteredTags.includes(products.category) || // array
-          filteredTags.some((item) => products.category.includes(item)) &&
-          filteredTags.includes(products.part) // text
-        );
-
-        // filteredTags.includes(products.category)
-
-        // console.log(filteredTags.includes(products.category))
-      });
-
-      // console.log(typeof newProducts)
-      console.log(newProducts);
-    },
-
 
     scrollToTop() {
       window.scrollTo({
@@ -352,9 +322,9 @@ export default {
       // set clicked page as current page
       this.currentPage = newPage;
       // get paginated products
-      const products = this.paginateProducts(newPage);
+      // const products = this.paginateProducts(newPage);
       // set paginated products to display
-      this.displayedProducts = products;
+      // this.displayedProducts = products;
       // set the scroll to the top
       this.scrollToTop();
     },
