@@ -194,8 +194,10 @@ export default {
     isSearchVisible(newValue) {
       if (newValue) {
         document.body.classList.add("show-menu");
+        document.addEventListener("keydown", this.onEscKey);
       } else {
         document.body.classList.remove("show-menu");
+        document.removeEventListener("keydown", this.onEscKey);
       }
     },
   },
@@ -249,7 +251,7 @@ export default {
     },
 
     selectPrevious(event) {
-      event.preventDefault();
+      event.preventDefault(); // prevent default makes the cursor always in front of text
       if (this.search.suggestions.length > 0) {
         if (this.search.selectedSuggestion > 0) {
           this.search.selectedSuggestion--;
@@ -259,18 +261,14 @@ export default {
       }
     },
 
+    // close when clicked the button closed
     closeSearch() {
       this.isSearchVisible = false;
       this.search.selectedSuggestion = -1;
       this.search.keyword = "";
     },
 
-    clearSearch() {
-      // This method is triggered whenever the user types in the input field
-      // It updates the list of suggestions based on the input
-      this.search.selectedSuggestion = -1;
-    },
-
+    // close when clicked outside the modal
     closeSearch2(event) {
       // get class of clicked element
       const element = event.target.classList.value;
@@ -279,6 +277,19 @@ export default {
       if (element !== "search") return;
 
       this.closeSearch();
+    },
+
+    clearSearch() {
+      // This method is triggered whenever the user types in the input field
+      // It updates the list of suggestions based on the input
+      this.search.selectedSuggestion = -1;
+    },
+
+    // close search bar when clicked the esc key
+    onEscKey(event) {
+      if (event.key === "Escape" || event.key === "Esc") {
+        this.closeSearch();
+      }
     },
   },
 };
