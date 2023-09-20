@@ -2,7 +2,7 @@
   <button
 
     class="btn"
-    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight }]"
+    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize }]"
   >
     {{ btnText }}
   </button>
@@ -24,6 +24,12 @@ export default {
     },
 
     btnLight: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    btnResize: {
       type: Boolean,
       required: false,
       default: false,
@@ -58,6 +64,12 @@ export default {
   width: 20rem;
   background-size: 300% 100%;
   transition: all 0.4s ease-in-out;
+
+  &.resize {
+    @include respond(phone-land) {
+      width: auto;
+    }
+  }
 
   &:hover {
     background-position: 100% 0;

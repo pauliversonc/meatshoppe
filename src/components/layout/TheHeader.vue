@@ -1,7 +1,7 @@
 <template>
   <div
     class="header__wrapper"
-    :class="{ active: scrollY >= 240, pr: isSearchVisible }"
+    :class="{ active: scrollY >= 240 }"
     v-motion
     :initial="{
       x: 200,
@@ -87,7 +87,6 @@
       >
         <el-input
           v-model="search.keyword"
-          size="large"
           placeholder="Search"
           clearable
           @clear="clearSearch"
@@ -98,10 +97,10 @@
       </el-form>
 
       <div class="search__btn-wrapper">
-        <BaseButton @click="closeSearch" btnText="close" />
+        <BaseButton @click="closeSearch" btnText="close" :btnResize="true" />
       </div>
 
-      <ul class="search__suggestions">
+      <ul class="search__suggestions" v-if="filteredSuggestions.length > 0">
         <li
           class="search__suggestion"
           v-for="(item, index) in filteredSuggestions"
@@ -151,6 +150,7 @@ export default {
         keyword: "",
         activeSuggestion: "",
         selectedSuggestion: -1,
+        // temp value, must be dynamic use vuex
         suggestions: [
           "pizza",
           "sushi",
@@ -302,18 +302,27 @@ export default {
   margin: 0 auto;
   max-width: 120rem;
   display: flex;
-
   height: 100%;
   text-transform: uppercase;
-
-  &.pr {
-    // padding-right: 17px; // this is the old pr
-    padding-right: 9px;
-  }
 
   // border: 1px solid red;
   justify-content: space-between;
   align-items: center;
+
+  // padding-right: 9px;
+
+  &.pr {
+    @media only screen and (min-width: 78em) {
+      // margin-right: -19px;
+      // background-color: red;
+      transform: translateX(-8px);
+    }
+
+    @media only screen and (min-width: 48em) and (max-width: 78em) {
+      // background-color: blue
+      padding-right: 17px;
+    }
+  }
 
   &__wrapper {
     position: fixed;
@@ -323,7 +332,7 @@ export default {
     z-index: 10;
     // background-color: rgba($color: $light-mid, $alpha: 0.9);
     transition: background-color 0.4s ease;
-
+    // padding-right: 9px;
     backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
 
     &.active {
@@ -334,6 +343,7 @@ export default {
   &__nav {
     display: flex;
     align-items: center;
+    justify-content: start;
     // border: 1px solid blue;
     gap: 2rem;
   }
@@ -397,7 +407,8 @@ export default {
     display: flex;
     align-items: center;
     gap: 2rem;
-
+    justify-content: start;
+    // padding-right: 17px;
     &.pr {
       padding-right: 17px;
     }
@@ -492,31 +503,43 @@ export default {
   z-index: 12;
   background-color: rgba($dark-high, 0.5);
   padding-top: 8rem; // web view
-  padding-right: 17px;
+
+  // 768 below
+  @include respond(tab-port) {
+    padding-top: 0; // web view
+  }
 
   &__container {
     padding: 1rem;
     margin: 0 auto;
     // max-width: 120rem; // mobile view
-    max-width: 80rem; // web view
-
+    max-width: 80rem; // default width of modal search
     padding: 2rem;
-    // height: 20rem;
-    // border: 1px solid red;
     background-color: $light-mid;
-    // background-color: red;
     box-shadow: $shadow;
-
     display: grid;
     grid-template-columns: 1fr auto;
     // justify-items: center;
     align-items: center;
+    // gap: 1rem;
 
-    gap: 1rem;
+    // 1200 below
+    @media only screen and (max-width: 75em) {
+      max-width: 70rem; // default width of modal search
+    }
+
+    // 768 below
+    @include respond(tab-port) {
+      max-width: 100%;
+      // background-color: red;
+    }
   }
 
   &__input-wrapper {
     width: 100%;
+    padding-right: 1rem;
+    // margin-right: 10rem;
+    // background-color: red;
   }
 
   &__suggestions {
@@ -524,6 +547,7 @@ export default {
     // background-color: blue;
     // display: none;
     // padding: 1rem;
+    margin-top: 1rem;
 
     display: flex;
     flex-direction: column;
