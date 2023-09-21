@@ -48,7 +48,7 @@
       <div class="header__links" :class="{ pr: isActive }">
         <div
           class="header__icon-link"
-          @click="isSearchVisible = true"
+          @click="openSearchBar"
           role="button"
         >
           <svg class="header__icon">
@@ -78,7 +78,7 @@
     </header>
   </div>
 
-  <div class="search" @click="closeSearch2" v-if="isSearchVisible">
+  <div class="search" @click="closeSearch2" v-show="isSearchVisible">
     <div class="search__container">
       <!-- <el-form
         class="search__input-wrapper"
@@ -109,6 +109,7 @@
           @input="resetSuggestion"
           class="form-input"
           placeholder="Search"
+          ref="keySearch"
         />
         <svg
           class="form__icon form__icon--right"
@@ -227,6 +228,10 @@ export default {
         document.addEventListener("keydown", this.onEscKey);
         // this.$refs.search.focus();
         // console.log(this.$refs.search);
+
+        // console.log(this.$refs.keySearch);
+        // this.addFocus();
+        
       } else {
         document.body.classList.remove("show-menu");
         document.removeEventListener("keydown", this.onEscKey);
@@ -329,6 +334,14 @@ export default {
         this.closeSearch();
       }
     },
+
+    openSearchBar() {
+      this.isSearchVisible = true;
+      // this.$refs.keySearch.focus();
+      this.$nextTick(() => this.$refs.keySearch.focus())
+
+    }
+
   },
 };
 </script>
