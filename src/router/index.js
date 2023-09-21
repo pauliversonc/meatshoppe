@@ -4,6 +4,7 @@ import notfoundRoute from './routes/notfoundRoute';
 import aboutRoute from './routes/aboutRoute';
 import contactRoute from './routes/contactRoute';
 import shopRoute from './routes/shopRoute';
+import cartRoute from './routes/cartRoute';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,6 +13,7 @@ const router = createRouter({
     aboutRoute,
     contactRoute,
     shopRoute,
+    cartRoute,
     notfoundRoute
   ]
 });

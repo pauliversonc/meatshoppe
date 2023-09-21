@@ -76,7 +76,8 @@
   }
 
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     background-position: 0;
   }
 
@@ -120,7 +121,8 @@
   }
 
   &:hover,
-  &:active {
+  &:active,
+  &:focus {
     background-position: 0;
     fill: $main;
   }

@@ -80,7 +80,7 @@
 
   <div class="search" @click="closeSearch2" v-if="isSearchVisible">
     <div class="search__container">
-      <el-form
+      <!-- <el-form
         class="search__input-wrapper"
         :model.trim="search"
         @submit.prevent="submitSearch"
@@ -94,7 +94,31 @@
           @keydown.up="selectPrevious"
           @input="clearSearch"
         />
-      </el-form>
+      </el-form> -->
+
+      <!-- form group search -->
+      <form class="form-group" @submit.prevent="submitSearch">
+        <svg class="form__icon form__icon--left">
+          <use xlink:href="../../assets/icons/sprite.svg#icon-search"></use>
+        </svg>
+        <input
+          type="text"
+          v-model.trim="search.keyword"
+          @keydown.down="selectNext"
+          @keydown.up="selectPrevious"
+          @input="resetSuggestion"
+          class="form-input"
+          placeholder="Search"
+        />
+        <svg
+          class="form__icon form__icon--right"
+          @click="clearSearch"
+          v-show="search.keyword.length > 0"
+        >
+          <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+        </svg>
+      </form>
+      <!-- /.form group search -->
 
       <div class="search__btn-wrapper">
         <BaseButton @click="closeSearch" btnText="close" :btnResize="true" />
@@ -111,17 +135,23 @@
             class="search__link"
             :class="{ active: index === search.selectedSuggestion }"
           >
-            <div class="search__icon-box" role="button">
+            <!-- <div class="search__icon-box" role="button">
               <svg class="search__icon">
                 <use
                   xlink:href="../../assets/icons/sprite.svg#icon-search"
                 ></use>
               </svg>
-            </div>
+            </div> -->
             <span>{{ item }}</span></a
           >
         </li>
       </ul>
+
+      <div class="search__key-container" v-show="search.keyword.length > 0">
+        <a href="#" class="search__keyword"
+          >See all "{{ this.search.keyword }}"</a
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -195,6 +225,8 @@ export default {
       if (newValue) {
         document.body.classList.add("show-menu");
         document.addEventListener("keydown", this.onEscKey);
+        // this.$refs.search.focus();
+        // console.log(this.$refs.search);
       } else {
         document.body.classList.remove("show-menu");
         document.removeEventListener("keydown", this.onEscKey);
@@ -279,10 +311,16 @@ export default {
       this.closeSearch();
     },
 
-    clearSearch() {
+    resetSuggestion() {
       // This method is triggered whenever the user types in the input field
       // It updates the list of suggestions based on the input
       this.search.selectedSuggestion = -1;
+      // this.search.keyword = '';
+    },
+
+    clearSearch() {
+      this.resetSuggestion();
+      this.search.keyword = "";
     },
 
     // close search bar when clicked the esc key
@@ -514,14 +552,14 @@ export default {
     margin: 0 auto;
     // max-width: 120rem; // mobile view
     max-width: 80rem; // default width of modal search
-    padding: 2rem;
-    background-color: $light-mid;
+    // padding: 2rem;
+    background-color: $light-high;
     box-shadow: $shadow;
     display: grid;
     grid-template-columns: 1fr auto;
     // justify-items: center;
     align-items: center;
-    // gap: 1rem;
+    gap: 1rem;
 
     // 1200 below
     @media only screen and (max-width: 75em) {
@@ -558,39 +596,99 @@ export default {
     list-style: none;
   }
 
+  &__key-container {
+    grid-column: 1/-1;
+    // margin-top: 2rem;
+  }
+
+  &__keyword {
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 0.6rem;
+
+    @include link-animate;
+  }
+
   &__link {
     text-decoration: none;
     font-size: 1.6rem;
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem;
     color: $black-tint;
     background-color: $light-high;
 
-    box-shadow: $shadow;
+    // box-shadow: $shadow;
 
     &:hover,
     &.active {
       background-color: $main;
       color: $white-tint;
 
-      box-shadow: $shadow-hov;
+      // box-shadow: $shadow-hov;
       .search__icon {
         fill: $white;
       }
     }
   }
 
-  &__icon-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  // &__icon-box {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+  // &__icon {
+  //   height: 1.8rem;
+  //   width: 1.8rem;
+  //   fill: $black;
+  // }
+}
+
+.form-group {
+  width: 100%;
+  // padding-right: 1rem;
+  // margin-right: 1rem;
+  position: relative;
+}
+
+.form-input {
+  background-color: $light-low;
+  padding: 0.8rem 4rem;
+  border-radius: 0;
+  font-size: 1.6rem;
+  transition: border ease 0.4s;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  width: 100%;
+
+  outline: none;
+  border: solid thin $light-mid;
+
+  &:focus {
+    outline: none;
+    border: solid thin $dark-mid;
   }
-  &__icon {
-    height: 1.8rem;
-    width: 1.8rem;
-    fill: $black;
+}
+
+.form__icon {
+  position: absolute;
+  height: 2.1rem;
+  width: 2.1rem;
+
+  // background-color: blue;
+  fill: $black-tint;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &--left {
+    left: 1rem;
+  }
+
+  &--right {
+    right: 1rem;
+    cursor: pointer;
   }
 }
 </style>
