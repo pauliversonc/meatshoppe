@@ -46,11 +46,7 @@
       </div>
 
       <div class="header__links" :class="{ pr: isActive }">
-        <div
-          class="header__icon-link"
-          @click="openSearchBar"
-          role="button"
-        >
+        <div class="header__icon-link" @click="openSearchBar" role="button">
           <svg class="header__icon">
             <use xlink:href="../../assets/icons/sprite.svg#icon-search"></use>
           </svg>
@@ -80,22 +76,6 @@
 
   <div class="search" @click="closeSearch2" v-show="isSearchVisible">
     <div class="search__container">
-      <!-- <el-form
-        class="search__input-wrapper"
-        :model.trim="search"
-        @submit.prevent="submitSearch"
-      >
-        <el-input
-          v-model="search.keyword"
-          placeholder="Search"
-          clearable
-          @clear="clearSearch"
-          @keydown.down="selectNext"
-          @keydown.up="selectPrevious"
-          @input="clearSearch"
-        />
-      </el-form> -->
-
       <!-- form group search -->
       <form class="form-group" @submit.prevent="submitSearch">
         <svg class="form__icon form__icon--left">
@@ -136,13 +116,6 @@
             class="search__link"
             :class="{ active: index === search.selectedSuggestion }"
           >
-            <!-- <div class="search__icon-box" role="button">
-              <svg class="search__icon">
-                <use
-                  xlink:href="../../assets/icons/sprite.svg#icon-search"
-                ></use>
-              </svg>
-            </div> -->
             <span>{{ item }}</span></a
           >
         </li>
@@ -231,7 +204,6 @@ export default {
 
         // console.log(this.$refs.keySearch);
         // this.addFocus();
-        
       } else {
         document.body.classList.remove("show-menu");
         document.removeEventListener("keydown", this.onEscKey);
@@ -338,10 +310,8 @@ export default {
     openSearchBar() {
       this.isSearchVisible = true;
       // this.$refs.keySearch.focus();
-      this.$nextTick(() => this.$refs.keySearch.focus())
-
-    }
-
+      this.$nextTick(() => this.$refs.keySearch.focus());
+    },
   },
 };
 </script>
@@ -355,22 +325,15 @@ export default {
   display: flex;
   height: 100%;
   text-transform: uppercase;
-
-  // border: 1px solid red;
   justify-content: space-between;
   align-items: center;
 
-  // padding-right: 9px;
-
   &.pr {
     @media only screen and (min-width: 78em) {
-      // margin-right: -19px;
-      // background-color: red;
       transform: translateX(-8px);
     }
 
     @media only screen and (min-width: 48em) and (max-width: 78em) {
-      // background-color: blue
       padding-right: 17px;
     }
   }
@@ -381,9 +344,7 @@ export default {
     height: 7rem;
     width: 100%;
     z-index: 10;
-    // background-color: rgba($color: $light-mid, $alpha: 0.9);
     transition: background-color 0.4s ease;
-    // padding-right: 9px;
     backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
 
     &.active {
@@ -395,7 +356,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: start;
-    // border: 1px solid blue;
     gap: 2rem;
   }
 
@@ -521,8 +481,6 @@ export default {
     }
 
     &.on {
-      // margin-left: -17px;
-      // padding-right: 17px;
       & > :first-child {
         top: 50%;
         right: -5%;
@@ -565,12 +523,10 @@ export default {
     margin: 0 auto;
     // max-width: 120rem; // mobile view
     max-width: 80rem; // default width of modal search
-    // padding: 2rem;
     background-color: $light-high;
     box-shadow: $shadow;
     display: grid;
     grid-template-columns: 1fr auto;
-    // justify-items: center;
     align-items: center;
     gap: 1rem;
 
@@ -589,15 +545,10 @@ export default {
   &__input-wrapper {
     width: 100%;
     padding-right: 1rem;
-    // margin-right: 10rem;
-    // background-color: red;
   }
 
   &__suggestions {
     grid-column: 1/-1;
-    // background-color: blue;
-    // display: none;
-    // padding: 1rem;
     margin-top: 1rem;
 
     display: flex;
@@ -611,7 +562,6 @@ export default {
 
   &__key-container {
     grid-column: 1/-1;
-    // margin-top: 2rem;
   }
 
   &__keyword {
@@ -632,44 +582,29 @@ export default {
     color: $black-tint;
     background-color: $light-high;
 
-    // box-shadow: $shadow;
-
     &:hover,
     &.active {
       background-color: $main;
       color: $white-tint;
 
-      // box-shadow: $shadow-hov;
       .search__icon {
         fill: $white;
       }
     }
   }
-
-  // &__icon-box {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-  // &__icon {
-  //   height: 1.8rem;
-  //   width: 1.8rem;
-  //   fill: $black;
-  // }
 }
 
 .form-group {
   width: 100%;
-  // padding-right: 1rem;
-  // margin-right: 1rem;
   position: relative;
 }
 
 .form-input {
   background-color: $light-low;
   padding: 0.8rem 4rem;
+  height: 100%;
   border-radius: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   transition: border ease 0.4s;
   font-family: inherit;
   font-weight: inherit;
@@ -677,11 +612,10 @@ export default {
   width: 100%;
 
   outline: none;
-  border: solid thin $light-mid;
+  border: solid thin $dark-low;
 
   &:focus {
     outline: none;
-    border: solid thin $dark-mid;
   }
 }
 
@@ -689,8 +623,6 @@ export default {
   position: absolute;
   height: 2.1rem;
   width: 2.1rem;
-
-  // background-color: blue;
   fill: $black-tint;
   top: 50%;
   transform: translateY(-50%);
