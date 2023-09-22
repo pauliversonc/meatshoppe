@@ -602,15 +602,16 @@ export default {
 .form-input {
   background-color: $light-low;
   padding: 0.8rem 4rem;
-  height: 100%;
   border-radius: 0;
   font-size: 1.4rem;
-  transition: border ease 0.4s;
   font-family: inherit;
   font-weight: inherit;
   color: inherit;
+  
   width: 100%;
-
+  height: 100%;
+  
+  transition: border ease 0.4s;
   outline: none;
   border: solid thin $dark-low;
 

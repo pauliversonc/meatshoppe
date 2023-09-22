@@ -29,27 +29,27 @@
           possible.
         </p>
       </h6>
-      <div class="contact__form">
-        <div class="contact__form-wrapper"
-        
-        v-motion
-        :initial="{
-          y: 200,
-          opacity: 0,
-        }"
-        :enter="{
-          y: 0,
-          opacity: 1,
-          transition: {
-            type: 'spring',
-            stiffness: 250,
-            damping: 100,
-            mass: 1,
-            delay: 700,
-          },
-        }"
+      <div class="contact__container">
+        <div
+          class="contact__form-wrapper"
+          v-motion
+          :initial="{
+            y: 200,
+            opacity: 0,
+          }"
+          :enter="{
+            y: 0,
+            opacity: 1,
+            transition: {
+              type: 'spring',
+              stiffness: 250,
+              damping: 100,
+              mass: 1,
+              delay: 700,
+            },
+          }"
         >
-          <el-form
+          <!-- <el-form
             label-position="top"
             :model="form"
             :rules="rules"
@@ -140,7 +140,34 @@
               >
               <el-button @click="resetForm(myForm)">Reset</el-button>
             </el-form-item>
-          </el-form>
+          </el-form> -->
+
+          <form action="#" @submit.prevent="submitForm" class="contact__form">
+            <div class="base-input">
+              <div class="base-input__form-group">
+                <input
+                  class="input"
+                  type="text"
+                  id="name"
+                  v-model.trim="form.name"
+                  @focus="resetInputClass('name')"
+                  @blur="validateInput('name')"
+                  ref="name"
+                />
+
+                <label class="label" for="name">* I am Label</label>
+                <svg
+                  ref="nameIcon"
+                  class="icon"
+                  role="button"
+                  @click="clearInput('name')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">&nbsp;</span>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -148,8 +175,9 @@
 
   <div class="faq">
     <div class="faq__wrapper">
-      <ul class="faq__lists"
-      v-motion
+      <ul
+        class="faq__lists"
+        v-motion
         :initial="{
           x: -200,
           opacity: 0,
@@ -222,7 +250,6 @@
 <script>
 export default {
   name: "MeatshoppeContactPage",
-
   data() {
     return {
       subjects: [
@@ -248,6 +275,9 @@ export default {
         body: "",
         // Add more form fields as needed
       },
+
+      
+
       rules: {
         name: [
           { required: true, message: "Firstname is required", trigger: "blur" },
@@ -294,6 +324,55 @@ export default {
   mounted() {},
 
   methods: {
+    clearInput(key) {
+      this.form[key] = "";
+      this.$refs[key].classList.remove("invalid");
+      this.$refs[key].classList.remove("valid");
+      this.checkRefs(key);
+    },
+
+    resetInputClass(key) {
+      this.$refs[key].classList.remove("invalid");
+      this.$refs[key].classList.remove("valid");
+    },
+
+    validateInput(key) {
+      let pattern = "";
+
+      if (key === "name") {
+        pattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+      }
+
+      if (pattern.test(this.form[key])) {
+        this.$refs.name.classList.remove("invalid");
+        this.$refs.name.classList.add("valid");
+      } else {
+        this.$refs.name.classList.remove("valid");
+        this.$refs.name.classList.add("invalid");
+      }
+
+      this.checkRefs(key);
+    },
+
+
+    // add or remove clear btn base on form.key
+    checkRefs(key) {
+      if (
+        (this.$refs[key].classList.contains("valid") &&
+          this.form[key].length > 0) ||
+        (this.$refs[key].classList.contains("invalid") &&
+          this.form[key].length > 0)
+      ) {
+        this.$refs[key + "Icon"].classList.add("visible");
+      } else {
+        this.$refs[key + "Icon"].classList.remove("visible");
+      }
+
+
+
+      console.log(key);
+    },
+
     validateNumber(_, value, callback) {
       // Define a regular expression pattern for exactly 11 digits.
       var digitsPattern = /^\d{11}$/;
@@ -311,15 +390,7 @@ export default {
     },
 
     submitForm() {
-      this.$refs.myForm.validate((valid) => {
-        if (valid) {
-          console.log("valid");
-          // Form is valid, submit the data or perform your action here
-        } else {
-          console.log("invalid");
-          // Form is not valid, display error messages
-        }
-      });
+      console.log('submit');
     },
 
     resetForm() {
@@ -386,7 +457,7 @@ export default {
     font-weight: 400;
   }
 
-  &__form {
+  &__container {
     position: relative;
 
     //  715 = 44.6875 px below
@@ -401,8 +472,6 @@ export default {
     right: 0;
     width: 100%;
     box-shadow: $shadow;
-    border-radius: 4px;
-    // min-height: 50rem;
     background-color: $light-high;
 
     padding: 2rem;
@@ -411,6 +480,12 @@ export default {
     @media only screen and (max-width: 44.6875em) {
       position: static;
     }
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 }
 
@@ -484,6 +559,107 @@ export default {
       height: 2.4rem;
       width: 2.4rem;
     }
+  }
+}
+
+.base-input {
+  // padding-top: 1rem;
+  // border: 1px solid red;
+
+  .label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    // background-color: $light-high;
+    position: absolute;
+    // width: auto;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: text;
+
+    transition: all 0.4s ease-in-out;
+  }
+
+  &__form-group {
+    width: 100%;
+    position: relative;
+    background-color: red;
+
+    // default input
+    .input {
+      // background-color: $light-high;
+      padding: 0.8rem 3.4rem 0.8rem 1rem;
+      border-radius: 0;
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: inherit;
+      color: inherit;
+      width: 100%;
+      transition: border ease 0.4s;
+      outline: none;
+      border: solid thin $dark-low;
+
+      &:focus {
+        outline: none;
+
+        & ~ .label {
+          background-color: $light-high;
+          font-size: 1rem;
+          top: 0;
+        }
+      }
+    }
+
+    // when input is valid
+    .input.valid {
+      & ~ .label {
+        background-color: $light-high;
+        font-size: 1rem;
+        top: 0;
+      }
+    }
+
+    // when input is invalid
+    .input.invalid {
+      border: solid thin $main;
+      & ~ .label {
+        background-color: $light-high;
+        color: $main;
+        font-size: 1rem;
+        top: 0;
+      }
+      & ~ .icon {
+        fill: $main;
+      }
+    }
+
+    // X btn
+    .icon {
+      position: absolute;
+      height: 2.1rem;
+      width: 2.1rem;
+      fill: $black-tint;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1rem;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      visibility: hidden;
+      opacity: 0;
+      // pointer-events: none; // auto
+
+      &.visible {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__message {
+    font-size: 1.4rem;
+    font-weight: inherit;
+    color: $main;
   }
 }
 </style>
