@@ -49,99 +49,6 @@
             },
           }"
         >
-          <!-- <el-form
-            label-position="top"
-            :model="form"
-            :rules="rules"
-            ref="myForm"
-          >
-            <el-row :gutter="10">
-              <el-col :span="12" :xs="24">
-                <el-form-item label="Name" prop="name">
-                  <el-input
-                    clearable
-                    v-model="form.name"
-                    placeholder="Input your first name"
-                  ></el-input>
-                </el-form-item>
-              </el-col>
-
-              <el-col :span="12" :xs="24">
-                <el-form-item label="Last Name" prop="lname">
-                  <el-input
-                    clearable
-                    v-model="form.lname"
-                    placeholder="Input your last name"
-                  />
-                </el-form-item>
-              </el-col>
-            </el-row>
-
-            <el-row :gutter="10">
-              <el-col :span="12" :xs="24">
-                <el-form-item label="Email" prop="email">
-                  <el-input
-                    clearable
-                    placeholder="Input your email address"
-                    v-model="form.email"
-                  ></el-input>
-                </el-form-item>
-              </el-col>
-
-              <el-col :span="12" :xs="24">
-                <el-form-item label="Contact Number" prop="contact">
-                  <el-input
-                    v-model="form.contact"
-                    clearable
-                    maxlength="11"
-                    placeholder="09123456789"
-                    show-word-limit
-                    type="text"
-                  />
-                </el-form-item>
-              </el-col>
-            </el-row>
-
-            <el-row>
-              <el-col>
-                <el-form-item label="What is your concern?" prop="subject">
-                  <el-select
-                    style="width: 100%"
-                    v-model="form.subject"
-                    placeholder="Select subject"
-                  >
-                    <el-option
-                      v-for="subject in subjects"
-                      :key="subject.id"
-                      :label="subject.label"
-                      :value="subject.value"
-                    />
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-
-            <el-row>
-              <el-col>
-                <el-form-item label="What may i help you?" prop="body">
-                  <el-input
-                    v-model="form.body"
-                    :rows="4"
-                    type="textarea"
-                    placeholder="Tell me more"
-                  />
-                </el-form-item>
-              </el-col>
-            </el-row>
-
-            <el-form-item>
-              <el-button type="primary" @click="submitForm(myForm)"
-                >Submit</el-button
-              >
-              <el-button @click="resetForm(myForm)">Reset</el-button>
-            </el-form-item>
-          </el-form> -->
-
           <form action="#" @submit.prevent="submitForm" class="contact__form">
             <div class="base-input">
               <div class="base-input__form-group">
@@ -155,7 +62,7 @@
                   ref="name"
                 />
 
-                <label class="label" for="name">* I am Label</label>
+                <label class="label" for="name">* Firstname</label>
                 <svg
                   ref="nameIcon"
                   class="icon"
@@ -165,7 +72,138 @@
                   <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
                 </svg>
               </div>
-              <span class="base-input__message">&nbsp;</span>
+              <span class="base-input__message">{{ errors.name }}</span>
+            </div>
+
+            <div class="base-input">
+              <div class="base-input__form-group">
+                <input
+                  class="input"
+                  type="text"
+                  id="lname"
+                  v-model.trim="form.lname"
+                  @focus="resetInputClass('lname')"
+                  @blur="validateInput('lname')"
+                  ref="lname"
+                />
+
+                <label class="label" for="lname">* Lastname</label>
+                <svg
+                  ref="lnameIcon"
+                  class="icon"
+                  role="button"
+                  @click="clearInput('lname')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">{{ errors.lname }}</span>
+            </div>
+
+            <div class="base-input">
+              <div class="base-input__form-group">
+                <input
+                  class="input"
+                  type="text"
+                  id="email"
+                  v-model.trim="form.email"
+                  @focus="resetInputClass('email')"
+                  @blur="validateInput('email')"
+                  ref="email"
+                />
+
+                <label class="label" for="email">* Email Address</label>
+                <svg
+                  ref="emailIcon"
+                  class="icon"
+                  role="button"
+                  @click="clearInput('email')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">{{ errors.email }}</span>
+            </div>
+
+            <div class="base-input">
+              <div class="base-input__form-group">
+                <input
+                  class="input"
+                  type="text"
+                  id="contact"
+                  v-model.trim="form.contact"
+                  @focus="resetInputClass('contact')"
+                  @blur="validateInput('contact')"
+                  ref="contact"
+                />
+
+                <label class="label" for="contact">* Contact Number</label>
+                <svg
+                  ref="contactIcon"
+                  class="icon"
+                  role="button"
+                  @click="clearInput('contact')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">{{ errors.contact }}</span>
+            </div>
+
+            <!-- SUBJECT TEXT -->
+            <div class="base-input overlap">
+              <div class="base-input__form-group">
+                <input
+                  class="input"
+                  type="text"
+                  id="subject"
+                  v-model.trim="form.subject"
+                  @focus="resetInputClass('subject')"
+                  @blur="validateInput('subject')"
+                  ref="subject"
+                />
+
+                <label class="label" for="subject">* Purpose of email</label>
+                <svg
+                  ref="subjectIcon"
+                  class="icon"
+                  role="button"
+                  @click="clearInput('subject')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">{{ errors.subject }}</span>
+            </div>
+
+            <!-- BODY: TEXT AREA -->
+            <div class="base-input overlap">
+              <div class="base-input__form-group">
+                <textarea
+                  class="input textarea"
+                  type="text"
+                  id="body"
+                  v-model.trim="form.body"
+                  @focus="resetInputClass('body')"
+                  @blur="validateInput('body')"
+                  ref="body"
+                  rows="5"
+                >
+                </textarea>
+
+                <label class="label textarea" for="body"
+                  >* Tell me something</label
+                >
+                <svg
+                  ref="bodyIcon"
+                  class="icon textarea"
+                  role="button"
+                  @click="clearInput('body')"
+                >
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+              <span class="base-input__message">{{ errors.body }}</span>
             </div>
           </form>
         </div>
@@ -252,20 +290,6 @@ export default {
   name: "MeatshoppeContactPage",
   data() {
     return {
-      subjects: [
-        {
-          id: 1,
-          value: "option1",
-          label: "Option 1",
-        },
-
-        {
-          id: 2,
-          value: "option2",
-          label: "Option 2",
-        },
-      ],
-
       form: {
         name: "",
         lname: "",
@@ -276,7 +300,14 @@ export default {
         // Add more form fields as needed
       },
 
-      
+      errors: {
+        name: "",
+        lname: "",
+        email: "",
+        contact: "",
+        subject: "",
+        body: "",
+      },
 
       rules: {
         name: [
@@ -326,51 +357,146 @@ export default {
   methods: {
     clearInput(key) {
       this.form[key] = "";
-      this.$refs[key].classList.remove("invalid");
-      this.$refs[key].classList.remove("valid");
+      this.resetInputClass(key);
       this.checkRefs(key);
     },
 
     resetInputClass(key) {
-      this.$refs[key].classList.remove("invalid");
-      this.$refs[key].classList.remove("valid");
+      let ref = this.$refs[key];
+      // check if refs/array is multiple or not
+      if (Array.isArray(ref)) ref = ref[0];
+
+      // remove error message
+      this.errors[key] = "";
+
+      // this will reset the only one refs
+      ref.classList.remove("invalid");
+      ref.classList.remove("valid");
     },
 
     validateInput(key) {
-      let pattern = "";
+      let ref = this.$refs[key];
+      // check if refs/array is multiple or not
+      if (Array.isArray(ref)) ref = ref[0];
 
-      if (key === "name") {
-        pattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
-      }
+      // check if key have value
+      if (this.form[key].length > 0) {
+        // test input
+        const isValid = this.testInput(key);
 
-      if (pattern.test(this.form[key])) {
-        this.$refs.name.classList.remove("invalid");
-        this.$refs.name.classList.add("valid");
-      } else {
-        this.$refs.name.classList.remove("valid");
-        this.$refs.name.classList.add("invalid");
-      }
+        // if valid
+        if (isValid.state) {
+          ref.classList.remove("invalid");
+          ref.classList.add("valid");
+          this.errors[key] = "";
+        }
 
+        // if not valid, add error message
+        else this.invalidateInput(key, ref, isValid.message);
+
+        // if field doesnt have any value add error message
+      } else this.invalidateInput(key, ref, "Field is required");
+
+      // toggle input clear btn or x
       this.checkRefs(key);
     },
 
+    invalidateInput(key, ref, message) {
+      ref.classList.remove("valid");
+      ref.classList.add("invalid");
+      this.errors[key] = message;
+    },
+
+    testInput(key) {
+      let pattern = "";
+
+      if (key === "name" || key === "lname") {
+        pattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
+
+        if (pattern.test(this.form[key])) {
+          return { state: true, message: "Name is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. Ensure that the name does not contain symbols or numbers.",
+          };
+        }
+      }
+
+      if (key === "email") {
+        pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (pattern.test(this.form[key])) {
+          return { state: true, message: "Email is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. The email address you've entered is not valid.",
+          };
+        }
+      }
+
+      if (key === "contact") {
+        pattern = /^(\d{10,11})$/;
+
+        if (pattern.test(this.form[key])) {
+          return { state: true, message: "contact is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. Please provide a contact number with 10 to 11 digits.",
+          };
+        }
+      }
+
+      if (key === "subject") {
+        pattern = /^[\s\S]{10,45}$/;
+
+        if (pattern.test(this.form[key])) {
+          return { state: true, message: "subject is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. Please enter between 10 and 45 characters.",
+          };
+        }
+      }
+
+      if (key === "body") {
+        pattern = /^[\s\S]{20,250}$/;
+
+        if (pattern.test(this.form[key])) {
+          return { state: true, message: "body is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. Please enter between 20 and 250 characters.",
+          };
+        }
+      }
+    },
 
     // add or remove clear btn base on form.key
     checkRefs(key) {
+      let ref = this.$refs[key];
+      let refIcon = this.$refs[key + "Icon"];
+      // check if refs/array is multiple or not
+      if (Array.isArray(ref)) ref = ref[0];
+      if (Array.isArray(refIcon)) refIcon = refIcon[0];
+
       if (
-        (this.$refs[key].classList.contains("valid") &&
-          this.form[key].length > 0) ||
-        (this.$refs[key].classList.contains("invalid") &&
-          this.form[key].length > 0)
+        (ref.classList.contains("valid") && this.form[key].length > 0) ||
+        (ref.classList.contains("invalid") && this.form[key].length > 0)
       ) {
-        this.$refs[key + "Icon"].classList.add("visible");
+        refIcon.classList.add("visible");
       } else {
-        this.$refs[key + "Icon"].classList.remove("visible");
+        refIcon.classList.remove("visible");
       }
-
-
-
-      console.log(key);
     },
 
     validateNumber(_, value, callback) {
@@ -390,7 +516,7 @@ export default {
     },
 
     submitForm() {
-      console.log('submit');
+      console.log("submit");
     },
 
     resetForm() {
@@ -563,9 +689,6 @@ export default {
 }
 
 .base-input {
-  // padding-top: 1rem;
-  // border: 1px solid red;
-
   .label {
     font-size: 1.6rem;
     font-weight: 600;
@@ -579,12 +702,17 @@ export default {
     cursor: text;
 
     transition: all 0.4s ease-in-out;
+
+    &.textarea {
+      top: 2rem;
+      // transform: translateY(100%);
+    }
   }
 
   &__form-group {
     width: 100%;
     position: relative;
-    background-color: red;
+    // background-color: red;
 
     // default input
     .input {
@@ -609,28 +737,32 @@ export default {
           top: 0;
         }
       }
-    }
 
-    // when input is valid
-    .input.valid {
-      & ~ .label {
-        background-color: $light-high;
-        font-size: 1rem;
-        top: 0;
+      // when input is valid
+      &.valid {
+        & ~ .label {
+          background-color: $light-high;
+          font-size: 1rem;
+          top: 0;
+        }
       }
-    }
 
-    // when input is invalid
-    .input.invalid {
-      border: solid thin $main;
-      & ~ .label {
-        background-color: $light-high;
-        color: $main;
-        font-size: 1rem;
-        top: 0;
+      // when input is invalid
+      &.invalid {
+        border: solid thin $main;
+        & ~ .label {
+          background-color: $light-high;
+          color: $main;
+          font-size: 1rem;
+          top: 0;
+        }
+        & ~ .icon {
+          fill: $main;
+        }
       }
-      & ~ .icon {
-        fill: $main;
+
+      &.textarea {
+        resize: vertical;
       }
     }
 
@@ -653,6 +785,12 @@ export default {
         visibility: visible;
         opacity: 1;
       }
+
+      &.textarea {
+        top: 2rem;
+        right: 2rem;
+        // transform: translateY(100%);
+      }
     }
   }
 
@@ -660,6 +798,10 @@ export default {
     font-size: 1.4rem;
     font-weight: inherit;
     color: $main;
+  }
+
+  &.overlap {
+    grid-column: 1/-1;
   }
 }
 </style>
