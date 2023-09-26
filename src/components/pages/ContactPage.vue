@@ -72,8 +72,7 @@
                   <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
                 </svg>
               </div>
-                <span class="base-input__message" >{{ errors.name }}</span>
-
+              <span class="base-input__message">{{ errors.name }}</span>
             </div>
 
             <div class="base-input">
@@ -207,7 +206,11 @@
               <span class="base-input__message">{{ errors.body }}</span>
             </div>
 
-            <BaseButton btn-text="Submit" :btn-outline="true" :btn-outline-dark="true" />
+            <BaseButton
+              btn-text="Submit"
+              :btn-outline="true"
+              :btn-outline-dark="true"
+            />
           </form>
         </div>
       </div>
@@ -300,7 +303,6 @@ export default {
         contact: "",
         subject: "",
         body: "",
-        // Add more form fields as needed
       },
 
       errors: {
@@ -310,47 +312,6 @@ export default {
         contact: "",
         subject: "",
         body: "",
-      },
-
-      rules: {
-        name: [
-          { required: true, message: "Firstname is required", trigger: "blur" },
-        ],
-
-        lname: [
-          { required: true, message: "Lastname is required", trigger: "blur" },
-        ],
-
-        email: [
-          { required: true, message: "Email is required", trigger: "blur" },
-          { type: "email", message: "Invalid email format", trigger: "blur" },
-        ],
-
-        contact: [
-          {
-            required: true,
-            message: "Contact num is required",
-            trigger: "blur",
-          },
-          {
-            validator: this.validateNumber,
-            trigger: "blur",
-          },
-        ],
-
-        subject: [
-          { required: true, message: "Subject is required", trigger: "change" },
-        ],
-
-        body: [
-          {
-            required: true,
-            message: "Message body is required",
-            trigger: "blur",
-          },
-        ],
-
-        // Add validation rules for other fields as needed
       },
     };
   },
@@ -502,28 +463,26 @@ export default {
       }
     },
 
-    validateNumber(_, value, callback) {
-      // Define a regular expression pattern for exactly 11 digits.
-      var digitsPattern = /^\d{11}$/;
-
-      if (/^[A-Za-z]+$/.test(value)) {
-        console.log("Input consists of letters.");
-        callback(new Error("Contact num consists of letters"));
-      } else if (digitsPattern.test(value)) {
-        console.log("Input consists of exactly 11 digits");
-        callback(); // Validation passes
-      } else {
-        callback(new Error("Input is not valid"));
-        console.log("Contact num is not valid.");
-      }
-    },
-
     submitForm() {
-      console.log("submit");
-    },
+      let canSubmit = true;
 
-    resetForm() {
-      this.$refs.myForm.resetFields();
+      for (const key in this.form) {
+        // console.log(!!!this.form[key] || !!this.errors[key])
+        if (!!!this.form[key] || !!this.errors[key]) {
+          canSubmit = false;
+          break;
+        }
+      }
+
+      if (canSubmit) {
+        // Perform your form submission action here
+        console.log("Form submitted!");
+      } else {
+        for (const key in this.form) {
+          this.validateInput(key);
+        }
+        console.log("Form data is not valid. Please fix errors.");
+      }
     },
   },
 };
@@ -602,7 +561,7 @@ export default {
     width: 100%;
     box-shadow: $shadow;
     background-color: $light-high;
-
+    // border: solid thin $dark-low;
     padding: 2rem;
 
     //  715 = 44.6875 px below
@@ -807,7 +766,4 @@ export default {
     grid-column: 1/-1;
   }
 }
-
-
-
 </style>
