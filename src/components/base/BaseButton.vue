@@ -61,7 +61,7 @@ export default {
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 1rem 2.8rem;
-  font-weight: 400;
+  font-weight: 600;
   color: $light-high;
   background: $gradient;
   background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
@@ -87,11 +87,13 @@ export default {
   &.btn-outline {
     background: none;
     background-color: transparent;
-    border: solid thin $main;
+    // border: solid thin $main;
+    border: 2px solid $main;
     color: $main;
 
     &:hover {
-      border: solid thin $main;
+      // border: solid thin $main;
+      border: 2px solid $main;
       background-color: $main;
       color: $light-high;
     }

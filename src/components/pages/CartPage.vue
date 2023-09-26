@@ -42,7 +42,8 @@ export default {
 
 .form-input {
   background-color: $light-low;
-  border: solid thin $light-mid;
+  // border: solid thin $light-mid;
+  border:  2px solid $light-mid;
   padding: 1rem 4rem;
   border-radius: 0;
   font-size: 1.6rem;
@@ -56,7 +57,8 @@ export default {
   &:focus {
     border: none;
     outline: none;
-    border: solid thin $dark-mid;
+    // border: solid thin $dark-mid;
+    border: 2px solid $dark-mid;
   }
 
 

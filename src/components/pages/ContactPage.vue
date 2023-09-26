@@ -688,7 +688,8 @@ export default {
       width: 100%;
       transition: border ease 0.4s;
       outline: none;
-      border: solid thin $dark-low;
+      // border: solid thin $dark-low;
+      border: 2px solid $dark-low;
 
       &:focus {
         outline: none;
@@ -711,7 +712,8 @@ export default {
 
       // when input is invalid
       &.invalid {
-        border: solid thin $main;
+        // border: solid thin $main;
+        border: 2px solid $main;
         & ~ .label {
           background-color: $light-high;
           color: $main;

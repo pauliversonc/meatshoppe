@@ -1,8 +1,60 @@
 <template>
+
+
   <div class="search">
     <div class="search__wrapper">
       <!-- LEFT -->
-    
+
+      <div class="container">
+    <div class="rotate-div" :class="{ rotated: isRotated }" @click="toggleRotation"></div>
+  </div>
+
+      <!-- ASIDE -->
+      <div class="filter">
+
+
+        <div class="collapse"
+        :class="{active : testing}"
+        >
+
+          <!-- collapseable part -->
+          <div class="collapse__head" @click="testing = !testing">
+
+            <!-- title -->
+            <div class="collapse__title">
+              <span class="collapse__title--name">Category</span>
+              <span class="collapse__title--count">(23)</span>
+            </div>
+
+            <!-- toggle -->
+            <div class="collapse__icon-box" :class="{rotate: testing}"  role="button">
+              <svg class="collapse__icon-box--icon">
+                <use
+                  xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
+                ></use>
+              </svg>
+            </div>
+
+
+          </div>
+
+
+          <!-- shrinking part -->
+          <!-- Collapse body -->
+          <Transition name="expand">
+            <div class="collapse__body" v-if="testing">
+              <div class="checkbox__group" v-for="i in 10" :key="i">
+                <input class="checkbox__group--input" type="checkbox" value="checkbox" id="checkbox" v-model="filters.category" />
+                <label class="checkbox__group--label" for="checkbox">checkbox</label>
+                <span class="checkbox__group--count">(24)</span>
+              </div>
+            </div>
+          </Transition>
+
+          
+        </div>
+      </div>
+      <!-- ASIDE -->
 
       <!-- <div class="filter"> -->
       <el-scrollbar class="filter" height="84vh">
@@ -159,8 +211,6 @@ import products from "../../data/ck-products.json";
 export default {
   name: "MeatshoppeSearchPage",
   computed: {
-
-
     filterTags() {
       let category = [];
       let part = [];
@@ -217,23 +267,28 @@ export default {
       return [...category, ...part, ...brand, ...weight, ...tag];
     },
 
-
-    filteredProducts(){
+    filteredProducts() {
       const minPrice = parseFloat(this.filters.price.minValue);
       const maxPrice = parseFloat(this.filters.price.maxValue);
 
       return this.products.filter((item) => {
         const productPrice = parseFloat(item.price);
-       
-        return  (this.filters.part.length === 0 || this.filters.part.includes(item.part)) &&
-                (this.filters.brand.length === 0 || this.filters.brand.includes(item.brand)) && 
-                (this.filters.weight.length === 0 || this.filters.weight.some(value => item.weight.includes(value))) &&
-                (this.filters.category.length === 0 || this.filters.category.some(value => item.category.includes(value))) &&
-                (!minPrice || productPrice >= minPrice) &&
-                (!maxPrice || productPrice <= maxPrice)
-      })
 
-
+        return (
+          (this.filters.part.length === 0 ||
+            this.filters.part.includes(item.part)) &&
+          (this.filters.brand.length === 0 ||
+            this.filters.brand.includes(item.brand)) &&
+          (this.filters.weight.length === 0 ||
+            this.filters.weight.some((value) => item.weight.includes(value))) &&
+          (this.filters.category.length === 0 ||
+            this.filters.category.some((value) =>
+              item.category.includes(value)
+            )) &&
+          (!minPrice || productPrice >= minPrice) &&
+          (!maxPrice || productPrice <= maxPrice)
+        );
+      });
     },
 
     paginatedProducts() {
@@ -258,6 +313,8 @@ export default {
 
   data() {
     return {
+      isRotated: false,
+
       activeNames: ["price"], // Open Collapse Div
 
       filters: {
@@ -271,6 +328,8 @@ export default {
           tag: [], // only one tag
         },
       },
+
+      testing: false,
 
       filterOptions: {
         category: [], // category choices
@@ -289,9 +348,6 @@ export default {
 
       currentPage: 1,
       productsPerPage: 12,
-
-
-
     };
   },
 
@@ -302,12 +358,13 @@ export default {
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
     // this.handlePageChange(1);
-
-
-
   },
 
+
   methods: {
+    toggleRotation() {
+      this.isRotated = !this.isRotated;
+    },
 
     scrollToTop() {
       window.scrollTo({
@@ -501,13 +558,150 @@ export default {
 .filter {
   // flex: 1;
   width: 20%;
-  padding-right: 2rem;
+  // padding-right: 2rem;
   // max-height: 50rem;
   position: sticky;
   top: 7rem;
 
   // border: 1px solid red;
 }
+
+.collapse {
+  border-top: solid thin $gray;
+  border-bottom: solid thin $gray;
+ 
+  &__head {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: red;
+    cursor: pointer;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+
+    // border: 1px solid red;
+    line-height: 1;
+
+    &--name, &--count {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: $black-tint;
+      user-select: none;
+    }
+
+  }
+
+  &__icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // border: 1px solid red;
+    transition: transform .4s ease-out ;
+
+    &--icon {
+      height: 2rem;
+      width: 2rem;
+      transform: rotate(180deg);
+      
+ 
+    }
+  }
+
+  &__body {
+    max-height: 100rem;
+    overflow: hidden;
+    opacity: 1;
+
+    .checkbox__group {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 1rem;
+      margin-top: .2rem;
+      padding-left: 1rem;
+
+      &:last-child{
+        margin-bottom: 1rem;
+      }
+
+      // border: 1px solid red;
+
+      //  Hide the default checkbox 
+      &--input {
+        display: none;
+
+        // Style the custom checkbox when it's checked
+        &:checked + .checkbox__group--label::before {
+          background-color: $dark-high;
+          // border: 2px solid $light-low;
+        }
+
+        // Add a checkmark icon to the checked checkbox 
+        &:checked + .checkbox__group--label::after {
+          content: "\2713"; /* Unicode checkmark character */
+       
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          transform: translate(30%, -50%);
+          color: #fff; /* Color of the checkmark */
+        }
+
+      }
+
+
+      &--label {
+        position: relative;
+        font-size: 1.4rem;
+        text-transform: lowercase;
+        font-weight: 400;
+        cursor: pointer;
+        user-select: none;
+        // border: 1px solid red;
+        line-height: 1.4;
+        padding-left: 2.4rem; // Space for the custom checkbox 
+
+        // checkbox - default style (not clicked)
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          width: 1.6rem;
+          height: 1.6rem;
+          background-color: $light-high;
+          border: 2px solid $dark-low;
+        }
+      }
+
+  
+
+      &--count{
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 .price {
   display: grid;
@@ -570,4 +764,28 @@ export default {
     font-weight: 400;
   }
 }
+
+
+.expand-enter-active, .expand-leave-active {
+  transition: max-height .4s ease-in-out, opacity .4s ease-in-out;
+}
+.expand-enter-from, .expand-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+
+
+.rotate {
+  transform: rotateX(180deg);
+  transition: transform .4s ease-out;
+  perspective: 100px;
+}
+
+
+
+
+
+
+
+
 </style>

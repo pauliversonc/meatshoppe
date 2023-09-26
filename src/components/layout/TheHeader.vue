@@ -608,7 +608,8 @@ export default {
   
   transition: border ease 0.4s;
   outline: none;
-  border: solid thin $dark-low;
+  // border: solid thin $dark-low;
+  border: 2px solid $dark-low;
 
   &:focus {
     outline: none;
