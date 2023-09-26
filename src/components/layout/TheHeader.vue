@@ -102,7 +102,7 @@
       <!-- /.form group search -->
 
       <div class="search__btn-wrapper">
-        <BaseButton @click="closeSearch" btnText="close" :btnResize="true" />
+        <BaseButton @click="closeSearch" btn-text="close" :btn-resize="true" />
       </div>
 
       <ul class="search__suggestions" v-if="filteredSuggestions.length > 0">

@@ -26,7 +26,7 @@
           <span class="offer__text">{{ text }}</span>
         </h3>
         <p class="offer__paragraph">{{ paragraph }}</p>
-        <BaseButton btnText="Shop now" :btnOutline="true" />
+        <BaseButton btn-text="Shop now" :btn-outline="true" />
       </div>
     </div>
   </div>

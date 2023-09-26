@@ -72,7 +72,8 @@
                   <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
                 </svg>
               </div>
-              <span class="base-input__message">{{ errors.name }}</span>
+                <span class="base-input__message" >{{ errors.name }}</span>
+
             </div>
 
             <div class="base-input">
@@ -205,6 +206,8 @@
               </div>
               <span class="base-input__message">{{ errors.body }}</span>
             </div>
+
+            <BaseButton btn-text="Submit" :btn-outline="true" :btn-outline-dark="true" />
           </form>
         </div>
       </div>
@@ -395,7 +398,7 @@ export default {
         else this.invalidateInput(key, ref, isValid.message);
 
         // if field doesnt have any value add error message
-      } else this.invalidateInput(key, ref, "Field is required");
+      } else this.invalidateInput(key, ref, "This field is required");
 
       // toggle input clear btn or x
       this.checkRefs(key);
@@ -610,7 +613,7 @@ export default {
 
   &__form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 }
@@ -804,4 +807,7 @@ export default {
     grid-column: 1/-1;
   }
 }
+
+
+
 </style>

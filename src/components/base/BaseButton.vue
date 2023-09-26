@@ -1,8 +1,8 @@
 <template>
   <button
 
-    class="btn"
-    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize }]"
+    class="btn "
+    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize, 'btn-outline--dark': btnOutlineDark }]"
   >
     {{ btnText }}
   </button>
@@ -30,6 +30,12 @@ export default {
     },
 
     btnResize: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    btnOutlineDark: {
       type: Boolean,
       required: false,
       default: false,
@@ -81,10 +87,11 @@ export default {
   &.btn-outline {
     background: none;
     background-color: transparent;
-    border: 2px solid $main;
+    border: solid thin $main;
     color: $main;
 
     &:hover {
+      border: solid thin $main;
       background-color: $main;
       color: $light-high;
     }
@@ -93,7 +100,17 @@ export default {
       outline: none;
       box-shadow: $shadow;
     }
+
+    &--dark {
+      color: $dark-low;
+      // border: solid $dark-low;
+      border-color: $dark-low;
+    }
+
+ 
   }
+
+  
 
   // btn light
   &.btn-light {
