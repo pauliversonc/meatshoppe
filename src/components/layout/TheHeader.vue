@@ -199,11 +199,6 @@ export default {
       if (newValue) {
         document.body.classList.add("show-menu");
         document.addEventListener("keydown", this.onEscKey);
-        // this.$refs.search.focus();
-        // console.log(this.$refs.search);
-
-        // console.log(this.$refs.keySearch);
-        // this.addFocus();
       } else {
         document.body.classList.remove("show-menu");
         document.removeEventListener("keydown", this.onEscKey);

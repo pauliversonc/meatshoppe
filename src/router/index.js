@@ -3,7 +3,7 @@ import homeRoute from './routes/homeRoute';
 import notfoundRoute from './routes/notfoundRoute';
 import aboutRoute from './routes/aboutRoute';
 import contactRoute from './routes/contactRoute';
-import shopRoute from './routes/shopRoute';
+import searchRoute from './routes/searchRoute';
 import cartRoute from './routes/cartRoute';
 
 const router = createRouter({
@@ -12,7 +12,7 @@ const router = createRouter({
     homeRoute,
     aboutRoute,
     contactRoute,
-    shopRoute,
+    searchRoute,
     cartRoute,
     notfoundRoute
   ]

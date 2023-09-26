@@ -1,6 +1,6 @@
 <template>
-  <div class="shop">
-    <div class="shop__wrapper">
+  <div class="search">
+    <div class="search__wrapper">
       <!-- LEFT -->
     
 
@@ -157,7 +157,7 @@
 import products from "../../data/ck-products.json";
 
 export default {
-  name: "MeatshoppeShopPage",
+  name: "MeatshoppeSearchPage",
   computed: {
 
 
@@ -481,7 +481,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
-.shop {
+.search {
   padding: 7rem 2rem 8rem 2rem;
   background-color: $light-high;
 
