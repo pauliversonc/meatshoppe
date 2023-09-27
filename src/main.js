@@ -6,6 +6,7 @@ import BaseButton from './components/base/BaseButton.vue';
 import BaseHeadingOne from './components/base/BaseHeadingOne.vue';
 import BaseHeadingTwo from './components/base/BaseHeadingTwo.vue';
 import BaseProduct from './components/base/BaseProduct.vue';
+import BaseInputText from './components/base/BaseInputText';
 import { MotionPlugin } from '@vueuse/motion'
 
 
@@ -22,5 +23,6 @@ app.component('BaseButton', BaseButton);
 app.component('BaseHeadingOne', BaseHeadingOne);
 app.component('BaseHeadingTwo', BaseHeadingTwo);
 app.component('BaseProduct', BaseProduct);
+app.component('BaseInputText', BaseInputText);
 app.use(MotionPlugin)
 app.mount('#app');

@@ -50,6 +50,7 @@
           }"
         >
           <form action="#" @submit.prevent="submitForm" class="contact__form">
+
             <div class="base-input">
               <div class="base-input__form-group">
                 <input
@@ -150,8 +151,8 @@
               <span class="base-input__message">{{ errors.contact }}</span>
             </div>
 
-            <!-- SUBJECT TEXT -->
-            <div class="base-input overlap">
+            <!-- SUBJECT: TEXT -->
+            <div class="base-input">
               <div class="base-input__form-group">
                 <input
                   class="input"
@@ -177,7 +178,7 @@
             </div>
 
             <!-- BODY: TEXT AREA -->
-            <div class="base-input overlap">
+            <div class="base-input">
               <div class="base-input__form-group">
                 <textarea
                   class="input textarea"
@@ -762,10 +763,6 @@ export default {
     font-size: 1.4rem;
     font-weight: inherit;
     color: $main;
-  }
-
-  &.overlap {
-    grid-column: 1/-1;
   }
 }
 </style>
