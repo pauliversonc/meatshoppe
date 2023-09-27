@@ -5,29 +5,24 @@
     <div class="search__wrapper">
       <!-- LEFT -->
 
-      <div class="container">
-    <div class="rotate-div" :class="{ rotated: isRotated }" @click="toggleRotation"></div>
-  </div>
-
       <!-- ASIDE -->
       <div class="filter">
 
 
-        <div class="collapse"
-        :class="{active : testing}"
-        >
+        <!-- collapse item -->
+        <div class="collapse bb bt" :class="{active : activeCollapse.category}">
 
           <!-- collapseable part -->
-          <div class="collapse__head" @click="testing = !testing">
+          <div class="collapse__head" role="button" ref="categoryCollapse" @click="toggleCollapse('category', $event)">
 
             <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">Category</span>
-              <span class="collapse__title--count">(23)</span>
+              <span class="collapse__title--count" v-if="filters.category.length">{{ `(${filters.category.length})` }}</span>
             </div>
-
-            <!-- toggle -->
-            <div class="collapse__icon-box" :class="{rotate: testing}"  role="button">
+            
+            <!-- toggle --> <!-- rotating icon -->
+            <div class="collapse__icon-box" :class="{rotate: activeCollapse.category}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
                   xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
@@ -35,15 +30,171 @@
               </svg>
             </div>
 
+          </div>
+
+          <!-- Collapse body --> <!-- shrinking part -->
+          <Transition name="expand">
+            <div class="collapse__body" v-if="activeCollapse.category">
+              
+              <div class="checkbox__group" v-for="(item, index) in filterOptions.category" :key="item">
+                <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_cat_${index}`" v-model="filters.category" />
+                <!-- search collapse category -->
+                <label class="checkbox__group--label" :for="`search_col_cat_${index}`">{{ item }}</label>
+                <span class="checkbox__group--count">(24)</span>
+              </div>
+
+
+            </div>
+          </Transition>
+
+          
+        </div>
+        <!-- ./collapse item -->
+
+        <!-- collapse item -->
+        <div class="collapse bb" :class="{active : activeCollapse.part}">
+
+          <!-- collapseable part -->
+          <div class="collapse__head" role="button" ref="partCollapse" @click="toggleCollapse('part', $event)">
+
+            <!-- title -->
+            <div class="collapse__title">
+              <span class="collapse__title--name">part</span>
+              <span class="collapse__title--count" v-if="filters.part.length">{{ `(${filters.part.length})` }}</span>
+            </div>
+            
+            <!-- toggle --> <!-- rotating icon -->
+            <div class="collapse__icon-box" :class="{rotate: activeCollapse.part}"  role="button">
+              <svg class="collapse__icon-box--icon">
+                <use
+                  xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
+                ></use>
+              </svg>
+            </div>
 
           </div>
 
-
-          <!-- shrinking part -->
-          <!-- Collapse body -->
+          <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
-            <div class="collapse__body" v-if="testing">
-              <div class="checkbox__group" v-for="i in 10" :key="i">
+            <div class="collapse__body" v-if="activeCollapse.part">
+              <div class="checkbox__group" v-for="(item, index) in filterOptions.part" :key="item">
+                <!-- search collapse part -->
+                <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_prt_${index}`" v-model="filters.part" /> 
+                <label class="checkbox__group--label" :for="`search_col_prt_${index}`">{{ item }}</label>
+                <span class="checkbox__group--count">(24)</span>
+              </div>
+            </div>
+          </Transition>
+
+          
+        </div>
+        <!-- ./collapse item -->
+
+        <!-- collapse item -->
+        <div class="collapse bb" :class="{active : activeCollapse.brand}">
+
+          <!-- collapseable part -->
+          <div class="collapse__head" role="button" ref="brandCollapse" @click="toggleCollapse('brand', $event)">
+
+            <!-- title -->
+            <div class="collapse__title">
+              <span class="collapse__title--name">brand</span>
+              <span class="collapse__title--count" v-if="filters.brand.length">{{ `(${filters.brand.length})` }}</span>
+            </div>
+            
+            <!-- toggle --> <!-- rotating icon -->
+            <div class="collapse__icon-box" :class="{rotate: activeCollapse.brand}"  role="button">
+              <svg class="collapse__icon-box--icon">
+                <use
+                  xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
+                ></use>
+              </svg>
+            </div>
+
+          </div>
+
+          <!-- Collapse body --> <!-- shrinking part -->
+          <Transition name="expand">
+            <div class="collapse__body" v-if="activeCollapse.brand">
+              <div class="checkbox__group" v-for="(item, index) in filterOptions.brand">
+                <!-- search collapse brand -->
+                <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_brd_${index}`" v-model="filters.brand" />
+                <label class="checkbox__group--label" :for="`search_col_brd_${index}`">{{ item }}</label>
+                <span class="checkbox__group--count">(24)</span>
+              </div>
+            </div>
+          </Transition>
+
+          
+        </div>
+        <!-- ./collapse item -->
+
+        <!-- collapse item -->
+        <div class="collapse bb" :class="{active : activeCollapse.weight}">
+
+          <!-- collapseable part -->
+          <div class="collapse__head" role="button" ref="weightCollapse" @click="toggleCollapse('weight', $event)">
+
+            <!-- title -->
+            <div class="collapse__title">
+              <span class="collapse__title--name">weight</span>
+              <span class="collapse__title--count" v-if="filters.weight.length">{{ `(${filters.weight.length})` }}</span>
+            </div>
+            
+            <!-- toggle --> <!-- rotating icon -->
+            <div class="collapse__icon-box" :class="{rotate: activeCollapse.weight}"  role="button">
+              <svg class="collapse__icon-box--icon">
+                <use
+                  xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
+                ></use>
+              </svg>
+            </div>
+
+          </div>
+
+          <!-- Collapse body --> <!-- shrinking part -->
+          <Transition name="expand">
+            <div class="collapse__body" v-if="activeCollapse.weight">
+              <div class="checkbox__group" v-for="(item, index) in filterOptions.weight" :key="item">
+                <!-- search collapse weight -->
+                <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_wet_${index}`" v-model="filters.weight" />
+                <label class="checkbox__group--label" :for="`search_col_wet_${index}`">{{ item }}</label>
+                <span class="checkbox__group--count">(24)</span>
+              </div>
+            </div>
+          </Transition>
+
+          
+        </div>
+        <!-- ./collapse item -->
+
+        <!-- collapse item -->
+        <div class="collapse bb" :class="{active : activeCollapse.price}">
+
+          <!-- collapseable part -->
+          <div class="collapse__head" role="button" ref="priceCollapse" @click="toggleCollapse('price', $event)">
+
+            <!-- title -->
+            <div class="collapse__title">
+              <span class="collapse__title--name">price</span>
+              <span class="collapse__title--count">(23)</span>
+            </div>
+            
+            <!-- toggle --> <!-- rotating icon -->
+            <div class="collapse__icon-box" :class="{rotate: activeCollapse.price}"  role="button">
+              <svg class="collapse__icon-box--icon">
+                <use
+                  xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"
+                ></use>
+              </svg>
+            </div>
+
+          </div>
+
+          <!-- Collapse body --> <!-- shrinking part -->
+          <Transition name="expand">
+            <div class="collapse__body" v-if="activeCollapse.price">
+              <div class="checkbox__group">
                 <input class="checkbox__group--input" type="checkbox" value="checkbox" id="checkbox" v-model="filters.category" />
                 <label class="checkbox__group--label" for="checkbox">checkbox</label>
                 <span class="checkbox__group--count">(24)</span>
@@ -53,8 +204,16 @@
 
           
         </div>
+        <!-- ./collapse item -->
+
+
+
       </div>
       <!-- ASIDE -->
+
+
+
+
 
       <!-- <div class="filter"> -->
       <el-scrollbar class="filter" height="84vh">
@@ -171,6 +330,9 @@
         </el-collapse>
       </el-scrollbar>
       <!-- </div> -->
+
+
+
 
       <!-- RIGHT -->
       <main class="content">
@@ -317,6 +479,14 @@ export default {
 
       activeNames: ["price"], // Open Collapse Div
 
+      activeCollapse: {
+        category: false,
+        part: false,
+        brand: false,
+        weight: false,
+        price: false,
+      },
+
       filters: {
         category: [], // selected category / checkbox / multiple value
         part: [], // selected part / checkbox / multiple value
@@ -362,6 +532,20 @@ export default {
 
 
   methods: {
+    toggleCollapse(key ,event) {
+
+      // get the clicked element element
+      const element = event.target.closest('.collapse__head');
+
+      // return if element is not exist
+      if(!element) return
+    
+      // toggle active collpase key
+      this.activeCollapse[key] = !this.activeCollapse[key]
+
+
+    },
+
     toggleRotation() {
       this.isRotated = !this.isRotated;
     },
@@ -567,11 +751,19 @@ export default {
 }
 
 .collapse {
+
+  &.bt {
   border-top: solid thin $gray;
+
+  }
+
+  &.bb {
   border-bottom: solid thin $gray;
+
+  }
  
   &__head {
-    padding: 1rem;
+    padding: 1.4rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -623,12 +815,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: start;
-      gap: 1rem;
+      // gap: .4rem;
       margin-top: .2rem;
-      padding-left: 1rem;
+      // padding-left: 1rem;
 
       &:last-child{
-        margin-bottom: 1rem;
+        margin-bottom: 1.4rem;
       }
 
       // border: 1px solid red;
@@ -665,10 +857,13 @@ export default {
         font-weight: 400;
         cursor: pointer;
         user-select: none;
+        color: $black-tint;
         // border: 1px solid red;
+        width: 100%;
         line-height: 1.4;
         padding-left: 2.4rem; // Space for the custom checkbox 
 
+        transition: .3s ease-out;
         // checkbox - default style (not clicked)
         &::before {
           content: "";
@@ -680,6 +875,10 @@ export default {
           height: 1.6rem;
           background-color: $light-high;
           border: 2px solid $dark-low;
+        }
+
+        &:hover {
+          color: $main;
         }
       }
 
