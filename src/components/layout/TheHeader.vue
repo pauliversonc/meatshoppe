@@ -90,6 +90,7 @@
           class="form-input"
           placeholder="Search"
           ref="keySearch"
+          id="layout_the_hdr_search"
         />
         <svg
           class="form__icon form__icon--right"

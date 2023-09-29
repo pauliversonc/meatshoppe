@@ -8,6 +8,36 @@
       <!-- ASIDE -->
       <div class="filter">
 
+        <div class="filter__header">
+          <span class="filter__header--title">Applied Filters</span>
+          <span class="filter__header--clr-btn" role="btn">
+            Clear All
+          </span>
+        </div>
+
+
+        <ul class="filter__tags">
+
+          <li class="filter__tag" >
+              <span class="filter__tag--name">chicken</span>
+              <div class="filter__tag--btn" role="btn">
+                <svg class="filter__tag--icon">
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+          </li>
+
+          <li class="filter__tag" >
+              <span class="filter__tag--name">ck</span>
+              <div class="filter__tag--btn" role="btn">
+                <svg class="filter__tag--icon">
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+          </li>
+
+        </ul>
+
 
         <!-- collapse item -->
         <div class="collapse bb bt" :class="{active : activeCollapse.category}">
@@ -177,7 +207,7 @@
             <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">price</span>
-              <span class="collapse__title--count">(23)</span>
+              <span class="collapse__title--count">&nbsp;</span>
             </div>
             
             <!-- toggle --> <!-- rotating icon -->
@@ -194,11 +224,32 @@
           <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
             <div class="collapse__body" v-if="activeCollapse.price">
-              <div class="checkbox__group">
-                <input class="checkbox__group--input" type="checkbox" value="checkbox" id="checkbox" v-model="filters.category" />
-                <label class="checkbox__group--label" for="checkbox">checkbox</label>
-                <span class="checkbox__group--count">(24)</span>
+
+              <div class="col_grid">
+                <div class="col_grid--item">
+                  <BaseInputText 
+                    text-name="name"
+                    text-label="min"
+                    ref="bitname"
+                    text-input-type="number"
+                    :text-required="false"
+                  />
+                </div>
+                <div class="col_grid--item center">&mdash;</div>
+                <div class="col_grid--item">
+                  <BaseInputText 
+                    text-name="lname"
+                    text-label="max"
+                    ref="bitname"
+                    text-input-type="number"
+                    :text-required="false"
+                  />
+                </div>
               </div>
+
+
+
+
             </div>
           </Transition>
 
@@ -532,6 +583,8 @@ export default {
 
 
   methods: {
+
+    // to be eliminate
     toggleCollapse(key ,event) {
 
       // get the clicked element element
@@ -546,16 +599,22 @@ export default {
 
     },
 
+    // dont know this shit
     toggleRotation() {
       this.isRotated = !this.isRotated;
     },
 
+
+    // scroll bar move to top
     scrollToTop() {
       window.scrollTo({
         top: 0,
         // behavior: 'smooth' // Optional: Adds smooth scrolling animation
       });
     },
+
+
+    // pagination
 
     // Seperate all products by page
     paginateProducts(pageNumber) {
@@ -580,11 +639,13 @@ export default {
       this.scrollToTop();
     },
 
+    // to be eliminate
     // Set the collapse filter as active
     handleCollapseChange(activeNames) {
       this.activeNames = activeNames;
     },
 
+    // good
     // generate filter options uniquely depending on product key
     generateFilterChoices(key, isArray) {
       // Use the map function to extract the "weight" arrays
@@ -600,12 +661,14 @@ export default {
       this.filterOptions[key] = uniqueItems;
     },
 
+    // good
     // Group products key this returns an array
     groupFilterOption(key) {
       const items = this.products.map((item) => item[key]);
       return items;
     },
 
+    // tags that is provided by element plus
     // Run when a filter tag is closed
     handleClose(tag) {
       // run when the clicked tag tag is filters.price
@@ -628,6 +691,7 @@ export default {
       return filteredTags;
     },
 
+    // clear all || create a filter tags above
     // Clear all tags / reset filtered tags
     clearFilter() {
       this.filters.category =
@@ -724,7 +788,7 @@ export default {
 @import "../../sass/variables";
 .search {
   padding: 7rem 2rem 8rem 2rem;
-  background-color: $light-high;
+  // background-color: $light-mid;
 
   &__wrapper {
     max-width: 120rem;
@@ -740,14 +804,78 @@ export default {
 
 // LEFT
 .filter {
-  // flex: 1;
+ 
   width: 20%;
-  // padding-right: 2rem;
-  // max-height: 50rem;
   position: sticky;
   top: 7rem;
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    color: $black-tint;
+
+    &--title {
+      font-size: inherit;
+      color: inherit;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    &--clr-btn {
+      font-size: inherit;
+      color: inherit;
+      cursor: pointer;
+      border: 1px solid red;
+      // line-height: 1rem;
+    }
+  }
+
   // border: 1px solid red;
+
+  &__tags {
+    background-color: red;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  &__tag {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    gap: 1rem;
+    background-color: $light-mid;
+    color: $dark-mid;
+    font-size: 1.4rem;
+    border: 2px solid transparent;
+
+    
+
+    &:hover {
+      border: 2px solid $dark-high;
+    }
+
+    // border: 1px solid blue;
+
+    &--name{
+      font-size: inherit;
+      color: inherit;
+      padding-left: .6rem;
+      user-select: none;
+    }
+    &--btn{
+      cursor: pointer;
+      // padding: 1rem;
+      // border: 1px solid red;
+    }
+    &--icon{
+      height: 1rem;
+      width: 2rem;
+    }
+  }
+
 }
 
 .collapse {
@@ -984,7 +1112,21 @@ export default {
 
 
 
+.col_grid {
+  display: grid;
+  grid-template-columns: 1fr .4fr 1fr;
+  margin-bottom: 1.4rem;
 
+  &--item {
+    &.center {
+      max-height: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+}
 
 
 </style>

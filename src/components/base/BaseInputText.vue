@@ -36,7 +36,7 @@
 
 
       <label class="label"
-      :class="{textarea: textInputType === 'textarea'}" :for="'base_inp_txt_'+textName">* {{ textLabel }}</label>
+      :class="{textarea: textInputType === 'textarea'}" :for="'base_inp_txt_'+textName">{{ textLabel }}</label>
       <svg
         ref="bitSvgRef"
         class="icon"
@@ -73,6 +73,12 @@ export default {
       default: 'text',
       required: false,
     },
+
+    textRequired: {
+      type: Boolean,
+      default: true,
+      required: false,
+    }
 
 
   },
@@ -137,7 +143,10 @@ export default {
         else this.invalidateInput(ref, isValid.message);
 
         // if field doesnt have any value add error message
-      } else this.invalidateInput(ref, "This field is required");
+      } else 
+        if (this.textRequired) {
+          this.invalidateInput(ref, "This field is required");
+        } 
 
       // toggle input clear btn or x
       this.checkRefs(key);
@@ -273,6 +282,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../sass/variables";
 .base-input {
+  margin: 4px 0;
   .label {
     font-size: 1.6rem;
     font-weight: 600;

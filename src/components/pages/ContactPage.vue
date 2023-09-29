@@ -378,16 +378,16 @@ export default {
     //   this.inputText = this.inputText.replace(/\D/g, ''); // Remove non-digits
     // },
 
-    // handleInputBlur(object){
-    //   // console.log(a)
-    //   const {key, value, error} = object;
-    //   console.log(key)
-    //   console.log(value)
-    //   console.log(error)
-    //   this.form[key] = value;
-    //   this.errors[key] = error;
+    handleInputBlur(object){
+      // console.log(a)
+      const {key, value, error} = object;
+      // console.log(key)
+      // console.log(value)
+      // console.log(error)
+      this.form[key] = value;
+      this.errors[key] = error;
 
-    // },
+    },
 
     // clearInput(key) {
     //   this.form[key] = "";

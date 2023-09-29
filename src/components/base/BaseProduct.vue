@@ -168,6 +168,7 @@ export default {
 @import "../../sass/variables";
 @import "../../sass//mixins";
 .product {
+  margin: 4px;
   background-color: $light-mid;
   // border: 1px solid green;
   overflow: hidden;
