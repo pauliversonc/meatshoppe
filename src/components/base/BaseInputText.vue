@@ -1,114 +1,165 @@
 <template>
   <div class="base-input">
     <div class="base-input__form-group">
+
+
+      <textarea
+        v-if="textInputType === 'textarea'"
+        class="input"
+        :class="{textarea: textInputType === 'textarea'}"
+     
+        :id="'base_inp_txt_'+textName"
+        v-model.trim="formKey"
+        @focus="resetInputClass()"
+        @blur="validateInput(textName)"
+        ref="bitInputRef"
+        rows="5"
+      >
+      </textarea>
+
       <input
+        v-else
         class="input"
         type="text"
-        :id="`base_inp_txt_${key}`"
-        v-model.trim="value"
-        @focus="resetInputClass(key)"
-        @blur="validateInput(key)"
-        :ref="key"
+        :id="'base_inp_txt_'+textName"
+        v-model.trim="formKey"
+        @focus="resetInputClass()"
+        @blur="validateInput(textName)"
+        ref="bitInputRef"
+
+
+        @input="filterInput"
       />
 
-      <label class="label" :for="key">* {{ label }}</label>
+
+
+
+
+      <label class="label"
+      :class="{textarea: textInputType === 'textarea'}" :for="'base_inp_txt_'+textName">* {{ textLabel }}</label>
       <svg
-        :ref="key +'Icon'"
+        ref="bitSvgRef"
         class="icon"
+        :class="{textarea: textInputType === 'textarea'}" 
         role="button"
-        @click="clearInput(key)"
+        @click="clearInput(textName)"
       >
         <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
       </svg>
     </div>
-    <span class="base-input__message">{{ errors[key] }}</span>
+    <span class="base-input__message">{{ error }}</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "MeatshoppeBaseInputText",
+  emits: ['on-input-blur'],
   props: {
-
-    key: { // reference ng buong BaseInput
+    textName: { // reference ng buong BaseInput
       type: String,
       required: true,
     },
 
-    label: { // label
+    textLabel: { // label
       type: String,
       required: true,
     },
+
+    // values can only be:
+    // text, nunber, textarea
+    textInputType: {
+      type: String,
+      default: 'text',
+      required: false,
+    },
+
 
   },
   data() {
     return {
-      value: "", // v-model
+      formKey: "", // v-model
+      error: "",
     };
   },
 
   mounted() {},
 
   methods: {
-    clearInput(key) {
-      this.form[key] = "";
-      this.resetInputClass(key);
-      this.checkRefs(key);
+    // remove all non digits from v-model
+    filterInput(){
+      if(this.textInputType === 'number') {
+        this.formKey = this.formKey.replace(/\D/g, '');
+      }
     },
 
-    resetInputClass(key) {
-      let ref = this.$refs[key];
-      // check if refs/array is multiple or not
-      if (Array.isArray(ref)) ref = ref[0];
+    // remove inputs including the design of error / validation also message
+    clearInput(key) {
+      // reset the formkey to default
+      this.formKey = "";
+      this.resetInputClass();
+      this.checkRefs();
 
-      // remove error message
-      this.errors[key] = "";
+      this.$emit('on-input-blur', {key, value: this.formKey, error: this.error});
+    },
 
-      // this will reset the only one refs
+    // remove all validation ui error message
+    resetInputClass() {
+      let ref = this.$refs.bitInputRef;
+   
+      // // remove error message
+      this.error = "";
+
+      // remove all ui classes that show error and valid designs
       ref.classList.remove("invalid");
       ref.classList.remove("valid");
     },
 
+    // check if user input a text
     validateInput(key) {
-      let ref = this.$refs[key];
-      // check if refs/array is multiple or not
-      if (Array.isArray(ref)) ref = ref[0];
+      let ref = this.$refs.bitInputRef;
+
 
       // check if key have value
-      if (this.form[key].length > 0) {
-        // test input
+      if (this.formKey.length > 0) {
+
+        // test input depending to prop: textName
         const isValid = this.testInput(key);
 
         // if valid
         if (isValid.state) {
           ref.classList.remove("invalid");
           ref.classList.add("valid");
-          this.errors[key] = "";
+          this.error = "";
         }
 
         // if not valid, add error message
-        else this.invalidateInput(key, ref, isValid.message);
+        else this.invalidateInput(ref, isValid.message);
 
         // if field doesnt have any value add error message
-      } else this.invalidateInput(key, ref, "This field is required");
+      } else this.invalidateInput(ref, "This field is required");
 
       // toggle input clear btn or x
       this.checkRefs(key);
+
+      this.$emit('on-input-blur', {key, value: this.formKey, error: this.error});
     },
 
-    invalidateInput(key, ref, message) {
+    // make input text invalid
+    invalidateInput(ref, message) {
       ref.classList.remove("valid");
       ref.classList.add("invalid");
-      this.errors[key] = message;
+      this.error = message;
     },
 
+    // test input data
     testInput(key) {
       let pattern = "";
 
       if (key === "name" || key === "lname") {
         pattern = /^[A-Za-z]+( [A-Za-z]+)*$/;
 
-        if (pattern.test(this.form[key])) {
+        if (pattern.test(this.formKey)) {
           return { state: true, message: "Name is valid" };
         } else {
           return {
@@ -119,10 +170,11 @@ export default {
         }
       }
 
+      // // commented
       if (key === "email") {
         pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        if (pattern.test(this.form[key])) {
+        if (pattern.test(this.formKey)) {
           return { state: true, message: "Email is valid" };
         } else {
           return {
@@ -136,7 +188,7 @@ export default {
       if (key === "contact") {
         pattern = /^(\d{10,11})$/;
 
-        if (pattern.test(this.form[key])) {
+        if (pattern.test(this.formKey)) {
           return { state: true, message: "contact is valid" };
         } else {
           return {
@@ -150,7 +202,23 @@ export default {
       if (key === "subject") {
         pattern = /^[\s\S]{10,45}$/;
 
-        if (pattern.test(this.form[key])) {
+        if (pattern.test(this.formKey)) {
+          return { state: true, message: "subject is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+              "Invalid input. Please enter between 10 and 45 characters.",
+          };
+        }
+      }
+
+
+
+      if (key === "subject") {
+        pattern = /^[\s\S]{10,45}$/;
+
+        if (pattern.test(this.formKey)) {
           return { state: true, message: "subject is valid" };
         } else {
           return {
@@ -164,7 +232,7 @@ export default {
       if (key === "body") {
         pattern = /^[\s\S]{20,250}$/;
 
-        if (pattern.test(this.form[key])) {
+        if (pattern.test(this.formKey)) {
           return { state: true, message: "body is valid" };
         } else {
           return {
@@ -174,27 +242,148 @@ export default {
           };
         }
       }
+
     },
 
     // add or remove clear btn base on form.key
-    checkRefs(key) {
-      let ref = this.$refs[key];
-      let refIcon = this.$refs[key + "Icon"];
-      // check if refs/array is multiple or not
-      if (Array.isArray(ref)) ref = ref[0];
-      if (Array.isArray(refIcon)) refIcon = refIcon[0];
+    checkRefs() {
+      // reference the input
+      let ref = this.$refs.bitInputRef;
 
+      // reference the clear icon btn
+      let refIcon = this.$refs.bitSvgRef;
+
+      // show or hide clear btn in input element
       if (
-        (ref.classList.contains("valid") && this.form[key].length > 0) ||
-        (ref.classList.contains("invalid") && this.form[key].length > 0)
+        (ref.classList.contains("valid") && this.formKey.length > 0) ||
+        (ref.classList.contains("invalid") && this.formKey.length > 0)
       ) {
         refIcon.classList.add("visible");
       } else {
         refIcon.classList.remove("visible");
       }
     },
+
   },
+
+
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../../sass/variables";
+.base-input {
+  .label {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    // background-color: $light-high;
+    position: absolute;
+    // width: auto;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: text;
+
+    transition: all 0.4s ease-in-out;
+
+    &.textarea {
+      top: 2rem;
+      // transform: translateY(100%);
+    }
+  }
+
+  &__form-group {
+    width: 100%;
+    position: relative;
+    // background-color: red;
+
+    // default input
+    .input {
+      // background-color: $light-high;
+      padding: 0.8rem 3.4rem 0.8rem 1rem;
+      border-radius: 0;
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: inherit;
+      color: inherit;
+      width: 100%;
+      transition: border ease 0.4s;
+      outline: none;
+      // border: solid thin $dark-low;
+      border: 2px solid $dark-low;
+
+      &:focus {
+        outline: none;
+
+        & ~ .label {
+          background-color: $light-high;
+          font-size: 1rem;
+          top: 0;
+        }
+      }
+
+      // when input is valid
+      &.valid {
+        & ~ .label {
+          background-color: $light-high;
+          font-size: 1rem;
+          top: 0;
+        }
+      }
+
+      // when input is invalid
+      &.invalid {
+        // border: solid thin $main;
+        border: 2px solid $main;
+        & ~ .label {
+          background-color: $light-high;
+          color: $main;
+          font-size: 1rem;
+          top: 0;
+        }
+        & ~ .icon {
+          fill: $main;
+        }
+      }
+
+      &.textarea {
+        resize: vertical;
+      }
+    }
+
+    // X btn
+    .icon {
+      position: absolute;
+      height: 2.1rem;
+      width: 2.1rem;
+      fill: $black-tint;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 1rem;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      visibility: hidden;
+      opacity: 0;
+      // pointer-events: none; // auto
+
+      &.visible {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      &.textarea {
+        top: 2rem;
+        right: 2rem;
+        // transform: translateY(100%);
+      }
+    }
+  }
+
+  &__message {
+    font-size: 1.4rem;
+    font-weight: inherit;
+    color: $main;
+  }
+}
+</style>

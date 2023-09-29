@@ -6,7 +6,7 @@ import BaseButton from './components/base/BaseButton.vue';
 import BaseHeadingOne from './components/base/BaseHeadingOne.vue';
 import BaseHeadingTwo from './components/base/BaseHeadingTwo.vue';
 import BaseProduct from './components/base/BaseProduct.vue';
-import BaseInputText from './components/base/BaseInputText';
+import BaseInputText from './components/base/BaseInputText.vue';
 import { MotionPlugin } from '@vueuse/motion'
 
 

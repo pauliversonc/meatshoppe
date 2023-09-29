@@ -51,7 +51,59 @@
         >
           <form action="#" @submit.prevent="submitForm" class="contact__form">
 
-            <div class="base-input">
+
+            <!-- fname -->
+            <BaseInputText 
+              text-name="name"
+              text-label="first name"
+              @on-input-blur="handleInputBlur"
+              ref="bitname"
+            />
+
+            <!-- lname -->
+            <BaseInputText 
+              text-name="lname"
+              text-label="last name"
+              @on-input-blur="handleInputBlur"
+              ref="bitlname"
+            />
+
+            <!-- email -->
+            <BaseInputText 
+              text-name="email"
+              text-label="email address"
+              @on-input-blur="handleInputBlur"
+              ref="bitemail"
+            />
+
+            <!-- contact -->
+            <BaseInputText 
+              text-name="contact"
+              text-label="contact number"
+              @on-input-blur="handleInputBlur"
+              ref="bitcontact"
+              text-input-type="number"
+            />
+
+            <!-- subject -->
+            <BaseInputText 
+              text-name="subject"
+              text-label="purpose of email"
+              @on-input-blur="handleInputBlur"
+              ref="bitsubject"
+            />
+
+            <!-- email body -->
+            <BaseInputText 
+              text-name="body"
+              text-label="tell me something"
+              @on-input-blur="handleInputBlur"
+              ref="bitbody"
+              text-input-type="textarea"
+            />
+         
+ 
+            <!-- <div class="base-input">
               <div class="base-input__form-group">
                 <input
                   class="input"
@@ -100,6 +152,7 @@
               </div>
               <span class="base-input__message">{{ errors.lname }}</span>
             </div>
+
 
             <div class="base-input">
               <div class="base-input__form-group">
@@ -151,7 +204,6 @@
               <span class="base-input__message">{{ errors.contact }}</span>
             </div>
 
-            <!-- SUBJECT: TEXT -->
             <div class="base-input">
               <div class="base-input__form-group">
                 <input
@@ -177,7 +229,6 @@
               <span class="base-input__message">{{ errors.subject }}</span>
             </div>
 
-            <!-- BODY: TEXT AREA -->
             <div class="base-input">
               <div class="base-input__form-group">
                 <textarea
@@ -205,7 +256,7 @@
                 </svg>
               </div>
               <span class="base-input__message">{{ errors.body }}</span>
-            </div>
+            </div> -->
 
             <BaseButton
               btn-text="Submit"
@@ -314,12 +365,30 @@ export default {
         subject: "",
         body: "",
       },
+
+      inputText: '',
     };
   },
 
   mounted() {},
 
   methods: {
+
+    filterInput() {
+      this.inputText = this.inputText.replace(/\D/g, ''); // Remove non-digits
+    },
+
+    handleInputBlur(object){
+      // console.log(a)
+      const {key, value, error} = object;
+      console.log(key)
+      console.log(value)
+      console.log(error)
+      this.form[key] = value;
+      this.errors[key] = error;
+
+    },
+
     clearInput(key) {
       this.form[key] = "";
       this.resetInputClass(key);
@@ -480,7 +549,9 @@ export default {
         console.log("Form submitted!");
       } else {
         for (const key in this.form) {
-          this.validateInput(key);
+          // run the event from all of base input text base on ref
+          // run validate input base on key
+          this.$refs['bit'+key].validateInput(key);
         }
         console.log("Form data is not valid. Please fix errors.");
       }
