@@ -208,6 +208,20 @@ export default {
         }
       }
 
+      if (key === "min" || key === "max") {
+        pattern = /^(\d{1,6})$/;
+
+        if (pattern.test(this.formKey)) {
+          return { state: true, message: "contact is valid" };
+        } else {
+          return {
+            state: false,
+            message:
+            "Please enter a numeric value with a maximum of 6 digits.",
+          };
+        }
+      }
+
       if (key === "subject") {
         pattern = /^[\s\S]{10,45}$/;
 

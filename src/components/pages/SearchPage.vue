@@ -8,6 +8,7 @@
       <!-- ASIDE -->
       <div class="filter">
 
+        <!-- filter titles and clear button -->
         <div class="filter__header">
           <span class="filter__header--title">Applied Filters</span>
           <span class="filter__header--clr-btn" role="btn">
@@ -16,25 +17,19 @@
         </div>
 
 
+        <!-- list of tags -->
         <ul class="filter__tags">
 
-          <li class="filter__tag" >
-              <span class="filter__tag--name">chicken</span>
-              <div class="filter__tag--btn" role="btn">
+          <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
+              <span class="filter__tag--name">{{ tag.name }}</span>
+              <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
                 <svg class="filter__tag--icon">
                   <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
                 </svg>
               </div>
           </li>
 
-          <li class="filter__tag" >
-              <span class="filter__tag--name">ck</span>
-              <div class="filter__tag--btn" role="btn">
-                <svg class="filter__tag--icon">
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-          </li>
+
 
         </ul>
 
@@ -72,7 +67,6 @@
                 <label class="checkbox__group--label" :for="`search_col_cat_${index}`">{{ item }}</label>
                 <span class="checkbox__group--count">(24)</span>
               </div>
-
 
             </div>
           </Transition>
@@ -228,21 +222,23 @@
               <div class="col_grid">
                 <div class="col_grid--item">
                   <BaseInputText 
-                    text-name="name"
+                    text-name="min"
                     text-label="min"
-                    ref="bitname"
+                    ref="bitmin"
                     text-input-type="number"
                     :text-required="false"
+                    @on-input-blur="handleInputBlur"
                   />
                 </div>
                 <div class="col_grid--item center">&mdash;</div>
                 <div class="col_grid--item">
                   <BaseInputText 
-                    text-name="lname"
+                    text-name="max"
                     text-label="max"
-                    ref="bitname"
+                    ref="bitmax"
                     text-input-type="number"
                     :text-required="false"
+                    @on-input-blur="handleInputBlur"
                   />
                 </div>
               </div>
@@ -262,7 +258,7 @@
       </div>
       <!-- ASIDE -->
 
-
+      {{ filter }}
 
 
 
@@ -404,6 +400,8 @@
             :images="product.images"
           />
         </div>
+
+
         <div class="pagination" v-if="paginatedProducts.length">
           <el-pagination
             v-model:current-page="currentPage"
@@ -413,6 +411,7 @@
             @current-change="handlePageChange"
           />
         </div>
+
       </main>
     </div>
   </div>
@@ -481,8 +480,8 @@ export default {
     },
 
     filteredProducts() {
-      const minPrice = parseFloat(this.filters.price.minValue);
-      const maxPrice = parseFloat(this.filters.price.maxValue);
+      const minPrice = parseFloat(this.filters.price.min);
+      const maxPrice = parseFloat(this.filters.price.max);
 
       return this.products.filter((item) => {
         const productPrice = parseFloat(item.price);
@@ -530,12 +529,24 @@ export default {
 
       activeNames: ["price"], // Open Collapse Div
 
+      filter:{
+        category: [], // selected category / checkbox / multiple value
+        part: [], // selected part / checkbox / multiple value
+        brand: [], // selected brand / checkbox / multiple value
+        weight: [], // selected weight / checkbox / multiple value
+        price: {
+          min: "", // only one value
+          max: "", // only one value
+          tag: [], // only one tag
+        }
+      },
+
       activeCollapse: {
         category: false,
         part: false,
         brand: false,
         weight: false,
-        price: false,
+        price: true,
       },
 
       filters: {
@@ -544,8 +555,8 @@ export default {
         brand: [], // selected brand / checkbox / multiple value
         weight: [], // selected weight / checkbox / multiple value
         price: {
-          minValue: "", // only one value
-          maxValue: "", // only one value
+          min: "", // only one value
+          max: "", // only one value
           tag: [], // only one tag
         },
       },
@@ -583,6 +594,88 @@ export default {
 
 
   methods: {
+    removeTag(tag) {
+      console.log(tag)
+
+        // run when the clicked tag tag is filters.price
+        if (tag.type === "tag") {
+        // reset filters.price
+        this.filters.price.min = this.filters.price.max = "";
+        this.filters.price.tag = [];
+      } else {
+        // remove specific tag 
+        const filteredFiltersType = this.filters[tag.type].filter(
+          (tagName) => tagName !== tag.name
+        );
+        // assign new set of tags 
+        this.filters[tag.type] = filteredFiltersType;
+      }
+    },
+
+    // good
+    // handle inputs from price min & max1
+    handleInputBlur(object){
+      // console.log(a)
+      const {key, value, error} = object;
+      console.log(key)
+      console.log(value)
+      console.log(error)
+      
+      // set the price from bit (base input text component)
+      this.filters.price[key] = +value;
+
+   
+      let min = this.filters.price.min;
+      let max = this.filters.price.max;
+
+
+
+      // check if min or max have value 
+      if(min || max) {
+
+        console.log('dumaan ako')
+    
+        // check if you put value in min and not yet on max
+        if(min && !max) {
+          console.log('i put value on min but not on max')
+          this.filters.price.tag = [`PHP >= ${min}`];
+        } 
+        
+        // check if you put value in max and not yet on min
+        else if (!min && max) {
+          console.log('i put value on max but not on min')
+          this.filters.price.tag = [`PHP <= ${max}`];
+        }
+
+        // if both have value proceed to validate higher value
+        else {
+
+          // check if max value is greater than or equal to min
+          if(max >= min) {
+            console.log('validated')
+            this.filters.price.tag = [`PHP ${min} - PHP ${max}`];
+          } 
+          
+          // if min is greater than max prompt error message
+          else {
+            console.log("Max must be greater than Min");
+            this.filters.price.tag = [];
+          }
+
+        }
+
+      } 
+      
+      // else do nothing
+      else {
+        console.log('wala ako value')
+        this.filters.price.tag = [];
+      }
+
+
+
+    },
+
 
     // to be eliminate
     toggleCollapse(key ,event) {
@@ -599,6 +692,7 @@ export default {
 
     },
 
+    // to remove
     // dont know this shit
     toggleRotation() {
       this.isRotated = !this.isRotated;
@@ -614,8 +708,7 @@ export default {
     },
 
 
-    // pagination
-
+    // pagination || for checking
     // Seperate all products by page
     paginateProducts(pageNumber) {
       const startIndex = (pageNumber - 1) * this.perPage;
@@ -627,6 +720,7 @@ export default {
       return this.products.slice(startIndex, endIndex);
     },
 
+    // to remove | pagination of element plus
     // Run when user click a page
     handlePageChange(newPage) {
       // set clicked page as current page
@@ -668,6 +762,7 @@ export default {
       return items;
     },
 
+    // to remove ?
     // tags that is provided by element plus
     // Run when a filter tag is closed
     handleClose(tag) {
@@ -685,12 +780,16 @@ export default {
       }
     },
 
+    
     // Remove close tags from filter array
     filterArray(arrayName, tag) {
       const filteredTags = this[arrayName].filter((item) => item != tag);
       return filteredTags;
     },
 
+
+
+    // good
     // clear all || create a filter tags above
     // Clear all tags / reset filtered tags
     clearFilter() {
@@ -701,13 +800,16 @@ export default {
         this.filters.price.tag =
           [];
 
-      this.filters.price.minValue = this.filters.price.maxValue = "";
+      this.filters.price.min = this.filters.price.max = "";
     },
 
+    // to remove?
     // Price Filter Validation / put a value on filters.price.tag
     validatePrice(rule, value, callback) {
       const min = this.filters.price.minValue;
       const max = this.filters.price.maxValue;
+
+      console.warn(rule)
 
       // check current value if it doesnt contain letters
       if (/^[0-9]+$/.test(value)) {
@@ -780,12 +882,15 @@ export default {
         }
       }
     },
+
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
+@import "../../sass/mixins";
 .search {
   padding: 7rem 2rem 8rem 2rem;
   // background-color: $light-mid;
@@ -827,19 +932,23 @@ export default {
       font-size: inherit;
       color: inherit;
       cursor: pointer;
-      border: 1px solid red;
-      // line-height: 1rem;
+      // border: 1px solid red;
+      line-height: 1.6rem;
+
+      @include link-animate;
     }
   }
 
   // border: 1px solid red;
 
   &__tags {
-    background-color: red;
+    // background-color: red;
 
+    // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    padding: 1.4rem 0;
   }
   &__tag {
     display: flex;
@@ -850,6 +959,7 @@ export default {
     color: $dark-mid;
     font-size: 1.4rem;
     border: 2px solid transparent;
+    transition: all 0.4s ease-in-out;
 
     
 
@@ -866,13 +976,22 @@ export default {
       user-select: none;
     }
     &--btn{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: .4rem;
       cursor: pointer;
-      // padding: 1rem;
-      // border: 1px solid red;
+      transition: all .3s ease;
+
+      &:hover {
+        transform-origin: center;
+        transform: rotate(90deg);
+      }
     }
     &--icon{
-      height: 1rem;
-      width: 2rem;
+      height: 2rem;
+      width: 1.4rem;
+
     }
   }
 
