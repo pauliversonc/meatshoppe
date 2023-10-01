@@ -5,35 +5,39 @@
     <div class="search__wrapper">
       <!-- LEFT -->
 
-      {{ filters }}
-
       <!-- ASIDE -->
       <div class="filter">
 
-        <!-- filter titles and clear button -->
-        <div class="filter__header">
-          <span class="filter__header--title">Applied Filters</span>
-          <span class="filter__header--clr-btn" role="btn">
-            Clear All
-          </span>
-        </div>
+          <!-- filter titles and clear button -->
+        <Transition name="slide-fade">
+          <div class="filter__header" v-show="filterTags.length > 0">
+            <span class="filter__header--title">Applied Filters</span>
+            <span class="filter__header--clr-btn" @click="clearFilter" role="btn">
+              Clear All
+            </span>
+          </div>
+        </Transition>
 
 
         <!-- list of tags -->
-        <ul class="filter__tags">
+        <Transition name="fade">
+        <ul class="filter__tags" style="border: 1px solid red">
 
-          <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
-              <span class="filter__tag--name">{{ tag.name }}</span>
-              <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
-                <svg class="filter__tag--icon">
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-          </li>
-
+         
+            <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
+                <span class="filter__tag--name">{{ tag.name }}</span>
+                <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
+                  <svg class="filter__tag--icon">
+                    <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                  </svg>
+                </div>
+            </li>
+    
 
 
         </ul>
+
+      </Transition>
 
 
         <!-- collapse item -->
@@ -244,7 +248,7 @@
                   />
                 </div>
 
-                <!-- <span class="span__error" v-show="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, perferendis!</span> -->
+                <span v-show="isMaxErr" class="col_grid--item span__error">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, perferendis!</span>
               </div>
 
 
@@ -437,6 +441,8 @@ export default {
         maxPrice: false,
       },
 
+      isMaxErr: false,
+
       testing: false,
 
       filterOptions: {
@@ -470,6 +476,8 @@ export default {
 
 
   methods: {
+
+
     toggleCollapse(key ,event) {
 
       // get the clicked element element
@@ -509,6 +517,8 @@ export default {
     // good
     // handle inputs from price min & max
     handleInputBlur(object){
+      this.isMaxErr = false;
+
       // console.log(a)
       const {key, value, error} = object;      
       
@@ -556,6 +566,7 @@ export default {
             console.log("Max must be greater than Min");
             // this.$refs.bitmax.validateInput('max', true);
             this.filters.price.tag = [];
+            this.isMaxErr = true;
           }
 
         }
@@ -566,15 +577,6 @@ export default {
       else {
         console.log('wala ako value')
         this.filters.price.tag = [];
-        
-
-        // check if baseinputtext throws an error
-        // if (!!error) {
-        //   console.log('may error')
-        // } else {
-        //   console.log('wala lang napindot ko lang')
-        // }
-
       }
 
 
@@ -653,11 +655,15 @@ export default {
       this.filters.category =
         this.filters.part =
         this.filters.brand =
-        this.filters.weight =
-        this.filters.price.tag =
-          [];
+        this.filters.weight = []
 
-      this.filters.price.min = this.filters.price.max = "";
+        this.$refs.bitmin.clearInput('min');
+        this.$refs.bitmax.clearInput('max');
+
+        // this.filters.price.tag =
+        //   [];
+
+      // this.filters.price.min = this.filters.price.max = "";
     },
 
   },
@@ -1027,4 +1033,30 @@ export default {
   grid-column: 1/-1;
   @include error-message;
 }
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
 </style>

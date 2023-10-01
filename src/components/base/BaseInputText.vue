@@ -106,6 +106,8 @@ export default {
       this.resetInputClass();
       this.checkRefs();
 
+      console.log(key)
+
       this.$emit('on-input-blur', {key, value: this.formKey, error: this.error});
     },
 
@@ -300,7 +302,7 @@ export default {
 .base-input {
   margin: 4px 0;
   .label {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     text-transform: uppercase;
     // background-color: $light-high;
