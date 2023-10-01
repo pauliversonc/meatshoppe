@@ -145,6 +145,12 @@
   }
 }
 
+@mixin error-message {
+  font-size: 1.4rem;
+  font-weight: inherit;
+  color: $main;
+}
+
 @mixin span-gradient {
   background: $gradient;
   -webkit-background-clip: text;

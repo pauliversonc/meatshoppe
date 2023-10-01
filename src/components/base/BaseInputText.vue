@@ -121,10 +121,9 @@ export default {
       ref.classList.remove("valid");
     },
 
-    // check if user input a text
+    // check if user input a text - every on blur validate input
     validateInput(key) {
       let ref = this.$refs.bitInputRef;
-
 
       // check if key have value
       if (this.formKey.length > 0) {
@@ -140,7 +139,7 @@ export default {
         }
 
         // if not valid, add error message
-        else this.invalidateInput(ref, isValid.message);
+        else this.invalidateInput(ref, isValid.message);  
 
         // if field doesnt have any value add error message
       } else 
@@ -174,7 +173,7 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. Ensure that the name does not contain symbols or numbers.",
+              "Invalid input. Ensure that the name does not contain symbols or numbers",
           };
         }
       }
@@ -189,7 +188,7 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. The email address you've entered is not valid.",
+              "Invalid input. The email address you've entered is not valid",
           };
         }
       }
@@ -203,21 +202,23 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. Please provide a contact number with 10 to 11 digits.",
+              "Invalid input. Please provide a contact number with 10 to 11 digits",
           };
         }
       }
 
       if (key === "min" || key === "max") {
+
         pattern = /^(\d{1,6})$/;
 
-        if (pattern.test(this.formKey)) {
-          return { state: true, message: "contact is valid" };
-        } else {
+        if (pattern.test(this.formKey)) 
+          return { state: true, message: "contact is valid" };   
+         
+        else {
           return {
             state: false,
             message:
-            "Please enter a numeric value with a maximum of 6 digits.",
+            "Please enter a numeric value with a maximum of 6 digits",
           };
         }
       }
@@ -231,7 +232,7 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. Please enter between 10 and 45 characters.",
+              "Invalid input. Please enter between 10 and 45 characters",
           };
         }
       }
@@ -247,7 +248,7 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. Please enter between 10 and 45 characters.",
+              "Invalid input. Please enter between 10 and 45 characters",
           };
         }
       }
@@ -261,7 +262,7 @@ export default {
           return {
             state: false,
             message:
-              "Invalid input. Please enter between 20 and 250 characters.",
+              "Invalid input. Please enter between 20 and 250 characters",
           };
         }
       }
@@ -295,6 +296,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
+@import "../../sass/mixins";
 .base-input {
   margin: 4px 0;
   .label {
@@ -405,9 +407,7 @@ export default {
   }
 
   &__message {
-    font-size: 1.4rem;
-    font-weight: inherit;
-    color: $main;
+    @include error-message;
   }
 }
 </style>

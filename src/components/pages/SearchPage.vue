@@ -5,6 +5,8 @@
     <div class="search__wrapper">
       <!-- LEFT -->
 
+      {{ filters }}
+
       <!-- ASIDE -->
       <div class="filter">
 
@@ -217,7 +219,7 @@
 
           <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
-            <div class="collapse__body" v-if="activeCollapse.price">
+            <div class="collapse__body" v-show="activeCollapse.price">
 
               <div class="col_grid">
                 <div class="col_grid--item">
@@ -241,6 +243,8 @@
                     @on-input-blur="handleInputBlur"
                   />
                 </div>
+
+                <!-- <span class="span__error" v-show="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, perferendis!</span> -->
               </div>
 
 
@@ -257,127 +261,6 @@
 
       </div>
       <!-- ASIDE -->
-
-      {{ filter }}
-
-
-
-      <!-- <div class="filter"> -->
-      <el-scrollbar class="filter" height="84vh">
-        <div class="tags" v-if="filterTags.length > 0">
-          <div class="tags__header">
-            <span class="tags__title">APPLIED FILTER</span>
-            <el-link @click="clearFilter" type="primary">Clear All</el-link>
-          </div>
-
-          <el-tag
-            @close="handleClose(tag)"
-            v-for="tag in filterTags"
-            size="large"
-            closable
-            effect="plain"
-            :key="tag.name"
-            class="custom-checkbox"
-            >{{ tag.name }}</el-tag
-          >
-        </div>
-
-        <el-collapse
-          v-model="activeNames"
-          class="collapse__items"
-          @change="handleCollapseChange"
-          style="border: none"
-        >
-          <el-collapse-item title="CATEGORY" name="category">
-            <el-checkbox-group v-model="filters.category">
-              <el-checkbox
-                v-for="item in filterOptions.category"
-                :key="item"
-                :label="item"
-                :id="item"
-                border
-                class="custom-checkbox"
-              />
-            </el-checkbox-group>
-          </el-collapse-item>
-
-          <el-collapse-item title="PART" name="part">
-            <el-checkbox-group v-model="filters.part">
-              <el-checkbox
-                v-for="item in filterOptions.part"
-                :key="item"
-                :label="item"
-                :id="item"
-                border
-                class="custom-checkbox"
-              />
-            </el-checkbox-group>
-          </el-collapse-item>
-
-          <el-collapse-item title="BRAND" name="brand">
-            <el-checkbox-group v-model="filters.brand">
-              <el-checkbox
-                v-for="item in filterOptions.brand"
-                :key="item"
-                :label="item"
-                :id="item"
-                border
-                class="custom-checkbox"
-              />
-            </el-checkbox-group>
-          </el-collapse-item>
-
-          <el-collapse-item title="WEIGHT" name="weight">
-            <el-checkbox-group v-model="filters.weight">
-              <el-checkbox
-                v-for="item in filterOptions.weight"
-                :key="item"
-                :id="`${item}a`"
-                :label="item"
-                border
-                class="custom-checkbox"
-              />
-            </el-checkbox-group>
-          </el-collapse-item>
-
-          <el-collapse-item title="PRICE" name="price">
-            <el-form
-              label-position="top"
-              :model="filters.price"
-              :rules="rules"
-              ref="priceForm"
-            >
-              <div class="price">
-                <!-- <div class="price__min"> -->
-                <el-form-item class="price__min" label="" prop="minValue">
-                  <el-input
-                    clearable
-                    v-model="filters.price.minValue"
-                    type="text"
-                    placeholder="Min"
-                  ></el-input>
-                </el-form-item>
-                <!-- </div> -->
-
-                <div class="price__dash">&mdash;</div>
-
-                <!-- <div class="price__max"> -->
-                <el-form-item class="price__max" label="" prop="maxValue">
-                  <el-input
-                    clearable
-                    v-model="filters.price.maxValue"
-                    type="text"
-                    placeholder="Max"
-                  ></el-input>
-                </el-form-item>
-                <!-- </div> -->
-              </div>
-            </el-form>
-          </el-collapse-item>
-        </el-collapse>
-      </el-scrollbar>
-      <!-- </div> -->
-
 
 
 
@@ -529,18 +412,6 @@ export default {
 
       activeNames: ["price"], // Open Collapse Div
 
-      filter:{
-        category: [], // selected category / checkbox / multiple value
-        part: [], // selected part / checkbox / multiple value
-        brand: [], // selected brand / checkbox / multiple value
-        weight: [], // selected weight / checkbox / multiple value
-        price: {
-          min: "", // only one value
-          max: "", // only one value
-          tag: [], // only one tag
-        }
-      },
-
       activeCollapse: {
         category: false,
         part: false,
@@ -559,6 +430,11 @@ export default {
           max: "", // only one value
           tag: [], // only one tag
         },
+      },
+
+      errors: {
+        minPrice: false,
+        maxPrice: false,
       },
 
       testing: false,
@@ -594,14 +470,32 @@ export default {
 
 
   methods: {
+    toggleCollapse(key ,event) {
+
+      // get the clicked element element
+      const element = event.target.closest('.collapse__head');
+
+      // return if element is not exist
+      if(!element) return
+
+      // toggle active collpase key
+      this.activeCollapse[key] = !this.activeCollapse[key]
+
+    },
+
+    // good
     removeTag(tag) {
-      console.log(tag)
 
         // run when the clicked tag tag is filters.price
         if (tag.type === "tag") {
         // reset filters.price
         this.filters.price.min = this.filters.price.max = "";
         this.filters.price.tag = [];
+
+        // press the x btn in bitmin & bitmax ref;
+        this.$refs.bitmin.clearInput('min');
+        this.$refs.bitmax.clearInput('max');
+
       } else {
         // remove specific tag 
         const filteredFiltersType = this.filters[tag.type].filter(
@@ -613,29 +507,30 @@ export default {
     },
 
     // good
-    // handle inputs from price min & max1
+    // handle inputs from price min & max
     handleInputBlur(object){
       // console.log(a)
-      const {key, value, error} = object;
-      console.log(key)
-      console.log(value)
-      console.log(error)
+      const {key, value, error} = object;      
       
       // set the price from bit (base input text component)
       this.filters.price[key] = +value;
+      this.errors[key+'Price'] = !!error;
+
 
    
       let min = this.filters.price.min;
       let max = this.filters.price.max;
 
+      let minError = this.errors.minPrice;
+      let maxError = this.errors.maxPrice;
 
 
-      // check if min or max have value 
-      if(min || max) {
 
-        console.log('dumaan ako')
+      
+      // check if min or max have value && and doesn't have error
+      if((minError === false) && (maxError === false) && (min || max)) {
     
-        // check if you put value in min and not yet on max
+        // check if you put value in min and not yet on max 
         if(min && !max) {
           console.log('i put value on min but not on max')
           this.filters.price.tag = [`PHP >= ${min}`];
@@ -647,7 +542,7 @@ export default {
           this.filters.price.tag = [`PHP <= ${max}`];
         }
 
-        // if both have value proceed to validate higher value
+        // if both have value, proceed to validate which has higher value
         else {
 
           // check if max value is greater than or equal to min
@@ -659,6 +554,7 @@ export default {
           // if min is greater than max prompt error message
           else {
             console.log("Max must be greater than Min");
+            // this.$refs.bitmax.validateInput('max', true);
             this.filters.price.tag = [];
           }
 
@@ -670,6 +566,15 @@ export default {
       else {
         console.log('wala ako value')
         this.filters.price.tag = [];
+        
+
+        // check if baseinputtext throws an error
+        // if (!!error) {
+        //   console.log('may error')
+        // } else {
+        //   console.log('wala lang napindot ko lang')
+        // }
+
       }
 
 
@@ -677,27 +582,9 @@ export default {
     },
 
 
-    // to be eliminate
-    toggleCollapse(key ,event) {
-
-      // get the clicked element element
-      const element = event.target.closest('.collapse__head');
-
-      // return if element is not exist
-      if(!element) return
-    
-      // toggle active collpase key
-      this.activeCollapse[key] = !this.activeCollapse[key]
 
 
-    },
-
-    // to remove
-    // dont know this shit
-    toggleRotation() {
-      this.isRotated = !this.isRotated;
-    },
-
+  
 
     // scroll bar move to top
     scrollToTop() {
@@ -733,11 +620,7 @@ export default {
       this.scrollToTop();
     },
 
-    // to be eliminate
-    // Set the collapse filter as active
-    handleCollapseChange(activeNames) {
-      this.activeNames = activeNames;
-    },
+
 
     // good
     // generate filter options uniquely depending on product key
@@ -762,32 +645,6 @@ export default {
       return items;
     },
 
-    // to remove ?
-    // tags that is provided by element plus
-    // Run when a filter tag is closed
-    handleClose(tag) {
-      // run when the clicked tag tag is filters.price
-      if (tag.type === "tag") {
-        // reset filters.price
-        this.filters.price.minValue = this.filters.price.maxValue = "";
-        this.filters.price.tag = [];
-      } else {
-        // remove specific value on filters array by tag name
-        const filteredFiltersType = this.filters[tag.type].filter(
-          (tagName) => tagName !== tag.name
-        );
-        this.filters[tag.type] = filteredFiltersType;
-      }
-    },
-
-    
-    // Remove close tags from filter array
-    filterArray(arrayName, tag) {
-      const filteredTags = this[arrayName].filter((item) => item != tag);
-      return filteredTags;
-    },
-
-
 
     // good
     // clear all || create a filter tags above
@@ -802,87 +659,6 @@ export default {
 
       this.filters.price.min = this.filters.price.max = "";
     },
-
-    // to remove?
-    // Price Filter Validation / put a value on filters.price.tag
-    validatePrice(rule, value, callback) {
-      const min = this.filters.price.minValue;
-      const max = this.filters.price.maxValue;
-
-      console.warn(rule)
-
-      // check current value if it doesnt contain letters
-      if (/^[0-9]+$/.test(value)) {
-        // check if you put value in min and not yet on max
-        if (rule.field === "minValue" && max.length === 0) {
-          console.log("gj");
-          console.log("product.price >= minValue");
-
-          // this.filterTags.push(`PHP >= ${value}`);
-          // this.price.tag.push(`PHP >= ${value}`);
-
-          this.filters.price.tag = [`PHP >= ${value}`];
-        }
-
-        // check if you put value in min and not yet on max
-        else if (rule.field === "maxValue" && min.length === 0) {
-          console.log("gj");
-          console.log("product.price <= maxValue");
-          // this.filterTags.push(`PHP <= ${value}`);
-          // this.price.tag.push(`PHP <= ${value}`);
-          this.filters.price.tag = [`PHP <= ${value}`];
-        }
-
-        // Check if min and max is both integers / numbers
-        else if (Number.isInteger(+min) && Number.isInteger(+max)) {
-          // Check if max has a higher value than min
-          if (+max >= +min) {
-            // Validation Success
-            console.log("gj");
-            this.filters.price.tag = [`PHP ${min} - PHP ${max}`];
-
-            this.$refs.priceForm.clearValidate(); // Clears all validation errors for the entire form
-          } else {
-            console.log("Max must be greater than Min");
-            callback(new Error("Max must be greater than Min"));
-          }
-        } else {
-          console.log("Check Min & Max value");
-          callback(new Error("Check Min & Max value"));
-        }
-      }
-      // Run when value is not int
-      else if (value.length > 0) {
-        callback(new Error("Value must be in digits"));
-      }
-      // Run when clear an input price
-      else {
-        // pag ni clear mo yung min - condition walang laman yung max
-        if (rule.field === "minValue") {
-          this.filters.price.minValue = "";
-          this.filters.price.tag = [];
-        }
-
-        // pag ni clear mo yung max - condition walang laman yung min
-        if (rule.field === "maxValue") {
-          this.filters.price.maxValue = "";
-          this.filters.price.tag = [];
-        }
-
-        // pag ni clear mo yung min - condition may laman yung max
-        if (rule.field === "minValue" && this.filters.price.maxValue) {
-          console.log(`ni clear ko yung min kahit may max :${max}`);
-          this.filters.price.tag = [`PHP <= ${max}`];
-        }
-
-        // pag ni clear mo yung max - condition may laman yung min
-        if (rule.field === "maxValue" && this.filters.price.minValue) {
-          console.log(`ni clear ko yung min kahit may min :${min}`);
-          this.filters.price.tag = [`PHP >= ${min}`];
-        }
-      }
-    },
-
 
   },
 };
@@ -1233,7 +1009,7 @@ export default {
 
 .col_grid {
   display: grid;
-  grid-template-columns: 1fr .4fr 1fr;
+  grid-template-columns: 1fr .2fr 1fr;
   margin-bottom: 1.4rem;
 
   &--item {
@@ -1247,5 +1023,8 @@ export default {
 
 }
 
-
+.span__error {
+  grid-column: 1/-1;
+  @include error-message;
+}
 </style>
