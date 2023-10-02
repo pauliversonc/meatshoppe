@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="search" ref="scrollContainer" @wheel.passive="checkWheel">
+  <div class="search" ref="scrollContainer" >
    
     <div class="search__wrapper">
       <!-- LEFT -->
@@ -262,6 +262,7 @@
 
       <!-- RIGHT -->
       <main class="content">
+        
         <div class="products">
           <BaseProduct
             v-for="product in paginatedProducts"
@@ -288,15 +289,17 @@
     </div>
 
 
+    <BaseLoading v-show="isLoading"></BaseLoading>
 
   </div>
 </template>
 
 <script>
 import products from "../../data/ck-products.json";
-
+import BaseLoading from "../base/BaseLoading.vue";
 export default {
   name: "MeatshoppeSearchPage",
+  components: [BaseLoading],
   computed: {
     filterTags() {
       let category = [];
@@ -354,6 +357,7 @@ export default {
       return [...category, ...part, ...brand, ...weight, ...tag];
     },
 
+    // show filtered products
     filteredProducts() {
       const minPrice = parseFloat(this.filters.price.min);
       const maxPrice = parseFloat(this.filters.price.max);
@@ -378,13 +382,19 @@ export default {
       });
     },
 
+    // seperate the product depending on productsToShow
     paginatedProducts() {
       // Calculate the start and end indices of products for the current page
-      const startIndex = (this.currentPage - 1) * this.productsPerPage;
-      const endIndex = startIndex + this.productsPerPage;
+      // const startIndex = (this.currentPage - 1) * this.productsPerPage;
+      // const endIndex = startIndex + this.productsPerPage;
 
       // Slice the filtered products array to get the products for the current page
-      return this.filteredProducts.slice(startIndex, endIndex);
+      return this.filteredProducts.slice(0, this.productsToShow);
+    },
+
+    // check if all products are loaded
+    allProductsLoaded() {
+      return this.productsToShow >= this.filteredProducts.length;
     },
   },
 
@@ -440,7 +450,10 @@ export default {
       products: products, // imported data of all chicken products
 
       currentPage: 1,
-      productsPerPage: 20,
+      productsToShow: 12,
+
+      scrolling: false,
+      isLoading: false, // Flag to control loading state
     };
   },
 
@@ -450,10 +463,59 @@ export default {
     this.generateFilterChoices("weight", true);
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
 
 
   methods: {
+    handleScroll() {
+
+      if(!this.scrolling){
+        this.scrolling = true;
+        // this.loading = true;
+
+        const searchPageHeight = this.$refs.scrollContainer.scrollHeight; // entire search page height
+        const viewportDistanceToTop = window.scrollY; // distance from top of the page to upper part of viewport
+        const viewportHeight = window.innerHeight; // exact height of viewport in the page
+        
+        
+        // load more if scroll hits the bottom
+        if(viewportDistanceToTop + viewportHeight >= searchPageHeight ) {
+          console.log('hits bottom');
+          this.loadMore();
+ 
+        }
+
+        // delay to show loading animation
+        setTimeout(() => {
+          this.scrolling = false;
+        }, 1000); // Adjust the debounce interval as needed
+      
+      }
+
+    },
+
+    loadMore(){
+
+      // if (this.isLoading) return;
+      if (this.isLoading || this.allProductsLoaded) return;
+
+      this.isLoading = true;
+
+      setTimeout(() => {
+        this.productsToShow = Math.min(this.productsToShow + 12, this.filteredProducts.length);
+        this.isLoading = false;
+      }, 1000); // Add your desired interval in milliseconds
+    },
+
+    checkWheel() {
+      const searchContainer = this.$refs.scrollContainer;
+      console.log(searchContainer)
+    },
+
     toggleCollapse(key ,event) {
 
       // get the clicked element element
@@ -630,7 +692,7 @@ export default {
 @import "../../sass/variables";
 @import "../../sass/mixins";
 .search {
-  border: 1px solid red;
+  // border: 1px solid red;
   padding: 7rem 2rem 8rem 2rem;
   // background-color: $light-mid;
 
@@ -638,7 +700,7 @@ export default {
     max-width: 120rem;
     margin: 0 auto;
 
-    border: 1px solid blue;
+    // border: 1px solid blue;
 
     // border-top: 1px solid #ebeef5;
     display: flex;
@@ -652,6 +714,11 @@ export default {
   width: 20%;
   position: sticky;
   top: 7rem;
+  // max-height: auto;
+  
+  border: 1px solid red;
+  align-self: start;
+  // flex: 1;
 
   &__header {
     display: flex;

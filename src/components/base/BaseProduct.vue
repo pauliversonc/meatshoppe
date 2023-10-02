@@ -168,18 +168,19 @@ export default {
 @import "../../sass/variables";
 @import "../../sass//mixins";
 .product {
-  margin: 4px;
+  // margin: 10px;
   background-color: $light-mid;
   // border: 1px solid green;
   overflow: hidden;
   // box-shadow: $shadow;
 
-  border-radius: 4px;
+  // border-radius: 4px;
   text-align: left;
 
   max-width: 24rem;
   // margin: 2px;
   // max-width: 100%;
+
 
   @include box-hover-animation;
 
