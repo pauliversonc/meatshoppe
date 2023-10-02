@@ -580,19 +580,6 @@ export default {
       return this.products.slice(startIndex, endIndex);
     },
 
-    // to remove | pagination of element plus
-    // Run when user click a page
-    handlePageChange(newPage) {
-      // set clicked page as current page
-      this.currentPage = newPage;
-      // get paginated products
-      // const products = this.paginateProducts(newPage);
-      // set paginated products to display
-      // this.displayedProducts = products;
-      // set the scroll to the top
-      this.scrollToTop();
-    },
-
 
     // good
     // generate filter options uniquely depending on product key
