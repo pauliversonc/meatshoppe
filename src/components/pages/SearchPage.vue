@@ -1,7 +1,8 @@
 <template>
 
 
-  <div class="search">
+  <div class="search" ref="scrollContainer" @wheel.passive="checkWheel">
+   
     <div class="search__wrapper">
       <!-- LEFT -->
 
@@ -19,25 +20,16 @@
         </Transition>
 
 
-        <!-- list of tags -->
-        <Transition name="fade">
-        <ul class="filter__tags" style="border: 1px solid red">
-
-         
-            <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
-                <span class="filter__tag--name">{{ tag.name }}</span>
-                <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
-                  <svg class="filter__tag--icon">
-                    <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                  </svg>
-                </div>
-            </li>
-    
-
-
-        </ul>
-
-      </Transition>
+        <TransitionGroup tag="ul" name="tag-list" class="filter__tags" > 
+          <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
+              <span class="filter__tag--name">{{ tag.name }}</span>
+              <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
+                <svg class="filter__tag--icon">
+                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+                </svg>
+              </div>
+          </li>
+        </TransitionGroup>
 
 
         <!-- collapse item -->
@@ -289,18 +281,14 @@
         </div>
 
 
-        <div class="pagination" v-if="paginatedProducts.length">
-          <el-pagination
-            v-model:current-page="currentPage"
-            background
-            layout="prev, pager, next"
-            :page-count="Math.ceil(filteredProducts.length / productsPerPage)"
-            @current-change="handlePageChange"
-          />
-        </div>
 
       </main>
+
+
     </div>
+
+
+
   </div>
 </template>
 
@@ -412,9 +400,6 @@ export default {
 
   data() {
     return {
-      isRotated: false,
-
-      activeNames: ["price"], // Open Collapse Div
 
       activeCollapse: {
         category: false,
@@ -440,10 +425,8 @@ export default {
         minPrice: false,
         maxPrice: false,
       },
+      isMaxErr: false, // when true, show max cant be greater than min
 
-      isMaxErr: false,
-
-      testing: false,
 
       filterOptions: {
         category: [], // category choices
@@ -452,16 +435,12 @@ export default {
         weight: [], // weight choices
       },
 
-      rules: {
-        minValue: [{ validator: this.validatePrice, trigger: "blur" }],
-        maxValue: [{ validator: this.validatePrice, trigger: "blur" }],
-      },
 
       displayedProducts: [],
       products: products, // imported data of all chicken products
 
       currentPage: 1,
-      productsPerPage: 12,
+      productsPerPage: 20,
     };
   },
 
@@ -471,13 +450,10 @@ export default {
     this.generateFilterChoices("weight", true);
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
-    // this.handlePageChange(1);
   },
 
 
   methods: {
-
-
     toggleCollapse(key ,event) {
 
       // get the clicked element element
@@ -583,11 +559,6 @@ export default {
 
     },
 
-
-
-
-  
-
     // scroll bar move to top
     scrollToTop() {
       window.scrollTo({
@@ -623,7 +594,6 @@ export default {
     },
 
 
-
     // good
     // generate filter options uniquely depending on product key
     generateFilterChoices(key, isArray) {
@@ -646,7 +616,6 @@ export default {
       const items = this.products.map((item) => item[key]);
       return items;
     },
-
 
     // good
     // clear all || create a filter tags above
@@ -674,6 +643,7 @@ export default {
 @import "../../sass/variables";
 @import "../../sass/mixins";
 .search {
+  border: 1px solid red;
   padding: 7rem 2rem 8rem 2rem;
   // background-color: $light-mid;
 
@@ -681,7 +651,7 @@ export default {
     max-width: 120rem;
     margin: 0 auto;
 
-    // border: 1px solid red;
+    border: 1px solid blue;
 
     // border-top: 1px solid #ebeef5;
     display: flex;
@@ -839,6 +809,7 @@ export default {
     max-height: 100rem;
     overflow: hidden;
     opacity: 1;
+    // border: 1px solid red;
 
     .checkbox__group {
       display: flex;
@@ -922,15 +893,6 @@ export default {
 }
 
 
-
-
-
-
-
-
-
-
-
 .price {
   display: grid;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -965,12 +927,7 @@ export default {
   gap: 1rem;
 }
 
-.pagination {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .custom-checkbox {
   // border-radius: 0;
@@ -1056,6 +1013,36 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+
+.tag-list-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.tag-list-enter-active {
+  transition: all .4s ease;
+}
+.tag-list-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tag-list-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+.tag-list-leave-active {
+  transition: all .4s ease;
+  position: absolute;
+}
+.tag-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.tag-list-move {
+  transition: all .4s ease;
 }
 
 

@@ -1,5 +1,5 @@
 <template>
-  <TheHeader ></TheHeader>
+  <!-- <TheHeader ></TheHeader> -->
 
 
   <router-view></router-view>
@@ -79,7 +79,7 @@
 
 
 
-  <TheFooter></TheFooter>
+  <!-- <TheFooter></TheFooter> -->
 </template>
 
 <script>
