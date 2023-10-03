@@ -728,7 +728,7 @@ export default {
 
   &__header {
     grid-column: 1/-1;
-    border: 1px solid red;
+    // border: 1px solid red;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -749,6 +749,7 @@ export default {
       font-size: 2.4rem;
       overflow-wrap: break-word;
       margin-right: 1rem;
+      line-height: 1;
       font-weight: 600;
     }
 
@@ -778,7 +779,7 @@ export default {
   top: 7rem;
   // max-height: auto;
   
-  border: 1px solid red;
+  // border: 1px solid red;
   align-self: start;
   // flex: 1;
 
@@ -907,6 +908,7 @@ export default {
       font-weight: 600;
       color: $black-tint;
       user-select: none;
+      // @include text-shine-effect;
     }
 
   }
@@ -1007,6 +1009,7 @@ export default {
   
 
       &--count{
+        user-select: none;
         font-size: 1.4rem;
         font-weight: 400;
       }
@@ -1174,11 +1177,12 @@ export default {
   display: flex;
   align-items: center;
   outline: none;
-  // border: none;
-  border: 1px solid red;
+
+  border: none;
   line-height: 1.6;
   background-color: transparent;
   gap: .6rem;
+  padding-left: .4rem;
   // bor
   cursor: pointer;
   &:focus {
@@ -1192,12 +1196,16 @@ export default {
     font-size: 1.6rem;
     color: $black;
     font-weight: 400;
+
+ 
   }
 
   &__icon {
     height: 2rem;
     width: 2rem;
   }
+
+
 }
 
 </style>
