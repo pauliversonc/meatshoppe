@@ -2,10 +2,12 @@
 
 
   <div class="search" ref="scrollContainer" >
-   
+
+    
+
     <div class="search__wrapper">
 
-
+      <!-- {{ searchedProducts }} -->
 
       <div class="search__header">
       <div class="search__header--prefix">Your search results for:</div>
@@ -15,7 +17,7 @@
         <div class="search__header--offset">
 
           <span class="search__header--keyword">"chicken adobo"</span>
-          <span class="search__header--count">[278]</span>
+          <span class="search__header--count">[{{ filteredProducts.length }}]</span>
 
         </div>
 
@@ -385,12 +387,24 @@ export default {
       return [...category, ...part, ...brand, ...weight, ...tag];
     },
 
+    searchedProducts() {
+      const keyword = this.filters.search.toLowerCase();
+      return this.products.filter((item) => {
+        return(
+          item.name.toLowerCase().includes(keyword) ||
+          item.description.toLowerCase().includes(keyword) ||
+          item.brand.toLowerCase().includes(keyword)
+          );
+      });
+
+    },
+
     // show filtered products
     filteredProducts() {
       const minPrice = parseFloat(this.filters.price.min);
       const maxPrice = parseFloat(this.filters.price.max);
 
-      return this.products.filter((item) => {
+      return this.searchedProducts.filter((item) => {
         const productPrice = parseFloat(item.price);
 
         return (
@@ -410,7 +424,7 @@ export default {
       });
     },
 
-    // seperate the product depending on productsToShow
+    // seperate (slice) the product depending on productsToShow
     paginatedProducts() {
       // Calculate the start and end indices of products for the current page
       // const startIndex = (this.currentPage - 1) * this.productsPerPage;
@@ -458,6 +472,7 @@ export default {
           max: "", // only one value
           tag: [], // only one tag
         },
+        search: "",
       },
 
       errors: {
