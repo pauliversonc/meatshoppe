@@ -342,7 +342,7 @@ export default {
     z-index: 10;
     transition: background-color 0.4s ease;
     backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
-
+    border-bottom: solid thin $gray;
     &.active {
       background-color: rgba($color: #ffffff, $alpha: 0.9);
     }

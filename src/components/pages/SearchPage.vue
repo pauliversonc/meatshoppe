@@ -4,9 +4,38 @@
   <div class="search" ref="scrollContainer" >
    
     <div class="search__wrapper">
-      <!-- LEFT -->
 
-      <!-- ASIDE -->
+
+
+      <div class="search__header">
+      <div class="search__header--prefix">Your search results for:</div>
+
+
+
+        <div class="search__header--offset">
+
+          <span class="search__header--keyword">"chicken adobo"</span>
+          <span class="search__header--count">[278]</span>
+
+        </div>
+
+
+
+
+        <div class="search__header--btns">
+
+          <button class="icon-btn" >
+            <span class="icon-btn__text">hide filter</span>
+            <svg class="icon-btn__icon">
+              <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+
+
+      <!-- Sidebar -->
       <div class="filter">
 
           <!-- filter titles and clear button -->
@@ -20,7 +49,7 @@
         </Transition>
 
 
-        <TransitionGroup tag="ul" name="tag-list" class="filter__tags" > 
+        <TransitionGroup tag="ul" name="tag-list" class="filter__tags" :class="{'add-padding': filterTags.length > 0}" > 
           <li class="filter__tag"  v-for="tag in filterTags" :key="tag.name">
               <span class="filter__tag--name">{{ tag.name }}</span>
               <div class="filter__tag--btn" role="btn" @click="removeTag(tag)">
@@ -256,11 +285,9 @@
 
 
       </div>
-      <!-- ASIDE -->
+      <!-- ./Sidebar -->
 
-
-
-      <!-- RIGHT -->
+      <!-- Products -->
       <main class="content">
         
         <div class="products">
@@ -284,12 +311,13 @@
 
 
       </main>
+      <!-- ./Products -->
 
-
+      <BaseLoading class="modBaseLoading" v-show="isLoading"></BaseLoading>
     </div>
 
 
-    <BaseLoading v-show="isLoading"></BaseLoading>
+ 
 
   </div>
 </template>
@@ -403,6 +431,7 @@ export default {
       handler() {
         // Handle the changes to filters here
         this.scrollToTop();
+        this.productsToShow = 12;
       },
       deep: true, // Watch for changes deeply in the object
     },
@@ -509,11 +538,6 @@ export default {
         this.productsToShow = Math.min(this.productsToShow + 12, this.filteredProducts.length);
         this.isLoading = false;
       }, 1000); // Add your desired interval in milliseconds
-    },
-
-    checkWheel() {
-      const searchContainer = this.$refs.scrollContainer;
-      console.log(searchContainer)
     },
 
     toggleCollapse(key ,event) {
@@ -630,19 +654,6 @@ export default {
     },
 
 
-    // pagination || for checking
-    // Seperate all products by page
-    paginateProducts(pageNumber) {
-      const startIndex = (pageNumber - 1) * this.perPage;
-      const endIndex = startIndex + this.perPage;
-
-      // check if you need to paginate a products that has filter
-      console.log(this.filterTags.length);
-
-      return this.products.slice(startIndex, endIndex);
-    },
-
-
     // good
     // generate filter options uniquely depending on product key
     generateFilterChoices(key, isArray) {
@@ -678,10 +689,6 @@ export default {
         this.$refs.bitmin.clearInput('min');
         this.$refs.bitmax.clearInput('max');
 
-        // this.filters.price.tag =
-        //   [];
-
-      // this.filters.price.min = this.filters.price.max = "";
     },
 
   },
@@ -703,15 +710,70 @@ export default {
     // border: 1px solid blue;
 
     // border-top: 1px solid #ebeef5;
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    
     gap: 2rem;
+
+
+  }
+
+  &__prefix {
+    grid-column: 1/-1;
+    
+    font-size: 1.4rem;
+    color: $black;
+  }
+
+  &__header {
+    grid-column: 1/-1;
+    border: 1px solid red;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    // gap: 2rem;
+
+    font-size: 1.4rem;
+    color: $black;
+
+    &--prefix {
+      grid-column: 1/-1;
+    }
+
+  
+    &--keyword {
+      display: inline;
+      text-transform: uppercase;
+      font-size: 2.4rem;
+      overflow-wrap: break-word;
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+
+    &--count {
+      display: inline;
+    }
+
+
+
+    &--btns {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 1rem;
+    }
+
+
+
   }
 }
 
-// LEFT
+// sidebar
 .filter {
  
-  width: 20%;
+  // width: 20%;
   position: sticky;
   top: 7rem;
   // max-height: auto;
@@ -749,12 +811,17 @@ export default {
 
   &__tags {
     // background-color: red;
-
+    // min-height: 0;
     // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 1.4rem 0;
+    // padding: 1.4rem 0;
+    transition: padding .6s ease-out;
+
+    &.add-padding {
+      padding: 1.4rem 0;
+    }
   }
   &__tag {
     display: flex;
@@ -803,6 +870,7 @@ export default {
 
 }
 
+// collapse sidebar
 .collapse {
 
   &.bt {
@@ -946,7 +1014,7 @@ export default {
   }
 }
 
-
+// input price
 .price {
   display: grid;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -964,17 +1032,13 @@ export default {
   }
 }
 
-// RIGHT
+// products wrapper right
 .content {
-  width: 80%;
+  // width: 80%;
   padding: 2px;
 }
-// .sort {
-// }
 
-// .search {
-// }
-
+// parent of products
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -1059,6 +1123,8 @@ export default {
   opacity: 0;
 }
 
+
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -1099,5 +1165,39 @@ export default {
   transition: all .4s ease;
 }
 
+
+.modBaseLoading {
+  grid-column: 2;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  outline: none;
+  // border: none;
+  border: 1px solid red;
+  line-height: 1.6;
+  background-color: transparent;
+  gap: .6rem;
+  // bor
+  cursor: pointer;
+  &:focus {
+    outline: none;
+    border: none;
+  }
+  // padding: 1rem;
+
+  &__text {
+    text-transform: capitalize;
+    font-size: 1.6rem;
+    color: $black;
+    font-weight: 400;
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+  }
+}
 
 </style>

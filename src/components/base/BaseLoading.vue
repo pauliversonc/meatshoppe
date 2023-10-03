@@ -38,7 +38,7 @@ export default {
 }
 .bouncing-loader {
   display: flex;
-  border: 1px solid red;
+  // border: 1px solid red;
 
   justify-content: center;
   align-items: center;
