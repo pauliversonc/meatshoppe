@@ -727,6 +727,7 @@ export default {
   }
 
   &__header {
+    margin-top: 2rem;
     grid-column: 1/-1;
     // border: 1px solid red;
 

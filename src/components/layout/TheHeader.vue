@@ -74,8 +74,8 @@
     </header>
   </div>
 
-  <div class="search" @click="closeSearch2" v-show="isSearchVisible">
-    <div class="search__container">
+  <div class="find" @click="closeSearch2" v-show="isSearchVisible">
+    <div class="find__container">
       <!-- form group search -->
       <form class="form-group" @submit.prevent="submitSearch">
         <svg class="form__icon form__icon--left">
@@ -102,19 +102,19 @@
       </form>
       <!-- /.form group search -->
 
-      <div class="search__btn-wrapper">
+      <div class="find__btn-wrapper">
         <BaseButton @click="closeSearch" btn-text="close" :btn-resize="true" />
       </div>
 
-      <ul class="search__suggestions" v-if="filteredSuggestions.length > 0">
+      <ul class="find__suggestions" v-if="filteredSuggestions.length > 0">
         <li
-          class="search__suggestion"
+          class="find__suggestion"
           v-for="(item, index) in filteredSuggestions"
           :key="index"
         >
           <a
             href="#"
-            class="search__link"
+            class="find__link"
             :class="{ active: index === search.selectedSuggestion }"
           >
             <span>{{ item }}</span></a
@@ -122,8 +122,8 @@
         </li>
       </ul>
 
-      <div class="search__key-container" v-show="search.keyword.length > 0">
-        <a href="#" class="search__keyword"
+      <div class="find__key-container" v-show="search.keyword.length > 0">
+        <a href="#" class="find__keyword"
           >See all "{{ this.search.keyword }}"</a
         >
       </div>
@@ -230,7 +230,7 @@ export default {
 
     submitSearch() {
       // get the text of active suggestions
-      const element = document.querySelector(".search__link.active span");
+      const element = document.querySelector(".find__link.active span");
       const activeSuggestion = element?.innerHTML;
       // if there is active suggestion set it as a keyword
       if (activeSuggestion) {
@@ -279,7 +279,7 @@ export default {
       const element = event.target.classList.value;
 
       // check if the click is the outside of the search box
-      if (element !== "search") return;
+      if (element !== "find") return;
 
       this.closeSearch();
     },
@@ -501,7 +501,7 @@ export default {
   }
 }
 
-.search {
+.find {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -538,10 +538,10 @@ export default {
     }
   }
 
-  &__input-wrapper {
-    width: 100%;
-    padding-right: 1rem;
-  }
+  // &__input-wrapper {
+  //   width: 100%;
+  //   padding-right: 1rem;
+  // }
 
   &__suggestions {
     grid-column: 1/-1;
