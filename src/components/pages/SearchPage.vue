@@ -3,38 +3,31 @@
 
   <div class="search" ref="scrollContainer" >
 
-    
-
     <div class="search__wrapper">
 
-      <!-- {{ searchedProducts }} -->
-
       <div class="search__header">
-      <div v-show="filters.search.length > 0" class="search__header--prefix">Your search results for:</div>
+        
+        <div v-show="filters.search.length > 0" class="search__header--prefix">Your search results for:</div>
 
+          <div class="search__header--offset">
 
+            <span v-if="filters.search.length > 0" class="search__header--keyword">"{{ filters.search }}"</span>
+            <span v-else class="search__header--keyword">"all products"</span>
+            <span class="search__header--count">[{{ filteredProducts.length }}]</span>
 
-        <div class="search__header--offset">
+          </div>
 
-          <span v-if="filters.search.length > 0" class="search__header--keyword">"{{ filters.search }}"</span>
-          <span v-else class="search__header--keyword">"all products"</span>
-          <span class="search__header--count">[{{ filteredProducts.length }}]</span>
+          <div class="search__header--btns">
 
-        </div>
+            <button class="icon-btn" >
+              <span class="icon-btn__text">hide filter</span>
+              <svg class="icon-btn__icon">
+                <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
+              </svg>
+            </button>
 
+          </div>
 
-
-
-        <div class="search__header--btns">
-
-          <button class="icon-btn" >
-            <span class="icon-btn__text">hide filter</span>
-            <svg class="icon-btn__icon">
-              <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-            </svg>
-          </button>
-
-        </div>
       </div>
 
 

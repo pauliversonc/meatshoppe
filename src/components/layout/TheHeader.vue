@@ -114,17 +114,17 @@
           :key="index"
         >
           <a
+            @click="handleSubmitSearch(item)"
             href="#"
             class="find__link"
             :class="{ active: index === search.selectedSuggestion }"
           >
-            <span>{{ item }}</span></a
-          >
+            <span>{{ item }}</span></a>
         </li>
       </ul>
 
       <div class="find__key-container" v-show="search.keyword.length > 0">
-        <a href="#" class="find__keyword"
+        <a @click="handleSubmitSearch(this.search.keyword )" href="#" class="find__keyword"
           >See all "{{ this.search.keyword }}"</a
         >
       </div>
@@ -137,6 +137,7 @@
 export default {
   name: "MeatshoppeTheHeader",
   computed: {
+    
     filteredSuggestions() {
       // Filter suggestions based on the searchQuery
       const filtered = this.search.suggestions.filter((suggestion) =>
@@ -230,6 +231,7 @@ export default {
       this.scrollY = window.scrollY;
     },
 
+    // when search form is submitted
     submitSearch() {
       // get the text of active suggestions
       const element = document.querySelector(".find__link.active span");
@@ -251,11 +253,23 @@ export default {
         });
 
       }
-      // console.log('akoto')
-      // console.log(this.search.keyword);
       this.closeSearch();
 
     },
+
+    // change route when suggetion in search is click
+    handleSubmitSearch(item) {
+      this.$router.push({
+        name: 'search',
+        query: {
+          keyword: item
+        },
+      });
+
+      this.closeSearch();
+    },
+
+    
 
     selectNext() {
       // if products is true
@@ -428,6 +442,7 @@ export default {
   }
 
   &__links {
+    
     display: flex;
     align-items: center;
     gap: 2rem;

@@ -15,7 +15,10 @@ const router = createRouter({
     searchRoute,
     cartRoute,
     notfoundRoute
-  ]
+  ],
+  scrollBehavior: () => ({
+    top: 0,
+  }),
 });
 
 
