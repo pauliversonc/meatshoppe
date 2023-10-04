@@ -5,6 +5,8 @@
 
     <div class="search__wrapper">
 
+      <!-- 1. grid 1/-1-->
+      <!-- Search results prefix -->
       <div class="search__header">
         
         <div v-show="filters.search.length > 0" class="search__header--prefix">Your search results for:</div>
@@ -20,7 +22,7 @@
           <div class="search__header--btns">
 
             <button class="icon-btn" >
-              <span class="icon-btn__text">hide filter</span>
+              <span class="icon-btn__text" @click="toggleFilter = !toggleFilter">{{ toggleFilterBtnName }}</span>
               <svg class="icon-btn__icon">
                 <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
               </svg>
@@ -29,10 +31,11 @@
           </div>
 
       </div>
+      <!-- /.Search results prefix -->
 
-
+      <!-- 2. grid min-content-->
       <!-- Sidebar -->
-      <div class="filter">
+      <div class="filter" :class="{shrink: toggleFilter}" >
 
           <!-- filter titles and clear button -->
         <Transition name="slide-fade">
@@ -55,6 +58,8 @@
               </div>
           </li>
         </TransitionGroup>
+
+
 
 
         <!-- collapse item -->
@@ -283,6 +288,7 @@
       </div>
       <!-- ./Sidebar -->
 
+      <!-- 3. grid 1fr-->
       <!-- Products -->
       <main class="content">
         
@@ -315,6 +321,8 @@
       <!-- ./Products -->
 
       <BaseLoading class="modBaseLoading" v-show="isLoading"></BaseLoading>
+
+
     </div>
 
 
@@ -330,6 +338,10 @@ export default {
   name: "MeatshoppeSearchPage",
   components: [BaseLoading],
   computed: {
+    toggleFilterBtnName() {
+      return this.toggleFilter ? 'Show filter' : 'Hide filter';
+    },
+
     filterTags() {
       let category = [];
       let part = [];
@@ -456,6 +468,14 @@ export default {
       if(route.query?.keyword)
       this.filters.search = route.query?.keyword
     },
+
+    // toggleFilter(newValue) {
+    //   if (newValue) {
+    //     document.body.classList.add("show-menu");
+    //   } else {
+    //     document.body.classList.remove("show-menu");
+    //   }
+    // },
   },
 
   data() {
@@ -486,8 +506,8 @@ export default {
         minPrice: false,
         maxPrice: false,
       },
-      isMaxErr: false, // when true, show max cant be greater than min
 
+      isMaxErr: false, // when true, show max cant be greater than min
 
       filterOptions: {
         category: [], // category choices
@@ -496,6 +516,7 @@ export default {
         weight: [], // weight choices
       },
 
+      toggleFilter: false,
 
       displayedProducts: [],
       products: products, // imported data of all chicken products
@@ -505,13 +526,15 @@ export default {
 
       scrolling: false,
       isLoading: false, // Flag to control loading state
+
+      isTabPortView: false,
     };
   },
 
   created() {
     // console.log(this.$route)
 
-    console.log(this.$route.query?.keyword);
+    // console.log(this.$route.query?.keyword);
     if(this.$route.query?.keyword)
     this.filters.search = this.$route.query?.keyword
   },
@@ -523,14 +546,23 @@ export default {
     this.generateFilterChoices("brand", false);
     this.generateFilterChoices("part", false);
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleResizeScreen);
+    // Initial check for screen width on component mount
+    this.handleResizeScreen();
   },
 
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleResizeScreen);
   },
 
 
   methods: {
+    handleResizeScreen() {
+      // Update the isMobileView value based on the screen width
+      this.isTabPortView = window.innerWidth <= 768;
+    },
+
     handleScroll() {
 
       if(!this.scrolling){
@@ -730,23 +762,24 @@ export default {
 @import "../../sass/variables";
 @import "../../sass/mixins";
 .search {
-  // border: 1px solid red;
+  border: 1px solid red;
   padding: 7rem 2rem 8rem 2rem;
   // background-color: $light-mid;
+
 
   &__wrapper {
     max-width: 120rem;
     margin: 0 auto;
 
     // border: 1px solid blue;
-
-    // border-top: 1px solid #ebeef5;
-    // display: flex;
     display: grid;
-    grid-template-columns: 20% 1fr;
+    grid-template-columns: min-content 1fr;
     
-    gap: 2rem;
+    // gap: 2rem;
 
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+    }
 
   }
 
@@ -761,7 +794,7 @@ export default {
     margin-top: 2rem;
     grid-column: 1/-1;
     // border: 1px solid red;
-
+    margin-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     
@@ -805,15 +838,43 @@ export default {
 
 // sidebar
 .filter {
- 
-  // width: 20%;
   position: sticky;
   top: 7rem;
-  // max-height: auto;
-  
-  // border: 1px solid red;
+  width: 24rem;
   align-self: start;
-  // flex: 1;
+  transition: all .4s ease;
+  margin-right: 2rem;
+  overflow: hidden;
+
+
+  @include respond(tab-port) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // padding-right: 17px;
+    z-index: 99999;
+    background-color: white;
+    // width: 100vw;
+    // height: 100vh;
+    border: 1px solid green;
+
+    width: 0;
+    margin-right: 0;
+
+  }
+
+
+  &.shrink {
+    width: 0;
+    margin-right: 0;
+
+    @include respond(tab-port) {
+      width: 24rem;
+    }
+
+  
+
+  }
 
   &__header {
     display: flex;
@@ -1077,9 +1138,9 @@ export default {
 // products wrapper right
 .content {
   // width: 80%;
-  padding: 2px;
+  // padding: 2px;
   align-self: start;
-  // background-color: red;
+  background-color: red;
 }
 
 // parent of products
@@ -1087,6 +1148,10 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .no-products {
@@ -1222,6 +1287,10 @@ export default {
 
 .modBaseLoading {
   grid-column: 2;
+
+  @include respond(tab-port) {
+    grid-column: 1;
+  }
 }
 
 .icon-btn {

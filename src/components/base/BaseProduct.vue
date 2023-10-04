@@ -177,18 +177,17 @@ export default {
   // border-radius: 4px;
   text-align: left;
 
-  max-width: 24rem;
+  // max-width: 24rem;
   // margin: 2px;
-  // max-width: 100%;
+  max-width: 100%;
 
 
   @include box-hover-animation;
 
   // 1040 px below
-  @media only screen and (max-width: 65em) {
-    max-width: 100%;
-    // width: 100%;
-  }
+  // @media only screen and (max-width: 65em) {
+  //   max-width: 100%;
+  // }
 
   &__img-box {
     width: 100%;
