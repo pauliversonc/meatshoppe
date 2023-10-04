@@ -10,13 +10,14 @@
       <!-- {{ searchedProducts }} -->
 
       <div class="search__header">
-      <div class="search__header--prefix">Your search results for:</div>
+      <div v-show="filters.search.length > 0" class="search__header--prefix">Your search results for:</div>
 
 
 
         <div class="search__header--offset">
 
-          <span class="search__header--keyword">"chicken adobo"</span>
+          <span v-if="filters.search.length > 0" class="search__header--keyword">"{{ filters.search }}"</span>
+          <span v-else class="search__header--keyword">"all products"</span>
           <span class="search__header--count">[{{ filteredProducts.length }}]</span>
 
         </div>
@@ -42,7 +43,7 @@
 
           <!-- filter titles and clear button -->
         <Transition name="slide-fade">
-          <div class="filter__header" v-show="filterTags.length > 0">
+          <div class="filter__header bt" v-show="filterTags.length > 0">
             <span class="filter__header--title">Applied Filters</span>
             <span class="filter__header--clr-btn" @click="clearFilter" role="btn">
               Clear All
@@ -292,7 +293,7 @@
       <!-- Products -->
       <main class="content">
         
-        <div class="products">
+        <div class="products" v-if="paginatedProducts.length > 0">
           <BaseProduct
             v-for="product in paginatedProducts"
             :key="product.id"
@@ -308,9 +309,14 @@
             :thumbnail="product.thumbnail"
             :images="product.images"
           />
+
+          <!-- <span v-else>wala na</span> -->
         </div>
 
-
+        <div v-else class="no-products">
+          <strong><span>No results found!</span></strong>
+          <span>Try different or more general keywords</span>
+        </div>
 
       </main>
       <!-- ./Products -->
@@ -449,6 +455,14 @@ export default {
       },
       deep: true, // Watch for changes deeply in the object
     },
+
+    // watch the route
+    // when change set the query keyword
+    '$route'(route) {
+      console.log(route.query?.keyword);
+      if(route.query?.keyword)
+      this.filters.search = route.query?.keyword
+    },
   },
 
   data() {
@@ -501,6 +515,14 @@ export default {
     };
   },
 
+  created() {
+    // console.log(this.$route)
+
+    console.log(this.$route.query?.keyword);
+    if(this.$route.query?.keyword)
+    this.filters.search = this.$route.query?.keyword
+  },
+
   mounted() {
     // this will generate different filter options
     this.generateFilterChoices("category", true);
@@ -509,6 +531,7 @@ export default {
     this.generateFilterChoices("part", false);
     window.addEventListener("scroll", this.handleScroll);
   },
+
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleScroll);
   },
@@ -521,7 +544,7 @@ export default {
         this.scrolling = true;
         // this.loading = true;
 
-        const searchPageHeight = this.$refs.scrollContainer.scrollHeight; // entire search page height
+        const searchPageHeight = this.$refs.scrollContainer?.scrollHeight; // entire search page height
         const viewportDistanceToTop = window.scrollY; // distance from top of the page to upper part of viewport
         const viewportHeight = window.innerHeight; // exact height of viewport in the page
         
@@ -806,6 +829,13 @@ export default {
     font-size: 1.4rem;
     color: $black-tint;
 
+    &.bt {
+      // background-color: red;
+      padding-top: 1.4rem;
+      border-top: solid thin $gray;
+
+    }
+
     &--title {
       font-size: inherit;
       color: inherit;
@@ -887,7 +917,7 @@ export default {
 
 }
 
-// collapse sidebar
+// sidebar - collapse 
 .collapse {
 
   &.bt {
@@ -1033,7 +1063,7 @@ export default {
   }
 }
 
-// input price
+// sidebar - collapse input price
 .price {
   display: grid;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -1055,6 +1085,8 @@ export default {
 .content {
   // width: 80%;
   padding: 2px;
+  align-self: start;
+  // background-color: red;
 }
 
 // parent of products
@@ -1064,6 +1096,16 @@ export default {
   gap: 1rem;
 }
 
+.no-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  color: $black-tint;
+
+
+}
 
 
 .custom-checkbox {
@@ -1138,7 +1180,7 @@ export default {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
+  // transform: translateX(20px);
   opacity: 0;
 }
 

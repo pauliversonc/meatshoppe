@@ -31,16 +31,16 @@
 
         <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }">
           <li class="header__nav-list">
-            <a class="header__nav-link" href="#">Home</a>
+            <router-link class="header__nav-link" to="home">Home</router-link>
           </li>
           <li class="header__nav-list">
-            <a class="header__nav-link" href="#">Shop</a>
+            <router-link class="header__nav-link" to="search">Shop</router-link>
           </li>
           <li class="header__nav-list">
-            <a class="header__nav-link" href="#">About</a>
+            <router-link class="header__nav-link" to="about">About</router-link>
           </li>
           <li class="header__nav-list">
-            <a class="header__nav-link" href="#">Contact</a>
+            <router-link class="header__nav-link" to="contact">Contact</router-link>
           </li>
         </ul>
       </div>
@@ -89,6 +89,7 @@
           @input="resetSuggestion"
           class="form-input"
           placeholder="Search"
+          autocomplete="off"
           ref="keySearch"
           id="layout_the_hdr_search"
         />
@@ -129,6 +130,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -232,13 +234,27 @@ export default {
       // get the text of active suggestions
       const element = document.querySelector(".find__link.active span");
       const activeSuggestion = element?.innerHTML;
+
       // if there is active suggestion set it as a keyword
       if (activeSuggestion) {
         this.search.keyword = activeSuggestion;
         this.search.selectedSuggestion = 0;
       }
 
-      console.log(this.search.keyword);
+      if(this.search.keyword.length > 0) {
+        // this.$router.push('search')
+        this.$router.push({
+          name: 'search',
+          query: {
+            keyword: this.search.keyword
+          },
+        });
+
+      }
+      // console.log('akoto')
+      // console.log(this.search.keyword);
+      this.closeSearch();
+
     },
 
     selectNext() {
@@ -403,7 +419,8 @@ export default {
   }
 
   &__nav-link:link,
-  &__nav-link:visited {
+  &__nav-link:visited,
+  router-link-active {
     text-decoration: none;
     color: inherit;
 
@@ -634,4 +651,5 @@ export default {
     cursor: pointer;
   }
 }
+
 </style>
