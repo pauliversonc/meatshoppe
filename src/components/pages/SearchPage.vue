@@ -41,7 +41,7 @@
         <Transition name="slide-fade">
           <div class="filter__header bt" v-show="filterTags.length > 0">
             <span class="filter__header--title">Applied Filters</span>
-            <span class="filter__header--clr-btn" @click="clearFilter" role="btn">
+            <span class="filter__header--clr-btn" ref="clearFilterBtn" @click="clearFilter" role="btn">
               Clear All
             </span>
           </div>
@@ -342,7 +342,7 @@ export default {
   computed: {
     toggleFilterBtnName() {
       if (this.isTabPortView) {
-        return this.toggleFilter ? 'Hide filter' : 'Show filter';
+        return 'Filter';
       } else {
         
         return this.toggleFilter ? 'Show filter' : 'Hide filter';
@@ -472,9 +472,9 @@ export default {
     // watch the route
     // when change set the query keyword
     '$route'(route) {
-      console.log(route.query?.keyword);
       if(route.query?.keyword)
       this.filters.search = route.query?.keyword
+      this.clearFilter();
     },
 
     toggleFilter(newValue) {
@@ -755,6 +755,8 @@ export default {
     // clear all || create a filter tags above
     // Clear all tags / reset filtered tags
     clearFilter() {
+      console.log('shet')
+
       this.filters.category =
         this.filters.part =
         this.filters.brand =
@@ -797,7 +799,7 @@ export default {
   &__prefix {
     grid-column: 1/-1;
     
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: $black;
   }
 
@@ -807,11 +809,12 @@ export default {
     // border: 1px solid red;
     margin-bottom: 1.4rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr .4fr;
+    align-items: center;
     
     // gap: 2rem;
 
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: $black;
 
     &--prefix {
@@ -868,7 +871,7 @@ export default {
     top: 0;
     left: 0;
     // padding-right: 17px;
-    z-index: 99999;
+    z-index: 9999;
     background-color: white;
     // width: 100vw;
     // height: 100vh;
@@ -908,7 +911,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: $black-tint;
 
     &.bt {
@@ -959,7 +962,7 @@ export default {
     gap: 1rem;
     background-color: $light-mid;
     color: $dark-mid;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     border: 2px solid transparent;
     transition: all 0.4s ease-in-out;
 
@@ -1035,7 +1038,7 @@ export default {
     line-height: 1;
 
     &--name, &--count {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       text-transform: uppercase;
       font-weight: 600;
       color: $black-tint;
@@ -1098,8 +1101,8 @@ export default {
           position: absolute;
           top: 50%;
           left: 0;
-          transform: translateY(-50%);
-          transform: translate(30%, -50%);
+          // transform: translateY(-50%);
+          transform: translate(20%, -50%);
           color: #fff; /* Color of the checkmark */
         }
 
@@ -1108,7 +1111,7 @@ export default {
 
       &--label {
         position: relative;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         text-transform: lowercase;
         font-weight: 400;
         cursor: pointer;
@@ -1120,6 +1123,10 @@ export default {
         padding-left: 2.4rem; // Space for the custom checkbox 
 
         transition: .3s ease-out;
+
+        @include respond(tab-port) {
+          line-height: 2.4;
+        }
         // checkbox - default style (not clicked)
         &::before {
           content: "";
@@ -1142,7 +1149,7 @@ export default {
 
       &--count{
         user-select: none;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: 400;
       }
     }
@@ -1181,8 +1188,19 @@ export default {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
 
+  // 768 and below
   @include respond(tab-port) {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  // 543 / 16 = 33.9375
+  @media only screen and (max-width: 33.9375rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  // 376 / 16 = 23.5625
+  @media only screen and (max-width: 23.5625rem) {
+    grid-template-columns: 1fr;
   }
 }
 
