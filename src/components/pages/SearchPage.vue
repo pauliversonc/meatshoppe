@@ -221,7 +221,7 @@
         <!-- ./collapse item -->
 
         <!-- collapse item -->
-        <div class="collapse bb" :class="{active : activeCollapse.price}">
+        <div class="collapse bb mb-2" :class="{active : activeCollapse.price}">
 
           <!-- collapseable part -->
           <div class="collapse__head" role="button" ref="priceCollapse" @click="toggleCollapse('price', $event)">
@@ -283,7 +283,7 @@
         </div>
         <!-- ./collapse item -->
 
-        <!-- <BaseButton btn-text="test"/> -->
+        <BaseButton v-show="isTabPortView" @click="toggleFilter = !toggleFilter" btn-text="apply" :btn-full-width="true" />
 
 
 
@@ -773,7 +773,7 @@ export default {
 @import "../../sass/variables";
 @import "../../sass/mixins";
 .search {
-  border: 1px solid red;
+  // border: 1px solid red;
   padding: 7rem 2rem 8rem 2rem;
   // background-color: $light-mid;
 
@@ -802,10 +802,10 @@ export default {
   }
 
   &__header {
-    margin-top: 2rem;
+    margin-top: 1.4rem;
     grid-column: 1/-1;
     // border: 1px solid red;
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     
@@ -855,8 +855,12 @@ export default {
   align-self: start;
   transition: all .4s ease;
   margin-right: 2rem;
-  overflow: hidden;
-
+  // overflow: hidden;
+  overflow-y: auto;
+  height: 100vh;
+  
+  padding: 0 1rem 0 0;
+  
 
 
   @include respond(tab-port) {
@@ -868,14 +872,18 @@ export default {
     background-color: white;
     // width: 100vw;
     // height: 100vh;
-    border: 1px solid green;
+    // border: 1px solid green;
+    // overflow: hidden;
 
-    overflow: scroll;
-    height: 20rem;
 
     width: 0;
     margin-right: 0;
     // padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
+
+    transform: translateX(-100%);
+
+    
 
   }
 
@@ -883,10 +891,13 @@ export default {
   &.shrink {
     width: 0;
     margin-right: 0;
+    padding: 0;
 
     @include respond(tab-port) {
       width: 100vw;
       height: 100vh;
+      transform: translateX(0);
+      padding: 0 2rem 2rem 2rem;
     }
 
   
@@ -999,6 +1010,10 @@ export default {
   &.bb {
   border-bottom: solid thin $gray;
 
+  }
+
+  &.mb-2 {
+    margin-bottom: 2rem;
   }
  
   &__head {
@@ -1157,7 +1172,7 @@ export default {
   // width: 80%;
   // padding: 2px;
   align-self: start;
-  background-color: red;
+  // background-color: red;
 }
 
 // parent of products
@@ -1344,5 +1359,7 @@ export default {
 
 
 }
+
+
 
 </style>

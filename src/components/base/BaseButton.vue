@@ -2,7 +2,7 @@
   <button
 
     class="btn "
-    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize, 'btn-outline--dark': btnOutlineDark }]"
+    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize, 'btn-outline--dark': btnOutlineDark, 'full-width': btnFullWidth }]"
   >
     {{ btnText }}
   </button>
@@ -36,6 +36,12 @@ export default {
     },
 
     btnOutlineDark: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    btnFullWidth: {
       type: Boolean,
       required: false,
       default: false,
@@ -75,6 +81,10 @@ export default {
     @include respond(phone-land) {
       width: auto;
     }
+  }
+
+  &.full-width {
+    width: 100%;
   }
 
   &:hover {

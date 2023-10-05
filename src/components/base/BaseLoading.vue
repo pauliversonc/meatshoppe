@@ -39,14 +39,14 @@ export default {
 .bouncing-loader {
   display: flex;
   // border: 1px solid red;
-
+  transform: translateY(4rem);
   justify-content: center;
   align-items: center;
 }
 .bouncing-loader > div {
   width: 1rem;
   height: 1rem;
-  margin: 3rem 0.2rem;
+  margin: 0 0.2rem;
   background: $dark-high;
   animation: bouncing-loader .8s infinite alternate;
 }
