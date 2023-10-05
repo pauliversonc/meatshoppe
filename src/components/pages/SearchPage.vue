@@ -283,6 +283,8 @@
         </div>
         <!-- ./collapse item -->
 
+        <!-- <BaseButton btn-text="test"/> -->
+
 
 
       </div>
@@ -339,7 +341,13 @@ export default {
   components: [BaseLoading],
   computed: {
     toggleFilterBtnName() {
-      return this.toggleFilter ? 'Show filter' : 'Hide filter';
+      if (this.isTabPortView) {
+        return this.toggleFilter ? 'Hide filter' : 'Show filter';
+      } else {
+        
+        return this.toggleFilter ? 'Show filter' : 'Hide filter';
+      }
+
     },
 
     filterTags() {
@@ -469,13 +477,16 @@ export default {
       this.filters.search = route.query?.keyword
     },
 
-    // toggleFilter(newValue) {
-    //   if (newValue) {
-    //     document.body.classList.add("show-menu");
-    //   } else {
-    //     document.body.classList.remove("show-menu");
-    //   }
-    // },
+    toggleFilter(newValue) {
+      if (this.isTabPortView) {
+        if (newValue) {
+          document.body.classList.add("show-menu");
+        } else {
+          document.body.classList.remove("show-menu");
+        }
+      } 
+
+    },
   },
 
   data() {
@@ -847,6 +858,7 @@ export default {
   overflow: hidden;
 
 
+
   @include respond(tab-port) {
     position: fixed;
     top: 0;
@@ -858,8 +870,12 @@ export default {
     // height: 100vh;
     border: 1px solid green;
 
+    overflow: scroll;
+    height: 20rem;
+
     width: 0;
     margin-right: 0;
+    // padding: 2rem;
 
   }
 
@@ -869,7 +885,8 @@ export default {
     margin-right: 0;
 
     @include respond(tab-port) {
-      width: 24rem;
+      width: 100vw;
+      height: 100vh;
     }
 
   
