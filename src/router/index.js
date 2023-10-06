@@ -5,6 +5,7 @@ import aboutRoute from './routes/aboutRoute';
 import contactRoute from './routes/contactRoute';
 import searchRoute from './routes/searchRoute';
 import cartRoute from './routes/cartRoute';
+import productRoute from './routes/productRoute';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,7 +15,8 @@ const router = createRouter({
     contactRoute,
     searchRoute,
     cartRoute,
-    notfoundRoute
+    notfoundRoute,
+    productRoute
   ],
   scrollBehavior: () => ({
     top: 0,
