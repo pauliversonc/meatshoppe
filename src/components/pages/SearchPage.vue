@@ -59,22 +59,19 @@
           </li>
         </TransitionGroup>
 
+        <!-- To delete -->
+        <!-- <div class="collapse bb bt" :class="{active : activeCollapse.category}">
 
-
-
-        <!-- collapse item -->
-        <div class="collapse bb bt" :class="{active : activeCollapse.category}">
-
-          <!-- collapseable part -->
+       
           <div class="collapse__head" role="button" ref="categoryCollapse" @click="toggleCollapse('category', $event)">
 
-            <!-- title -->
+      
             <div class="collapse__title">
               <span class="collapse__title--name">Category</span>
               <span class="collapse__title--count" v-if="filters.category.length">{{ `(${filters.category.length})` }}</span>
             </div>
             
-            <!-- toggle --> <!-- rotating icon -->
+           
             <div class="collapse__icon-box" :class="{rotate: activeCollapse.category}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
@@ -85,13 +82,12 @@
 
           </div>
 
-          <!-- Collapse body --> <!-- shrinking part -->
+
           <Transition name="expand">
             <div class="collapse__body" v-if="activeCollapse.category">
               
               <div class="checkbox__group" v-for="(item, index) in filterOptions.category" :key="item">
                 <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_cat_${index}`" v-model="filters.category" />
-                <!-- search collapse category -->
                 <label class="checkbox__group--label" :for="`search_col_cat_${index}`">{{ item }}</label>
                 <span class="checkbox__group--count">(24)</span>
               </div>
@@ -101,21 +97,17 @@
 
           
         </div>
-        <!-- ./collapse item -->
-
-        <!-- collapse item -->
+ 
         <div class="collapse bb" :class="{active : activeCollapse.part}">
 
-          <!-- collapseable part -->
+       
           <div class="collapse__head" role="button" ref="partCollapse" @click="toggleCollapse('part', $event)">
 
-            <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">part</span>
               <span class="collapse__title--count" v-if="filters.part.length">{{ `(${filters.part.length})` }}</span>
             </div>
             
-            <!-- toggle --> <!-- rotating icon -->
             <div class="collapse__icon-box" :class="{rotate: activeCollapse.part}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
@@ -126,11 +118,9 @@
 
           </div>
 
-          <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
             <div class="collapse__body" v-if="activeCollapse.part">
               <div class="checkbox__group" v-for="(item, index) in filterOptions.part" :key="item">
-                <!-- search collapse part -->
                 <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_prt_${index}`" v-model="filters.part" /> 
                 <label class="checkbox__group--label" :for="`search_col_prt_${index}`">{{ item }}</label>
                 <span class="checkbox__group--count">(24)</span>
@@ -140,21 +130,16 @@
 
           
         </div>
-        <!-- ./collapse item -->
 
-        <!-- collapse item -->
         <div class="collapse bb" :class="{active : activeCollapse.brand}">
 
-          <!-- collapseable part -->
           <div class="collapse__head" role="button" ref="brandCollapse" @click="toggleCollapse('brand', $event)">
 
-            <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">brand</span>
               <span class="collapse__title--count" v-if="filters.brand.length">{{ `(${filters.brand.length})` }}</span>
             </div>
             
-            <!-- toggle --> <!-- rotating icon -->
             <div class="collapse__icon-box" :class="{rotate: activeCollapse.brand}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
@@ -165,11 +150,9 @@
 
           </div>
 
-          <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
             <div class="collapse__body" v-if="activeCollapse.brand">
               <div class="checkbox__group" v-for="(item, index) in filterOptions.brand">
-                <!-- search collapse brand -->
                 <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_brd_${index}`" v-model="filters.brand" />
                 <label class="checkbox__group--label" :for="`search_col_brd_${index}`">{{ item }}</label>
                 <span class="checkbox__group--count">(24)</span>
@@ -179,21 +162,16 @@
 
           
         </div>
-        <!-- ./collapse item -->
 
-        <!-- collapse item -->
         <div class="collapse bb" :class="{active : activeCollapse.weight}">
 
-          <!-- collapseable part -->
           <div class="collapse__head" role="button" ref="weightCollapse" @click="toggleCollapse('weight', $event)">
 
-            <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">weight</span>
               <span class="collapse__title--count" v-if="filters.weight.length">{{ `(${filters.weight.length})` }}</span>
             </div>
             
-            <!-- toggle --> <!-- rotating icon -->
             <div class="collapse__icon-box" :class="{rotate: activeCollapse.weight}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
@@ -204,11 +182,9 @@
 
           </div>
 
-          <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
             <div class="collapse__body" v-if="activeCollapse.weight">
               <div class="checkbox__group" v-for="(item, index) in filterOptions.weight" :key="item">
-                <!-- search collapse weight -->
                 <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_wet_${index}`" v-model="filters.weight" />
                 <label class="checkbox__group--label" :for="`search_col_wet_${index}`">{{ item }}</label>
                 <span class="checkbox__group--count">(24)</span>
@@ -218,21 +194,16 @@
 
           
         </div>
-        <!-- ./collapse item -->
 
-        <!-- collapse item -->
         <div class="collapse bb mb-2" :class="{active : activeCollapse.price}">
 
-          <!-- collapseable part -->
           <div class="collapse__head" role="button" ref="priceCollapse" @click="toggleCollapse('price', $event)">
 
-            <!-- title -->
             <div class="collapse__title">
               <span class="collapse__title--name">price</span>
               <span class="collapse__title--count">&nbsp;</span>
             </div>
             
-            <!-- toggle --> <!-- rotating icon -->
             <div class="collapse__icon-box" :class="{rotate: activeCollapse.price}"  role="button">
               <svg class="collapse__icon-box--icon">
                 <use
@@ -243,7 +214,6 @@
 
           </div>
 
-          <!-- Collapse body --> <!-- shrinking part -->
           <Transition name="expand">
             <div class="collapse__body" v-show="activeCollapse.price">
 
@@ -272,16 +242,111 @@
 
                 <span v-show="isMaxErr" class="col_grid--item span__error">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, perferendis!</span>
               </div>
-
-
-
-
             </div>
           </Transition>
+        </div> -->
 
+
+
+        <BaseCollapse
+          :border-bottom="true"
+          :border-top="true"
+          :active-collapse="this.activeCollapse.category"
+          collapse-name="category"
+          :category-count="filters.category.length"
+          @on-toggle-collapse="handleToggleCollapse"
+        >
+
+          <!-- category slot -->
+          <div class="checkbox__group" v-for="(item, index) in filterOptions.category" :key="item">
+            <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_cat_${index}`" v-model="filters.category" />
+            <label class="checkbox__group--label" :for="`search_col_cat_${index}`">{{ item }}</label>
+            <span class="checkbox__group--count">&nbsp;</span>
+          </div>
+          <!-- ./category slot -->
           
-        </div>
-        <!-- ./collapse item -->
+
+        </BaseCollapse>
+
+        <BaseCollapse
+          :border-bottom="true"
+          :active-collapse="this.activeCollapse.part"
+          collapse-name="part"
+          :category-count="filters.part.length"
+          @on-toggle-collapse="handleToggleCollapse"
+        >
+
+          <div class="checkbox__group" v-for="(item, index) in filterOptions.part" :key="item">
+            <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_prt_${index}`" v-model="filters.part" /> 
+            <label class="checkbox__group--label" :for="`search_col_prt_${index}`">{{ item }}</label>
+            <span class="checkbox__group--count">&nbsp;</span>
+          </div>
+        </BaseCollapse>
+
+        <BaseCollapse
+          :border-bottom="true"
+          :active-collapse="this.activeCollapse.brand"
+          collapse-name="brand"
+          :category-count="filters.brand.length"
+          @on-toggle-collapse="handleToggleCollapse"
+        >
+          <div class="checkbox__group" v-for="(item, index) in filterOptions.brand">
+            <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_brd_${index}`" v-model="filters.brand" />
+            <label class="checkbox__group--label" :for="`search_col_brd_${index}`">{{ item }}</label>
+            <span class="checkbox__group--count">&nbsp;</span>
+          </div>
+
+        </BaseCollapse>
+
+        <BaseCollapse
+          :border-bottom="true"
+          :active-collapse="this.activeCollapse.weight"
+          collapse-name="weight"
+          :category-count="filters.weight.length"
+          @on-toggle-collapse="handleToggleCollapse"
+        >
+
+          <div class="checkbox__group" v-for="(item, index) in filterOptions.weight" :key="item">
+            <input class="checkbox__group--input" type="checkbox" :value="item" :id="`search_col_wet_${index}`" v-model="filters.weight" />
+            <label class="checkbox__group--label" :for="`search_col_wet_${index}`">{{ item }}</label>
+            <span class="checkbox__group--count">&nbsp;</span>
+          </div>
+
+        </BaseCollapse>
+
+        <BaseCollapse
+          :border-bottom="true"
+          :margin-bottom="true"
+          :active-collapse="this.activeCollapse.price"
+          collapse-name="price"
+          @on-toggle-collapse="handleToggleCollapse"
+        >
+          <div class="col_grid">
+            <div class="col_grid--item">
+              <BaseInputText 
+                text-name="min"
+                text-label="min"
+                ref="bitmin"
+                text-input-type="number"
+                :text-required="false"
+                @on-input-blur="handleInputBlur"
+              />
+            </div>
+            <div class="col_grid--item center">&mdash;</div>
+            <div class="col_grid--item">
+              <BaseInputText 
+                text-name="max"
+                text-label="max"
+                ref="bitmax"
+                text-input-type="number"
+                :text-required="false"
+                @on-input-blur="handleInputBlur"
+              />
+            </div>
+
+            <span v-show="isMaxErr" class="col_grid--item span__error">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, perferendis!</span>
+          </div>
+        </BaseCollapse>
 
         <BaseButton v-show="isTabPortView" @click="toggleFilter = !toggleFilter" btn-text="apply" :btn-full-width="true" />
 
@@ -569,6 +634,11 @@ export default {
 
 
   methods: {
+    handleToggleCollapse(key) {
+      // console.log(collapseName)
+      this.activeCollapse[key] = !this.activeCollapse[key]
+    },
+
     handleResizeScreen() {
       // Update the isMobileView value based on the screen width
       this.isTabPortView = window.innerWidth <= 768;
@@ -614,7 +684,7 @@ export default {
       }, 1000); // Add your desired interval in milliseconds
     },
 
-    toggleCollapse(key ,event) {
+    toggleCollapse(key, event) {
 
       // get the clicked element element
       const element = event.target.closest('.collapse__head');
@@ -821,7 +891,6 @@ export default {
       grid-column: 1/-1;
     }
 
-  
     &--keyword {
       display: inline;
       text-transform: uppercase;
@@ -1070,91 +1139,96 @@ export default {
     opacity: 1;
     // border: 1px solid red;
 
-    .checkbox__group {
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      // gap: .4rem;
-      margin-top: .2rem;
-      // padding-left: 1rem;
-
-      &:last-child{
-        margin-bottom: 1.4rem;
-      }
-
-      // border: 1px solid red;
-
-      //  Hide the default checkbox 
-      &--input {
-        display: none;
-
-        // Style the custom checkbox when it's checked
-        &:checked + .checkbox__group--label::before {
-          background-color: $dark-high;
-          // border: 2px solid $light-low;
-        }
-
-        // Add a checkmark icon to the checked checkbox 
-        &:checked + .checkbox__group--label::after {
-          content: "\2713"; /* Unicode checkmark character */
-       
-          position: absolute;
-          top: 50%;
-          left: 0;
-          // transform: translateY(-50%);
-          transform: translate(20%, -50%);
-          color: #fff; /* Color of the checkmark */
-        }
-
-      }
-
-
-      &--label {
-        position: relative;
-        font-size: 1.6rem;
-        text-transform: lowercase;
-        font-weight: 400;
-        cursor: pointer;
-        user-select: none;
-        color: $black-tint;
-        // border: 1px solid red;
-        width: 100%;
-        line-height: 1.4;
-        padding-left: 2.4rem; // Space for the custom checkbox 
-
-        transition: .3s ease-out;
-
-        @include respond(tab-port) {
-          line-height: 2.4;
-        }
-        // checkbox - default style (not clicked)
-        &::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-          width: 1.6rem;
-          height: 1.6rem;
-          background-color: $light-high;
-          border: 2px solid $dark-low;
-        }
-
-        &:hover {
-          color: $main;
-        }
-      }
-
-  
-
-      &--count{
-        user-select: none;
-        font-size: 1.6rem;
-        font-weight: 400;
-      }
-    }
+ 
   }
 }
+// ./sidebar - collapse 
+
+// input checkbox
+.checkbox__group {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  // gap: .4rem;
+  margin-top: .2rem;
+  // padding-left: 1rem;
+
+  &:last-child{
+    margin-bottom: 1.4rem;
+  }
+
+  // border: 1px solid red;
+
+  //  Hide the default checkbox 
+  &--input {
+    display: none;
+
+    // Style the custom checkbox when it's checked
+    &:checked + .checkbox__group--label::before {
+      background-color: $dark-high;
+      // border: 2px solid $light-low;
+    }
+
+    // Add a checkmark icon to the checked checkbox 
+    &:checked + .checkbox__group--label::after {
+      content: "\2713"; /* Unicode checkmark character */
+    
+      position: absolute;
+      top: 50%;
+      left: 0;
+      // transform: translateY(-50%);
+      transform: translate(20%, -50%);
+      color: #fff; /* Color of the checkmark */
+    }
+
+  }
+
+
+  &--label {
+    position: relative;
+    font-size: 1.6rem;
+    text-transform: lowercase;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+    color: $black-tint;
+    // border: 1px solid red;
+    width: 100%;
+    line-height: 1.4;
+    padding-left: 2.4rem; // Space for the custom checkbox 
+
+    transition: .3s ease-out;
+
+    @include respond(tab-port) {
+      line-height: 2.4;
+    }
+    // checkbox - default style (not clicked)
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      background-color: $light-high;
+      border: 2px solid $dark-low;
+    }
+
+    &:hover {
+      color: $main;
+    }
+  }
+
+
+
+  &--count{
+    user-select: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+// ./input checkbox
 
 // sidebar - collapse input price
 .price {
