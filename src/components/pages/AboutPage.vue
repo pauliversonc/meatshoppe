@@ -47,13 +47,13 @@
             },
           }"
         >
-          <h5
-            v-if="!isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Story"
-          >
-            Our Story
-          </h5>
+
+          <BaseHeadingFive 
+          v-if="!isTabletView"
+          heading-title="Our Story"
+          :margin-bottom="true"
+          />
+
           <p class="about__paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
             consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
@@ -89,13 +89,14 @@
             },
           }"
         >
-          <h5
-            v-if="isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Story"
-          >
-            Our Story
-          </h5>
+   
+
+          <BaseHeadingFive 
+          v-if="isTabletView"
+          heading-title="Our Story"
+          :margin-bottom="true"
+          />
+
           <img
             class="about__img"
             src="../../assets/images/about/team-sm.png"
@@ -127,9 +128,12 @@
           },
         }"
       >
-        <h5 class="about__heading center" data-before-text="Our Team">
-          Our Team
-        </h5>
+ 
+        <BaseHeadingFive 
+          heading-title="Our Team"
+          :center="true"
+          />
+
       </div>
       <!-- 120 -->
       <div class="about__team">
@@ -215,13 +219,14 @@
             },
           }"
         >
-          <h5
-            v-if="isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Vision"
-          >
-            Our Vision
-          </h5>
+   
+
+          <BaseHeadingFive 
+          v-if="isTabletView"
+          heading-title="Our Vision"
+          :margin-bottom="true"
+          />
+
           <img
             class="about__img"
             src="../../assets/images/about/alignment-1.jpg"
@@ -250,13 +255,13 @@
             },
           }"
         >
-          <h5
-            v-if="!isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Vision"
-          >
-            Our Vision
-          </h5>
+    
+
+          <BaseHeadingFive 
+          v-if="!isTabletView"
+          heading-title="Our Vision"
+          :margin-bottom="true"
+          />
           <p class="about__paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
             consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
@@ -296,13 +301,14 @@
             },
           }"
         >
-          <h5
-            v-if="!isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Mission"
-          >
-            Our Mission
-          </h5>
+       
+
+          <BaseHeadingFive 
+          v-if="!isTabletView"
+          heading-title="Our Mission"
+          :margin-bottom="true"
+          />
+
           <p class="about__paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
             consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
@@ -338,13 +344,14 @@
             },
           }"
         >
-          <h5
-            v-if="isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Mission"
-          >
-            Our Mission
-          </h5>
+      
+
+          <BaseHeadingFive 
+          v-if="isTabletView"
+          heading-title="Our Mission"
+          :margin-bottom="true"
+          />
+
           <img
             class="about__img"
             src="../../assets/images/about/alignment-2.jpg"
@@ -377,13 +384,13 @@
             },
           }"
         >
-          <h5
-            v-if="isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Values"
-          >
-            Our Values
-          </h5>
+
+          <BaseHeadingFive 
+          v-if="isTabletView"
+          heading-title="Our Values"
+          :margin-bottom="true"
+          />
+
           <img
             class="about__img"
             src="../../assets/images/about/alignment-3.jpg"
@@ -412,13 +419,13 @@
             },
           }"
         >
-          <h5
-            v-if="!isTabletView"
-            class="about__heading u-mb-2"
-            data-before-text="Our Values"
-          >
-            Our Values
-          </h5>
+
+          <BaseHeadingFive 
+          v-if="!isTabletView"
+          heading-title="Our Values"
+          :margin-bottom="true"
+          />
+
           <p class="about__paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
             consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
@@ -622,48 +629,6 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
-  }
-
-  &__heading {
-    font-size: 3.6rem;
-    line-height: 1;
-
-    position: relative;
-    z-index: 9;
-
-    &.u-mb-2 {
-      margin-bottom: 2rem;
-    }
-
-    &::before {
-      content: attr(
-        data-before-text
-      ); /* Use the data attribute to store the text */
-      // z-index: 8;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100rem;
-      // width: calc(100% * 3);
-      transform: translate(0%, 4%);
-      font-size: 10.4rem;
-      z-index: -9;
-      color: $light-low;
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        font-size: 8.6rem;
-      }
-    }
-
-    &.center::before {
-      transform: translate(-15%, 4%);
-
-      // 865 and below
-      @media only screen and (max-width: 54.0625em) {
-        transform: translate(-11%, 4%);
-      }
-    }
   }
 
   &__paragraph {

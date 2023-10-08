@@ -64,7 +64,12 @@
           <!-- ./Collapse -->
         </div>
 
-        <div class="page__suggestions">100%</div>
+        <div class="page__suggestions">
+          <BaseHeadingFive 
+          heading-title="You may also like"
+          />
+
+        </div>
     </div>
   </div>
 </template>
