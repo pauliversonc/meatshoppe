@@ -14,8 +14,57 @@
           <!-- ./Main Details -->
 
           <!-- Collapse -->
+          <BaseCollapse
+          :border-bottom="true"
+          :border-top="true"
+          :active-collapse="activeCollpase.description"
+          collapse-name="description"
+          :category-count="0"
+          @on-toggle-collapse="handleToggleCollapse"
+          >
+
+          <!-- category slot -->
+          <h1>Testing</h1>
+          <!-- ./category slot -->
+
+
+          </BaseCollapse>
+
+          <BaseCollapse
+          :border-bottom="true"
+          :border-top="true"
+          :active-collapse="activeCollpase.details"
+          collapse-name="details"
+          :category-count="0"
+          @on-toggle-collapse="handleToggleCollapse"
+          >
+
+          <!-- category slot -->
+          <h1>Testing</h1>
+          <!-- ./category slot -->
+
+
+          </BaseCollapse>
+
+          <BaseCollapse
+          :border-bottom="true"
+          :border-top="true"
+          :active-collapse="activeCollpase.delivery"
+          collapse-name="delivery"
+          :category-count="0"
+          @on-toggle-collapse="handleToggleCollapse"
+          >
+
+          <!-- category slot -->
+          <h1>Testing</h1>
+          <!-- ./category slot -->
+
+
+          </BaseCollapse>
           <!-- ./Collapse -->
         </div>
+
+        <div class="page__suggestions">100%</div>
     </div>
   </div>
 </template>
@@ -26,7 +75,11 @@ export default {
 
   data() {
     return {
-      
+      activeCollpase: {
+        description: false,
+        details: false,
+        delivery: false,
+      },
     };
   },
 
@@ -35,7 +88,12 @@ export default {
   },
 
   methods: {
-    
+    handleToggleCollapse(key) {
+
+      console.log(key)
+      this.activeCollpase[key] = !this.activeCollpase[key]
+
+    }
   },
 };
 </script>
@@ -58,7 +116,7 @@ export default {
   }
 
   &__content {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     color: $black-tint;
 
     &--brand {
@@ -68,6 +126,10 @@ export default {
       text-transform: uppercase;
       font-weight: 600;
       overflow-wrap: break-word;
+
+      line-height: 1;
+      margin-bottom: 1rem;
+      // margin: 1rem 0
     }
 
     &--name {
@@ -76,6 +138,8 @@ export default {
       font-size: 2.4rem;
       font-weight: 600;
       overflow-wrap: break-word;
+      line-height: 1;
+      margin-bottom: 1.4rem;
     }
 
     &--price {
@@ -84,17 +148,27 @@ export default {
       font-size: 2.4rem;
       font-weight: 600;
       color: $main;
+      line-height: 1;
+      margin-bottom: 1.4rem;
     }
 
     &--stock {
       // border: 1px solid blue;
 
+      line-height: 1;
       font-size: 1.6rem;
+      margin-bottom: 1.4rem;
     }
     
     &--weight {
       font-size: 1.6rem;
     }
   }
+
+  &__suggestions {
+    grid-column: 1/-1;
+    border: 1px solid green;
+  }
+
 }
 </style>
