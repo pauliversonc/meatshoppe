@@ -1,7 +1,27 @@
 <template>
   <div class="page">
     <div class="page__wrapper">
-        <div class="page__gallery">60%</div>
+        <div class="page__gallery">
+
+          <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+            <Slide v-for="slide in 10" :key="slide">
+              <div class="carousel__item">{{ slide }}</div>
+            </Slide>
+          </Carousel>
+
+          <Carousel
+            id="thumbnails"
+            :items-to-show="4"
+            :wrap-around="true"
+            v-model="currentSlide"
+            ref="carousel"
+          >
+            <Slide v-for="slide in 10" :key="slide">
+              <div class="carousel__thumbnail" @click="slideTo(slide - 1)">{{ slide }}</div>
+            </Slide>
+          </Carousel>
+
+        </div>
 
         <div class="page__content">
 
@@ -75,11 +95,18 @@
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue3-carousel';
 export default {
   name: 'MeatshoppeProductPage',
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
+  },
 
   data() {
     return {
+      currentSlide: 0,
       activeCollpase: {
         description: false,
         details: false,
@@ -93,6 +120,9 @@ export default {
   },
 
   methods: {
+    slideTo(val) {
+      this.currentSlide = val
+    },
     handleToggleCollapse(key) {
 
       console.log(key)
@@ -110,6 +140,7 @@ export default {
   // padding: 7rem 2rem 8rem 2rem;
   padding: 8rem 2rem;
   
+  
   &__wrapper {
     border: 1px solid red;
     max-width: 120rem;
@@ -118,6 +149,7 @@ export default {
     display: grid;
     // grid-template-columns: 60% 40%;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
   &__content {
@@ -171,9 +203,46 @@ export default {
   }
 
   &__suggestions {
+    margin-top: 6rem;
     grid-column: 1/-1;
     border: 1px solid green;
   }
 
+}
+
+
+.carousel__item {
+  min-height: 40rem;
+  width: 100%;
+  background-color: var(--vc-clr-primary);
+  color: var(--vc-clr-white);
+  font-size: 20px;
+  // border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__thumbnail { 
+  min-height: 100px;
+  width: 100%;
+  background-color: var(--vc-clr-primary);
+  color: var(--vc-clr-white);
+  font-size: 20px;
+
+  // for content to center
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__slide {
+  padding: 2px;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
 }
 </style>
