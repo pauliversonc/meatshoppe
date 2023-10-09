@@ -11,7 +11,7 @@
 
           <Carousel
             id="thumbnails"
-            :items-to-show="4"
+            :items-to-show="5"
             :wrap-around="true"
             v-model="currentSlide"
             ref="carousel"
@@ -33,61 +33,78 @@
           <div class="page__content--weight"></div>
           <!-- ./Main Details -->
 
-          <!-- Collapse -->
-          <BaseCollapse
-          :border-bottom="true"
-          :border-top="true"
-          :active-collapse="activeCollpase.description"
-          collapse-name="description"
-          :category-count="0"
-          @on-toggle-collapse="handleToggleCollapse"
-          >
-
-          <!-- category slot -->
-          <h1>Testing</h1>
-          <!-- ./category slot -->
+        </div>
 
 
-          </BaseCollapse>
+        <div class="page__collapse">
 
-          <BaseCollapse
-          :border-bottom="true"
-          :border-top="true"
-          :active-collapse="activeCollpase.details"
-          collapse-name="details"
-          :category-count="0"
-          @on-toggle-collapse="handleToggleCollapse"
-          >
+            <!-- Collapse -->
+            <BaseCollapse
+            :border-bottom="true"
+            :border-top="true"
+            :active-collapse="activeCollpase.description"
+            collapse-name="description"
+            :category-count="0"
+            @on-toggle-collapse="handleToggleCollapse"
+            >
 
-          <!-- category slot -->
-          <h1>Testing</h1>
-          <!-- ./category slot -->
-
-
-          </BaseCollapse>
-
-          <BaseCollapse
-          :border-bottom="true"
-          :border-top="true"
-          :active-collapse="activeCollpase.delivery"
-          collapse-name="delivery"
-          :category-count="0"
-          @on-toggle-collapse="handleToggleCollapse"
-          >
-
-          <!-- category slot -->
-          <h1>Testing</h1>
-          <!-- ./category slot -->
+            <!-- category slot -->
+            <h1>Testing</h1>
+            <!-- ./category slot -->
 
 
-          </BaseCollapse>
-          <!-- ./Collapse -->
+            </BaseCollapse>
+
+            <BaseCollapse
+            :border-bottom="true"
+            :border-top="true"
+            :active-collapse="activeCollpase.details"
+            collapse-name="details"
+            :category-count="0"
+            @on-toggle-collapse="handleToggleCollapse"
+            >
+
+            <!-- category slot -->
+            <h1>Testing</h1>
+            <!-- ./category slot -->
+
+
+            </BaseCollapse>
+
+            <BaseCollapse
+            :border-bottom="true"
+            :border-top="true"
+            :active-collapse="activeCollpase.delivery"
+            collapse-name="delivery"
+            :category-count="0"
+            @on-toggle-collapse="handleToggleCollapse"
+            >
+
+            <!-- category slot -->
+            <h1>Testing</h1>
+            <!-- ./category slot -->
+
+
+            </BaseCollapse>
+            <!-- ./Collapse -->
+
         </div>
 
         <div class="page__suggestions">
           <BaseHeadingFive 
           heading-title="You may also like"
+          :margin-bottom="true"
           />
+
+          <Carousel v-bind="settings" :breakpoints="breakpoints">
+            <Slide v-for="slide in 10" :key="slide">
+              <div class="carousel__item">{{ slide }}</div>
+            </Slide>
+
+            <template #addons>
+              <Navigation />
+            </template>
+          </Carousel>
 
         </div>
     </div>
@@ -95,7 +112,8 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue3-carousel';
+// import { Carousel, Slide } from 'vue3-carousel';
+import { Carousel, Navigation, Slide } from "vue3-carousel";
 export default {
   name: 'MeatshoppeProductPage',
   components: {
@@ -112,7 +130,40 @@ export default {
         details: false,
         delivery: false,
       },
+
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "start",
+      },
+      // breakpoints are mobile first
+      // any settings not specified will fallback to the carousel settings
+      breakpoints: {
+        378: {
+          itemsToShow: 2,
+          snapAlign: "start",
+        },
+        543: {
+          itemsToShow: 3,
+          snapAlign: "start",
+        },
+
+        // 700px and up
+        769: {
+          itemsToShow: 4,
+          snapAlign: "start",
+        },
+        // 1024 and up
+        1041: {
+          itemsToShow: 5  ,
+          snapAlign: "start",
+        },
+      },
+
+ 
+      
     };
+
+    
   },
 
   mounted() {
@@ -135,11 +186,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
+@import "../../sass/mixins";
 
 .page {
   // padding: 7rem 2rem 8rem 2rem;
   padding: 8rem 2rem;
-  
+
+
   
   &__wrapper {
     border: 1px solid red;
@@ -149,12 +202,39 @@ export default {
     display: grid;
     // grid-template-columns: 60% 40%;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    // grid-template-rows: 1fr 1fr 1fr;
+    // gap: 2rem;
+
+    // align-items: start;
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+    }
+    
   }
+
+  &__gallery{
+    grid-row: 1/4;
+    margin-right: 2rem;
+
+    @include respond(tab-port) {
+      order: 2;
+      grid-row: auto;
+      margin-right: 0;
+      // grid-column: 1;
+    }
+  }
+  
 
   &__content {
     // border: 1px solid blue;
     color: $black-tint;
+
+    @include respond(tab-port) {
+      order: 1;
+    }
+    
+
 
     &--brand {
     //  border: 1px solid blue;
@@ -202,10 +282,23 @@ export default {
     }
   }
 
+  &__collapse {
+    grid-column: 2;
+    @include respond(tab-port) {
+      grid-column: 1;
+      order: 3;
+      // margin-top: 2rem;
+    }
+  }
+
   &__suggestions {
     margin-top: 6rem;
     grid-column: 1/-1;
     border: 1px solid green;
+
+    @include respond(tab-port) {
+      order: 4;
+    }
   }
 
 }
