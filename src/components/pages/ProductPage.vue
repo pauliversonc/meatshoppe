@@ -30,15 +30,60 @@
           <div class="page__content--name">Lorem ipsum dolor sit amet consectetur.</div>
           <div class="page__content--price">$ 124.00</div>
           <div class="page__content--stock">In Stock</div>
-          <div class="page__content--weight"></div>
+
+
+
+          <div class="page__content--weight">
+
+            <!-- <h3>Weight</h3> -->
+            <!-- to transfer to a component -->
+            <div class="dropdown-input">
+
+                <div class="dropdown-input--default" @click="toggleDropdown">
+                  <!-- defailt text -->
+                  <span class="dropdown-input--setValue">{{ picked }}</span>
+                  <!-- icon -->
+                  <div class="dropdown-input--iconbox" :class="{'rotated': dropdown}">
+                    <svg class="dropdown-input--icon">
+                      <use xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"></use>
+                    </svg>
+                  </div>
+                </div>
+
+
+                <!-- dropdown -->
+                <ul class="dropdown-input--lists" :class="{'show': dropdown}" @click="handleClickedLabel">
+                  <!-- dropdown option -->
+                  <li class="dropdown-input--list" >
+                    <input class="dropdown-input--input" type="radio" id="one" value="One" v-model="picked" />
+                    <label class="dropdown-input--label" :class="{'active': picked === 'One'}" for="one">One</label>
+                  </li>
+
+                  <li class="dropdown-input--list" >
+                    <input class="dropdown-input--input" type="radio" id="two" value="Two" v-model="picked" />
+                    <label class="dropdown-input--label" for="two">Two</label>
+                  </li>
+                </ul>
+
+
+            </div>
+
+          </div>
+
+
+
+
+
+
+          <div class="page__content--quantity"></div>
           <!-- ./Main Details -->
 
         </div>
 
 
-        <div class="page__collapse">
 
-            <!-- Collapse -->
+
+        <div class="page__collapse">
             <BaseCollapse
             :border-bottom="true"
             :border-top="true"
@@ -86,8 +131,6 @@
 
 
             </BaseCollapse>
-            <!-- ./Collapse -->
-
         </div>
 
         <div class="page__suggestions">
@@ -160,6 +203,9 @@ export default {
       },
 
  
+      picked:"Select Weight",
+      dropdown: false,
+
       
     };
 
@@ -174,12 +220,20 @@ export default {
     slideTo(val) {
       this.currentSlide = val
     },
-    handleToggleCollapse(key) {
 
+    handleToggleCollapse(key) {
       console.log(key)
       this.activeCollpase[key] = !this.activeCollpase[key]
+    },
 
-    }
+    toggleDropdown() {
+      this.dropdown = !this.dropdown
+    },
+
+    handleClickedLabel(event){
+      if(event.target.tagName !== 'LABEL') return
+      this.toggleDropdown();
+    },
   },
 };
 </script>
@@ -338,4 +392,99 @@ export default {
   box-sizing: content-box;
   border: 5px solid white;
 }
+
+// transfer to a component
+.dropdown-input {
+  display: inline-block;
+  // cursor: pointer;
+  line-height: 1;
+  font-size: 1.6rem;
+  color: $black-tint;
+  margin-bottom: 1.4rem;
+
+  &--default {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem .6rem;
+    cursor: pointer;
+    
+    
+    border: 2px solid $dark-low;
+
+  }
+
+  &--setValue {
+    user-select: none;
+  }
+
+  &--iconbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .4s ease-out ;
+    transform: rotate(180deg);
+
+    &.rotated {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &--icon {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  // dropdown content
+  &--lists {
+    display: flex;
+    // align-items: start;
+    justify-content: center;
+    flex-direction: column;
+
+    list-style: none;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: all .4s ease;
+    // background-color: red;
+
+    &.show {
+      max-height: 10rem;
+    }
+  }
+
+  &--list {
+    display: flex;
+    // border: 1px solid red;
+  }
+
+  &--input {
+    display: none;
+  }
+
+  &--label {
+    cursor: pointer;
+    width: 100%;
+    // border: 2px solid $dark-low;
+
+    border-width: 0 2px 2px 2px; /* top: 0, right: 1px, bottom: 1px, left: 1px */
+    border-style: none solid solid solid; /* top: none, right: solid, bottom: solid, left: solid */
+    border-color: transparent $dark-low $dark-low $dark-low; /* top: transparent, right: red, bottom: red, left: red */
+  
+    // background-color: red;
+    padding: 1rem .6rem;
+
+    &:hover, &:focus, &.active {
+      outline: none;
+      background-color: $light-low;
+    }
+  }
+
+
+
+}
+
 </style>
