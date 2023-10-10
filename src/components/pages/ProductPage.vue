@@ -86,8 +86,14 @@
 
           </div>
 
-          <BaseButton btn-text="Add to cart"  :btn-full-width="true"/>
-          <!-- <BaseButton btn-text="Buy now" /> -->
+          <div class="page__form--btns">
+          <BaseButton btn-text="Add to cart" :btn-outline="true" :btn-full-width="true"/>
+          <BaseButton btn-text="Buy now"  :btn-full-width="true"/>
+
+          </div>
+
+
+
             
         </div>
 
@@ -146,7 +152,7 @@
           />
 
           <Carousel v-bind="settings" :breakpoints="breakpoints">
-            <Slide v-for="slide in 10" :key="slide">
+            <Slide v-for="slide in 5" :key="slide">
               <div class="carousel__item">{{ slide }}</div>
             </Slide>
 
@@ -431,6 +437,15 @@ export default {
 
     &--quantity {
       margin-bottom: 1.4rem;
+    }
+
+    &--btns {
+      display: flex;
+      gap: 1rem;
+
+      @include respond(tab-port) {
+        flex-direction: column;
+      }
     }
   }
 

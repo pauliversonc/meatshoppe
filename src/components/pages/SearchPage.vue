@@ -1285,7 +1285,7 @@ export default {
   align-items: center;
   font-size: 1.6rem;
   color: $black-tint;
-
+  min-height: 60vh;
 
 }
 
