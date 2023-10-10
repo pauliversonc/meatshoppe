@@ -30,58 +30,65 @@
           <div class="page__content--name">Lorem ipsum dolor sit amet consectetur.</div>
           <div class="page__content--price">$ 124.00</div>
           <div class="page__content--stock">In Stock</div>
+          <!-- ./Main Details -->
 
+        </div>
 
+        <div class="page__form">
 
-          <div class="page__content--weight">
+          <div class="page__form--weight">
 
-            <!-- <h3>Weight</h3> -->
+            <span class="page__form--label">Weight</span>
+
             <!-- to transfer to a component -->
             <div class="dropdown-input">
 
-                <div class="dropdown-input--default" @click="toggleDropdown">
-                  <!-- defailt text -->
-                  <span class="dropdown-input--setValue">{{ picked }}</span>
-                  <!-- icon -->
-                  <div class="dropdown-input--iconbox" :class="{'rotated': dropdown}">
-                    <svg class="dropdown-input--icon">
-                      <use xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"></use>
-                    </svg>
-                  </div>
+              <div class="dropdown-input--default" @click="toggleDropdown">
+                <!-- defailt text -->
+                <span class="dropdown-input--setValue">{{ picked }}</span>
+                <!-- icon -->
+                <div class="dropdown-input--iconbox" :class="{'rotated': dropdown}">
+                  <svg class="dropdown-input--icon">
+                    <use xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"></use>
+                  </svg>
                 </div>
+              </div>
 
 
-                <!-- dropdown -->
-                <ul class="dropdown-input--lists" :class="{'show': dropdown}" @click="handleClickedLabel">
-                  <!-- dropdown option -->
-                  <li class="dropdown-input--list" >
-                    <input class="dropdown-input--input" type="radio" id="one" value="One" v-model="picked" />
-                    <label class="dropdown-input--label" :class="{'active': picked === 'One'}" for="one">One</label>
-                  </li>
+              <!-- dropdown -->
+              <ul class="dropdown-input--lists" :class="{'show': dropdown}" @click="handleClickedLabel">
+                <!-- dropdown option -->
+                <li class="dropdown-input--list" >
+                  <input class="dropdown-input--input" type="radio" id="one" value="One" v-model="picked" />
+                  <label class="dropdown-input--label" :class="{'active': picked === 'One'}" for="one">One</label>
+                </li>
 
-                  <li class="dropdown-input--list" >
-                    <input class="dropdown-input--input" type="radio" id="two" value="Two" v-model="picked" />
-                    <label class="dropdown-input--label" for="two">Two</label>
-                  </li>
-                </ul>
-
+                <li class="dropdown-input--list" >
+                  <input class="dropdown-input--input" type="radio" id="two" value="Two" v-model="picked" />
+                  <label class="dropdown-input--label" for="two">Two</label>
+                </li>
+              </ul>
 
             </div>
 
           </div>
 
 
+          <div class="page__form--quantity">
+            <span class="page__form--label">Quantity</span>
 
+              <div class="quantity-input">
+                <button class="quantity-input--btn minus" @click="mutateQty(false)">&#45;</button>
+                <input class="quantity-input--text" @input="validateQty" v-model="qty" placeholder="1" type="text" name="edi" id="a">
+                <button class="quantity-input--btn plus" @click="mutateQty(true)">&#43;</button>
+              </div>
 
+          </div>
 
-
-          <div class="page__content--quantity"></div>
-          <!-- ./Main Details -->
-
+          <BaseButton btn-text="Add to cart"  />
+          <!-- <BaseButton btn-text="Buy now" /> -->
+            
         </div>
-
-
-
 
         <div class="page__collapse">
             <BaseCollapse
@@ -93,13 +100,12 @@
             @on-toggle-collapse="handleToggleCollapse"
             >
 
-            <!-- category slot -->
-            <h1>Testing</h1>
-            <!-- ./category slot -->
+    
+          <span>test</span>
+    
 
 
             </BaseCollapse>
-
             <BaseCollapse
             :border-bottom="true"
             :border-top="true"
@@ -109,13 +115,12 @@
             @on-toggle-collapse="handleToggleCollapse"
             >
 
-            <!-- category slot -->
-            <h1>Testing</h1>
-            <!-- ./category slot -->
+       
+            <span>test</span>
+        
 
 
             </BaseCollapse>
-
             <BaseCollapse
             :border-bottom="true"
             :border-top="true"
@@ -125,9 +130,9 @@
             @on-toggle-collapse="handleToggleCollapse"
             >
 
-            <!-- category slot -->
-            <h1>Testing</h1>
-            <!-- ./category slot -->
+     
+            <span>test</span>
+     
 
 
             </BaseCollapse>
@@ -205,7 +210,7 @@ export default {
  
       picked:"Select Weight",
       dropdown: false,
-
+      qty: '',
       
     };
 
@@ -217,6 +222,16 @@ export default {
   },
 
   methods: {
+    validateQty() {
+      this.qty = +this.qty.replace(/\D/g, '');
+      if (this.qty < 1) this.qty = 1;
+    },
+
+    mutateQty(bool) {
+      bool ? this.qty++ : (this.qty <= 1 ?  this.qty = 1 : this.qty--);
+    },
+
+
     slideTo(val) {
       this.currentSlide = val
     },
@@ -249,13 +264,13 @@ export default {
 
   
   &__wrapper {
-    border: 1px solid red;
+    // border: 1px solid red;
     max-width: 120rem;
     margin: 0 auto;
 
     display: grid;
     // grid-template-columns: 60% 40%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 14rem 2.5fr 2fr 14rem;
     // grid-template-rows: 1fr 1fr 1fr;
     // gap: 2rem;
 
@@ -268,8 +283,9 @@ export default {
   }
 
   &__gallery{
-    grid-row: 1/4;
-    margin-right: 2rem;
+    grid-row: 1/5;
+    margin-right: 4rem;
+    grid-column: 2;
 
     @include respond(tab-port) {
       order: 2;
@@ -278,16 +294,19 @@ export default {
       // grid-column: 1;
     }
   }
-  
 
   &__content {
     // border: 1px solid blue;
     color: $black-tint;
+    grid-column: 3;
+    margin-left: 4rem;
 
     @include respond(tab-port) {
       order: 1;
     }
     
+
+
 
 
     &--brand {
@@ -328,30 +347,55 @@ export default {
 
       line-height: 1;
       font-size: 1.6rem;
-      margin-bottom: 1.4rem;
+      // margin-bottom: 1.4rem;
     }
     
-    &--weight {
+ 
+
+
+  }
+
+  &__form {
+    padding: 1.4rem 0;
+    grid-column: 3;
+    margin-left: 4rem;
+    @include respond(tab-port) {
+      order: 3;
+    }
+
+
+    &--label {
       font-size: 1.6rem;
+      display: block;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+   &--weight {
+      font-size: 1.6rem;
+    }
+
+    &--quantity {
+      margin-bottom: 1.4rem;
     }
   }
 
   &__collapse {
-    grid-column: 2;
+    grid-column: 3;
+    margin-left: 4rem;
     @include respond(tab-port) {
       grid-column: 1;
-      order: 3;
+      order: 4;
       // margin-top: 2rem;
     }
   }
 
   &__suggestions {
-    margin-top: 6rem;
+    margin-top: 12rem;
     grid-column: 1/-1;
-    border: 1px solid green;
+    // border: 1px solid green;
 
     @include respond(tab-port) {
-      order: 4;
+      order: 5;
     }
   }
 
@@ -395,12 +439,16 @@ export default {
 
 // transfer to a component
 .dropdown-input {
-  display: inline-block;
-  // cursor: pointer;
+  display: block;
+  cursor: pointer;
   line-height: 1;
-  font-size: 1.6rem;
   color: $black-tint;
   margin-bottom: 1.4rem;
+  max-width: 20rem;
+
+  @include respond(phone-land) {
+    max-width: 100%;
+  }
 
   &--default {
     display: flex;
@@ -409,7 +457,7 @@ export default {
     gap: 2rem;
     padding: 1rem .6rem;
     cursor: pointer;
-    
+    height: 4rem;
     
     border: 2px solid $dark-low;
 
@@ -469,22 +517,91 @@ export default {
     cursor: pointer;
     width: 100%;
     // border: 2px solid $dark-low;
-
+    height: 4rem;
     border-width: 0 2px 2px 2px; /* top: 0, right: 1px, bottom: 1px, left: 1px */
     border-style: none solid solid solid; /* top: none, right: solid, bottom: solid, left: solid */
     border-color: transparent $dark-low $dark-low $dark-low; /* top: transparent, right: red, bottom: red, left: red */
-  
+    transition: all 0.3s ease;
     // background-color: red;
     padding: 1rem .6rem;
 
     &:hover, &:focus, &.active {
       outline: none;
-      background-color: $light-low;
+      background-color: $main;
+      color: $light-high;
     }
   }
 
 
 
+}
+
+
+.quantity-input {
+  display: inline-block;
+  position: relative;
+  padding-right: 3.6rem;
+
+  @include respond(phone-land) {
+    display: block;
+  }
+
+  &--btn {
+    position: absolute;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: $light-high;
+    padding: 0.8rem 1rem;
+    border: 2px solid $dark-low;
+    font-size: 1.6rem;
+    top: 0;
+    width: 3.6rem;
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      outline: none;
+      background-color: $main;
+      color: $light-high;
+    }
+
+    &.minus {
+    border-right: none;
+    left: 0;
+
+    }
+    &.plus {
+    border-left: none;
+    right: 0;
+    }
+  }
+
+  &--text {    
+    font-size: 1.6rem;
+    width: 8rem;
+    padding: 0.8rem 1rem;
+    font-family: inherit;
+    font-weight: inherit;
+    outline: none;
+    color: inherit;
+    border: 2px solid $dark-low;
+    height: 4rem;
+    margin-left: 3.6rem;
+
+    @include respond(phone-land) {
+      width: calc(100% - 3.6rem)
+    }
+
+
+    &:focus, &:hover {
+      outline: none;
+    }
+  }
+
+  
 }
 
 </style>
