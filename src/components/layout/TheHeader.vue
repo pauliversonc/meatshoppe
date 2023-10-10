@@ -612,8 +612,12 @@ export default {
 
     &:hover,
     &.active {
-      background-color: $main;
+      // background-color: $main;
+      // color: $light-high;
+      background-size: 300% 100%;
       color: $light-high;
+      // background: $gradient;
+      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
 
       .search__icon {
         fill: $white;
