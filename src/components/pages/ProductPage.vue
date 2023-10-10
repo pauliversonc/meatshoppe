@@ -17,7 +17,7 @@
             v-model="currentSlide"
             ref="carousel"
           >
-            <Slide v-for="slide in 10" :key="slide">
+            <Slide v-for="slide in 5" :key="slide">
               <div class="carousel__thumbnail" @click="slideTo(slide - 1)">{{ slide }}</div>
             </Slide>
           </Carousel>
@@ -152,7 +152,7 @@
           />
 
           <Carousel v-bind="settings" :breakpoints="breakpoints">
-            <Slide v-for="slide in 5" :key="slide">
+            <Slide v-for="slide in 10" :key="slide">
               <div class="carousel__item">{{ slide }}</div>
             </Slide>
 
@@ -176,6 +176,22 @@ export default {
     Carousel,
     Slide,
     Navigation,
+  },
+
+  props: {
+    // Define the props in your component
+    testBool: Boolean,
+    testInt: Number,
+    testStr: String,
+    id: String,
+  },
+
+  created() {
+    // You can access and use the props here
+    console.log('testBool:', this.testBool);
+    console.log('testInt:', this.testInt);
+    console.log('testStr:', this.testStr);
+    console.log('id:', this.id);
   },
 
   data() {
