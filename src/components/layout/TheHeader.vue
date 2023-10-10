@@ -613,7 +613,7 @@ export default {
     &:hover,
     &.active {
       background-color: $main;
-      color: $white-tint;
+      color: $light-high;
 
       .search__icon {
         fill: $white;
