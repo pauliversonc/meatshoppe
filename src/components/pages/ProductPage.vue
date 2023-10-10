@@ -1,6 +1,7 @@
 <template>
   <div class="page">
     <div class="page__wrapper">
+
         <div class="page__gallery">
 
           <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
@@ -85,7 +86,7 @@
 
           </div>
 
-          <BaseButton btn-text="Add to cart"  />
+          <BaseButton btn-text="Add to cart"  :btn-full-width="true"/>
           <!-- <BaseButton btn-text="Buy now" /> -->
             
         </div>
@@ -155,6 +156,7 @@
           </Carousel>
 
         </div>
+
     </div>
   </div>
 </template>
@@ -276,6 +278,27 @@ export default {
 
     // align-items: start;
 
+    // 1166 and below
+    @media only screen and (max-width: 73em) {
+      grid-template-columns: 10rem 2.5fr 2fr 10rem;
+    }
+
+    // 1000 and below
+    @media only screen and (max-width: 62.5em) {
+      grid-template-columns: 8rem 2.5fr 2fr 8rem;
+    }
+
+    // 900 and below
+    @media only screen and (max-width: 56.25em) {
+      grid-template-columns: 6rem 2.5fr 2fr 6rem;
+    }
+
+    // // 800 and below
+    @media only screen and (max-width: 56.25em) {
+      grid-template-columns: 4rem 2.5fr 2fr 4rem;
+    }
+    
+    // 768 and below
     @include respond(tab-port) {
       grid-template-columns: 1fr;
     }
@@ -287,10 +310,21 @@ export default {
     margin-right: 4rem;
     grid-column: 2;
 
+    // 1200 and below
+    @media only screen and (max-width: 80em) {
+      margin-right: 2rem;
+    }
+
+    // 960 and below
+    @media only screen and (max-width: 60em) {
+      margin-right: 1rem;
+    }
+
     @include respond(tab-port) {
       order: 2;
       grid-row: auto;
       margin-right: 0;
+      grid-column: 1;
       // grid-column: 1;
     }
   }
@@ -300,9 +334,20 @@ export default {
     color: $black-tint;
     grid-column: 3;
     margin-left: 4rem;
+    // 1200 and below
+    @media only screen and (max-width: 80em) {
+      margin-left: 2rem;
+    }
+
+    // 960 and below
+    @media only screen and (max-width: 60em) {
+      margin-left: 1rem;
+    }
 
     @include respond(tab-port) {
       order: 1;
+      grid-column: 1;
+      margin-bottom: 1.4rem;
     }
     
 
@@ -359,8 +404,18 @@ export default {
     padding: 1.4rem 0;
     grid-column: 3;
     margin-left: 4rem;
+
+    // 1200 and below
+    @media only screen and (max-width: 80em) {
+      margin-left: 2rem;
+    }
+    // 960 and below
+    @media only screen and (max-width: 60em) {
+      margin-left: 1rem;
+    }
     @include respond(tab-port) {
       order: 3;
+      grid-column: 1;
     }
 
 
@@ -382,12 +437,25 @@ export default {
   &__collapse {
     grid-column: 3;
     margin-left: 4rem;
+
+    // 1200 and below
+    @media only screen and (max-width: 80em) {
+      margin-left: 2rem;
+    }
+
+    // 960 and below
+    @media only screen and (max-width: 60em) {
+      margin-left: 1rem;
+    }
+
     @include respond(tab-port) {
       grid-column: 1;
       order: 4;
       // margin-top: 2rem;
     }
   }
+
+
 
   &__suggestions {
     margin-top: 12rem;
@@ -446,7 +514,7 @@ export default {
   margin-bottom: 1.4rem;
   max-width: 20rem;
 
-  @include respond(phone-land) {
+  @include respond(tab-port) {
     max-width: 100%;
   }
 
@@ -527,8 +595,13 @@ export default {
 
     &:hover, &:focus, &.active {
       outline: none;
-      background-color: $main;
+      // background-color: $main;
+      // color: $light-high;
+      background-size: 300% 100%;
       color: $light-high;
+      // background: $gradient;
+      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
+
     }
   }
 
@@ -542,7 +615,7 @@ export default {
   position: relative;
   padding-right: 3.6rem;
 
-  @include respond(phone-land) {
+  @include respond(tab-port) {
     display: block;
   }
 
@@ -564,8 +637,11 @@ export default {
 
     &:hover {
       outline: none;
-      background-color: $main;
+      background-size: 300% 100%;
       color: $light-high;
+      // background: $gradient;
+      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
+
     }
 
     &.minus {
@@ -591,7 +667,7 @@ export default {
     height: 4rem;
     margin-left: 3.6rem;
 
-    @include respond(phone-land) {
+    @include respond(tab-port) {
       width: calc(100% - 3.6rem)
     }
 
