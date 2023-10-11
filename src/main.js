@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './main.scss'
 import router from './router/index.js';
+import store from './store/index.js';
 import App from './App.vue'
 import BaseButton from './components/base/BaseButton.vue';
 import BaseHeadingOne from './components/base/BaseHeadingOne.vue';
@@ -21,6 +22,9 @@ const app = createApp(App);
 
 
 app.use(router);
+app.use(store);
+app.use(MotionPlugin);
+
 app.component('BaseButton', BaseButton);
 app.component('BaseHeadingOne', BaseHeadingOne);
 app.component('BaseHeadingTwo', BaseHeadingTwo);
@@ -28,5 +32,5 @@ app.component('BaseProduct', BaseProduct);
 app.component('BaseInputText', BaseInputText);
 app.component('BaseCollapse', BaseCollapse);
 app.component('BaseHeadingFive', BaseHeadingFive);
-app.use(MotionPlugin)
+
 app.mount('#app');

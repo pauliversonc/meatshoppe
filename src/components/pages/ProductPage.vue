@@ -192,6 +192,8 @@ export default {
     console.log('testInt:', this.testInt);
     console.log('testStr:', this.testStr);
     console.log('id:', this.id);
+
+    console.log(this.$store.getters['cart/getCartTest'])
   },
 
   data() {
