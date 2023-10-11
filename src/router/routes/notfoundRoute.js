@@ -1,7 +1,7 @@
 import NotfoundPage from '../../components/pages/NotfoundPage.vue';
 
 const notfoundRoute = {
-   path: '/:notFound(.*)', component: NotfoundPage, name: 'notFound' 
+   path: '/:notFound(.*)', name: 'notFound',  component: NotfoundPage,
 }
 
 export default notfoundRoute;

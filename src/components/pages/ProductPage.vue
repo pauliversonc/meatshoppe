@@ -138,7 +138,7 @@
             >
 
      
-            <span>test</span>
+            <span>{{ calculatedResult }}</span>
      
 
 
@@ -168,6 +168,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 // import { Carousel, Slide } from 'vue3-carousel';
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 export default {
@@ -179,22 +180,21 @@ export default {
   },
 
   props: {
-    // Define the props in your component
-    testBool: Boolean,
-    testInt: Number,
-    testStr: String,
     id: String,
   },
 
-  created() {
-    // You can access and use the props here
-    console.log('testBool:', this.testBool);
-    console.log('testInt:', this.testInt);
-    console.log('testStr:', this.testStr);
-    console.log('id:', this.id);
+  computed: {
+    ...mapGetters('products', {
+      handleGetProduct: 'getProduct',
+    }),
 
-    console.log(this.$store.getters['cart/getCartTest'])
+    calculatedResult() {
+      return this.handleGetProduct(+this.id);
+    },
   },
+
+
+ 
 
   data() {
     return {
@@ -248,6 +248,8 @@ export default {
   },
 
   methods: {
+ 
+
     validateQty() {
       this.qty = +this.qty.replace(/\D/g, '');
       if (this.qty < 1) this.qty = 1;
@@ -255,6 +257,8 @@ export default {
 
     mutateQty(bool) {
       bool ? this.qty++ : (this.qty <= 1 ?  this.qty = 1 : this.qty--);
+
+      
     },
 
 
