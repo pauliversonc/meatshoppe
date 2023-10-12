@@ -18,7 +18,6 @@
     paragraph="Lorem ipsum dolor, ur adipisicing elit. Amet ipsum culpa numquam exaliquid obcaecati?"
     :align="true"
     image-name="offer-1-min.png"
-    
     :products="products"
 
   ></TheProduct> 

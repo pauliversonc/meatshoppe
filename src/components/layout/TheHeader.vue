@@ -31,16 +31,16 @@
 
         <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }">
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="home">Home</router-link>
+            <router-link class="header__nav-link" to="/home">Home</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="search">Shop</router-link>
+            <router-link class="header__nav-link" to="/search">Shop</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="about">About</router-link>
+            <router-link class="header__nav-link" to="/about">About</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="contact">Contact</router-link>
+            <router-link class="header__nav-link" to="/contact">Contact</router-link>
           </li>
         </ul>
       </div>

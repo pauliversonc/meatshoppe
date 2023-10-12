@@ -33,11 +33,11 @@
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import BaseProduct from "../base/BaseProduct.vue";
+// import BaseProduct from "../base/BaseProduct.vue";
 
 export default {
   name: "MeatshoppeTheFeature",
-  components: { BaseProduct, Carousel, Slide, Navigation },
+  components: { Carousel, Slide, Navigation },
 
   watch: {
     vp(newValue) {

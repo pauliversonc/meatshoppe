@@ -27,10 +27,10 @@
         <div class="page__content">
 
           <!-- Main Details -->
-          <div class="page__content--brand">ADIDAS</div>
-          <div class="page__content--name">Lorem ipsum dolor sit amet consectetur.</div>
-          <div class="page__content--price">$ 124.00</div>
-          <div class="page__content--stock">In Stock</div>
+          <div class="page__content--brand">{{ product.brand }}</div>
+          <div class="page__content--name">{{ product.name }}</div>
+          <div class="page__content--price">{{ product.price }}</div>
+          <div class="page__content--stock">In Stock {{ product.stock }}</div>
           <!-- ./Main Details -->
 
         </div>
@@ -46,7 +46,7 @@
 
               <div class="dropdown-input--default" @click="toggleDropdown">
                 <!-- defailt text -->
-                <span class="dropdown-input--setValue">{{ picked }}</span>
+                <span class="dropdown-input--setValue">{{ picked }} kg</span>
                 <!-- icon -->
                 <div class="dropdown-input--iconbox" :class="{'rotated': dropdown}">
                   <svg class="dropdown-input--icon">
@@ -59,21 +59,18 @@
               <!-- dropdown -->
               <ul class="dropdown-input--lists" :class="{'show': dropdown}" @click="handleClickedLabel">
                 <!-- dropdown option -->
-                <li class="dropdown-input--list" >
-                  <input class="dropdown-input--input" type="radio" id="one" value="One" v-model="picked" />
-                  <label class="dropdown-input--label" :class="{'active': picked === 'One'}" for="one">One</label>
+                <li class="dropdown-input--list" v-for="weight in product.weight" :key="'dropdown_inp_key'+weight">
+                  <input class="dropdown-input--input" type="radio" :id="'dropdown_inp_id_'+weight" :value="weight" v-model="picked" />
+                  <label class="dropdown-input--label" :class="{'active': picked === weight}" :for="'dropdown_inp_id_'+weight">{{ weight }} kg</label>
                 </li>
 
-                <li class="dropdown-input--list" >
-                  <input class="dropdown-input--input" type="radio" id="two" value="Two" v-model="picked" />
-                  <label class="dropdown-input--label" for="two">Two</label>
-                </li>
+                
+
               </ul>
 
             </div>
 
           </div>
-
 
           <div class="page__form--quantity">
             <span class="page__form--label">Quantity</span>
@@ -92,8 +89,6 @@
 
           </div>
 
-
-
             
         </div>
 
@@ -108,7 +103,7 @@
             >
 
     
-          <span>test</span>
+          <p class="prod_desc">{{ product.description }}</p>
     
 
 
@@ -123,7 +118,21 @@
             >
 
        
-            <span>test</span>
+            <ul class="prod_details">
+              <li class="prod_details__list">
+                <strong>Category: </strong> 
+                <a href="#" class="prod_details__link" v-for="(cat, index) in product.category" :key="index">{{ cat }}</a>
+              </li>
+
+              <li class="prod_details__list">
+                <strong>Code: </strong> {{ product.code }}
+              </li>
+
+              <li class="prod_details__list">
+                <strong>Part: </strong> {{ product.part }}
+              </li>
+
+            </ul>
         
 
 
@@ -138,7 +147,7 @@
             >
 
      
-            <span>{{ calculatedResult }}</span>
+            <p class="prod_desc"><strong>Residents of Brgy. Conchu</strong> will now benefit from <strong>same-day delivery</strong> and enjoy <strong>free shipping</strong> with <strong>no minimum order requirement</strong>. For customers residing <strong>outside Brgy. Conchu</strong>, orders will be delivered within <strong>1 business day</strong>, accompanied by an additional <strong>PHP 50 delivery fee</strong>. Meatshoppe strives to offer a convenient and cost-effective shopping experience for all.</p>
      
 
 
@@ -168,8 +177,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-// import { Carousel, Slide } from 'vue3-carousel';
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 export default {
   name: 'MeatshoppeProductPage',
@@ -183,14 +190,9 @@ export default {
     id: String,
   },
 
-  computed: {
-    ...mapGetters('products', {
-      handleGetProduct: 'getProduct',
-    }),
-
-    calculatedResult() {
-      return this.handleGetProduct(+this.id);
-    },
+  
+  created() {
+    this.handleGetProduct(this.id);
   },
 
 
@@ -234,10 +236,11 @@ export default {
       },
 
  
-      picked:"Select Weight",
+      picked:"Select ",
       dropdown: false,
       qty: '',
       
+      product: {},
     };
 
     
@@ -248,6 +251,10 @@ export default {
   },
 
   methods: {
+    handleGetProduct(productId){
+      const [product] = this.$store.getters['products/getProduct'](+productId);
+      this.product = product;
+    },
  
 
     validateQty() {
@@ -258,7 +265,7 @@ export default {
     mutateQty(bool) {
       bool ? this.qty++ : (this.qty <= 1 ?  this.qty = 1 : this.qty--);
 
-      
+      this.$store.dispatch('products/changeProductPrice');
     },
 
 
@@ -267,7 +274,6 @@ export default {
     },
 
     handleToggleCollapse(key) {
-      console.log(key)
       this.activeCollpase[key] = !this.activeCollpase[key]
     },
 
@@ -301,10 +307,6 @@ export default {
     display: grid;
     // grid-template-columns: 60% 40%;
     grid-template-columns: 14rem 2.5fr 2fr 14rem;
-    // grid-template-rows: 1fr 1fr 1fr;
-    // gap: 2rem;
-
-    // align-items: start;
 
     // 1166 and below
     @media only screen and (max-width: 73em) {
@@ -429,7 +431,7 @@ export default {
   }
 
   &__form {
-    padding: 1.4rem 0;
+    padding: 1.4rem 0 2rem 0;
     grid-column: 3;
     margin-left: 4rem;
 
@@ -453,12 +455,13 @@ export default {
       text-transform: uppercase;
       font-weight: 600;
     }
-   &--weight {
+
+    &--weight {
       font-size: 1.6rem;
     }
 
     &--quantity {
-      margin-bottom: 1.4rem;
+      margin-bottom: 2rem;
     }
 
     &--btns {
@@ -549,7 +552,7 @@ export default {
   line-height: 1;
   color: $black-tint;
   margin-bottom: 1.4rem;
-  max-width: 20rem;
+  max-width: 18rem;
 
   @include respond(tab-port) {
     max-width: 100%;
@@ -559,7 +562,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    // gap: 2rem;
     padding: 1rem .6rem;
     cursor: pointer;
     height: 4rem;
@@ -716,5 +719,29 @@ export default {
 
   
 }
+
+
+.prod_desc, .prod_details {
+  font-size: 1.6rem;
+  margin-bottom: 1.4rem;
+  overflow-wrap: break-word;
+}
+
+.prod_details {
+  &__list {
+  list-style: none;
+
+  }
+
+  &__link {
+    text-decoration: none;
+    outline: none;
+    // color: $main;
+    margin-right: 1rem;
+  }
+}
+
+
+
 
 </style>

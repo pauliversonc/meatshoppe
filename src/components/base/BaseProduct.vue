@@ -24,7 +24,7 @@
     <div class="product__img-box">
       <img
         class="product__img"
-        :src="`src/assets/images/products/${thumbnail}`"
+        :src="`/src/assets/images/products/${thumbnail}`"
         alt="product 1"
       />
 
