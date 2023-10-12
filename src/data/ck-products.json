@@ -12,6 +12,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "skin"
   },
   {
@@ -27,6 +29,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "liver"
   },
   {
@@ -42,6 +46,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "liver"
   },
   {
@@ -57,6 +63,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "fat"
   },
   {
@@ -72,6 +80,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "feet"
   },
   {
@@ -87,6 +97,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "tails"
   },
   {
@@ -102,6 +114,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "tails"
   },
   {
@@ -117,6 +131,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "tails"
   },
   {
@@ -132,6 +148,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "tails"
   },
   {
@@ -147,6 +165,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "mdm"
   },
   {
@@ -162,6 +182,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "mdm"
   },
   {
@@ -177,6 +199,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "breast"
   },
   {
@@ -192,6 +216,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "leg quarter"
   },
   {
@@ -207,6 +233,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "leg quarter"
   },
   {
@@ -222,6 +250,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "leg quarter"
   },
   {
@@ -237,6 +267,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumettes"
   },
   {
@@ -252,6 +284,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumettes"
   },
   {
@@ -267,6 +301,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumettes"
   },
   {
@@ -282,6 +318,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumstick"
   },
   {
@@ -297,6 +335,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumstick"
   },
   {
@@ -312,6 +352,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "drumstick"
   },
   {
@@ -327,6 +369,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "wings"
   },
   {
@@ -342,6 +386,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "wings"
   },
   {
@@ -357,6 +403,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "wings"
   },
   {
@@ -372,6 +420,8 @@
     "stock": 100,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
+    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
+    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
     "part": "wings"
   }
 ]

@@ -4,21 +4,23 @@
 
         <div class="page__gallery">
 
-          <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
-            <Slide v-for="slide in 10" :key="slide">
-              <div class="carousel__item">{{ slide }}</div>
+          <Carousel :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+            <Slide v-for="(photo, index) in product.photoLg" :key="index">
+              <img class="carousel__item" :src="`/src/assets/images/goods/1/lg/${photo}`"
+              ref="zoomedImage"
+              
+              />
             </Slide>
           </Carousel>
 
           <Carousel
-            id="thumbnails"
             :items-to-show="5"
             :wrap-around="true"
             v-model="currentSlide"
             ref="carousel"
           >
-            <Slide v-for="slide in 5" :key="slide">
-              <div class="carousel__thumbnail" @click="slideTo(slide - 1)">{{ slide }}</div>
+            <Slide v-for="(photo, index) in product.photoSm" :key="index">
+              <img class="carousel__thumbnail" @click="slideTo(index)" :src="`/src/assets/images/goods/1/sm/${photo}`"/>
             </Slide>
           </Carousel>
 
@@ -154,23 +156,23 @@
             </BaseCollapse>
         </div>
 
-        <div class="page__suggestions">
-          <BaseHeadingFive 
-          heading-title="You may also like"
-          :margin-bottom="true"
-          />
+    </div>
 
-          <Carousel v-bind="settings" :breakpoints="breakpoints">
-            <Slide v-for="slide in 10" :key="slide">
-              <div class="carousel__item">{{ slide }}</div>
-            </Slide>
+    <div class="page__suggestions">
+      <BaseHeadingFive 
+      heading-title="You may also like"
+      :margin-bottom="true"
+      />
 
-            <template #addons>
-              <Navigation />
-            </template>
-          </Carousel>
+      <Carousel v-bind="settings" :breakpoints="breakpoints">
+        <Slide v-for="slide in 10" :key="slide">
+          <BaseProduct />
+        </Slide>
 
-        </div>
+        <template #addons>
+          <Navigation />
+        </template>
+      </Carousel>
 
     </div>
   </div>
@@ -178,6 +180,7 @@
 
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
+// import "vue3-carousel/dist/carousel.css";
 export default {
   name: 'MeatshoppeProductPage',
   components: {
@@ -251,6 +254,19 @@ export default {
   },
 
   methods: {
+    // zoomImage(event, index) {
+    //   const zoomedImage = this.$refs.zoomedImage[index];
+    //   const rect = zoomedImage.getBoundingClientRect();
+    //   const x = event.clientX - rect.left;
+    //   const y = event.clientY - rect.top;
+
+    //   const maxX = rect.width;
+    //   const maxY = rect.height;
+    //   console.log(maxX)
+    //   console.log(maxY)
+    // },
+ 
+
     handleGetProduct(productId){
       const [product] = this.$store.getters['products/getProduct'](+productId);
       this.product = product;
@@ -303,7 +319,7 @@ export default {
     // border: 1px solid red;
     max-width: 120rem;
     margin: 0 auto;
-
+    align-items: start;
     display: grid;
     // grid-template-columns: 60% 40%;
     grid-template-columns: 14rem 2.5fr 2fr 14rem;
@@ -336,6 +352,13 @@ export default {
   }
 
   &__gallery{
+    position: sticky;
+    top: 7rem;
+    
+
+    // bottom: 2rem;
+
+
     grid-row: 1/5;
     margin-right: 4rem;
     grid-column: 2;
@@ -356,6 +379,9 @@ export default {
       margin-right: 0;
       grid-column: 1;
       // grid-column: 1;
+
+      position: relative;
+      top: auto;
     }
   }
 
@@ -498,13 +524,9 @@ export default {
 
 
   &__suggestions {
-    margin-top: 12rem;
-    grid-column: 1/-1;
-    // border: 1px solid green;
-
-    @include respond(tab-port) {
-      order: 5;
-    }
+    padding-top: 12rem;
+    max-width: 120rem;
+    margin: 0 auto;
   }
 
 }
@@ -513,26 +535,20 @@ export default {
 .carousel__item {
   min-height: 40rem;
   width: 100%;
-  background-color: var(--vc-clr-primary);
-  color: var(--vc-clr-white);
-  font-size: 20px;
-  // border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  object-fit: cover;
+  border: 1px solid red;
+  overflow: hidden;
+  transition: transform .3s ease;
+
+
 }
 
 .carousel__thumbnail { 
-  min-height: 100px;
+  min-height: 10rem;
   width: 100%;
-  background-color: var(--vc-clr-primary);
-  color: var(--vc-clr-white);
-  font-size: 20px;
-
-  // for content to center
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  object-fit: contain;
+  border: 1px solid red;
+  cursor: pointer;
 }
 
 .carousel__slide {
@@ -741,7 +757,9 @@ export default {
   }
 }
 
-
+.carousel__slide {
+  padding: 0.5rem;
+}
 
 
 </style>
