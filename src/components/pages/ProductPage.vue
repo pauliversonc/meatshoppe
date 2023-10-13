@@ -241,7 +241,7 @@ export default {
  
       picked:"Select ",
       dropdown: false,
-      qty: '',
+      qty: 1,
       
       product: {},
     };
@@ -254,24 +254,10 @@ export default {
   },
 
   methods: {
-    // zoomImage(event, index) {
-    //   const zoomedImage = this.$refs.zoomedImage[index];
-    //   const rect = zoomedImage.getBoundingClientRect();
-    //   const x = event.clientX - rect.left;
-    //   const y = event.clientY - rect.top;
-
-    //   const maxX = rect.width;
-    //   const maxY = rect.height;
-    //   console.log(maxX)
-    //   console.log(maxY)
-    // },
- 
-
     handleGetProduct(productId){
       const [product] = this.$store.getters['products/getProduct'](+productId);
       this.product = product;
     },
- 
 
     validateQty() {
       this.qty = +this.qty.replace(/\D/g, '');
@@ -280,10 +266,7 @@ export default {
 
     mutateQty(bool) {
       bool ? this.qty++ : (this.qty <= 1 ?  this.qty = 1 : this.qty--);
-
-      this.$store.dispatch('products/changeProductPrice');
     },
-
 
     slideTo(val) {
       this.currentSlide = val
@@ -311,9 +294,7 @@ export default {
 
 .page {
   // padding: 7rem 2rem 8rem 2rem;
-  padding: 8rem 2rem;
-
-
+  padding: 14rem 2rem 8rem 2rem;
   
   &__wrapper {
     // border: 1px solid red;
@@ -496,6 +477,7 @@ export default {
 
       @include respond(tab-port) {
         flex-direction: column;
+        gap: 2rem;
       }
     }
   }
@@ -536,7 +518,7 @@ export default {
   min-height: 40rem;
   width: 100%;
   object-fit: cover;
-  border: 1px solid red;
+  // border: 1px solid red;
   overflow: hidden;
   transition: transform .3s ease;
 
@@ -547,7 +529,7 @@ export default {
   min-height: 10rem;
   width: 100%;
   object-fit: contain;
-  border: 1px solid red;
+  // border: 1px solid red;
   cursor: pointer;
 }
 
