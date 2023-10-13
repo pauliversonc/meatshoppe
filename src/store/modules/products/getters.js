@@ -16,14 +16,14 @@ const productsGetters = {
   },
 
 
-  checkProductAvailability: (_, getters) => (id, tempQty) => {
+  checkProductAvailability: (_, getters) => (id, tempWeight) => {
 
     // reuse get product by id
     const [product] = getters.getProduct(id);
 
     const resp = {
       // check if stock is available
-      isAvailable: tempQty <= product.stock,
+      isAvailable: tempWeight <= product.stock,
       availableStock: product.stock
     }
 

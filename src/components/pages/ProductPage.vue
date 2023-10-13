@@ -79,7 +79,7 @@
 
               <div class="quantity-input">
                 <button class="quantity-input--btn minus" @click="mutateQty(false)">&#45;</button>
-                <input class="quantity-input--text" @input="validateQty" v-model="qty" placeholder="1" type="text" name="edi" id="a">
+                <input class="quantity-input--text" @input="validateQty" v-model="qty" type="text" name="edi" id="a">
                 <button class="quantity-input--btn plus" @click="mutateQty(true)">&#43;</button>
               </div>
 
@@ -198,9 +198,6 @@ export default {
     this.handleGetProduct(this.id);
   },
 
-
- 
-
   data() {
     return {
       currentSlide: 0,
@@ -239,10 +236,13 @@ export default {
       },
 
  
-      picked:"Select ",
-      dropdown: false,
-      qty: 1,
+      // form dropdown
+      picked:"Select ", // v-model of form input dropdown
+      dropdown: false, // check if input dropdown is showned
+
+      qty: 1, // form qty
       
+      // product displayed in product page
       product: {},
     };
 
@@ -254,40 +254,83 @@ export default {
   },
 
   methods: {
+    getMaxQty() {
+      if(Number.isInteger(this.picked)) {
+        return Math.floor(this.product.stock / this.picked);
+      } else return false;
+    },
+
     handleGetProduct(productId){
       const [product] = this.$store.getters['products/getProduct'](+productId);
       this.product = product;
     },
 
-    validateQty() {
-      this.qty = +this.qty.replace(/\D/g, '');
-      if (this.qty < 1) this.qty = 1;
+    validateQty(event) {
+      
+      // when user input a non digit it will be deleted or ignored
+      
+      // console.log(event)
+        // get max qty base on weight
+        const maxQty = this.getMaxQty();
+        // replace all non digit
+        const sanitizedQty = +this.qty.replace(/\D/g, '');        
+
+        // check if maxQty is valid
+        if (maxQty) {
+          if (sanitizedQty < 1)  this.qty = 1;   
+          else if (sanitizedQty > maxQty) this.qty = maxQty;
+          else this.qty = sanitizedQty;
+          
+        } else {
+          this.qty = 1
+        }
+        
+
     },
 
+    // Handle qty onclick
     mutateQty(bool) {
-      // INCREASE PROCESS
-      if (bool) {
-        // temporary increase qty
-        const tempQty = this.qty + 1;
 
-        // check if tempQty is less than or equal to the stock
-          // dispatch/pass product id including tempQty}}
-          const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, tempQty);
+      // console.log(typeof this.picked, this.picked)
+      // check if user selects a weight
+      if(Number.isInteger(this.picked)) {
+        // INCREASE QTY
+        if (bool) {
 
-          // if stock is available return true / increment or assign tempQty to qty
-          if (resp.isAvailable) {
-            this.qty = tempQty;
-          } 
-          // else return false (show alert message saying that the stock left is only "availableStock")
-          else {
-            console.warn(resp.availableStock)
-          }
+          // multiply selected weight to the qty = this will be the desiredProductWeight of the client
+          const tempQty = this.qty + 1;
+          const tempProductWeight = tempQty * this.picked;
+      
+          // check if tempQty is less than or equal to the stock
+            // dispatch/pass product id including tempQty}}
+            const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, tempProductWeight);
+
+            // if stock is available return true / increment or assign tempQty to qty
+            if (resp.isAvailable) {
+              this.qty = tempQty;
+            } 
+            // else return false (show alert message saying that the stock left is only "availableStock")
+            // also add how many kilo's that the user is trying to purchase
+            else {
+              console.warn(resp.availableStock)
+            }
+
+        }
+        // DECREASE QTY
+        else {
+          this.qty <= 1 ?  this.qty = 1 : this.qty--
+        }
 
       }
-      // DECREASE PROCESS
+      
+      // else throw an error
       else {
-        this.qty <= 1 ?  this.qty = 1 : this.qty--
+        console.log('please select weight')
       }
+
+
+
+
 
     },
 
