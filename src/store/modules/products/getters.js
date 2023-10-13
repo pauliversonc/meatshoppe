@@ -10,8 +10,26 @@ const productsGetters = {
     return state.products.some(product => product.id === id);
   },
 
+  // get product by id
   getProduct: (state) => (id) => {
     return state.products.filter(product => product.id === id);
-  }
+  },
+
+
+  checkProductAvailability: (_, getters) => (id, tempQty) => {
+
+    // reuse get product by id
+    const [product] = getters.getProduct(id);
+
+    const resp = {
+      // check if stock is available
+      isAvailable: tempQty <= product.stock,
+      availableStock: product.stock
+    }
+
+    return resp;
+  },
+
+
 }
 export default productsGetters;

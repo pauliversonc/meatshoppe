@@ -265,9 +265,33 @@ export default {
     },
 
     mutateQty(bool) {
-      bool ? this.qty++ : (this.qty <= 1 ?  this.qty = 1 : this.qty--);
+      // INCREASE PROCESS
+      if (bool) {
+        // temporary increase qty
+        const tempQty = this.qty + 1;
+
+        // check if tempQty is less than or equal to the stock
+          // dispatch/pass product id including tempQty}}
+          const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, tempQty);
+
+          // if stock is available return true / increment or assign tempQty to qty
+          if (resp.isAvailable) {
+            this.qty = tempQty;
+          } 
+          // else return false (show alert message saying that the stock left is only "availableStock")
+          else {
+            console.warn(resp.availableStock)
+          }
+
+      }
+      // DECREASE PROCESS
+      else {
+        this.qty <= 1 ?  this.qty = 1 : this.qty--
+      }
+
     },
 
+ 
     slideTo(val) {
       this.currentSlide = val
     },
@@ -633,12 +657,12 @@ export default {
 
     &:hover, &:focus, &.active {
       outline: none;
-      // background-color: $main;
+      background-color: $dark-low;
       // color: $light-high;
-      background-size: 300% 100%;
+      // background-size: 300% 100%;
       color: $light-high;
       // background: $gradient;
-      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
+      // background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
 
     }
   }
@@ -661,7 +685,6 @@ export default {
     position: absolute;
     height: 100%;
 
-    border: none;
     outline: none;
     cursor: pointer;
     background-color: $light-high;
@@ -675,11 +698,8 @@ export default {
 
     &:hover {
       outline: none;
-      background-size: 300% 100%;
       color: $light-high;
-      // background: $gradient;
-      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
-
+      background-color: $dark-low;
     }
 
     &.minus {
