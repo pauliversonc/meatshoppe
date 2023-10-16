@@ -266,7 +266,11 @@ export default {
     },
 
     validateQty(event) {
-      
+
+      // check if user clears the input
+      const userClear = !!!event.target.value.length;
+
+
       // when user input a non digit it will be deleted or ignored
       
       // console.log(event)
@@ -276,13 +280,24 @@ export default {
         const sanitizedQty = +this.qty.replace(/\D/g, '');        
 
         // check if maxQty is valid
+        // run this code if weight is selected
         if (maxQty) {
-          if (sanitizedQty < 1)  this.qty = 1;   
-          else if (sanitizedQty > maxQty) this.qty = maxQty;
-          else this.qty = sanitizedQty;
+          // set the qty to "" if the user clears the input
+          if (userClear) this.qty = "";
+
+          // run sanitized condition
+          else {
+            if (sanitizedQty < 1 )  this.qty = 1;   
+            else if (sanitizedQty > maxQty) this.qty = maxQty;
+            else this.qty = sanitizedQty;
+          }
           
-        } else {
-          this.qty = 1
+        } 
+  
+        // run this code if use doesnnt select a weight
+        else {
+          if (userClear) this.qty = "";
+          else this.qty = 1
         }
         
 
@@ -298,7 +313,7 @@ export default {
         if (bool) {
 
           // multiply selected weight to the qty = this will be the desiredProductWeight of the client
-          const tempQty = this.qty + 1;
+          const tempQty = (this.qty ? this.qty : 0) + 1;
           const tempProductWeight = tempQty * this.picked;
       
           // check if tempQty is less than or equal to the stock
