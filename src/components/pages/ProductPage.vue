@@ -31,26 +31,30 @@
           <!-- Main Details -->
           <div class="page__content--brand">{{ product.brand }}</div>
           <div class="page__content--name">{{ product.name }}</div>
-          <div class="page__content--price">{{ product.price }}</div>
+          <div class="page__content--price">&#8369; {{ fixedPrice }}</div>
           <div class="page__content--stock">In Stock {{ product.stock }}</div>
           <!-- ./Main Details -->
 
         </div>
 
-        <div class="page__form">
+        <form action="#" class="page__form" @submit.prevent="submit">
 
+          <!-- pos rel -->
           <div class="page__form--weight">
 
-            <span class="page__form--label">Weight</span>
+            <!-- toggle class (invalid) (stick)-->
+            <!-- pos abs -->
+            <span class="page__form--label  " :class="{'stick' : (this.form.picked || this.errors.weight) ? true : false, 'invalid': this.errors.weight}">Weight</span>
 
+            <!-- toggle class (invalid) -->
             <!-- to transfer to a component -->
-            <div class="dropdown-input">
+            <div class="dropdown-input " :class="{'invalid': this.errors.weight}">
 
               <div class="dropdown-input--default" @click="toggleDropdown">
                 <!-- defailt text -->
-                <span class="dropdown-input--setValue">{{ picked }} kg</span>
+                <span class="dropdown-input--setValue">{{ this.form.picked }}</span>
                 <!-- icon -->
-                <div class="dropdown-input--iconbox" :class="{'rotated': dropdown}">
+                <div class="dropdown-input--iconbox" :class="{'rotated': form.dropdown}">
                   <svg class="dropdown-input--icon">
                     <use xlink:href="../../assets/icons/sprite.svg#icon-chevron-down"></use>
                   </svg>
@@ -59,40 +63,56 @@
 
 
               <!-- dropdown -->
-              <ul class="dropdown-input--lists" :class="{'show': dropdown}" @click="handleClickedLabel">
+              <ul class="dropdown-input--lists" :class="{'show': form.dropdown}" @click="handleClickedLabel">
                 <!-- dropdown option -->
                 <li class="dropdown-input--list" v-for="weight in product.weight" :key="'dropdown_inp_key'+weight">
-                  <input class="dropdown-input--input" type="radio" :id="'dropdown_inp_id_'+weight" :value="weight" v-model="picked" />
-                  <label class="dropdown-input--label" :class="{'active': picked === weight}" :for="'dropdown_inp_id_'+weight">{{ weight }} kg</label>
+                  <input class="dropdown-input--input" type="radio" :id="'dropdown_inp_id_'+weight" :value="weight" v-model="this.form.picked" />
+                  <label class="dropdown-input--label" :class="{'active': form.picked === weight}" :for="'dropdown_inp_id_'+weight">{{ weight }} kg</label>
                 </li>
 
                 
 
               </ul>
 
+            <!-- v-show -->
+            <!-- error message -->
+            <span class="page__form--message" v-show="errors.weight">{{ errors.weight }}</span>
+
             </div>
 
+          
+
           </div>
 
+          <!-- pos rel -->
           <div class="page__form--quantity">
-            <span class="page__form--label">Quantity</span>
 
-              <div class="quantity-input">
-                <button class="quantity-input--btn minus" @click="mutateQty(false)">&#45;</button>
-                <input class="quantity-input--text" @input="validateQty" v-model="qty" type="text" name="edi" id="a">
-                <button class="quantity-input--btn plus" @click="mutateQty(true)">&#43;</button>
-              </div>
+            <!-- div quantity-input -->
+            <!-- toggle class (invalid) -->
+            <div class="quantity-input" :class="{'invalid' : errors.qty}">
 
+              <button class="quantity-input--btn minus" @click.stop.prevent="mutateQty(false)">&#45;</button>
+              <input class="quantity-input--text" @input="validateQty" v-model="form.qty" type="text" name="edi" id="a">
+              <button class="quantity-input--btn plus" @click.stop.prevent="mutateQty(true)">&#43;</button>
+
+              <!-- toggle classses (invalid) (stick) -->
+              <span class="page__form--label2" :class="{'stick': errors.qty || form.qty, 'invalid' : errors.qty}">Qty</span>
+      
+            </div>
+
+            <!-- toggle v-show -->
+            <span class="page__form--message" v-show="errors.qty">{{ errors.qty }}</span>
           </div>
+
+
 
           <div class="page__form--btns">
-          <BaseButton btn-text="Add to cart" :btn-outline="true" :btn-full-width="true"/>
-          <BaseButton btn-text="Buy now"  :btn-full-width="true"/>
-
+            <BaseButton btn-text="Add to cart" :btn-outline="true" :btn-full-width="true" @click="buttonClicked('add')"/>
+            <BaseButton btn-text="Buy now"  :btn-full-width="true" @click="buttonClicked('buy')"/>
           </div>
 
             
-        </div>
+        </form>
 
         <div class="page__collapse">
             <BaseCollapse
@@ -198,6 +218,21 @@ export default {
     this.handleGetProduct(this.id);
   },
 
+  computed: {
+    fixedPrice() {
+      return this.product.price.toFixed(2);
+    }
+  },
+
+  watch: {
+    'form.picked': {
+      handler() {
+        this.form.qty = "";
+      },
+      deep: true, // This is necessary when watching nested properties
+    },
+  },
+
   data() {
     return {
       currentSlide: 0,
@@ -235,12 +270,23 @@ export default {
         },
       },
 
- 
-      // form dropdown
-      picked:"Select ", // v-model of form input dropdown
-      dropdown: false, // check if input dropdown is showned
 
-      qty: 1, // form qty
+      form: {
+        dropdown: false,
+        picked: "",
+        qty: "",
+        clickedButton: "",
+      },
+
+
+
+      errors: {
+        dropdown: "",
+        qty: "",
+      },
+
+
+ 
       
       // product displayed in product page
       product: {},
@@ -254,9 +300,26 @@ export default {
   },
 
   methods: {
+    buttonClicked(button) {
+      this.form.clickedButton = button;
+    },
+
+    submit() {
+   
+      this.errors.weight = this.form.picked ? "" : "Weight is required";
+      this.errors.qty = this.form.qty ? "" : "Quantity is required";
+
+      if (!this.errors.dropdown && !this.errors.qty) {
+        // Form is valid, you can submit it
+        // Add your submission logic here
+      }
+
+    },
+
+
     getMaxQty() {
-      if(Number.isInteger(this.picked)) {
-        return Math.floor(this.product.stock / this.picked);
+      if(Number.isInteger(this.form.picked)) {
+        return Math.floor(this.product.stock / this.form.picked);
       } else return false;
     },
 
@@ -277,27 +340,27 @@ export default {
         // get max qty base on weight
         const maxQty = this.getMaxQty();
         // replace all non digit
-        const sanitizedQty = +this.qty.replace(/\D/g, '');        
+        const sanitizedQty = +this.form.qty.replace(/\D/g, '');        
 
         // check if maxQty is valid
         // run this code if weight is selected
         if (maxQty) {
           // set the qty to "" if the user clears the input
-          if (userClear) this.qty = "";
+          if (userClear) this.form.qty = "";
 
           // run sanitized condition
           else {
-            if (sanitizedQty < 1 )  this.qty = 1;   
-            else if (sanitizedQty > maxQty) this.qty = maxQty;
-            else this.qty = sanitizedQty;
+            if (sanitizedQty < 1 )  this.form.qty = 1;   
+            else if (sanitizedQty > maxQty) this.form.qty = maxQty;
+            else this.form.qty = sanitizedQty;
           }
           
         } 
   
         // run this code if use doesnnt select a weight
         else {
-          if (userClear) this.qty = "";
-          else this.qty = 1
+          if (userClear) this.form.qty = "";
+          else this.form.qty = 1
         }
         
 
@@ -306,15 +369,15 @@ export default {
     // Handle qty onclick
     mutateQty(bool) {
 
-      // console.log(typeof this.picked, this.picked)
+      // console.log(typeof this.form.picked, this.form.picked)
       // check if user selects a weight
-      if(Number.isInteger(this.picked)) {
+      if(Number.isInteger(this.form.picked)) {
         // INCREASE QTY
         if (bool) {
 
           // multiply selected weight to the qty = this will be the desiredProductWeight of the client
-          const tempQty = (this.qty ? this.qty : 0) + 1;
-          const tempProductWeight = tempQty * this.picked;
+          const tempQty = (this.form.qty ? this.form.qty : 0) + 1;
+          const tempProductWeight = tempQty * this.form.picked;
       
           // check if tempQty is less than or equal to the stock
             // dispatch/pass product id including tempQty}}
@@ -322,10 +385,12 @@ export default {
 
             // if stock is available return true / increment or assign tempQty to qty
             if (resp.isAvailable) {
-              this.qty = tempQty;
+              this.form.qty = tempQty;
             } 
             // else return false (show alert message saying that the stock left is only "availableStock")
             // also add how many kilo's that the user is trying to purchase
+
+            // throw a waning that saying this is the only available stocks
             else {
               console.warn(resp.availableStock)
             }
@@ -333,14 +398,17 @@ export default {
         }
         // DECREASE QTY
         else {
-          this.qty <= 1 ?  this.qty = 1 : this.qty--
+          this.form.qty <= 1 ?  this.form.qty = 1 : this.form.qty--
         }
 
       }
       
       // else throw an error
+      // this will throw an error for weight only
       else {
-        console.log('please select weight')
+        // console.log('please select weight')
+        this.errors.weight = "Weight is required"
+      
       }
 
 
@@ -359,7 +427,7 @@ export default {
     },
 
     toggleDropdown() {
-      this.dropdown = !this.dropdown
+      this.form.dropdown = !this.form.dropdown
     },
 
     handleClickedLabel(event){
@@ -520,7 +588,7 @@ export default {
   }
 
   &__form {
-    padding: 1.4rem 0 2rem 0;
+    padding: 1.4rem 0 ;
     grid-column: 3;
     margin-left: 4rem;
 
@@ -538,19 +606,73 @@ export default {
     }
 
 
+
     &--label {
       font-size: 1.6rem;
       display: block;
       text-transform: uppercase;
       font-weight: 600;
+      // user-select: none;
+      position: absolute;
+      top: .6rem;
+      left: 1rem;
+
+      transition: all 0.4s ease-in-out;
+      &.invalid {
+        color: $main;
+      }
+
+      &.stick {
+        font-size: 1rem;
+        top: -.8rem;
+        background-color: $light-high
+      }
+    }
+
+    &--label2 {
+      // position: absolute;
+
+      font-size: 1.6rem;
+      display: block;
+      text-transform: uppercase;
+      font-weight: 600;
+      background-color: $light-high;
+      position: absolute;
+      left: 3.6rem;
+      top: 50%;
+      transform: translate(30%, -50%);
+      z-index: 1;
+
+      transition: all 0.4s ease-in-out;
+
+      &.invalid {
+        color: $main;
+      }
+
+      &.stick {
+        font-size: 1rem;
+        top: 0;
+        transform: translate(30%, -50%);
+      }
+    }
+
+    &--message {
+      @include error-message;
+      line-height: 1.7;
+      display: block;
+      
+      // background-color: red;
     }
 
     &--weight {
       font-size: 1.6rem;
+      // border: 1px solid red;
+      position: relative;
     }
 
     &--quantity {
-      margin-bottom: 2rem;
+      margin-bottom: 1.4rem;
+      // border: 1px solid red;
     }
 
     &--btns {
@@ -626,6 +748,8 @@ export default {
 }
 
 // transfer to a component
+
+
 .dropdown-input {
   display: block;
   cursor: pointer;
@@ -643,13 +767,20 @@ export default {
     justify-content: space-between;
     align-items: center;
     // gap: 2rem;
-    padding: 1rem .6rem;
+    padding: .8rem 1rem;
     cursor: pointer;
     height: 4rem;
     
     border: 2px solid $dark-low;
 
   }
+
+  &.invalid {
+    .dropdown-input--default {
+      border: 2px solid $main;
+    }
+  }
+  
 
   &--setValue {
     user-select: none;
@@ -711,7 +842,11 @@ export default {
     border-color: transparent $dark-low $dark-low $dark-low; /* top: transparent, right: red, bottom: red, left: red */
     transition: all 0.3s ease;
     // background-color: red;
-    padding: 1rem .6rem;
+    // padding: 1rem .6rem;
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 
     &:hover, &:focus, &.active {
       outline: none;
@@ -725,24 +860,27 @@ export default {
     }
   }
 
+  &.invalid {
+    .dropdown-input--label {
+      border-color: transparent $main $main $main;
+    }
+  }
+
+
+
 
 
 }
 
 
-.quantity-input {
-  display: inline-block;
-  position: relative;
-  padding-right: 3.6rem;
 
-  @include respond(tab-port) {
-    display: block;
-  }
+.quantity-input {
+  position: relative;
 
   &--btn {
     position: absolute;
     height: 100%;
-
+    height: 4rem;
     outline: none;
     cursor: pointer;
     background-color: $light-high;
@@ -761,14 +899,38 @@ export default {
     }
 
     &.minus {
-    border-right: none;
-    left: 0;
-
+      border-right: none;
+      left: 0;
     }
     &.plus {
-    border-left: none;
-    right: 0;
+      border-left: none;
+      left: calc(8rem + 3.6rem);
+
+      @include respond(tab-port) {
+        left: calc(100% - 3.6rem);
+      }
+
     }
+  }
+
+  &.invalid {
+    .quantity-input--btn {
+      border: 2px solid $main;
+    }
+
+    .quantity-input--btn.minus {
+      border-right: none;
+    }
+
+    .quantity-input--btn.plus {  
+      border-left: none;
+    }
+
+    .quantity-input--text {  
+      border: 2px solid $main;
+    }
+
+  
   }
 
   &--text {    
@@ -783,18 +945,29 @@ export default {
     height: 4rem;
     margin-left: 3.6rem;
 
+
     @include respond(tab-port) {
-      width: calc(100% - 3.6rem)
+      width: calc(100% - 3.6rem * 2)
     }
 
 
-    &:focus, &:hover {
+    &:hover {
       outline: none;
+    }
+
+    &:focus {
+      & ~ .page__form--label2 {
+        font-size: 1rem;
+        top: 0;
+        transform: translate(30%, -50%);
+      }
     }
   }
 
   
 }
+
+
 
 
 .prod_desc, .prod_details {

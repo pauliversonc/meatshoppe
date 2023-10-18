@@ -302,7 +302,7 @@ export default {
 .base-input {
   margin: 4px 0;
   .label {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
     text-transform: uppercase;
     // background-color: $light-high;
@@ -331,7 +331,7 @@ export default {
       // background-color: $light-high;
       padding: 0.8rem 3.4rem 0.8rem 1rem;
       border-radius: 0;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       font-family: inherit;
       font-weight: inherit;
       color: inherit;
