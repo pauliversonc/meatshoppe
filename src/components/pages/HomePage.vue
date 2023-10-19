@@ -114,7 +114,7 @@ export default {
           title: "iPhone 9 n apple mobile whic  asd as asdsa  asdda",
           description: "An apple mobile which is nothing like apple",
           price: 200.0,
-          discountPercentage: 0,
+          discountPercentage: 10,
           rating: 4.69,
           stock: 5,
           brand: "Apple",

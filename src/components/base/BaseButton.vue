@@ -1,8 +1,8 @@
 <template>
   <button
-
+  
     class="btn "
-    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize, 'btn-outline--dark': btnOutlineDark, 'full-width': btnFullWidth }]"
+    :class="[{ 'btn-outline': btnOutline, 'btn-light': btnLight, 'resize': btnResize, 'btn-outline--dark': btnOutlineDark, 'full-width': btnFullWidth, 'disabled': btnDisabled }]"
   >
     {{ btnText }}
   </button>
@@ -46,6 +46,12 @@ export default {
       required: false,
       default: false,
     },
+
+    btnDisabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data() {
     return {};
@@ -76,6 +82,13 @@ export default {
   width: 20rem;
   background-size: 300% 100%;
   transition: all 0.4s ease-in-out;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: .5;
+    user-select: none;
+  }
+
 
   &.resize {
     @include respond(phone-land) {
