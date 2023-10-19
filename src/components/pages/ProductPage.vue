@@ -82,6 +82,7 @@
 
             </div>
 
+
           
 
           </div>
@@ -851,12 +852,16 @@ export default {
 
 
 .dropdown-input {
-  display: block;
   cursor: pointer;
   line-height: 1;
   color: $black-tint;
   margin-bottom: 1.4rem;
   max-width: 18rem;
+  display: block;
+
+
+
+  
 
   @include respond(tab-port) {
     max-width: 100%;
