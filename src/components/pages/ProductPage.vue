@@ -459,6 +459,7 @@ export default {
             // throw a waning that saying this is the only available stocks
             else {
               console.warn(resp.availableStock)
+              this.errors.qty = 'You have reached the maximum quantity available for this item';
             }
 
         }

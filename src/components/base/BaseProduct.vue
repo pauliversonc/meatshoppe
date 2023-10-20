@@ -1,7 +1,7 @@
 <template>
   <div
     class="product"
-
+    @click="goToProductPage(id)"
     >
 
     <!-- v-motion
@@ -61,7 +61,7 @@
         <span class="product__stock" :class="stockClasses">{{
           stockText
         }}</span>
-        <button class="product__btn">
+        <button class="product__btn" @click.stop="addToCart(id)">
           <svg class="product__icon">
             <use
               xlink:href="../../assets/icons/sprite.svg#icon-shopping-cart"
@@ -160,7 +160,28 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    goToProductPage(productId) {
+      
+      // check if productId is valid
+      const isAvailable = this.$store.getters['products/isIdInProducts'](productId)
+      if (isAvailable) {
+        this.$router.push(`/product/${productId}`);
+      } 
+      
+      // else redirect to no products found
+      else {
+        this.$router.push('/noProduct');
+      }
+
+    },
+
+    addToCart(id) {
+      console.log('add to cart',id)
+    },
+
+    
+  },
 };
 </script>
 
@@ -180,7 +201,7 @@ export default {
   // max-width: 24rem;
   // margin: 2px;
   max-width: 100%;
-
+  cursor: pointer;
 
   @include box-hover-animation;
 
