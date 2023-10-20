@@ -110,7 +110,7 @@
 
 
           <div class="page__form--btns">
-            <BaseButton btn-text="Add to cart" :btn-outline="true" :btn-disabled="!!!product.stock" :btn-full-width="true" @click="buttonClicked('add')"/>
+            <BaseButton btn-text="Add to cart"  :btn-outline="true" :btn-disabled="!!!product.stock" :btn-full-width="true" @click="buttonClicked('add')"/>
             <BaseButton btn-text="Buy now"  :btn-full-width="true" :btn-disabled="!!!product.stock" @click="buttonClicked('buy')"/>
           </div>
 
@@ -371,13 +371,26 @@ export default {
     },
 
     submit() {
-   
+
       this.errors.weight = this.form.picked ? "" : "Weight is required";
       this.errors.qty = this.form.qty ? "" : "Quantity is required";
 
       if (!this.errors.dropdown && !this.errors.qty) {
         // Form is valid, you can submit it
         // Add your submission logic here
+        const product = {
+          id: this.product.id,
+          weight: this.form.picked,
+          qty: this.form.qty
+        }
+
+        const action = this.form.clickedButton;
+        if(action === 'add') {
+          this.$store.dispatch('cart/addToCart', product);
+        }
+
+
+
       }
 
     },

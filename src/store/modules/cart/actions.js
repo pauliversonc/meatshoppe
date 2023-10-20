@@ -1,6 +1,6 @@
 const cartActions = {
-  toggleCartTest(context) {
-    context.commit("toggleCartTest");
-  }
+  addToCart(context, payload) {
+    context.commit('addToCart', payload);
+  },
 }
 export default cartActions;

@@ -12,7 +12,6 @@ const productRoute = {
   beforeEnter: (to, _, next) => {
   
     const isProductExist = store.getters['products/isIdInProducts'](+to.params.id);
-    console.log(isProductExist)
     if (isProductExist) {
       next();
     } else {
