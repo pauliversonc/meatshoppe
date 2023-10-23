@@ -218,7 +218,8 @@ export default {
 
   
   created() {
-    this.handleGetProduct(this.id);
+    this.handleGetProduct(this.id); // product data
+                                    // check if product exist in cart
   },
 
   computed: {
@@ -271,11 +272,11 @@ export default {
       handler(newValue) {
         // clear error
         if(newValue) this.errors.weight = "";
-
-
         // get maxQty
         const maxQty = Math.floor(this.product.stock / +newValue);
 
+        const productCartQty = this.$store.getters['cart/getProductCart'](+this.product.id);
+        console.log(productCartQty)
         // mutating qty
         if(this.form.qty && (this.form.qty > maxQty)) {
           this.form.qty =  maxQty;
@@ -283,7 +284,7 @@ export default {
           this.form.qty = 1;
         }
 
-
+        // this.handleWeightChange(newValue);
       },
       deep: true, // This is necessary when watching nested properties
     },
@@ -366,6 +367,22 @@ export default {
   },
 
   methods: {
+    handleWeightChange(weight) {
+      // clear error
+      if(weight) this.errors.weight = "";
+      // get maxQty
+      const maxQty = Math.floor(this.product.stock / +weight);
+
+      const productCartQty = this.$store.getters['cart/getProductCart'](+this.product.id);
+      console.log(productCartQty)
+      // mutating qty
+      if(this.form.qty && (this.form.qty > maxQty)) {
+        this.form.qty =  maxQty;
+      } else {
+        this.form.qty = 1;
+      }
+    },
+
     buttonClicked(button) {
       this.form.clickedButton = button;
     },

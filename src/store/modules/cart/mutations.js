@@ -14,6 +14,8 @@ const cartMutations = {
       state.cart.push(payload);
     }
 
+    console.log(state.cart)
+
   },
 }
 export default cartMutations;
