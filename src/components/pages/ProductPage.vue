@@ -273,10 +273,15 @@ export default {
         // clear error
         if(newValue) this.errors.weight = "";
         // get maxQty
-        const maxQty = Math.floor(this.product.stock / +newValue);
+        let maxQty = Math.floor(this.product.stock / +newValue);
+        
+        const product = {id: this.product.id, weight: newValue}
+        const [{qty:productCartQty}] = this.$store.getters['cart/getProductCart'](product);
 
-        const productCartQty = this.$store.getters['cart/getProductCart'](+this.product.id);
         console.log(productCartQty)
+
+        maxQty = maxQty - productCartQty
+        
         // mutating qty
         if(this.form.qty && (this.form.qty > maxQty)) {
           this.form.qty =  maxQty;
