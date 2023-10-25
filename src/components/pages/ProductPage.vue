@@ -275,12 +275,14 @@ export default {
         // get maxQty
         let maxQty = Math.floor(this.product.stock / +newValue);
         
-        const product = {id: this.product.id, weight: newValue}
-        const [{qty:productCartQty}] = this.$store.getters['cart/getProductCart'](product);
+        // const product = {id: this.product.id, weight: newValue}
+        // const [{qty:productCartQty}] = this.$store.getters['cart/getProductCart'](product);
 
+        const productCartQty = this.checkProductQtyInCart(this.product.id, newValue);
         console.log(productCartQty)
 
-        maxQty = maxQty - productCartQty
+        if(productCartQty) maxQty = maxQty - productCartQty
+        console.log(maxQty)
         
         // mutating qty
         if(this.form.qty && (this.form.qty > maxQty)) {
@@ -465,6 +467,30 @@ export default {
         }
         
 
+    },
+
+    // check if product already exists on cart
+    checkProductQtyInCart(id, weight){
+      const product = {id, weight}
+      const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+
+      if(retrievedProduct) {
+        const [{qty: productCartQty}] = retrievedProduct;
+        return productCartQty;
+      }
+      else {
+        return false
+      }
+
+      // if(productCartQty !== undefined) {
+      //   console.log(' found')
+      //   return productCartQty;
+
+      // }
+      // else {
+      //   console.log('not found')
+      //   return false;
+      // }
     },
 
     // Handle qty onclick
