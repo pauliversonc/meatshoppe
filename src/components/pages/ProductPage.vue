@@ -279,10 +279,8 @@ export default {
         // const [{qty:productCartQty}] = this.$store.getters['cart/getProductCart'](product);
 
         const productCartQty = this.checkProductQtyInCart(this.product.id, newValue);
-        console.log(productCartQty)
 
         if(productCartQty) maxQty = maxQty - productCartQty
-        console.log(maxQty)
         
         // mutating qty
         if(this.form.qty && (this.form.qty > maxQty)) {
@@ -501,11 +499,15 @@ export default {
       if(Number.isInteger(this.form.picked)) {
         // INCREASE QTY
         if (bool) {
+          const productCartQty = this.checkProductQtyInCart(this.product.id, this.form.picked);
 
           // multiply selected weight to the qty = this will be the desiredProductWeight of the client
           const tempQty = (this.form.qty ? this.form.qty : 0) + 1;
-          const tempProductWeight = tempQty * this.form.picked;
-      
+          const tempProductWeight = (tempQty + (productCartQty ? productCartQty : 0)) * (this.form.picked );
+          
+          console.log(tempProductWeight)
+
+
           // check if tempQty is less than or equal to the stock
             // dispatch/pass product id including tempQty}}
             const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, tempProductWeight);
