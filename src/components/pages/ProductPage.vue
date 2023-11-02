@@ -104,13 +104,15 @@
             </div>
 
             <!-- toggle v-show -->
-            <span class="page__form--message" v-show="errors.qty">{{ errors.qty }}</span>
+            <span class="page__form--message" v-show="errors.qty && !!errorQty !== true">{{ errors.qty }}</span>
+            <span class="page__form--message" v-show="errorQty">{{ errorQty }}</span>
           </div>
 
 
 
           <div class="page__form--btns">
             <BaseButton btn-text="Add to cart"  :btn-outline="true" :btn-disabled="!!!product.stock" :btn-full-width="true" @click="buttonClicked('add')"/>
+            
             <BaseButton btn-text="Buy now"  :btn-full-width="true" :btn-disabled="!!!product.stock" @click="buttonClicked('buy')"/>
           </div>
 
@@ -225,6 +227,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters('cart', {
+      errorQty: 'getErrorQty',
+    }),
+
     stockClasses() {
       if (this.product.stock >= 1 && this.product.stock <= 10) {
         return "page__content--stock--low";
