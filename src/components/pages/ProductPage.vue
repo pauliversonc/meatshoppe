@@ -203,6 +203,8 @@
 
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
+import { mapGetters } from 'vuex';
+
 // import "vue3-carousel/dist/carousel.css";
 export default {
   name: 'MeatshoppeProductPage',
@@ -275,16 +277,15 @@ export default {
         // get maxQty
         let maxQty = Math.floor(this.product.stock / +newValue);
         
-        // const product = {id: this.product.id, weight: newValue}
-        // const [{qty:productCartQty}] = this.$store.getters['cart/getProductCart'](product);
-
+        // get product qty in the cart
         const productCartQty = this.checkProductQtyInCart(this.product.id, newValue);
 
+        // if product exists => update product max qty allowed
         if(productCartQty) maxQty = maxQty - productCartQty
         
         // mutating qty
         if(this.form.qty && (this.form.qty > maxQty)) {
-          this.form.qty =  maxQty;
+          this.form.qty =  (maxQty) ? maxQty : 1;
         } else {
           this.form.qty = 1;
         }
@@ -394,21 +395,33 @@ export default {
 
     submit() {
 
+      
+
       this.errors.weight = this.form.picked ? "" : "Weight is required";
       this.errors.qty = this.form.qty ? "" : "Quantity is required";
 
+      const [{stock}] = this.$store.getters['products/getProduct'](this.product.id);
       if (!this.errors.dropdown && !this.errors.qty) {
         // Form is valid, you can submit it
         // Add your submission logic here
         const product = {
           id: this.product.id,
           weight: this.form.picked,
-          qty: this.form.qty
+          qty: this.form.qty,
+          stock,
         }
 
         const action = this.form.clickedButton;
+
         if(action === 'add') {
+          
+          // add to cart if stock is greater than productQty to add
           this.$store.dispatch('cart/addToCart', product);
+
+        }
+
+        if(action === 'buy') {
+          console.log('red')
         }
 
 
@@ -479,16 +492,6 @@ export default {
       else {
         return false
       }
-
-      // if(productCartQty !== undefined) {
-      //   console.log(' found')
-      //   return productCartQty;
-
-      // }
-      // else {
-      //   console.log('not found')
-      //   return false;
-      // }
     },
 
     // Handle qty onclick

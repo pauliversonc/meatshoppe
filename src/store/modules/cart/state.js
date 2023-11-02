@@ -6,5 +6,9 @@ const cartState = {
       qty: 6,
     }
   ],
+
+  errors: {
+    qty: "",
+  },
 }
 export default cartState;
