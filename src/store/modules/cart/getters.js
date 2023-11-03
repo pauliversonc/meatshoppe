@@ -9,5 +9,7 @@ const cartGetters = {
   getErrorQty(state){
     return state.errors.qty;
   },
+
+  
 }
 export default cartGetters;

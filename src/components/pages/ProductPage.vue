@@ -104,10 +104,8 @@
             </div>
 
             <!-- toggle v-show -->
-            <span class="page__form--message" v-show="errors.qty && !!errorQty !== true">{{ errors.qty }}</span>
-            <span class="page__form--message" v-show="errorQty">{{ errorQty }}</span>
+            <span class="page__form--message" v-show="errors.qty">{{ errors.qty }}</span>
           </div>
-
 
 
           <div class="page__form--btns">
@@ -201,11 +199,13 @@
 
     </div>
   </div>
+
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
-import { mapGetters } from 'vuex';
+import BaseToast from "../base/BaseToast.vue";
 
 // import "vue3-carousel/dist/carousel.css";
 export default {
@@ -214,6 +214,7 @@ export default {
     Carousel,
     Slide,
     Navigation,
+    BaseToast,
   },
 
   props: {
@@ -227,9 +228,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('cart', {
-      errorQty: 'getErrorQty',
-    }),
+
 
     stockClasses() {
       if (this.product.stock >= 1 && this.product.stock <= 10) {
@@ -401,8 +400,6 @@ export default {
 
     submit() {
 
-      
-
       this.errors.weight = this.form.picked ? "" : "Weight is required";
       this.errors.qty = this.form.qty ? "" : "Quantity is required";
 
@@ -421,8 +418,43 @@ export default {
 
         if(action === 'add') {
           
-          // add to cart if stock is greater than productQty to add
-          this.$store.dispatch('cart/addToCart', product);
+          // product from cart {id, weight, qty}
+          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          // get max qty for the selected weight
+          const maxQty = this.getMaxQty();
+          
+          // continue the validation when product retrieved success
+          // if the product is found increase the qty
+          if(retrievedProduct) {
+
+            // existing product qty
+            const [{qty}] = retrievedProduct;
+            const isAvailable = (qty + this.form.qty) <= maxQty;
+            
+            if(isAvailable) {
+              console.log('add existing')
+              product.isAvailable = !!isAvailable;
+
+              // add to cart if stock is greater than productQty to add
+              this.$store.dispatch('cart/addToCart', product);
+
+              this.$refs.toast.showToast('pasok yan pri may kopya');
+            } else {
+              console.log('error')
+              this.$refs.toast.showToast('Error yan pri');
+            }
+
+          }
+
+          // else push product to the cart
+          else {
+            console.log('pasok')
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('pasok yan new');
+          }
+          
+
+
 
         }
 
