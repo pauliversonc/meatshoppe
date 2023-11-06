@@ -107,8 +107,8 @@ export default {
 
     // left
     &__thumbnail-container {
-      width: 15rem;
-      height: 15rem;
+      width: 14rem;
+      height: 14rem;
     }
 
     &__thumbnail {
@@ -135,18 +135,21 @@ export default {
 
     &__title {
       font-size: 1.6rem;
-      font-weight: 600;
-
+      color: $black;
       border: 1px solid red;
+      font-weight: 500;
     }
     &__brand {
       font-size: 1.6rem;
+      color: $black-tint;
     }
     &__weight {
       font-size: 1.6rem;
+      color: $black-tint;
     }
     &__qty {
       font-size: 1.6rem;
+      color: $black-tint;
     }
 
 
@@ -154,9 +157,10 @@ export default {
     // right
     &__price {
       border: 1px solid black;
-
+      min-width: 10rem;
+      text-align: right;
       font-size: 1.6rem;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     // bottom
