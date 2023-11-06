@@ -10,6 +10,10 @@ const cartGetters = {
     return state.errors.qty;
   },
 
+  getCartCount(state) {
+    return (state.cart.length) ? state.cart.length : 0;
+  }
+
   
 }
 export default cartGetters;

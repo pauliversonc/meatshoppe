@@ -46,17 +46,26 @@
       </div>
 
       <div class="header__links" :class="{ pr: isActive }">
+
         <div class="header__icon-link" @click="openSearchBar" role="button">
           <svg class="header__icon">
             <use xlink:href="../../assets/icons/sprite.svg#icon-search"></use>
           </svg>
         </div>
-        <div class="header__icon-link" role="button">
+
+        <div class="header__icon-link rel" role="button">
+
           <svg class="header__icon">
             <use
               xlink:href="../../assets/icons/sprite.svg#icon-shopping-cart"
             ></use>
           </svg>
+
+          <!-- cart count -->
+          <span class="header__icon-count" v-show="cartItems">
+            {{ cartItems }}
+          </span>
+
         </div>
 
         <div
@@ -134,9 +143,14 @@
 </template>
 
 <script>
+import { mapGetters} from 'vuex';
+
 export default {
   name: "MeatshoppeTheHeader",
   computed: {
+    ...mapGetters({
+      cartItems: 'cart/getCartCount',
+    }),
     
     filteredSuggestions() {
       // Filter suggestions based on the searchQuery
@@ -463,6 +477,33 @@ export default {
 
     @include icon-hover;
   }
+
+  &__icon-link.rel {
+    // background-color: red;
+    position: relative;
+
+    // border: 2px solid red;
+
+    .header__icon-count {
+      position: absolute;
+      background-color: black;
+      color: white;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      transform: translate(0.6rem, -0.2rem);
+      user-select: none;
+      font-size: .875rem;
+
+      min-width: 0.6875rem;
+      // height: 1rem;
+      text-align: center;
+      border-radius: 2.75rem;
+      padding: 0 .5rem;
+
+    }
+  }
+
 
   // Burger button
   &__nav-menu {
