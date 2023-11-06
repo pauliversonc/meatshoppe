@@ -15,7 +15,6 @@ const productsGetters = {
     return state.products.filter(product => product.id === id);
   },
 
-
   checkProductAvailability: (_, getters) => (id, tempWeight) => {
 
     // reuse get product by id

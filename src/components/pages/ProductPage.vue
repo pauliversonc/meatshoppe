@@ -378,22 +378,6 @@ export default {
   },
 
   methods: {
-    handleWeightChange(weight) {
-      // clear error
-      if(weight) this.errors.weight = "";
-      // get maxQty
-      const maxQty = Math.floor(this.product.stock / +weight);
-
-      const productCartQty = this.$store.getters['cart/getProductCart'](+this.product.id);
-      console.log(productCartQty)
-      // mutating qty
-      if(this.form.qty && (this.form.qty > maxQty)) {
-        this.form.qty =  maxQty;
-      } else {
-        this.form.qty = 1;
-      }
-    },
-
     buttonClicked(button) {
       this.form.clickedButton = button;
     },
@@ -432,16 +416,14 @@ export default {
             const isAvailable = (qty + this.form.qty) <= maxQty;
             
             if(isAvailable) {
-              console.log('add existing')
               product.isAvailable = !!isAvailable;
 
               // add to cart if stock is greater than productQty to add
               this.$store.dispatch('cart/addToCart', product);
-
-              this.$refs.toast.showToast('pasok yan pri may kopya');
+              this.$refs.toast.showToast('Item has been added to your shopping cart');
+              this.clearQty();
             } else {
-              console.log('error')
-              this.$refs.toast.showToast('Error yan pri');
+              this.$refs.toast.showToast('Purchase limit has been exceeded');
             }
 
           }
@@ -450,7 +432,8 @@ export default {
           else {
             console.log('pasok')
             this.$store.dispatch('cart/addToCart', product);
-            this.$refs.toast.showToast('pasok yan new');
+            this.$refs.toast.showToast('New item has been added to your shopping cart');
+            this.clearQty();
           }
           
 
@@ -468,10 +451,42 @@ export default {
 
     },
 
+    clearQty() {
+      this.form.qty = "";
+    },
 
-    getMaxQty() {
+
+    // wip
+    getMaxQty(isCartIncluded = false) {
       if(Number.isInteger(this.form.picked)) {
-        return Math.floor(this.product.stock / this.form.picked);
+        const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, this.form.weight);
+        const {availableStock} = resp; // 100
+
+
+
+        if (isCartIncluded) {
+
+          // get product qty in the cart
+          const productCartQty = this.checkProductQtyInCart(this.product.id, this.form.picked); 
+
+          if (productCartQty) {
+            // basically convert qty of weight 15 in to kg
+            // by multiplying qty to its weight (4 * 15 = 60)
+            const prodCartQtyKG = productCartQty * this.form.picked;
+
+            // formula for max qty to be input in form.qty
+            // Math.floor((100 - 60) / 15) = 2
+            const stockDiff = Math.floor((availableStock - prodCartQtyKG) / this.form.picked)
+            return stockDiff;
+          } 
+          
+          else return Math.floor(availableStock / this.form.picked);
+          
+        } else return Math.floor(availableStock / this.form.picked);
+
+
+        
+
       } else return false;
     },
 
@@ -490,7 +505,7 @@ export default {
       
       // console.log(event)
         // get max qty base on weight
-        const maxQty = this.getMaxQty();
+        const maxQty = this.getMaxQty(true);
         // replace all non digit
         const sanitizedQty = +this.form.qty.replace(/\D/g, '');        
 
