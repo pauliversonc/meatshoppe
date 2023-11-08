@@ -7,7 +7,7 @@
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
 
         <!-- wrapper flex-row-->
-        <div class="cart-item" v-for="i in 3" :key="i">
+        <div class="cart-item">
 
           <!-- left -->
           <figure class="cart-item__thumbnail-container">
@@ -41,7 +41,9 @@
 
               <!-- right for price -->
               <div class="cart-item__price">
-                P 3,461.00
+                <strong>P 3,461.00</strong>
+                <span>P 7,461.00</span>
+                
               </div>
 
 
@@ -110,7 +112,7 @@
           </ul>
 
           <form class="cart-cell__form">
-            <input class="cart-cell__input" type="text">
+            <input class="cart-cell__input" v-model.trim="promoCode" type="text" @input="handleInputCode">
             <button class="cart-cell__btn">Apply</button>
           </form>
 
@@ -135,17 +137,25 @@ export default {
   components: {BaseHeadingFour},
 
   data() {
-    return {};
+    return {
+      promoCode: "",
+    };
   },
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    handleInputCode() {
+      // Remove non-alphanumeric characters and convert to uppercase
+      this.promoCode = this.promoCode.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 14);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
+@import "../../sass/mixins";
 .cart {
   padding: 14rem 2rem 8rem 2rem;
 
@@ -155,16 +165,20 @@ export default {
     // border: 2px solid pink;
 
     display: grid;
-    grid-template-columns: 60% 1fr;
+    grid-template-columns: 65% 1fr;
     gap: 6rem;
+
+    @include respond (tab-port) {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
   }
 
 
 
 
-  .cart-items-container {
-    // border-right: 1px solid $gray;
-  }
+  // .cart-items-container {
+  // }
 
 
   .cart-item {
@@ -205,6 +219,17 @@ export default {
       // border: 2px solid red;
       display: flex;
       justify-content: space-between;
+
+      @include respond (phone-land) {
+        // justify-content: start;
+        flex-direction: column;
+      }
+    }
+
+    &__details-wrap {
+      @include respond (phone-land) {
+        order: 2;
+      } 
     }
 
     &__title {
@@ -218,6 +243,7 @@ export default {
     &__brand {
       font-size: 1.6rem;
       color: $black-tint;
+      text-transform: capitalize;
     }
 
     &__weight {
@@ -238,8 +264,27 @@ export default {
       // border: 1px solid black;
       text-align: right;
       font-size: 1.6rem;
-      font-weight: 500;
       white-space: nowrap;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      span {
+        text-decoration: line-through;
+        color: $black-tint;
+        font-size: 1.4rem;
+
+        @include respond (phone-land) {
+          align-self: end;
+        } 
+      }
+
+      @include respond (phone-land) {
+        flex-direction: row;
+        gap: 1rem;
+        order: 1;
+      } 
     }
 
     // bottom
@@ -267,16 +312,17 @@ export default {
   height: 2.4rem;
   background-color: transparent;
   cursor: pointer;
+  transition: transform .4s ease-out;
 
   &:hover .icon-svg {
     fill: $main;
-    transition: all .3s ease;
   }
 
   .icon-svg {
     width: 100%;
     height: 100%;
     fill: $black;
+    transition: transform .4s ease-out;
   }
 }
 
@@ -331,6 +377,8 @@ export default {
     font-family: inherit;
     height: 3.6rem;
     padding: 0 1rem;
+    width: 100%;
+
   }
 
   &__btn {
@@ -355,6 +403,7 @@ export default {
       background-position: 100% 0;
       transition: all 0.4s ease-in-out;
       box-shadow: $shadow;
+
     }
   }
 
@@ -384,10 +433,16 @@ export default {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: transform .4s ease-out;
+
+    &:hover {
+      transform-origin: center;
+      transform: rotate(90deg);
+    }
 
     &:hover .cart-cell__btn-icon {
       fill: $main;
+
     }
   }
 
@@ -400,7 +455,7 @@ export default {
 
   &__checkout {
     @extend .cart-cell;
-    padding: .8rem 0;
+    padding: .6rem 0;
   }
 }
 </style>
