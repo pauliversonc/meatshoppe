@@ -3,15 +3,13 @@
 
     <div class="cart__wrapper">
 
-      <span v-for="(testa, index) in productDetails" :key="index" >{{ testa.id }}</span>
-
       <!-- product list in cart -->
       <div class="cart-items-container">
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
 
         <!-- wrapper flex-row-->
         <!-- v-for -->
-        <div class="cart-item" v-for="(product, index) in cartProducts" :key="index">
+        <div class="cart-item" v-for="(product, index) in productsDetails" :key="index">
 
           <!-- left -->
           <figure class="cart-item__thumbnail-container">
@@ -151,7 +149,12 @@ export default {
   computed: {
     ...mapGetters({
       cartProducts: 'cart/getProducts',
+      products: 'products/getProducts'
     }),
+
+    productsDetails() {
+      return this.getProductById(this.cartProducts);
+    },
 
 
     subTotal() {
@@ -197,6 +200,14 @@ export default {
 
 
   methods: {
+    getProductById(productsCart) {
+      return this.products.filter((product) => {
+        return productsCart.some(cart => product.id === cart.id);
+      });
+
+      
+    },
+
     addPromoCode() {
       console.log('wow')
     },
