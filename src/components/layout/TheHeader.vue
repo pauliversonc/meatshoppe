@@ -53,7 +53,7 @@
           </svg>
         </div>
 
-        <div class="header__icon-link rel" role="button">
+        <div class="header__icon-link rel"  @click="goToCart" role="button">
 
           <svg class="header__icon">
             <use
@@ -62,8 +62,8 @@
           </svg>
 
           <!-- cart count -->
-          <span class="header__icon-count" v-show="cartItems">
-            {{ cartItems }}
+          <span class="header__icon-count" v-show="cartItemsCount">
+            {{ cartItemsCount }}
           </span>
 
         </div>
@@ -149,7 +149,7 @@ export default {
   name: "MeatshoppeTheHeader",
   computed: {
     ...mapGetters({
-      cartItems: 'cart/getCartCount',
+      cartItemsCount: 'cart/getCartCount',
     }),
     
     filteredSuggestions() {
@@ -235,6 +235,10 @@ export default {
   },
 
   methods: {
+    goToCart() {
+      this.$router.push('/cart');
+    },
+
     toggle() {
       this.isActive = !this.isActive;
     },

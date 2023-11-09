@@ -10,9 +10,15 @@ const productsGetters = {
     return state.products.some(product => product.id === id);
   },
 
-  // get product by id
+  // get 1 product by id
   getProduct: (state) => (id) => {
     return state.products.filter(product => product.id === id);
+  },
+
+  getProductById: (state) => (cartArr) => {
+    return state.products.filter((product) => {
+      return cartArr.some(cart => product.id === cart.id && product.weight === cart.weight);
+    });
   },
 
   checkProductAvailability: (_, getters) => (id, tempWeight) => {

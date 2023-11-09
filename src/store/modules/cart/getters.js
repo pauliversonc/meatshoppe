@@ -12,8 +12,11 @@ const cartGetters = {
 
   getCartCount(state) {
     return (state.cart.length) ? state.cart.length : 0;
-  }
+  },
 
+  getProducts(state) {
+    return (state.cart.length) ? state.cart : false;
+  },
   
 }
 export default cartGetters;

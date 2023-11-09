@@ -391,12 +391,23 @@ export default {
       if (!this.errors.dropdown && !this.errors.qty) {
         // Form is valid, you can submit it
         // Add your submission logic here
+
+        // const product = {
+        //   id: this.product.id,
+        //   weight: this.form.picked,
+        //   qty: this.form.qty,
+        //   stock,
+        // }
+
         const product = {
-          id: this.product.id,
-          weight: this.form.picked,
+          ...this.product,
           qty: this.form.qty,
-          stock,
         }
+        // replace some attribute for pulling in cart
+        product.weight = this.form.picked;
+        product.stock = stock;
+
+        console.log(product)
 
         const action = this.form.clickedButton;
 

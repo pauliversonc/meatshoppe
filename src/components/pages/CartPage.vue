@@ -3,11 +3,15 @@
 
     <div class="cart__wrapper">
 
+      <span v-for="(testa, index) in productDetails" :key="index" >{{ testa.id }}</span>
+
+      <!-- product list in cart -->
       <div class="cart-items-container">
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
 
         <!-- wrapper flex-row-->
-        <div class="cart-item">
+        <!-- v-for -->
+        <div class="cart-item" v-for="(product, index) in cartProducts" :key="index">
 
           <!-- left -->
           <figure class="cart-item__thumbnail-container">
@@ -23,9 +27,9 @@
               
               <!-- left for details-->
               <div class="cart-item__details-wrap">
-                <div class="cart-item__title">Chicken Liver Goncalves & Tortola 1kg or 15kg</div>
-                <div class="cart-item__brand">goncalves & tortola</div>
-                <div class="cart-item__weight">15 kg</div>
+                <div class="cart-item__title">{{ product.name }}</div>
+                <div class="cart-item__brand">{{ product.brand }}</div>
+                <div class="cart-item__weight">{{ product.weight }} kg</div>
                 
                 <div class="cart-item__qty">
 
@@ -40,11 +44,16 @@
 
 
               <!-- right for price -->
-              <div class="cart-item__price">
-                <strong>P 3,461.00</strong>
-                <span>P 7,461.00</span>
-                
+              <div class="cart-item__price" v-if="product.discountPercentage">
+                <strong>{{ formatCurrency(((product.price * (1-(product.discountPercentage / 100))) * product.weight) * product.qty) }}</strong>
+                <span>{{ formatCurrency(product.price * product.weight * product.qty)  }}</span>
               </div>
+
+              <div class="cart-item__price" v-else>
+                <strong>{{ formatCurrency(product.price * product.weight * product.qty) }}</strong>
+              </div>
+
+
 
 
 
@@ -69,13 +78,14 @@
 
       </div>
       
+      <!-- Table pricing summary -->
       <aside class="cart__summary">
         <BaseHeadingFour heading-four="Summary"></BaseHeadingFour>
 
         <!-- Semi Table -->
         <div class="cart-cell">
           <div class="cart-cell__title">Subtotal</div>
-          <div class="cart-cell__price">P 123,467.00</div>
+          <div class="cart-cell__price">{{ formatCurrency(subTotal) }}</div>
         </div>
 
         <div class="cart-cell">
@@ -85,13 +95,13 @@
 
         <div class="cart-cell">
           <div class="cart-cell__title">Coupon discounts</div>
-          <div class="cart-cell__price">P 3,247.00</div>
+          <div class="cart-cell__price">{{ formatCurrency(couponDiscountTotal) }}</div>
         </div>
 
         <!-- Total bordered-->
         <div class="cart-cell__total">
           <div class="cart-cell__title">Total</div>
-          <div class="cart-cell__price">P 32,247.00</div>
+          <div class="cart-cell__price">{{ formatCurrency(total) }}</div>
         </div>
 
 
@@ -99,19 +109,21 @@
         <div class="cart-cell__promo">
           <span class="cart-cell__title">Promotions</span>
 
-          <ul class="cart-cell__codes">
-            <li class="cart-cell__code-wrap">
-              <button class="cart-cell__code-btn">
+          <ul class="cart-cell__codes" v-show="redeemedPromoCode.length > 0">
+
+            <li class="cart-cell__code-wrap" v-for="promo in redeemedPromoCode" :key="promo.code">
+              <button class="cart-cell__code-btn" @click="removePromoCode">
                 <svg class="cart-cell__btn-icon">
                   <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
                 </svg>
               </button>
-              <strong>MEATSHOPPE2023</strong>
+              <strong>{{ promo.code }}</strong>
               <span>is applied</span>
             </li>
+            
           </ul>
 
-          <form class="cart-cell__form">
+          <form class="cart-cell__form" @submit.prevent="addPromoCode">
             <input class="cart-cell__input" v-model.trim="promoCode" type="text" @input="handleInputCode">
             <button class="cart-cell__btn">Apply</button>
           </form>
@@ -132,22 +144,110 @@
 
 <script>
 import BaseHeadingFour from '../base/BaseHeadingFour.vue';
+import {mapGetters} from 'vuex';
 export default {
   name: "MeatshoppeCartPage",
   components: {BaseHeadingFour},
+  computed: {
+    ...mapGetters({
+      cartProducts: 'cart/getProducts',
+    }),
+
+
+    subTotal() {
+      let total = 0;
+      for (const product of this.cartProducts) {
+        const discountedPrice = this.applyDiscount(product.price, product.discountPercentage, product.weight, product.qty);
+        total += discountedPrice;
+      }
+
+      return total;
+    },
+
+    total(){
+      let total = 0;
+      for (const product of this.cartProducts) {
+        const discountedPrice = this.applyDiscount(product.price, product.discountPercentage, product.weight, product.qty);
+        total += discountedPrice;
+      }
+
+      const finalTotal = this.applyPromo(total)
+      return finalTotal;
+    },
+
+    couponDiscountTotal() {
+      const total = this.redeemedPromoCode.reduce((accumulator, currentArray) => {
+        return accumulator += currentArray.discount;
+      }, 0);
+
+      return total;
+    },
+  },
 
   data() {
     return {
       promoCode: "",
+      redeemedPromoCode: [
+        {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000},
+        {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000},
+      ]
     };
   },
 
-  mounted() {},
+
 
   methods: {
+    addPromoCode() {
+      console.log('wow')
+    },
+
+    removePromoCode(index) {
+      this.redeemedPromoCode.splice(index, 1);
+    },
+
     handleInputCode() {
       // Remove non-alphanumeric characters and convert to uppercase
       this.promoCode = this.promoCode.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 14);
+    },
+
+    formatCurrency(price) {
+      return new Intl.NumberFormat('en-PH', {
+        style: 'currency',
+        currency: 'PHP',
+        minimumFractionDigits: 2,
+      }).format(price);
+    },
+
+    applyDiscount(price, discountPercentage, weight, qty) {
+      if (discountPercentage > 0) {
+        return (qty * (price * (1-(discountPercentage / 100))) * weight);
+      } else {
+        return price * weight * qty;
+      }
+    },
+
+    applyPromo(total) {
+      let subTotal = total;
+
+      // check if valid promo code exist
+      if(this.redeemedPromoCode.length > 0) {
+        // loop the redeemed promo code
+        this.redeemedPromoCode.forEach(code => {
+          // check if minspend is meet
+          if(subTotal >= code.minSpend) {
+            // formula (subtotal + sum of valid promo code)
+            subTotal-=code.discount;
+          }
+        });
+
+        return subTotal;
+
+      }
+
+      // else just return subtotal
+      else {
+        return subTotal;
+      }
     },
   },
 };
@@ -268,7 +368,7 @@ export default {
 
       display: flex;
       flex-direction: column;
-      align-items: center;
+      
 
       span {
         text-decoration: line-through;
@@ -284,6 +384,7 @@ export default {
         flex-direction: row;
         gap: 1rem;
         order: 1;
+        align-items: center;
       } 
     }
 
