@@ -95,7 +95,7 @@
             <div class="quantity-input" :class="{'invalid' : errors.qty, 'disabled': product.qty, 'disabled': !product.stock}">
 
               <button class="quantity-input--btn minus" @click.stop.prevent="mutateQty(false)">&#45;</button>
-              <input class="quantity-input--text" @input="validateQty" v-model="form.qty" type="text" name="edi" id="a">
+              <input class="quantity-input--text" @input="handleInputQty" v-model="form.qty" type="text" name="edi" id="productQty">
               <button class="quantity-input--btn plus" @click.stop.prevent="mutateQty(true)">&#43;</button>
 
               <!-- toggle classses (invalid) (stick)-->
@@ -225,6 +225,7 @@ export default {
   created() {
     this.handleGetProduct(this.id); // product data
                                     // check if product exist in cart
+    
   },
 
   computed: {
@@ -279,23 +280,19 @@ export default {
       handler(newValue) {
         // clear error
         if(newValue) this.errors.weight = "";
-        // get maxQty
-        let maxQty = Math.floor(this.product.stock / +newValue);
-        
-        // get product qty in the cart
-        const productCartQty = this.checkProductQtyInCart(this.product.id, newValue);
-
-        // if product exists => update product max qty allowed
-        if(productCartQty) maxQty = maxQty - productCartQty
+        const maxQty = this.getMaxQty(newValue);
         
         // mutating qty
+        // basically what happens here is that
+        // when you try to set a qty but you want to change the weight
+        // this will return qty value
         if(this.form.qty && (this.form.qty > maxQty)) {
           this.form.qty =  (maxQty) ? maxQty : 1;
         } else {
           this.form.qty = 1;
         }
 
-        // this.handleWeightChange(newValue);
+ 
       },
       deep: true, // This is necessary when watching nested properties
     },
@@ -387,28 +384,16 @@ export default {
       this.errors.weight = this.form.picked ? "" : "Weight is required";
       this.errors.qty = this.form.qty ? "" : "Quantity is required";
 
-      const [{stock}] = this.$store.getters['products/getProduct'](this.product.id);
+      // validate product that is going to cart
       if (!this.errors.dropdown && !this.errors.qty) {
-        // Form is valid, you can submit it
-        // Add your submission logic here
 
+        // Add your submission logic here
         const product = {
           id: this.product.id,
           weight: this.form.picked,
           qty: this.form.qty,
-          stock,
         }
 
-        // const product = {
-        //   ...this.product,
-        //   qty: this.form.qty,
-        // }
-        
-        // replace some attribute for pulling in cart
-        product.weight = this.form.picked;
-        product.stock = stock;
-
-        console.log(product)
 
         const action = this.form.clickedButton;
 
@@ -416,8 +401,9 @@ export default {
           
           // product from cart {id, weight, qty}
           const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          console.warn(retrievedProduct)
           // get max qty for the selected weight
-          const maxQty = this.getMaxQty();
+          const maxQty = this.getMaxQtyTwo();
           
           // continue the validation when product retrieved success
           // if the product is found increase the qty
@@ -469,7 +455,7 @@ export default {
 
 
     // wip
-    getMaxQty(isCartIncluded = false) {
+    getMaxQtyTwo(isCartIncluded = false) {
       if(Number.isInteger(this.form.picked)) {
         const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, this.form.weight);
         const {availableStock} = resp; // 100
@@ -502,28 +488,41 @@ export default {
       } else return false;
     },
 
+    getMaxQty(weight) {
+        // get product stock 
+        const [{stock}] = this.$store.getters['products/getProduct'](this.product.id);
+
+        // get temp deducted stock in cart
+        const cartStock = this.checkAccumulatedProductStock(this.id);
+
+        // get maxQty 
+        const maxQty = Math.floor((stock - cartStock) / +weight);
+
+        return maxQty;
+    },
+
     handleGetProduct(productId){
       const [product] = this.$store.getters['products/getProduct'](+productId);
       this.product = product;
+
     },
 
-    validateQty(event) {
+    handleInputQty(event) {
 
       // check if user clears the input
       const userClear = !!!event.target.value.length;
 
-
       // when user input a non digit it will be deleted or ignored
       
-      // console.log(event)
         // get max qty base on weight
-        const maxQty = this.getMaxQty(true);
+        const maxQty = this.getMaxQty(this.form.picked);
+
         // replace all non digit
         const sanitizedQty = +this.form.qty.replace(/\D/g, '');        
 
         // check if maxQty is valid
         // run this code if weight is selected
-        if (maxQty) {
+        if (this.form.picked) {
           // set the qty to "" if the user clears the input
           if (userClear) this.form.qty = "";
 
@@ -555,8 +554,16 @@ export default {
         return productCartQty;
       }
       else {
-        return false
+        return false;
       }
+    },
+
+    // this will check the temp accumulated stock for 1kg and / or 15 kg
+    checkAccumulatedProductStock(id) {
+      // get temp stock added in cart
+      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
+      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
+      return tempAccumulatedStock;
     },
 
     // Handle qty onclick
@@ -565,33 +572,22 @@ export default {
       // console.log(typeof this.form.picked, this.form.picked)
       // check if user selects a weight
       if(Number.isInteger(this.form.picked)) {
+
         // INCREASE QTY
         if (bool) {
-          const productCartQty = this.checkProductQtyInCart(this.product.id, this.form.picked);
+          // NEW
 
-          // multiply selected weight to the qty = this will be the desiredProductWeight of the client
+          const maxQty = this.getMaxQty(this.form.picked);
+
+          // increment by 1 the form qty value 
           const tempQty = (this.form.qty ? this.form.qty : 0) + 1;
-          const tempProductWeight = (tempQty + (productCartQty ? productCartQty : 0)) * (this.form.picked );
-          
-          console.log(tempProductWeight)
 
 
-          // check if tempQty is less than or equal to the stock
-            // dispatch/pass product id including tempQty}}
-            const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, tempProductWeight);
-
-            // if stock is available return true / increment or assign tempQty to qty
-            if (resp.isAvailable) {
-              this.form.qty = tempQty;
-            } 
-            // else return false (show alert message saying that the stock left is only "availableStock")
-            // also add how many kilo's that the user is trying to purchase
-
-            // throw a waning that saying this is the only available stocks
-            else {
-              console.warn(resp.availableStock)
-              this.errors.qty = 'You have reached the maximum quantity available for this item';
-            }
+          if (maxQty >= tempQty) {
+            this.form.qty = tempQty;
+          } else {
+            this.errors.qty = 'You have reached the maximum quantity available for this item';
+          }
 
         }
         // DECREASE QTY

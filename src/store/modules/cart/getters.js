@@ -17,6 +17,19 @@ const cartGetters = {
   getProducts(state) {
     return (state.cart.length) ? state.cart : false;
   },
+
+  getTotalStocks: (state) => (id) => {
+    const totalProductSum = state.cart.reduce((sum, cartItem) => {
+      if (cartItem.id === id) {
+        const product = cartItem.weight * cartItem.qty;
+        return sum + product;
+      }
+      return sum;
+    }, 0);
+  
+    return totalProductSum;
+  },
+  
   
 }
 export default cartGetters;

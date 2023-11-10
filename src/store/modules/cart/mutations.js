@@ -1,12 +1,11 @@
 const cartMutations = {
   addToCart(state, payload) {
-    console.warn(payload)
 
     // find product by id and weight => this might returns an exiting product in the cart
     const existingProduct = state.cart.find(item => item.id === payload.id && item.weight === payload.weight);
-
+    console.log(existingProduct)
     // if the product is found increase the qty
-    if(payload.isAvailable) {
+    if(existingProduct) {
       existingProduct.qty += payload.qty; 
     }
 
