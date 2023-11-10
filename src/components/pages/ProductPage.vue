@@ -401,21 +401,20 @@ export default {
           
           // product from cart {id, weight, qty}
           const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
-          console.warn(retrievedProduct)
-          // get max qty for the selected weight
-          const maxQty = this.getMaxQtyTwo();
+          
+          
           
           // continue the validation when product retrieved success
-          // if the product is found increase the qty
+          // if the product is found increase the qty in cart
           if(retrievedProduct) {
 
+            // get max qty for the selected weight
+            const maxQty = this.getMaxQty(this.form.picked);
+
             // existing product qty
-            const [{qty}] = retrievedProduct;
-            const isAvailable = (qty + this.form.qty) <= maxQty;
+            const isAvailable = (maxQty >= this.form.qty);
             
             if(isAvailable) {
-              product.isAvailable = !!isAvailable;
-
               // add to cart if stock is greater than productQty to add
               this.$store.dispatch('cart/addToCart', product);
               this.$refs.toast.showToast('Item has been added to your shopping cart');

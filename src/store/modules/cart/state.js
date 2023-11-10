@@ -3,7 +3,7 @@ const cartState = {
     {
       "id": 2,
       "weight": 15,
-      "qty": 4,
+      "qty": 6,
     },
     {
       "id": 2,
