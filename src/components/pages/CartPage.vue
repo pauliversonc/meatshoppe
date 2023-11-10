@@ -3,6 +3,8 @@
 
     <div class="cart__wrapper">
 
+      <!-- <span>{{ productsDetails }}</span> -->
+
       <!-- product list in cart -->
       <div class="cart-items-container">
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
@@ -31,10 +33,12 @@
                 
                 <div class="cart-item__qty">
 
-                  <label class="cart-item__label" for="cars">Quantity</label>
-                  <select class="cart-item__select" id="cars" name="cars">
-                    <option v-for="i in 100" value="volvo">{{ i }}</option>
+                  <label class="cart-item__label" :for="index+product.name">Quantity</label>
+                  <select class="cart-item__select" :id="index+product.name" name="cars">
+                    <option v-for="index in getMaxQty(product.stock, product.weight)" :value="index" :key="index">{{ index }}</option>
                   </select>
+
+                  <!-- {{  }} -->
 
                 </div>
 
@@ -122,7 +126,7 @@
           </ul>
 
           <form class="cart-cell__form" @submit.prevent="addPromoCode">
-            <input class="cart-cell__input" v-model.trim="promoCode" type="text" @input="handleInputCode">
+            <input class="cart-cell__input" id="promoCode" name="promoCode" v-model.trim="promoCode" type="text" @input="handleInputCode">
             <button class="cart-cell__btn">Apply</button>
           </form>
 
@@ -159,7 +163,7 @@ export default {
 
     subTotal() {
       let total = 0;
-      for (const product of this.cartProducts) {
+      for (const product of this.productsDetails) {
         const discountedPrice = this.applyDiscount(product.price, product.discountPercentage, product.weight, product.qty);
         total += discountedPrice;
       }
@@ -169,7 +173,7 @@ export default {
 
     total(){
       let total = 0;
-      for (const product of this.cartProducts) {
+      for (const product of this.productsDetails) {
         const discountedPrice = this.applyDiscount(product.price, product.discountPercentage, product.weight, product.qty);
         total += discountedPrice;
       }
@@ -200,12 +204,25 @@ export default {
 
 
   methods: {
-    getProductById(productsCart) {
-      return this.products.filter((product) => {
-        return productsCart.some(cart => product.id === cart.id);
+    getMaxQty(stock, weight){
+      return Math.floor(stock / weight);
+    },
+
+    getProductById(cart) {
+
+      const newCart = cart.map((cartItem) => {
+        const product = this.products.find((product) => product.id === cartItem.id);
+        if (product) {
+          return {
+            ...product, // Spread product data
+            weight: cartItem.weight, // Replace weight property
+            qty: cartItem.qty, // add new qty from cart
+          };
+        }
+        return null; // Handle cases where the product is not found
       });
 
-      
+      return newCart;
     },
 
     addPromoCode() {

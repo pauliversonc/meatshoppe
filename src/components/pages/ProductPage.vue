@@ -392,17 +392,18 @@ export default {
         // Form is valid, you can submit it
         // Add your submission logic here
 
-        // const product = {
-        //   id: this.product.id,
-        //   weight: this.form.picked,
-        //   qty: this.form.qty,
-        //   stock,
-        // }
-
         const product = {
-          ...this.product,
+          id: this.product.id,
+          weight: this.form.picked,
           qty: this.form.qty,
+          stock,
         }
+
+        // const product = {
+        //   ...this.product,
+        //   qty: this.form.qty,
+        // }
+        
         // replace some attribute for pulling in cart
         product.weight = this.form.picked;
         product.stock = stock;
