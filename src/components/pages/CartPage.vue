@@ -34,11 +34,9 @@
                 <div class="cart-item__qty">
 
                   <label class="cart-item__label" :for="index+product.name">Quantity</label>
-                  <select class="cart-item__select" :id="index+product.name" name="cars">
-                    <option v-for="index in getMaxQty(product.stock, product.weight)" :value="index" :key="index">{{ index }}</option>
+                  <select class="cart-item__select" :id="index+product.name" :name="index+product.name" @change="handleUpdateQuantity($event, product.weight ,product.id)">
+                    <option v-for="index in getMaxQty(product.qty, product.weight, product.id)"  :value="index" :key="index" :selected="product.qty === index">{{ index }}</option>
                   </select>
-
-                  <!-- {{  }} -->
 
                 </div>
 
@@ -55,13 +53,8 @@
                 <strong>{{ formatCurrency(product.price * product.weight * product.qty) }}</strong>
               </div>
 
-
-
-
-
             </div>
            
-
 
             <!-- bottom -->
             <div class="cart-item__btns">
@@ -204,8 +197,40 @@ export default {
 
 
   methods: {
-    getMaxQty(stock, weight){
-      return Math.floor(stock / weight);
+    getMaxQty(qty, weight, productId) {
+        // get product stock 
+        const [{stock}] = this.$store.getters['products/getProduct'](productId);
+
+        // get temp deducted stock in cart
+        const cartStock = this.checkAccumulatedProductStock(productId);
+
+        // get maxQty 
+        const maxQty = Math.floor((stock - cartStock) / +weight);
+
+        const newQty = +maxQty + +qty;
+
+        console.log(newQty)
+
+        return newQty;
+    },
+
+    handleUpdateQuantity(event, weight, productId) {
+      const product = {
+        productId,
+        weight,
+        qty: event.target.value
+      }
+
+      this.$store.dispatch('cart/updateQuantity', product);
+
+    },
+
+    // this will check the temp accumulated stock for 1kg and / or 15 kg
+    checkAccumulatedProductStock(id) {
+      // get temp stock added in cart
+      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
+      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
+      return tempAccumulatedStock;
     },
 
     getProductById(cart) {

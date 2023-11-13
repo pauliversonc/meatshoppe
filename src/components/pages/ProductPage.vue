@@ -452,41 +452,6 @@ export default {
       this.form.qty = "";
     },
 
-
-    // wip
-    getMaxQtyTwo(isCartIncluded = false) {
-      if(Number.isInteger(this.form.picked)) {
-        const resp = this.$store.getters['products/checkProductAvailability'](this.product.id, this.form.weight);
-        const {availableStock} = resp; // 100
-
-
-
-        if (isCartIncluded) {
-
-          // get product qty in the cart
-          const productCartQty = this.checkProductQtyInCart(this.product.id, this.form.picked); 
-
-          if (productCartQty) {
-            // basically convert qty of weight 15 in to kg
-            // by multiplying qty to its weight (4 * 15 = 60)
-            const prodCartQtyKG = productCartQty * this.form.picked;
-
-            // formula for max qty to be input in form.qty
-            // Math.floor((100 - 60) / 15) = 2
-            const stockDiff = Math.floor((availableStock - prodCartQtyKG) / this.form.picked)
-            return stockDiff;
-          } 
-          
-          else return Math.floor(availableStock / this.form.picked);
-          
-        } else return Math.floor(availableStock / this.form.picked);
-
-
-        
-
-      } else return false;
-    },
-
     getMaxQty(weight) {
         // get product stock 
         const [{stock}] = this.$store.getters['products/getProduct'](this.product.id);
@@ -497,6 +462,7 @@ export default {
         // get maxQty 
         const maxQty = Math.floor((stock - cartStock) / +weight);
 
+        console.log(maxQty)
         return maxQty;
     },
 
