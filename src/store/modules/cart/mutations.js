@@ -18,9 +18,13 @@ const cartMutations = {
 
   updateQuantity(state, payload) {
     const existingProduct = state.cart.find(item => item.id === payload.productId && item.weight === payload.weight);
-
     if(existingProduct) existingProduct.qty = payload.qty;
-    
-  }
+  },
+
+  deleteProduct(state, payload) {
+    const updatedCart = state.cart.filter(item => !(item.id === payload.id && item.weight === payload.weight));
+    state.cart = updatedCart;
+  },
+
 }
 export default cartMutations;

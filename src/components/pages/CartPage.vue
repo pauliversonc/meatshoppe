@@ -6,70 +6,77 @@
       <!-- <span>{{ productsDetails }}</span> -->
 
       <!-- product list in cart -->
-      <div class="cart-items-container">
+      <div class="cart-items-container" >
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
 
         <!-- wrapper flex-row-->
-        <!-- v-for -->
-        <div class="cart-item" v-for="(product, index) in productsDetails" :key="index">
+        <div class="cart-item__wrapper" v-if="productsDetails.length > 0">
+          <!-- v-for -->
+          <div class="cart-item" v-for="(product, index) in productsDetails" :key="index">
 
-          <!-- left -->
-          <figure class="cart-item__thumbnail-container">
-            <img class="cart-item__thumbnail" src="../../assets/images/goods/1/sm/ck-wings-1.jpg" alt="chicken wings">
-          </figure>
+            <!-- left -->
+            <figure class="cart-item__thumbnail-container">
+              <img class="cart-item__thumbnail" src="../../assets/images/goods/1/sm/ck-wings-1.jpg" alt="chicken wings">
+            </figure>
 
-          <!-- right flex-column-->
-          <div class="cart-item__details-container">
+            <!-- right flex-column-->
+            <div class="cart-item__details-container">
 
-            <!-- up flex-row -->
-            <div class="cart-item__details">
-              
-              
-              <!-- left for details-->
-              <div class="cart-item__details-wrap">
-                <div class="cart-item__title">{{ product.name }}</div>
-                <div class="cart-item__brand">{{ product.brand }}</div>
-                <div class="cart-item__weight">{{ product.weight }} kg</div>
+              <!-- up flex-row -->
+              <div class="cart-item__details">
                 
-                <div class="cart-item__qty">
+                
+                <!-- left for details-->
+                <div class="cart-item__details-wrap">
+                  <div class="cart-item__title">{{ product.name }}</div>
+                  <div class="cart-item__brand">{{ product.brand }}</div>
+                  <div class="cart-item__weight">{{ product.weight }} kg</div>
+                  
+                  <div class="cart-item__qty">
 
-                  <label class="cart-item__label" :for="index+product.name">Quantity</label>
-                  <select class="cart-item__select" :id="index+product.name" :name="index+product.name" @change="handleUpdateQuantity($event, product.weight ,product.id)">
-                    <option v-for="index in getMaxQty(product.qty, product.weight, product.id)"  :value="index" :key="index" :selected="product.qty === index">{{ index }}</option>
-                  </select>
+                    <label class="cart-item__label" :for="index+product.name">Quantity</label>
+                    <select class="cart-item__select" :id="index+product.name" :name="index+product.name" @change="handleUpdateQuantity($event, product.weight ,product.id)">
+                      <option v-for="index in getMaxQty(product.qty, product.weight, product.id)"  :value="index" :key="index" :selected="product.qty === index">{{ index }}</option>
+                    </select>
+
+                  </div>
 
                 </div>
 
+
+                <!-- right for price -->
+                <div class="cart-item__price" v-if="product.discountPercentage">
+                  <strong>{{ formatCurrency(((product.price * (1-(product.discountPercentage / 100))) * product.weight) * product.qty) }}</strong>
+                  <span>{{ formatCurrency(product.price * product.weight * product.qty)  }}</span>
+                </div>
+
+                <div class="cart-item__price" v-else>
+                  <strong>{{ formatCurrency(product.price * product.weight * product.qty) }}</strong>
+                </div>
+
               </div>
+            
 
+              <!-- bottom -->
+              <div class="cart-item__btns">
 
-              <!-- right for price -->
-              <div class="cart-item__price" v-if="product.discountPercentage">
-                <strong>{{ formatCurrency(((product.price * (1-(product.discountPercentage / 100))) * product.weight) * product.qty) }}</strong>
-                <span>{{ formatCurrency(product.price * product.weight * product.qty)  }}</span>
+                <button class="icon-btn" @click="handleDeleteProduct(product.id, product.weight)">
+                  <svg class="icon-svg">
+                    <use xlink:href="../../assets/icons/sprite.svg#icon-trash-2"></use>
+                  </svg>
+                </button>
+
               </div>
-
-              <div class="cart-item__price" v-else>
-                <strong>{{ formatCurrency(product.price * product.weight * product.qty) }}</strong>
-              </div>
-
             </div>
-           
 
-            <!-- bottom -->
-            <div class="cart-item__btns">
 
-              <button class="icon-btn">
-                <svg class="icon-svg">
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-trash-2"></use>
-                </svg>
-              </button>
-
-            </div>
           </div>
-
-
         </div>
+
+        <div class="cart-item__wrapper" v-else>
+          There are no items in your cart.
+        </div>
+
 
       </div>
       
@@ -150,7 +157,8 @@ export default {
     }),
 
     productsDetails() {
-      return this.getProductById(this.cartProducts);
+      if (this.cartProducts) return this.getProductById(this.cartProducts);
+      else return [];
     },
 
 
@@ -188,8 +196,8 @@ export default {
     return {
       promoCode: "",
       redeemedPromoCode: [
-        {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000},
-        {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000},
+        // {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000},
+        // {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000},
       ]
     };
   },
@@ -197,6 +205,14 @@ export default {
 
 
   methods: {
+    handleDeleteProduct(productId, weight) {
+      const product = {
+        id: productId,
+        weight,
+      }
+      this.$store.dispatch('cart/deleteProduct', product);
+    },
+
     getMaxQty(qty, weight, productId) {
         // get product stock 
         const [{stock}] = this.$store.getters['products/getProduct'](productId);
@@ -208,8 +224,6 @@ export default {
         const maxQty = Math.floor((stock - cartStock) / +weight);
 
         const newQty = +maxQty + +qty;
-
-        console.log(newQty)
 
         return newQty;
     },
@@ -343,6 +357,11 @@ export default {
     border-bottom: 1px solid $gray;
     
     margin-bottom: 2rem;
+
+    &__wrapper {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
 
     // left
     &__thumbnail-container {
