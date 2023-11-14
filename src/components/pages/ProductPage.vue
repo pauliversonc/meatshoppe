@@ -112,10 +112,14 @@
             <BaseButton btn-text="Add to cart"  :btn-outline="true" :btn-disabled="!!!product.stock" :btn-full-width="true" @click="buttonClicked('add')"/>
             
             <BaseButton btn-text="Buy now"  :btn-full-width="true" :btn-disabled="!!!product.stock" @click="buttonClicked('buy')"/>
+
+            
           </div>
 
             
         </form>
+
+        <button @click="openToast()">Open Toast</button>
 
         <div class="page__collapse">
             <BaseCollapse
@@ -310,6 +314,8 @@ export default {
 
   data() {
     return {
+      toastNum: 0,
+
       currentSlide: 0,
       activeCollpase: {
         description: false,
@@ -375,6 +381,10 @@ export default {
   },
 
   methods: {
+    openToast() {
+      this.$refs.toast.showToast(`${this.toastNum += 1} test this`);
+    },
+
     buttonClicked(button) {
       this.form.clickedButton = button;
     },
