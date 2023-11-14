@@ -11,14 +11,12 @@ const cartState = {
     //   "qty": 6,
     // },
 
-
-
   ],
 
   promoCodes: [
-    {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000},
-    {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000},
-    {"code" : "MAKEITHAPPEN11", "discount": 20, "minSpend": 500},
+    {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000, "qty": 10},
+    {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000, "qty": 20},
+    {"code" : "MAKEITHAPPEN11", "discount": 20, "minSpend": 500, "qty": 30},
   ],
 
   errors: {

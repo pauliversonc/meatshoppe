@@ -1,9 +1,7 @@
 <template>
-  <Transition >
     <div v-show="show" class="toast">
       {{ message }}
     </div>
-  </Transition>
 </template>
 
 <script>
@@ -14,11 +12,20 @@ export default {
     return {
       message: 'Something is Flashy',
       show: false,
+      timeoutId: null, // To store the timeout ID
     };
   },
 
   methods: {
     showToast(message, duration = 3000) {
+      // Clear the previous timeout if it exists
+      if (this.timeoutId) {
+        clearTimeout(this.timeoutId);
+      }
+      
+
+
+
       this.message = message
       this.show = true;
       setTimeout(() => {

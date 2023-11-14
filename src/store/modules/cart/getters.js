@@ -29,6 +29,10 @@ const cartGetters = {
   
     return totalProductSum;
   },
+
+  validatePromoCode: (state) => (code) => {
+    return state.promoCodes.find(product => product.code === code);
+  },
   
   
 }

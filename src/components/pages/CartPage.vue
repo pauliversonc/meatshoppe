@@ -265,7 +265,37 @@ export default {
     },
 
     addPromoCode() {
-      console.log('wow')
+      // check if promo code is valid 
+      // this returns object or undefined
+      const isValidated = this.$store.getters['cart/validatePromoCode'](this.promoCode);
+
+
+      // check if code is valid
+      if(isValidated) {
+       
+        // check if valid code qty
+        if(isValidated.qty > 0)  {
+
+
+          const isMatched = this.redeemedPromoCode.find(promo => promo.code === this.promoCode);
+
+          if (isMatched) {
+            console.log('Sorry, this promo code has already been used. Please try another code.')
+          } else {
+            console.log('Congratulations! Promo code successfully redeemed')
+            this.redeemedPromoCode.push(isValidated);
+            this.promoCode = "";
+          }
+
+
+
+
+        } else {
+          console.log('Sorry, the redemption limit for this promo code has been reached')
+        }
+      } else {
+        console.log('Invalid promo code. Please double-check and try again')
+      }
     },
 
     removePromoCode(index) {

@@ -9,7 +9,8 @@ const cartActions = {
 
   deleteProduct(context, payload) {
     context.commit('deleteProduct', payload);
-
   },
+
+
 }
 export default cartActions;
