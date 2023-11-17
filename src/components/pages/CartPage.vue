@@ -142,14 +142,16 @@
     </div>
 
   </div>
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import BaseHeadingFour from '../base/BaseHeadingFour.vue';
 import {mapGetters} from 'vuex';
+import BaseToast from "../base/BaseToast.vue";
 export default {
   name: "MeatshoppeCartPage",
-  components: {BaseHeadingFour},
+  components: {BaseHeadingFour, BaseToast},
   computed: {
     ...mapGetters({
       cartProducts: 'cart/getProducts',
@@ -268,34 +270,23 @@ export default {
       // check if promo code is valid 
       // this returns object or undefined
       const isValidated = this.$store.getters['cart/validatePromoCode'](this.promoCode);
-
-
-      // check if code is valid
-      if(isValidated) {
-       
-        // check if valid code qty
-        if(isValidated.qty > 0)  {
-
-
-          const isMatched = this.redeemedPromoCode.find(promo => promo.code === this.promoCode);
-
-          if (isMatched) {
-            console.log('Sorry, this promo code has already been used. Please try another code.')
-          } else {
-            console.log('Congratulations! Promo code successfully redeemed')
-            this.redeemedPromoCode.push(isValidated);
-            this.promoCode = "";
-          }
-
-
-
-
-        } else {
-          console.log('Sorry, the redemption limit for this promo code has been reached')
+        // check if code is valid
+        if(isValidated) {
+          
+          // check if valid code qty
+          if(isValidated.qty > 0)  {
+            
+            const isMatched = this.redeemedPromoCode.find(promo => promo.code === this.promoCode);
+            if (isMatched) this.$refs.toast.showToast('Sorry, this promo code has already been used. Please try another code');
+            else {
+              this.$refs.toast.showToast('Congratulations! Promo code successfully redeemed');
+              this.redeemedPromoCode.push(isValidated);
+              this.promoCode = "";
+            }
+          } 
+          else this.$refs.toast.showToast('Sorry, the redemption limit for this promo code has been reached');
         }
-      } else {
-        console.log('Invalid promo code. Please double-check and try again')
-      }
+        else this.$refs.toast.showToast('Invalid promo code. Please double-check and try again');
     },
 
     removePromoCode(index) {

@@ -119,8 +119,6 @@
             
         </form>
 
-        <button @click="openToast()">Open Toast</button>
-
         <div class="page__collapse">
             <BaseCollapse
             :border-bottom="true"
@@ -381,10 +379,6 @@ export default {
   },
 
   methods: {
-    openToast() {
-      this.$refs.toast.showToast(`${this.toastNum += 1} test this`);
-    },
-
     buttonClicked(button) {
       this.form.clickedButton = button;
     },
