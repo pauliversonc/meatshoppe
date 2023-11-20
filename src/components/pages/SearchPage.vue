@@ -406,6 +406,7 @@
 import products from "../../data/ck-products.json";
 import BaseLoading from "../base/BaseLoading.vue";
 import BaseToast from "../base/BaseToast.vue";
+import { takeMaxQty } from '../../utils/common.js'
 export default {
   name: "MeatshoppeSearchPage",
   components: {BaseLoading, BaseToast},
@@ -682,27 +683,10 @@ export default {
 
     },
 
-    getMaxQty(id ,weight = 1) {
-        // get product stock 
-        const [{stock}] = this.$store.getters['products/getProduct'](id);
-
-        // get temp deducted stock in cart
-        const cartStock = this.checkAccumulatedProductStock(id);
-
-        // get maxQty 
-        const maxQty = Math.floor((stock - cartStock) / +weight);
-
-        return maxQty;
+    getMaxQty(id, weight = 1) {
+      const store = this.$store;
+      return takeMaxQty(id, store, weight);
     },
-
-    // this will check the temp accumulated stock for 1kg and / or 15 kg
-    checkAccumulatedProductStock(id) {
-      // get temp stock added in cart
-      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
-      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
-      return tempAccumulatedStock;
-    },
-
 
     handleToggleCollapse(key) {
       // console.log(collapseName)

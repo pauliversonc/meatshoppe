@@ -9,7 +9,23 @@
     />
 
     <div class="feature" v-if="!isCarouselOn">
-      <BaseProduct v-for="index in featureCardCount" :key="index" />
+      <BaseProduct 
+        v-for="product in featuredProducts" 
+        :key="product.id"
+        :id="product.id"
+        :name="product.name"
+        :description="product.description"
+        :price="product.price"
+        :discount-percentage="product.discountPercentage"
+        :rating="product.rating"
+        :stock="product.stock"
+        :brand="product.brand"
+        :category="product.category"
+        :thumbnail="product.thumbnail"
+        :images="product.images"
+
+        @add-to-cart = "handleAddToCart"
+      />
     </div>
 
     <div class="feature" v-else>
@@ -25,19 +41,22 @@
     </div>
 
     <div class="feature__btn-box">
-      <BaseButton btn-text="See more" />
+      <BaseButton btn-text="See more" @click="test()" />
     </div>
   </div>
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+import BaseToast from "../base/BaseToast.vue";
+import { takeMaxQty } from '../../utils/common.js'
 // import BaseProduct from "../base/BaseProduct.vue";
 
 export default {
   name: "MeatshoppeTheFeature",
-  components: { Carousel, Slide, Navigation },
+  components: { Carousel, Slide, Navigation, BaseToast },
 
   watch: {
     vp(newValue) {
@@ -62,10 +81,16 @@ export default {
         return 10;
       }
     },
+
+    featuredProducts() {
+      return this.products.slice(0, this.featureCardCount);
+    },
   },
 
   data() {
     return {
+      products: {},
+
       settings: {
         itemsToShow: 1,
         snapAlign: "start",
@@ -93,10 +118,69 @@ export default {
     this.handleResizeVP();
   },
 
+  created() {
+    const featProducts = this.$store.getters['products/getFeatureProducts'];
+    this.products = featProducts;
+  },
+
   methods: {
+    handleAddToCart(id) {
+
+      const product = {
+        id,
+        weight: 1,
+        qty: 1,
+      }
+
+      // check max qty of the item/product
+      const maxQty = this.getMaxQty(id);
+
+      // check if item has stock
+      const isAvailable = (maxQty >= 1);
+
+      if(isAvailable) {
+        // if available | check if product already exist in cart
+        const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+        
+        if (retrievedProduct) {
+
+          const maxQty = this.getMaxQty(id);
+
+          const isAvailable = (maxQty >= 1);
+
+          if (isAvailable) {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('Item has been added to your shopping cart');
+          } else {
+            this.$refs.toast.showToast('Purchase limit has been exceeded');
+          }
+
+        } else {
+        this.$store.dispatch('cart/addToCart', product);
+        this.$refs.toast.showToast('New item has been added to your shopping cart');
+        }
+
+      } else {
+        this.$refs.toast.showToast('This product is out of stock');
+      }
+
+      },
+
+
+    getMaxQty(id, weight = 1) {
+      const store = this.$store;
+      return takeMaxQty(id, store, weight);
+    },
+
+
+
     handleResizeVP() {
       // Update the isMobileView value based on the screen width
       this.vp = window.innerWidth;
+    },
+
+    test(){
+      this.$refs.toast.showToast('Item has been added to your shopping cart');
     },
   },
 

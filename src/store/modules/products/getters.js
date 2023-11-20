@@ -35,6 +35,10 @@ const productsGetters = {
     return resp;
   },
 
+  getFeatureProducts(state) {
+    return state.products.slice(0, 10);
+  },
+
 
 }
 export default productsGetters;

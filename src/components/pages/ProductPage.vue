@@ -208,7 +208,7 @@
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import BaseToast from "../base/BaseToast.vue";
-
+import { takeMaxQty } from '../../utils/common.js'
 // import "vue3-carousel/dist/carousel.css";
 export default {
   name: 'MeatshoppeProductPage',
@@ -282,7 +282,7 @@ export default {
       handler(newValue) {
         // clear error
         if(newValue) this.errors.weight = "";
-        const maxQty = this.getMaxQty(newValue);
+        const maxQty = this.getMaxQty(this.product.id, newValue);
         
         // mutating qty
         // basically what happens here is that
@@ -410,7 +410,7 @@ export default {
           if(retrievedProduct) {
 
             // get max qty for the selected weight
-            const maxQty = this.getMaxQty(this.form.picked);
+            const maxQty = this.getMaxQty(this.product.id, this.form.picked);
 
             // existing product qty
             const isAvailable = (maxQty >= this.form.qty);
@@ -448,17 +448,9 @@ export default {
       this.form.qty = "";
     },
 
-    getMaxQty(weight) {
-        // get product stock 
-        const [{stock}] = this.$store.getters['products/getProduct'](this.product.id);
-
-        // get temp deducted stock in cart
-        const cartStock = this.checkAccumulatedProductStock(this.id);
-
-        // get maxQty 
-        const maxQty = Math.floor((stock - cartStock) / +weight);
-
-        return maxQty;
+    getMaxQty(id, weight = 1) {
+      const store = this.$store;
+      return takeMaxQty(id, store, weight);
     },
 
     handleGetProduct(productId){
@@ -475,7 +467,7 @@ export default {
       // when user input a non digit it will be deleted or ignored
       
         // get max qty base on weight
-        const maxQty = this.getMaxQty(this.form.picked);
+        const maxQty = this.getMaxQty(this.product.id, this.form.picked);
 
         // replace all non digit
         const sanitizedQty = +this.form.qty.replace(/\D/g, '');        
@@ -518,13 +510,7 @@ export default {
       }
     },
 
-    // this will check the temp accumulated stock for 1kg and / or 15 kg
-    checkAccumulatedProductStock(id) {
-      // get temp stock added in cart
-      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
-      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
-      return tempAccumulatedStock;
-    },
+
 
     // Handle qty onclick
     mutateQty(bool) {
@@ -537,11 +523,10 @@ export default {
         if (bool) {
           // NEW
 
-          const maxQty = this.getMaxQty(this.form.picked);
+          const maxQty = this.getMaxQty(this.product.id, this.form.picked);
 
           // increment by 1 the form qty value 
           const tempQty = (this.form.qty ? this.form.qty : 0) + 1;
-
 
           if (maxQty >= tempQty) {
             this.form.qty = tempQty;
