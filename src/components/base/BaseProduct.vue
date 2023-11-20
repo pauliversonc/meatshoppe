@@ -76,6 +76,7 @@
 <script>
 export default {
   name: "MeatshoppeBaseProduct",
+  emits: ['add-to-cart'],
   props: {
     id: Number,
     name: {
@@ -177,7 +178,7 @@ export default {
     },
 
     addToCart(id) {
-      console.log('add to cart',id)
+      this.$emit('add-to-cart', id);
     },
 
     
@@ -348,10 +349,21 @@ export default {
     align-items: center;
     border-radius: 4px;
     transform: translateY(-50%);
+    transition: background-color .4s ease;
+
+    &:hover {
+      background-color: $main;
+    }
+
+    &:hover .product__icon {
+      fill: $light-high;
+    }
   }
   &__icon {
     height: 1.2rem;
     width: 1.2rem;
+    transition: fill .4s ease;
+
   }
 }
 </style>

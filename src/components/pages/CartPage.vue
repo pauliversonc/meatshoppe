@@ -213,6 +213,8 @@ export default {
         weight,
       }
       this.$store.dispatch('cart/deleteProduct', product);
+      this.$refs.toast.showToast('The item has been removed from your cart');
+      
     },
 
     getMaxQty(qty, weight, productId) {
@@ -267,6 +269,7 @@ export default {
     },
 
     addPromoCode() {
+      
       // check if promo code is valid 
       // this returns object or undefined
       const isValidated = this.$store.getters['cart/validatePromoCode'](this.promoCode);

@@ -466,7 +466,6 @@ export default {
         // get maxQty 
         const maxQty = Math.floor((stock - cartStock) / +weight);
 
-        console.log(maxQty)
         return maxQty;
     },
 

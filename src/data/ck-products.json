@@ -9,7 +9,7 @@
     "price": 88,
     "category": ["chicken", "frozen"],
     "discountPercentage": 10,
-    "stock": 100,
+    "stock": 0,
     "thumbnail": "p-butobuto.jpg",
     "images": "p-butobuto.jpg",
     "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],

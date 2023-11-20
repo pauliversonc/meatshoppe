@@ -374,6 +374,8 @@
             :category="product.category"
             :thumbnail="product.thumbnail"
             :images="product.images"
+
+            @add-to-cart = "handleAddToCart"
           />
 
           <!-- <span v-else>wala na</span> -->
@@ -396,14 +398,18 @@
  
 
   </div>
+
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import products from "../../data/ck-products.json";
 import BaseLoading from "../base/BaseLoading.vue";
+import BaseToast from "../base/BaseToast.vue";
 export default {
   name: "MeatshoppeSearchPage",
-  components: [BaseLoading],
+  components: {BaseLoading, BaseToast},
+
   computed: {
     toggleFilterBtnName() {
       if (this.isTabPortView) {
@@ -634,6 +640,70 @@ export default {
 
 
   methods: {
+    handleAddToCart(id) {
+
+      const product = {
+        id,
+        weight: 1,
+        qty: 1,
+      }
+
+      // check max qty of the item/product
+      const maxQty = this.getMaxQty(id);
+      
+      // check if item has stock
+      const isAvailable = (maxQty >= 1);
+
+      if(isAvailable) {
+        // if available | check if product already exist in cart
+        const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+        
+        if (retrievedProduct) {
+
+          const maxQty = this.getMaxQty(id);
+
+          const isAvailable = (maxQty >= 1);
+
+          if (isAvailable) {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('Item has been added to your shopping cart');
+          } else {
+            this.$refs.toast.showToast('Purchase limit has been exceeded');
+          }
+
+        } else {
+        this.$store.dispatch('cart/addToCart', product);
+        this.$refs.toast.showToast('New item has been added to your shopping cart');
+        }
+
+      } else {
+        this.$refs.toast.showToast('This product is out of stock');
+      }
+
+    },
+
+    getMaxQty(id ,weight = 1) {
+        // get product stock 
+        const [{stock}] = this.$store.getters['products/getProduct'](id);
+
+        // get temp deducted stock in cart
+        const cartStock = this.checkAccumulatedProductStock(id);
+
+        // get maxQty 
+        const maxQty = Math.floor((stock - cartStock) / +weight);
+
+        return maxQty;
+    },
+
+    // this will check the temp accumulated stock for 1kg and / or 15 kg
+    checkAccumulatedProductStock(id) {
+      // get temp stock added in cart
+      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
+      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
+      return tempAccumulatedStock;
+    },
+
+
     handleToggleCollapse(key) {
       // console.log(collapseName)
       this.activeCollapse[key] = !this.activeCollapse[key]
