@@ -384,6 +384,7 @@ export default {
     },
 
     submit() {
+      let checker = false;
 
       this.errors.weight = this.form.picked ? "" : "Weight is required";
       this.errors.qty = this.form.qty ? "" : "Quantity is required";
@@ -401,12 +402,8 @@ export default {
 
         const action = this.form.clickedButton;
 
-        if(action === 'add') {
-          
-          // product from cart {id, weight, qty}
-          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
-          
-          
+        // product from cart {id, weight, qty}
+        const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
           
           // continue the validation when product retrieved success
           // if the product is found increase the qty in cart
@@ -423,6 +420,7 @@ export default {
               this.$store.dispatch('cart/addToCart', product);
               this.$refs.toast.showToast('Item has been added to your shopping cart');
               this.clearQty();
+              checker = true;
             } else {
               this.$refs.toast.showToast('Purchase limit has been exceeded');
             }
@@ -431,23 +429,17 @@ export default {
 
           // else push product to the cart
           else {
-            console.log('pasok')
             this.$store.dispatch('cart/addToCart', product);
             this.$refs.toast.showToast('New item has been added to your shopping cart');
             this.clearQty();
+
+            checker = true;
           }
           
-
-
-
-        }
-
-        if(action === 'buy') {
-          console.log('red')
-        }
-
-
-
+        // check if but button is clicked and checker is true
+        if(action === 'buy' && checker === true) 
+          // if success proceed to next page
+          this.$router.push('/cart');
       }
 
     },
