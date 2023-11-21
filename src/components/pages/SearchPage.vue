@@ -650,31 +650,31 @@ export default {
       }
 
       // check max qty of the item/product
-      const maxQty = this.getMaxQty(id);
+      const item = this.getMaxQty(id);
       
       // check if item has stock
-      const isAvailable = (maxQty >= 1);
+      if(item.stock) {
 
-      if(isAvailable) {
-        // if available | check if product already exist in cart
-        const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
-        
-        if (retrievedProduct) {
+        // check if item doesnt exceed the available stock
+        if (item.maxQty) {
 
-          const maxQty = this.getMaxQty(id);
-
-          const isAvailable = (maxQty >= 1);
-
-          if (isAvailable) {
+          // if available | check if product already exist in cart by using id and weight
+          // returns found object in cart or false
+          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          
+          // if product already exist on the cart // then increase
+          if (retrievedProduct) {
             this.$store.dispatch('cart/addToCart', product);
             this.$refs.toast.showToast('Item has been added to your shopping cart');
+
+          // else push new item
           } else {
-            this.$refs.toast.showToast('Purchase limit has been exceeded');
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('New item has been added to your shopping cart');
           }
 
         } else {
-        this.$store.dispatch('cart/addToCart', product);
-        this.$refs.toast.showToast('New item has been added to your shopping cart');
+          this.$refs.toast.showToast('Quantity in cart exceeds available stock');
         }
 
       } else {

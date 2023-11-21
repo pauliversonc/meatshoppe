@@ -226,10 +226,18 @@ export default {
 
         // get maxQty 
         const maxQty = Math.floor((stock - cartStock) / +weight);
-
+        
         const newQty = +maxQty + +qty;
 
         return newQty;
+    },
+
+    // this will check the temp accumulated stock for 1kg and / or 15 kg
+    checkAccumulatedProductStock(id) {
+      // get temp stock added in cart
+      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
+      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
+      return tempAccumulatedStock;
     },
 
     handleUpdateQuantity(event, weight, productId) {
@@ -241,14 +249,6 @@ export default {
 
       this.$store.dispatch('cart/updateQuantity', product);
 
-    },
-
-    // this will check the temp accumulated stock for 1kg and / or 15 kg
-    checkAccumulatedProductStock(id) {
-      // get temp stock added in cart
-      // this will return the actual stock / kg to be deducted = (80, 90, 100, etc..)
-      const tempAccumulatedStock = this.$store.getters['cart/getTotalStocks'](+id);
-      return tempAccumulatedStock;
     },
 
     getProductById(cart) {

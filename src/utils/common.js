@@ -13,5 +13,10 @@ export const takeMaxQty = (id, store, weight = 1) => {
 
   // Calculate max quantity
   const maxQty = Math.floor((stock - cartStock) / +weight);
-  return maxQty;
+
+  const data = {
+    stock,
+    maxQty
+  }
+  return data;
 };

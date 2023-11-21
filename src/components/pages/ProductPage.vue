@@ -278,12 +278,13 @@ export default {
   },
 
   watch: {
+    // 1 or 15
     'form.picked': {
       handler(newValue) {
         // clear error
         if(newValue) this.errors.weight = "";
-        const maxQty = this.getMaxQty(this.product.id, newValue);
-        
+        const {maxQty} = this.getMaxQty(this.product.id, newValue);
+
         // mutating qty
         // basically what happens here is that
         // when you try to set a qty but you want to change the weight
@@ -399,43 +400,46 @@ export default {
           qty: this.form.qty,
         }
 
-
+        // check which button is clicked
         const action = this.form.clickedButton;
 
-        // product from cart {id, weight, qty}
-        const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
-          
-          // continue the validation when product retrieved success
-          // if the product is found increase the qty in cart
-          if(retrievedProduct) {
+        // check max qty of the item/product
+        const item = this.getMaxQty(this.product.id, this.form.picked);
 
-            // get max qty for the selected weight
-            const maxQty = this.getMaxQty(this.product.id, this.form.picked);
+        // check if item has stock
+        if(item.stock) {
 
-            // existing product qty
-            const isAvailable = (maxQty >= this.form.qty);
+          // check if item doesnt exceed the available stock
+          if (item.maxQty) {
+
+            // if available | check if product already exist in cart by using id and weight
+            // returns found object in cart or false
+            const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
             
-            if(isAvailable) {
-              // add to cart if stock is greater than productQty to add
+            // if product already exist on the cart // then increase
+            if (retrievedProduct) {
               this.$store.dispatch('cart/addToCart', product);
               this.$refs.toast.showToast('Item has been added to your shopping cart');
               this.clearQty();
               checker = true;
+            
+            // else push new item
             } else {
-              this.$refs.toast.showToast('Purchase limit has been exceeded');
+              this.$store.dispatch('cart/addToCart', product);
+              this.$refs.toast.showToast('New item has been added to your shopping cart');
+              this.clearQty();
+              checker = true;
             }
 
+          } else {
+            this.$refs.toast.showToast('Quantity in cart exceeds available stock');
           }
 
-          // else push product to the cart
-          else {
-            this.$store.dispatch('cart/addToCart', product);
-            this.$refs.toast.showToast('New item has been added to your shopping cart');
-            this.clearQty();
+        } else {
+          this.$refs.toast.showToast('This product is out of stock');
+        }
 
-            checker = true;
-          }
-          
+
         // check if but button is clicked and checker is true
         if(action === 'buy' && checker === true) 
           // if success proceed to next page
@@ -467,7 +471,7 @@ export default {
       // when user input a non digit it will be deleted or ignored
       
         // get max qty base on weight
-        const maxQty = this.getMaxQty(this.product.id, this.form.picked);
+        const {maxQty} = this.getMaxQty(this.product.id, this.form.picked);
 
         // replace all non digit
         const sanitizedQty = +this.form.qty.replace(/\D/g, '');        
@@ -515,7 +519,6 @@ export default {
     // Handle qty onclick
     mutateQty(bool) {
 
-      // console.log(typeof this.form.picked, this.form.picked)
       // check if user selects a weight
       if(Number.isInteger(this.form.picked)) {
 
@@ -523,7 +526,7 @@ export default {
         if (bool) {
           // NEW
 
-          const maxQty = this.getMaxQty(this.product.id, this.form.picked);
+          const {maxQty} = this.getMaxQty(this.product.id, this.form.picked);
 
           // increment by 1 the form qty value 
           const tempQty = (this.form.qty ? this.form.qty : 0) + 1;
@@ -547,12 +550,7 @@ export default {
       else {
         // console.log('please select weight')
         this.errors.weight = "Weight is required"
-      
       }
-
-
-
-
 
     },
 
