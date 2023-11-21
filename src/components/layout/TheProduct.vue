@@ -21,7 +21,7 @@
 
     <div class="product-l">
       <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="product in products" :key="product.id">
+        <Slide v-for="(product, index) in products" :key="index">
           <BaseProduct
             :id="product.id"
             :name="product.name"
@@ -34,6 +34,8 @@
             :category="product.category"
             :thumbnail="product.thumbnail"
             :images="product.images"
+
+            @add-to-cart = "handleAddToCart"
           />
 
         </Slide>
@@ -44,12 +46,16 @@
       </Carousel>
     </div>
   </div>
+
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import BaseOffer from "../base/BaseOffer.vue";
+import BaseToast from "../base/BaseToast.vue";
+import { takeMaxQty } from '../../utils/common.js'
 export default {
   name: "MeatshoppeTheProduct",
   components: {
@@ -57,6 +63,7 @@ export default {
     Slide,
     Navigation,
     BaseOffer,
+    BaseToast
   },
 
   props: {
@@ -115,7 +122,55 @@ export default {
    
   },
 
-  methods: {},
+  methods: {
+    handleAddToCart(id) {
+
+      const product = {
+        id,
+        weight: 1,
+        qty: 1,
+      }
+
+      // check max qty of the item/product
+      const item = this.getMaxQty(id);
+
+      // check if item has stock
+      if(item.stock) {
+
+        // check if item doesnt exceed the available stock
+        if (item.maxQty) {
+
+          // if available | check if product already exist in cart by using id and weight
+          // returns found object in cart or false
+          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          
+          // if product already exist on the cart // then increase
+          if (retrievedProduct) {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('Item has been added to your shopping cart');
+
+          // else push new item
+          } else {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('New item has been added to your shopping cart');
+          }
+
+        } else {
+          this.$refs.toast.showToast('Quantity in cart exceeds available stock');
+        }
+
+      } else {
+        this.$refs.toast.showToast('This product is out of stock');
+      }
+
+},
+
+
+    getMaxQty(id, weight = 1) {
+      const store = this.$store;
+      return takeMaxQty(id, store, weight);
+    },
+  },
 };
 </script>
 

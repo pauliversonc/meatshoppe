@@ -307,6 +307,7 @@ export default {
     font-size: 1.6rem;
     font-weight: 600;
     color: $black;
+    min-height: 3.838rem;
 
     // min-height: 3em; /* Two line breaks plus a little extra space */
     line-height: 1.2em; /* Adjust line height to your liking */
