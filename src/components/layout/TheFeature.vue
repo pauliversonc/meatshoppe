@@ -30,8 +30,22 @@
 
     <div class="feature" v-else>
       <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="index in featureCardCount" :key="index">
-          <BaseProduct />
+        <Slide v-for="(product, index) in featuredProducts"  :key="index">
+          <BaseProduct 
+          :id="product.id"
+          :name="product.name"
+          :description="product.description"
+          :price="product.price"
+          :discount-percentage="product.discountPercentage"
+          :rating="product.rating"
+          :stock="product.stock"
+          :brand="product.brand"
+          :category="product.category"
+          :thumbnail="product.thumbnail"
+          :images="product.images"
+
+          @add-to-cart = "handleAddToCart"
+         />
         </Slide>
 
         <template #addons>
@@ -41,7 +55,7 @@
     </div>
 
     <div class="feature__btn-box">
-      <BaseButton btn-text="See more" @click="test()" />
+      <BaseButton btn-text="See more" @click="changeRoute()" />
     </div>
   </div>
   <BaseToast ref="toast"></BaseToast>
@@ -180,8 +194,8 @@ export default {
       this.vp = window.innerWidth;
     },
 
-    test(){
-      this.$refs.toast.showToast('Item has been added to your shopping cart');
+    changeRoute(){
+      this.$router.push('/search');
     },
   },
 
