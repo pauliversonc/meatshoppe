@@ -20,3 +20,11 @@ export const takeMaxQty = (id, store, weight = 1) => {
   }
   return data;
 };
+
+export const formatCurrency = (price) => {
+  return new Intl.NumberFormat('en-PH', {
+    style: 'currency',
+    currency: 'PHP',
+    minimumFractionDigits: 2,
+  }).format(price);
+};

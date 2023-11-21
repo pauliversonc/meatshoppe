@@ -31,8 +31,8 @@
           <!-- Main Details -->
           <div class="page__content--brand">{{ product.brand }}</div>
           <div class="page__content--name">{{ product.name }}</div>
-          <div class="page__content--price">&#8369;{{ markdownPrice }}</div>
-          <div class="page__content--dprice" v-if="!!product.discountPercentage">&#8369;{{ oldPrice }}</div>
+          <div class="page__content--price">{{ markdownPrice }}</div>
+          <div class="page__content--dprice" v-if="!!product.discountPercentage">{{ oldPrice }}</div>
           <div class="page__content--off" v-if="!!product.discountPercentage">{{product.discountPercentage}}% off</div>
           <div class="page__content--stock " :class="stockClasses"><strong>{{ stockText }}</strong> &mdash; {{ product.stock }}kg available</div>
           <!-- ./Main Details -->
@@ -208,7 +208,7 @@
 <script>
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import BaseToast from "../base/BaseToast.vue";
-import { takeMaxQty } from '../../utils/common.js'
+import { takeMaxQty, formatCurrency } from '../../utils/common.js'
 // import "vue3-carousel/dist/carousel.css";
 export default {
   name: 'MeatshoppeProductPage',
@@ -263,17 +263,19 @@ export default {
 
       if (!!percentage) {
         let result = value - (percentage / 100) * value;
-        const result2 = result.toFixed(2);
+        const result2 = this.formattedPrice(result);
         return result2;
       } else {
-        return value.toFixed(2);
+        return this.formattedPrice(value);
       }
     },
 
     oldPrice() {
       let value = this.product.price * ((+this.form.picked) ? +this.form.picked : 1);
-      return value.toFixed(2);
+      return this.formattedPrice(value);
     }
+
+
 
   },
 
@@ -303,9 +305,6 @@ export default {
     'form.qty': {
       handler(newValue,) {
         if(newValue) this.errors.qty = "";
-        
-
-      
       },
       deep: true, // This is necessary when watching nested properties
     },
@@ -382,6 +381,10 @@ export default {
   methods: {
     buttonClicked(button) {
       this.form.clickedButton = button;
+    },
+
+    formattedPrice(price) {
+      return formatCurrency(price);
     },
 
     submit() {

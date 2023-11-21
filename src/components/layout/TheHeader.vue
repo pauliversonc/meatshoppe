@@ -21,13 +21,13 @@
   >
     <header class="header" :class="{ pr: isSearchVisible }">
       <div class="header__nav">
-        <a href="#" class="header__logo-link">
+        <router-link to="/home" class="header__logo-link">
           <img
             src="../../assets/images/logo/logo.png"
             class="header__logo"
             alt="Meatshoppe icon"
           />
-        </a>
+        </router-link>
 
         <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }">
           <li class="header__nav-list">

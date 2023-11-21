@@ -141,17 +141,46 @@
       </aside>
     </div>
 
+    <div class="cart__suggestions">
+      <BaseHeadingFive 
+      heading-title="You may also like"
+      :margin-bottom="true"
+      />
+
+      <Carousel v-bind="settings" :breakpoints="breakpoints">
+        <Slide v-for="slide in 10" :key="slide">
+          <BaseProduct />
+        </Slide>
+
+        <template #addons>
+          <Navigation />
+        </template>
+      </Carousel>
+    </div>
+
+
   </div>
+
+
+
   <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
+import { Carousel, Navigation, Slide } from "vue3-carousel";
 import BaseHeadingFour from '../base/BaseHeadingFour.vue';
 import {mapGetters} from 'vuex';
 import BaseToast from "../base/BaseToast.vue";
 export default {
   name: "MeatshoppeCartPage",
-  components: {BaseHeadingFour, BaseToast},
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
+    BaseHeadingFour,
+    BaseToast
+  },
+
   computed: {
     ...mapGetters({
       cartProducts: 'cart/getProducts',
@@ -200,7 +229,36 @@ export default {
       redeemedPromoCode: [
         // {"code" : "MEATSHOPPE2023", "discount": 200, "minSpend": 2000},
         // {"code" : "BEATTHEHEAT123", "discount": 50, "minSpend": 1000},
-      ]
+      ],
+
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "start",
+      },
+      // breakpoints are mobile first
+      // any settings not specified will fallback to the carousel settings
+      breakpoints: {
+        378: {
+          itemsToShow: 2,
+          snapAlign: "start",
+        },
+        543: {
+          itemsToShow: 3,
+          snapAlign: "start",
+        },
+
+        // 700px and up
+        769: {
+          itemsToShow: 4,
+          snapAlign: "start",
+        },
+        // 1024 and up
+        1041: {
+          itemsToShow: 5  ,
+          snapAlign: "start",
+        },
+      },
+
     };
   },
 
@@ -363,6 +421,12 @@ export default {
       grid-template-columns: 1fr;
       gap: 0;
     }
+  }
+
+  &__suggestions {
+    padding-top: 9.6rem;
+    max-width: 120rem;
+    margin: 0 auto;
   }
 
 
@@ -655,4 +719,9 @@ export default {
     padding: .6rem 0;
   }
 }
+
+.carousel__slide {
+  padding: 0.5rem;
+}
+
 </style>
