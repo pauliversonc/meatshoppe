@@ -51,9 +51,9 @@
         {{ name }}
       </p>
       <div class="product__price-box">
-        <span class="product__price-new">&#8369;{{ markdownPrice }}</span>
+        <span class="product__price-new">{{ markdownPrice }}</span>
         <span v-if="discountPercentage" class="product__price-old"
-          >&#8369;{{ price.toFixed(2) }}</span
+          >{{ formattedPrice(price) }}</span
         >
       </div>
 
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { formatCurrency } from '../../utils/common.js';
 export default {
   name: "MeatshoppeBaseProduct",
   emits: ['add-to-cart'],
@@ -148,10 +149,10 @@ export default {
 
       if (!!percentage) {
         let result = value - (percentage / 100) * value;
-        const result2 = result.toFixed(2);
+        const result2 = this.formattedPrice(result);
         return result2;
       } else {
-        return value.toFixed(2);
+        return this.formattedPrice(value);
       }
     },
   },
@@ -162,6 +163,10 @@ export default {
   mounted() {},
 
   methods: {
+    formattedPrice(price) {
+      return formatCurrency(price);
+    },
+
     goToProductPage(productId) {
       
       // check if productId is valid
