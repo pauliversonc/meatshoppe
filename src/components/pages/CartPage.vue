@@ -46,12 +46,12 @@
 
                 <!-- right for price -->
                 <div class="cart-item__price" v-if="product.discountPercentage">
-                  <strong>{{ formatCurrency(((product.price * (1-(product.discountPercentage / 100))) * product.weight) * product.qty) }}</strong>
-                  <span>{{ formatCurrency(product.price * product.weight * product.qty)  }}</span>
+                  <strong>{{ formattedPrice(((product.price * (1-(product.discountPercentage / 100))) * product.weight) * product.qty) }}</strong>
+                  <span>{{ formattedPrice(product.price * product.weight * product.qty)  }}</span>
                 </div>
 
                 <div class="cart-item__price" v-else>
-                  <strong>{{ formatCurrency(product.price * product.weight * product.qty) }}</strong>
+                  <strong>{{ formattedPrice(product.price * product.weight * product.qty) }}</strong>
                 </div>
 
               </div>
@@ -87,7 +87,7 @@
         <!-- Semi Table -->
         <div class="cart-cell">
           <div class="cart-cell__title">Subtotal</div>
-          <div class="cart-cell__price">{{ formatCurrency(subTotal) }}</div>
+          <div class="cart-cell__price">{{ formattedPrice(subTotal) }}</div>
         </div>
 
         <div class="cart-cell">
@@ -97,13 +97,13 @@
 
         <div class="cart-cell">
           <div class="cart-cell__title">Coupon discounts</div>
-          <div class="cart-cell__price">{{ formatCurrency(couponDiscountTotal) }}</div>
+          <div class="cart-cell__price">{{ formattedPrice(couponDiscountTotal) }}</div>
         </div>
 
         <!-- Total bordered-->
         <div class="cart-cell__total">
           <div class="cart-cell__title">Total</div>
-          <div class="cart-cell__price">{{ formatCurrency(total) }}</div>
+          <div class="cart-cell__price">{{ formattedPrice(total) }}</div>
         </div>
 
 
@@ -171,6 +171,7 @@ import { Carousel, Navigation, Slide } from "vue3-carousel";
 import BaseHeadingFour from '../base/BaseHeadingFour.vue';
 import {mapGetters} from 'vuex';
 import BaseToast from "../base/BaseToast.vue";
+import { formatCurrency } from '../../utils/common.js';
 export default {
   name: "MeatshoppeCartPage",
   components: {
@@ -265,6 +266,10 @@ export default {
 
 
   methods: {
+    formattedPrice(price) {
+      return formatCurrency(price);
+    },
+
     handleDeleteProduct(productId, weight) {
       const product = {
         id: productId,
@@ -357,14 +362,6 @@ export default {
     handleInputCode() {
       // Remove non-alphanumeric characters and convert to uppercase
       this.promoCode = this.promoCode.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 14);
-    },
-
-    formatCurrency(price) {
-      return new Intl.NumberFormat('en-PH', {
-        style: 'currency',
-        currency: 'PHP',
-        minimumFractionDigits: 2,
-      }).format(price);
     },
 
     applyDiscount(price, discountPercentage, weight, qty) {
