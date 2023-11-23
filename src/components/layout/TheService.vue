@@ -21,12 +21,13 @@
           },
         }"
       >
+      
         <h3 class="service__heading">
-          We are here to make your
-          <span class="service__span">website</span> look more
-          <span class="service__span">elegant</span> and stylish!
+          We are here to serve you
+          <span class="service__span">quality meat</span> where every
+          <span class="service__span">cut</span> tells a delicious story!
         </h3>
-        <BaseButton btn-text="Shop now" />
+        <BaseButton btn-text="Shop now" @click="changeRoute"/>
       </div>
 
       <div class="service__card-box"
@@ -92,7 +93,7 @@ export default {
         },
         {
           title: "Want to buy offline?",
-          desc: "Come visit us in Brgy. Conchu Purok 4",
+          desc: "Come visit us in Brgy. Conchu, TMC",
           icon: "shopping-bag",
           main: false,
         },
@@ -102,7 +103,11 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    changeRoute() {
+      this.$router.push('/search');
+    },
+  },
 };
 </script>
 

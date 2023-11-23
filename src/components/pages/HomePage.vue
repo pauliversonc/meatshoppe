@@ -9,13 +9,13 @@
     :paddingT="true"
 
     heading-span="Our Pork Products"
-    heading-text="Check our fantastic Pork"
-    heading-desc="Lorem must be angry right now! "
+    heading-text="Succulent Pork Perfection Awaits"
+    heading-desc="Dive into deliciousness with our premium beef offerings"
 
     span="Special offer"
-    sub-text="Succulent Garden"
-    text="Gift boxes"
-    paragraph="Lorem ipsum dolor, ur adipisicing elit. Amet ipsum culpa numquam exaliquid obcaecati?"
+    sub-text="Rated Top Tier"
+    text="Pork Chop"
+    paragraph="Marbleized tenderness, awaiting culinary alchemy for succulent transformation"
     :align="true"
     image-name="offer-1-min.png"
     :products="products"
@@ -25,13 +25,13 @@
 
  <TheProduct
     heading-span="Our Chicken Products"
-    heading-text="Check our fantastic Chicken"
-    heading-desc="Lorem must be angry right now! "
+    heading-text="Savor The Juiciness Of Our Amazing Chicken"
+    heading-desc="Delight in the brilliance of our best chicken range"
 
     span="Special offer"
-    sub-text="Succulent Garden"
-    text="Gift boxes"
-    paragraph="Lorem ipsum dolor, ur adipisicing elit. Amet ipsum culpa numquam exaliquid obcaecati?"
+    sub-text="Premium Chicken"
+    text="Drumstick"
+    paragraph="Supple flesh with a marbling of fat promises succulence and tenderness upon preparation"
     :align="false"
     image-name="offer-2-min.png"
 
@@ -41,13 +41,13 @@
 
   <TheProduct
     heading-span="Our Beef Products"
-    heading-text="Check our fantastic Beef"
-    heading-desc="Lorem must be angry right now! "
+    heading-text="Tender, Juicy Beef That Melts In Your Mouth"
+    heading-desc="Explore excellence with our quality beef choices"
 
     span="Special offer"
-    sub-text="Succulent Garden"
-    text="Gift boxes"
-    paragraph="Lorem ipsum dolor, ur adipisicing elit. Amet ipsum culpa numquam exaliquid obcaecati?"
+    sub-text="Succulent Grading"
+    text="Raw Steak"
+    paragraph="With vibrant marbling and juicy anticipation, it's ready for the grill's fiery dance"
     :align="true"
     image-name="offer-3-min.png"
 
@@ -58,13 +58,13 @@
 
   <TheProduct
     heading-span="Our ready to cook products"
-    heading-text="Check our fantastic ready to cook products"
-    heading-desc="Lorem must be angry right now! "
+    heading-text="Convenience Meets Culinary Delight"
+    heading-desc="Dine like a chef with our ready-to-cook creations"
 
     span="Special offer"
-    sub-text="Succulent Garden"
-    text="Gift boxes"
-    paragraph="Lorem ipsum dolor, ur adipisicing elit. Amet ipsum culpa numquam exaliquid obcaecati?"
+    sub-text="Classic Filipino"
+    text="longganisa"
+    paragraph="Filipino Sausage: Sweet, savory Filipino sausage, a taste of culinary heritage in every bite"
     :align="false"
     image-name="offer-4-min.png"
 

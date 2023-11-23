@@ -43,7 +43,7 @@
                 ></use>
               </svg>
 
-              127 Brgy Conchu, Trece Martires City, Cavite
+              Brgy Conchu, Trece Martires City, Cavite
             </a>
           </li>
 
@@ -55,18 +55,18 @@
               <use xlink:href="../../assets/icons/sprite.svg#icon-phone"></use>
             </svg>
               
-              +63 919 666 4541</a
+              +63 915 543 6882</a
             >
           </li>
 
           <li class="footer__contact-list">
         
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
+            <a href="mailto:meatshoppe@gmail.com" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-mail"></use>
             </svg>
-              pauliversonc@gmail.com</a
+              meatshoppe@gmail.com</a
             >
           </li>
         </ul>

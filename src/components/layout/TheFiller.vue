@@ -19,7 +19,7 @@
     }"
   >
     <span class="filler__text">Get to know our premium meat and service</span>
-    <a class="filler__link" href="#"> learn more</a>
+    <router-link  class="filler__link" to="/about"> learn more</router-link>
   </div>
 </template>
 
