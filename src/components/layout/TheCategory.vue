@@ -37,7 +37,7 @@
         />
 
         <div class="category__card-overlay">
-          <BaseButton :btn-text="category.catBtnName" :btn-light="true" />
+          <BaseButton :btn-text="category.catBtnName" :btn-light="true" @click="changeRouteBy(category.catBtnName)"/>
         </div>
       </div>
       <!-- /.card -->
@@ -108,6 +108,23 @@ export default {
   },
 
   methods: {
+    changeRouteBy(category) {
+      const arr = category.split(' ');
+      
+      const searchKey = arr[1];
+
+      if(searchKey === 'More') this.$router.push('/search');
+      else {
+        this.$router.push({
+          path: '/search',
+          query: { keyword: searchKey }
+        });
+      }
+
+
+
+    },
+
     handleResize() {
       // Update the isMobileView value based on the screen width
       this.isMobileView = window.innerWidth <= 400;
