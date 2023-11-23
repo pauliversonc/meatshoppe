@@ -8,9 +8,9 @@
         <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
 
         <!-- wrapper flex-row-->
-        <div class="cart-item__wrapper" v-if="productsDetails.length > 0">
+        <div class="cart-item__wrapper" v-if="productsDetails.length > 0" @click="goToProduct">
           <!-- v-for -->
-          <div class="cart-item" v-for="(product, index) in productsDetails" :key="index">
+          <div class="cart-item" :data-product-id="product.id" v-for="(product, index) in productsDetails" :key="index">
 
             <!-- left -->
             <figure class="cart-item__thumbnail-container">
@@ -22,7 +22,6 @@
 
               <!-- up flex-row -->
               <div class="cart-item__details">
-                
                 
                 <!-- left for details-->
                 <div class="cart-item__details-wrap">
@@ -40,7 +39,6 @@
                   </div>
 
                 </div>
-
 
                 <!-- right for price -->
                 <div class="cart-item__price" v-if="product.discountPercentage">
@@ -66,7 +64,6 @@
 
               </div>
             </div>
-
 
           </div>
         </div>
@@ -283,6 +280,19 @@ export default {
 
 
   methods: {
+    goToProduct(event) {
+      const elTitle = event.target.closest('.cart-item__title');
+      const elThumb = event.target.closest('.cart-item__thumbnail');
+
+      if(elTitle === null && elThumb === null) return
+
+      const prod = event.target.closest('.cart-item').dataset.productId;
+      // console.log(prod.dataset.productId)
+      const productId = +prod;
+
+      this.$router.push(`/product/${productId}`);
+    },
+
     getMaxQty2(id, weight = 1) {
       const store = this.$store;
       return takeMaxQty(id, store, weight);
@@ -529,6 +539,7 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer;
     }
 
     // right
@@ -561,9 +572,9 @@ export default {
     &__title {
       font-size: 1.6rem;
       color: $black;
-      // border: 1px solid red;
       font-weight: 600;
       line-height: 1.4;
+      cursor: pointer;
     }
 
     &__brand {
