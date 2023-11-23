@@ -190,8 +190,22 @@
       />
 
       <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="slide in 10" :key="slide">
-          <BaseProduct />
+        <Slide v-for="(product, index) in productsSuggestion"  :key="index">
+          <BaseProduct 
+          :id="product.id"
+          :name="product.name"
+          :description="product.description"
+          :price="product.price"
+          :discount-percentage="product.discountPercentage"
+          :rating="product.rating"
+          :stock="product.stock"
+          :brand="product.brand"
+          :category="product.category"
+          :thumbnail="product.thumbnail"
+          :images="product.images"
+
+          @add-to-cart = "handleAddToCart"
+          />
         </Slide>
 
         <template #addons>
@@ -225,9 +239,11 @@ export default {
 
   
   created() {
+
+    // console.log('created')
     this.handleGetProduct(this.id); // product data
                                     // check if product exist in cart
-    
+    this.fetchProducts();
   },
 
   computed: {
@@ -280,6 +296,12 @@ export default {
   },
 
   watch: {
+    $route() {
+      this.handleGetProduct(this.id); // product data
+                                      // check if product exist in cart
+      this.fetchProducts();
+    },
+
     // 1 or 15
     'form.picked': {
       handler(newValue) {
@@ -369,6 +391,8 @@ export default {
       
       // product displayed in product page
       product: {},
+
+      productsSuggestion: [],
     };
 
     
@@ -379,6 +403,53 @@ export default {
   },
 
   methods: {
+    handleAddToCart(id) {
+
+      const product = {
+        id,
+        weight: 1,
+        qty: 1,
+      }
+
+      // check max qty of the item/product
+      const item = this.getMaxQty(id);
+
+      // check if item has stock
+      if(item.stock) {
+
+        // check if item doesnt exceed the available stock
+        if (item.maxQty) {
+
+          // if available | check if product already exist in cart by using id and weight
+          // returns found object in cart or false
+          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          
+          // if product already exist on the cart // then increase
+          if (retrievedProduct) {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('Item has been added to your shopping cart');
+          
+          // else push new item
+          } else {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('New item has been added to your shopping cart');
+          }
+
+        } else {
+          this.$refs.toast.showToast('Quantity in cart exceeds available stock');
+        }
+
+      } else {
+        this.$refs.toast.showToast('This product is out of stock');
+      }
+
+    },
+
+    fetchProducts() {
+      const featProducts = this.$store.getters['products/getFeatureProducts'];
+      this.productsSuggestion = featProducts;
+    },
+
     buttonClicked(button) {
       this.form.clickedButton = button;
     },
@@ -463,7 +534,6 @@ export default {
     handleGetProduct(productId){
       const [product] = this.$store.getters['products/getProduct'](+productId);
       this.product = product;
-
     },
 
     handleInputQty(event) {
