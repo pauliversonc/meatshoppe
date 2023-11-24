@@ -19,7 +19,7 @@
     >
       <BaseHeadingOne
         headingText="About Us"
-        headingDesc="Lorem ipsum dolor nes bueast"
+        headingDesc="Explore the story of our modest origins"
       />
     </div>
 
@@ -47,25 +47,28 @@
             },
           }"
         >
-
-          <BaseHeadingFive 
-          v-if="!isTabletView"
-          heading-title="Our Story"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="!isTabletView"
+            heading-title="Our Story"
+            :margin-bottom="true"
           />
 
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            In the heart of a small kitchen,
+            <strong>Meatshoppe</strong> embarked on a remarkable journey fueled
+            by a dream and the savory scent of quality meats. From our humble
+            beginnings, navigating challenges such as limited resources and
+            fierce competition, we emerged as a cherished meat shop deeply
+            rooted in the community.
           </p>
           <br />
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            Beyond offering exceptional flavors, each cut reflects a narrative
+            of resilience, innovation, and an enduring commitment to delivering
+            the finest meats. As we invite you to savor our story at your table,
+            we express gratitude for your role in transforming our early
+            aspirations into a thriving reality, and we eagerly anticipate many
+            more chapters together.
           </p>
         </div>
 
@@ -89,12 +92,10 @@
             },
           }"
         >
-   
-
-          <BaseHeadingFive 
-          v-if="isTabletView"
-          heading-title="Our Story"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="isTabletView"
+            heading-title="Our Story"
+            :margin-bottom="true"
           />
 
           <img
@@ -128,12 +129,7 @@
           },
         }"
       >
- 
-        <BaseHeadingFive 
-          heading-title="Our Team"
-          :center="true"
-          />
-
+        <BaseHeadingFive heading-title="Our Team" :center="true" />
       </div>
       <!-- 120 -->
       <div class="about__team">
@@ -146,50 +142,6 @@
           :member-prof="member.prof"
           :member-img="member.img"
         ></BaseMember>
-
-        <!-- <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-1-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-2-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-3-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div>
-
-        <div class="about__member">
-          <img
-            class="about__member--img"
-            src="../../assets/images/about/member-4-sm.jpg"
-            alt=""
-            srcset=""
-          />
-          <span class="about__member--name">Dr. John Smith</span>
-          <span class="about__member--prof">Civil Engineer</span>
-        </div> -->
       </div>
 
       <!-- ./120 -->
@@ -219,12 +171,10 @@
             },
           }"
         >
-   
-
-          <BaseHeadingFive 
-          v-if="isTabletView"
-          heading-title="Our Vision"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="isTabletView"
+            heading-title="Our Vision"
+            :margin-bottom="true"
           />
 
           <img
@@ -255,25 +205,23 @@
             },
           }"
         >
-    
-
-          <BaseHeadingFive 
-          v-if="!isTabletView"
-          heading-title="Our Vision"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="!isTabletView"
+            heading-title="Our Vision"
+            :margin-bottom="true"
           />
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            At Meatshoppe, our vision is to be the heartbeat of culinary
+            experiences, where every cut tells a story of uncompromising
+            quality, innovation, and a passion for exceptional flavors. We
+            strive to be more than a meat shop.
           </p>
           <br />
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            We're forging a future as a trusted destination for elevated
+            culinary experiences. Through innovation, sustainability, and
+            community commitment, we redefine excellence in meats, leaving a
+            lasting impact on our valued customers' palates and memories.
           </p>
         </div>
       </div>
@@ -301,26 +249,25 @@
             },
           }"
         >
-       
-
-          <BaseHeadingFive 
-          v-if="!isTabletView"
-          heading-title="Our Mission"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="!isTabletView"
+            heading-title="Our Mission"
+            :margin-bottom="true"
           />
 
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            At Meatshoppe, our mission is to passionately provide an
+            unparalleled culinary experience through the finest meats. We are
+            committed to sourcing, preparing, and delivering top-quality
+            products, infused with innovation and a dedication to
+            sustainability.
           </p>
           <br />
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            We strive to surpass customer expectations, leaving a mark of
+            exceptional taste and ethical practices. With each cut, we redefine
+            industry standards, ensuring Meatshoppe stands as a beacon of
+            quality and culinary delight in every home.
           </p>
         </div>
 
@@ -344,12 +291,10 @@
             },
           }"
         >
-      
-
-          <BaseHeadingFive 
-          v-if="isTabletView"
-          heading-title="Our Mission"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="isTabletView"
+            heading-title="Our Mission"
+            :margin-bottom="true"
           />
 
           <img
@@ -384,11 +329,10 @@
             },
           }"
         >
-
-          <BaseHeadingFive 
-          v-if="isTabletView"
-          heading-title="Our Values"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="isTabletView"
+            heading-title="Our Values"
+            :margin-bottom="true"
           />
 
           <img
@@ -419,25 +363,29 @@
             },
           }"
         >
-
-          <BaseHeadingFive 
-          v-if="!isTabletView"
-          heading-title="Our Values"
-          :margin-bottom="true"
+          <BaseHeadingFive
+            v-if="!isTabletView"
+            heading-title="Our Values"
+            :margin-bottom="true"
           />
 
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            At Meatshoppe, we are guided by a commitment to
+            <strong>Quality Excellence</strong> and <strong>Innovation</strong>,
+            delivering top-tier meats while constantly enhancing the customer
+            experience. Our dedication to
+            <strong>Sustainability</strong> ensures responsible practices, and
+            <strong>Customer-Centricity</strong> is at the core of surpassing
+            expectations.
           </p>
           <br />
           <p class="about__paragraph">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-            consequatur fugiat debitis id ex, qui, doloribus laudantium ullam
-            officiis dignissimos sed odit optio a animi eaque error consequuntur
-            necessitatibus ad!
+            Upholding <strong>Integrity</strong>, fostering
+            <strong>Community Engagement</strong>, and embracing a Passion for
+            <strong>Culinary Delight</strong>, we continuously strive for
+            excellence. With a commitment to
+            <strong>Continuous Improvement</strong>, we promise not just quality
+            meats but an elevated culinary journey for our valued customers.
           </p>
         </div>
       </div>
@@ -458,23 +406,23 @@ export default {
       isTabletView: false,
       members: [
         {
-          name: "Dr. John Smith",
+          name: "Engr. Jade Mark Aliñab",
           prof: "Civil Engineer",
           img: "member-1-sm.jpg",
         },
         {
-          name: "Dr. John Smith",
-          prof: "Civil Engineer",
+          name: "Ms. Natalie Rose Carter, MBA",
+          prof: "Procurement Manager",
           img: "member-2-sm.jpg",
         },
         {
-          name: "Dr. John Smith",
-          prof: "Civil Engineer",
+          name: "Ms. Jennifer Lee, CPA",
+          prof: "Accounting Manager",
           img: "member-3-sm.jpg",
         },
         {
-          name: "Dr. John Smith",
-          prof: "Civil Engineer",
+          name: "Dr. Wilson Jeremiah Largo, MD",
+          prof: "Medical Doctor",
           img: "member-4-sm.jpg",
         },
       ],

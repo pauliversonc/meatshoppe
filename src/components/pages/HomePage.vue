@@ -64,7 +64,7 @@
     span="Special offer"
     sub-text="Classic Filipino"
     text="longganisa"
-    paragraph="Filipino Sausage: Sweet, savory Filipino sausage, a taste of culinary heritage in every bite"
+    paragraph="Sweet, Savory Filipino Sausage, A taste of culinary heritage in every bite"
     :align="false"
     image-name="offer-4-min.png"
 

@@ -35,6 +35,7 @@ export default {
     line-height: 1;
     letter-spacing: 1px;
     color: $black;
+    text-align: center;
 
     &__desc {
     font-size: 1.6rem;
