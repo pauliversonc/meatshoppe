@@ -28,6 +28,8 @@
           Send us a message and we'll get your questions answered as soon as
           possible.
         </p>
+
+
       </h6>
       <div class="contact__container">
         <div
@@ -50,7 +52,8 @@
           }"
         >
           <form action="#" @submit.prevent="submitForm" class="contact__form">
-
+            <h3 class="contact__form-head" >We love to hear from you</h3>
+            <p class="contact__form-para">Please be advised that the details you provided here are not to be disclosed publicly.</p>
 
             <!-- fname -->
             <BaseInputText 
@@ -102,162 +105,6 @@
               text-input-type="textarea"
             />
          
- 
-            <!-- <div class="base-input">
-              <div class="base-input__form-group">
-                <input
-                  class="input"
-                  type="text"
-                  id="name"
-                  v-model.trim="form.name"
-                  @focus="resetInputClass('name')"
-                  @blur="validateInput('name')"
-                  ref="name"
-                />
-
-                <label class="label" for="name">* Firstname</label>
-                <svg
-                  ref="nameIcon"
-                  class="icon"
-                  role="button"
-                  @click="clearInput('name')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.name }}</span>
-            </div>
-
-            <div class="base-input">
-              <div class="base-input__form-group">
-                <input
-                  class="input"
-                  type="text"
-                  id="lname"
-                  v-model.trim="form.lname"
-                  @focus="resetInputClass('lname')"
-                  @blur="validateInput('lname')"
-                  ref="lname"
-                />
-
-                <label class="label" for="lname">* Lastname</label>
-                <svg
-                  ref="lnameIcon"
-                  class="icon"
-                  role="button"
-                  @click="clearInput('lname')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.lname }}</span>
-            </div>
-
-
-            <div class="base-input">
-              <div class="base-input__form-group">
-                <input
-                  class="input"
-                  type="text"
-                  id="email"
-                  v-model.trim="form.email"
-                  @focus="resetInputClass('email')"
-                  @blur="validateInput('email')"
-                  ref="email"
-                />
-
-                <label class="label" for="email">* Email Address</label>
-                <svg
-                  ref="emailIcon"
-                  class="icon"
-                  role="button"
-                  @click="clearInput('email')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.email }}</span>
-            </div>
-
-            <div class="base-input">
-              <div class="base-input__form-group">
-                <input
-                  class="input"
-                  type="text"
-                  id="contact"
-                  v-model.trim="form.contact"
-                  @focus="resetInputClass('contact')"
-                  @blur="validateInput('contact')"
-                  ref="contact"
-                />
-
-                <label class="label" for="contact">* Contact Number</label>
-                <svg
-                  ref="contactIcon"
-                  class="icon"
-                  role="button"
-                  @click="clearInput('contact')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.contact }}</span>
-            </div>
-
-            <div class="base-input">
-              <div class="base-input__form-group">
-                <input
-                  class="input"
-                  type="text"
-                  id="subject"
-                  v-model.trim="form.subject"
-                  @focus="resetInputClass('subject')"
-                  @blur="validateInput('subject')"
-                  ref="subject"
-                />
-
-                <label class="label" for="subject">* Purpose of email</label>
-                <svg
-                  ref="subjectIcon"
-                  class="icon"
-                  role="button"
-                  @click="clearInput('subject')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.subject }}</span>
-            </div>
-
-            <div class="base-input">
-              <div class="base-input__form-group">
-                <textarea
-                  class="input textarea"
-                  type="text"
-                  id="body"
-                  v-model.trim="form.body"
-                  @focus="resetInputClass('body')"
-                  @blur="validateInput('body')"
-                  ref="body"
-                  rows="5"
-                >
-                </textarea>
-
-                <label class="label textarea" for="body"
-                  >* Tell me something</label
-                >
-                <svg
-                  ref="bodyIcon"
-                  class="icon textarea"
-                  role="button"
-                  @click="clearInput('body')"
-                >
-                  <use xlink:href="../../assets/icons/sprite.svg#icon-x"></use>
-                </svg>
-              </div>
-              <span class="base-input__message">{{ errors.body }}</span>
-            </div> -->
-
             <BaseButton
               btn-text="Submit"
               :btn-outline="true"
@@ -291,27 +138,64 @@
         }"
       >
         <li class="faq__list">
-          <span class="faq__title">General Inquiries</span>
-          <p class="faq__body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-            numquam totam! Ducimus!
-          </p>
+
+          <div class="faq__icon-box">
+            <svg class="faq__icon">
+              <use
+                xlink:href="../../assets/icons/sprite.svg#icon-mail"
+              ></use>
+            </svg>
+          </div>
+
+          <div class="faq__list-wrap">
+            <span class="faq__title">Chat to us</span>
+            <p class="faq__body">
+              Our friendly team is here to help.
+              <br>
+              <strong>meatshoppe.OFCL@gmail.com</strong>
+            </p>
+          </div>
+
+
         </li>
 
         <li class="faq__list">
-          <span class="faq__title">General Inquiries</span>
-          <p class="faq__body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-            numquam totam! Ducimus!
-          </p>
+          <div class="faq__icon-box">
+            <svg class="faq__icon">
+              <use
+                xlink:href="../../assets/icons/sprite.svg#icon-map-pin"
+              ></use>
+            </svg>
+          </div>
+
+          <div class="faq__list-wrap">
+            <span class="faq__title">Visit us</span>
+            <p class="faq__body">
+              Come say hello at our main store.
+              <br>
+              <strong>Brgy. Conchu, Trece Martires City, Cavite</strong>
+            </p>
+          </div>
         </li>
 
         <li class="faq__list">
-          <span class="faq__title">General Inquiries</span>
-          <p class="faq__body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-            numquam totam! Ducimus!
-          </p>
+
+          <div class="faq__icon-box">
+            <svg class="faq__icon">
+              <use
+                xlink:href="../../assets/icons/sprite.svg#icon-phone"
+              ></use>
+            </svg>
+          </div>
+
+          <div class="faq__list-wrap">
+            <span class="faq__title">Call us</span>
+            <p class="faq__body">
+              Mon-Sat from 8am to 8pm.
+              <br>
+              <strong>+63 915 543 6882</strong>
+            </p>
+          </div>
         </li>
 
         <div class="faq__socials">
@@ -610,11 +494,13 @@ export default {
     font-size: 4.8rem;
     line-height: 1;
     letter-spacing: -2px;
+    color: $black;
   }
 
   &__para {
     font-size: 1.6rem;
     font-weight: 400;
+    color: $black-tint;
   }
 
   &__container {
@@ -645,7 +531,18 @@ export default {
   &__form {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    // gap: 1rem;
+  }
+
+  &__form-head {
+    font-size: 2.4rem;
+    color: $black;
+  }
+  &__form-para {
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: $black-tint;
   }
 }
 
@@ -682,7 +579,38 @@ export default {
   }
   &__list {
     list-style: none;
+
+    display: flex;
+    gap: 1rem;
   }
+
+  &__icon-box {
+    align-self: start;
+
+    padding: 1rem;
+    border: 2px solid $white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    transform: translateY(-20%);
+
+  
+  }
+
+  &__icon {
+    height: 2.1rem;
+    width: 2.1rem;
+    cursor: pointer;
+
+    &:hover {
+      animation: bounce .5s ease;
+      fill: $main;
+    }
+  }
+
   &__title {
     font-size: 1.8rem;
     font-weight: 600;
@@ -711,6 +639,10 @@ export default {
 
     .social__list {
       list-style: none;
+
+      &:hover .footer__icon{
+        fill: $main;
+      }
     }
     .social__link {
       text-decoration: none;
@@ -718,6 +650,8 @@ export default {
     .footer__icon {
       height: 2.4rem;
       width: 2.4rem;
+
+      transition: fill .3s ease;
     }
   }
 }
@@ -835,5 +769,12 @@ export default {
     font-weight: inherit;
     color: $main;
   }
+}
+
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
 }
 </style>
