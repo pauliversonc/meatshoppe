@@ -29,18 +29,18 @@
           />
         </router-link>
 
-        <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }">
+        <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }" @click="closeNav">
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="/home">Home</router-link>
+            <router-link class="header__nav-link" data-route="Home" to="/home">Home</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="/search">Shop</router-link>
+            <router-link class="header__nav-link" data-route="Shop" to="/search">Shop</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="/about">About</router-link>
+            <router-link class="header__nav-link" data-route="About" to="/about">About</router-link>
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" to="/contact">Contact</router-link>
+            <router-link class="header__nav-link" data-route="Contact" to="/contact">Contact</router-link>
           </li>
         </ul>
       </div>
@@ -205,14 +205,6 @@ export default {
   },
 
   watch: {
-    $route() {
-      // Handle route changes here
-      if(!this.isActive) return
-      this.isActive = false;
-
-    },
-
-
     isActive(newValue) {
       if (newValue) {
         document.body.classList.add("show-menu");
@@ -243,6 +235,12 @@ export default {
   },
 
   methods: {
+    closeNav(event) {
+      const link = event.target.closest('.header__nav-link');
+      if(this.isActive  && !!link) this.isActive = false;
+      else return
+    },
+
     goToCart() {
       this.$router.push('/cart');
     },
