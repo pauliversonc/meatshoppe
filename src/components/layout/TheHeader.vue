@@ -205,6 +205,14 @@ export default {
   },
 
   watch: {
+    $route() {
+      // Handle route changes here
+      if(!this.isActive) return
+      this.isActive = false;
+
+    },
+
+
     isActive(newValue) {
       if (newValue) {
         document.body.classList.add("show-menu");
