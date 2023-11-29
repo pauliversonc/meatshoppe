@@ -73,11 +73,11 @@ export default {
   max-width: 120rem;
 
   &__wrapper {
-    padding: 7rem 2rem 8rem 2rem;
+    padding: 9rem 2rem 8rem 2rem;
 
         //  400 px below
     @media only screen and (max-width: 25em) {
-      padding: 0 2rem 2rem 2rem;
+      padding: 9rem 2rem 2rem 2rem;
 
     }
   }

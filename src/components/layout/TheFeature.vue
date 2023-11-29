@@ -8,7 +8,25 @@
       
     />
 
-    <div class="feature" v-if="!isCarouselOn">
+    <div class="feature" v-if="!isCarouselOn"
+    v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :visibleOnce="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 300,
+      },
+    }"
+    >
       <BaseProduct 
         v-for="product in featuredProducts" 
         :key="product.id"
@@ -28,7 +46,25 @@
       />
     </div>
 
-    <div class="feature" v-else>
+    <div class="feature" v-else
+    v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :visibleOnce="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 300,
+      },
+    }"
+    >
       <Carousel v-bind="settings" :breakpoints="breakpoints">
         <Slide v-for="(product, index) in featuredProducts"  :key="index">
           <BaseProduct 
@@ -54,7 +90,25 @@
       </Carousel>
     </div>
 
-    <div class="feature__btn-box">
+    <div class="feature__btn-box"
+    v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :visibleOnce="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 300,
+      },
+    }"
+    >
       <BaseButton btn-text="See more" @click="changeRoute()" />
     </div>
   </div>

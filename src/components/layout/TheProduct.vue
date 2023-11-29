@@ -19,7 +19,26 @@
     >
     </BaseOffer>
 
-    <div class="product-l">
+    <div class="product-l"
+    v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :visibleOnce="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 300,
+      },
+    }"
+    
+    >
       <Carousel v-bind="settings" :breakpoints="breakpoints">
         <Slide v-for="(product, index) in products" :key="index">
           <BaseProduct
