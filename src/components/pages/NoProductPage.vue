@@ -1,7 +1,26 @@
 <template>
   <div class="no-product">
 
-    <div class="no-product__wrapper">
+    <div class="no-product__wrapper"
+
+
+    v-motion
+      :initial="{
+        x: -200,
+        opacity: 0,
+      }"
+      :enter="{
+        x: 0,
+        opacity: 1,
+        transition: {
+          type: 'spring',
+          stiffness: 250,
+          damping: 100,
+          mass: 5,
+          delay: 400
+        },
+      }"
+    >
 
         <div class="no-product__img-con">
           <img class="no-product__img" src="../../assets/images/alerts/undraw_no_data_re_kwbl.svg" alt="Product Not found">
@@ -17,7 +36,25 @@
 
     </div>
 
-    <div class="no-product__suggestions">
+    <div class="no-product__suggestions"
+    v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :enter="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 200,
+        mass: 1,
+        delay: 800,
+      },
+    }"
+    >
       <BaseHeadingFive 
       heading-title="You may also like"
       :margin-bottom="true"

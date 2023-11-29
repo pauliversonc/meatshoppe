@@ -1,5 +1,23 @@
 <template>
-  <div class="not-found">
+  <div class="not-found"
+  v-motion
+    :initial="{
+      y: 50,
+      opacity: 0,
+    }"
+    :enter="{
+      y: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        stiffness: 450,
+        damping: 100,
+        mass: 1,
+        delay: 300,
+      },
+    }"
+  >
 
       <div class="not-found__img-con">
         <img class="not-found__img" src="../../assets/images/alerts/undraw_page_not_found_re_e9o6.svg" alt="Error 404, Page not found">
