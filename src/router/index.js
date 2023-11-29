@@ -24,6 +24,7 @@ const router = createRouter({
   scrollBehavior: () => ({
     top: 0,
   }),
+  linkActiveClass: 'active',
 });
 
 
