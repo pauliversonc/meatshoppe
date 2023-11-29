@@ -34,7 +34,6 @@
 
   &__img-con {
     width: 30%;
-    border: 1px solid red;
 
     @media only screen and (max-width: 58.375em) {
       width: 40%;
