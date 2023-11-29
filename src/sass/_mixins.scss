@@ -126,13 +126,15 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &.active {
     background-position: 0;
     fill: $main;
   }
 
   &:hover::before,
-  &:focus::before {
+  &:focus::before,
+  &.active::before {
     width: 100%;
   }
 }

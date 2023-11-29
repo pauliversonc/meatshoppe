@@ -411,12 +411,12 @@ export default {
           img: "member-1-sm.jpg",
         },
         {
-          name: "Ms. Natalie Rose Carter, MBA",
+          name: "Ms. Natalia Florencia Carter, MBA",
           prof: "Procurement Manager",
           img: "member-2-sm.jpg",
         },
         {
-          name: "Ms. Jennifer Lee, CPA",
+          name: "Ms. Katherina Lee, CPA",
           prof: "Accounting Manager",
           img: "member-3-sm.jpg",
         },

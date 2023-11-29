@@ -77,13 +77,13 @@
 
         <ul class="footer__lists">
           <li class="footer__list">
-            <a href="#" class="footer__link">Home</a>
+            <router-link to="/home" class="footer__link">Home</router-link>
           </li>
           <li class="footer__list">
-            <a href="#" class="footer__link">Service</a>
+            <router-link to="/about" class="footer__link">About</router-link>
           </li>
           <li class="footer__list">
-            <a href="#" class="footer__link">Shop</a>
+            <router-link to="/search" class="footer__link">Shop</router-link>
           </li>
         </ul>
       </div>
@@ -197,7 +197,7 @@
   }"
     
     
-    >Copyright &#169; 2023 by, ECO Builder Engineering Services. All rights
+    >Copyright &#169; {{ yearNow }} Paul Iverson Cortez | Meatshoppe. All rights
       reserved.</span
     >
   </div>
@@ -208,6 +208,12 @@ import BaseHeadingFour from '../base/BaseHeadingFour.vue';
 export default {
   name: "MeatshoppeTheFooter",
   components: {BaseHeadingFour},
+  computed: {
+    yearNow() {
+      const currentDate = new Date();
+      return currentDate.getFullYear();
+    },
+  },
   data() {
     return {};
   },
@@ -333,7 +339,8 @@ export default {
   }
 
   &__contact-link:link,
-  &__contact-link:visited {
+  &__contact-link:visited,
+  router-link-active {
     text-decoration: none;
     color: $black-tint;
     font-style: normal;
@@ -354,7 +361,8 @@ export default {
   }
 
   &__link:link,
-  &__link:visited {
+  &__link:visited,
+  router-link-active {
     text-decoration: none;
     color: $black-tint;
     @include link-animate;
