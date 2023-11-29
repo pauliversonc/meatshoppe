@@ -61,12 +61,12 @@
 
           <li class="footer__contact-list">
         
-            <a href="mailto:meatshoppe@gmail.com" class="footer__contact-link"
+            <a href="mailto:meatshoppe.OFCL@gmail.com" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-mail"></use>
             </svg>
-              meatshoppe@gmail.com</a
+              meatshoppe.OFCL@gmail.com</a
             >
           </li>
         </ul>

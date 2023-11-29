@@ -51,6 +51,7 @@
             v-if="!isTabletView"
             heading-title="Our Story"
             :margin-bottom="true"
+            
           />
 
           <p class="about__paragraph">
@@ -96,6 +97,7 @@
             v-if="isTabletView"
             heading-title="Our Story"
             :margin-bottom="true"
+            :center="true"
           />
 
           <img
@@ -175,6 +177,7 @@
             v-if="isTabletView"
             heading-title="Our Vision"
             :margin-bottom="true"
+            :center="true"
           />
 
           <img
@@ -253,6 +256,7 @@
             v-if="!isTabletView"
             heading-title="Our Mission"
             :margin-bottom="true"
+            
           />
 
           <p class="about__paragraph">
@@ -295,6 +299,7 @@
             v-if="isTabletView"
             heading-title="Our Mission"
             :margin-bottom="true"
+            :center="true"
           />
 
           <img
@@ -333,6 +338,7 @@
             v-if="isTabletView"
             heading-title="Our Values"
             :margin-bottom="true"
+            :center="true"
           />
 
           <img
@@ -367,6 +373,7 @@
             v-if="!isTabletView"
             heading-title="Our Values"
             :margin-bottom="true"
+            
           />
 
           <p class="about__paragraph">
@@ -593,6 +600,10 @@ export default {
     @media only screen and (max-width: 37.5em) {
       grid-row: 1;
       margin-bottom: 2rem;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 
