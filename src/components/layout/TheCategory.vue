@@ -37,7 +37,7 @@
         />
 
         <div class="category__card-overlay">
-          <BaseButton :btn-text="category.catBtnName" :btn-light="true" @click="changeRouteBy(category.catBtnName)"/>
+          <BaseButton :btn-text="category.catBtnName" :btn-light="true" @click="changeRouteBy(category.catBtnName)" />
         </div>
       </div>
       <!-- /.card -->
@@ -61,7 +61,7 @@
             />
 
             <div class="category__card-overlay">
-              <BaseButton :btn-text="category.catBtnName" :btn-light="true" />
+              <BaseButton :btn-text="category.catBtnName" :btn-light="true"  />
             </div>
           </div>
           <!-- /.card -->

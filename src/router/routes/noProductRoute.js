@@ -1,7 +1,7 @@
-import NotfoundPage from '../../components/pages/NotfoundPage.vue';
+import NoProductPage from '../../components/pages/NoProductPage.vue';
 
 const noProductRoute = {
-  path: '/noProduct', name: 'noProduct',  component: NotfoundPage,
+  path: '/noProduct', name: 'noProduct',  component: NoProductPage,
 }
 
 export default noProductRoute;

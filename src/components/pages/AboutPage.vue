@@ -413,12 +413,12 @@ export default {
       isTabletView: false,
       members: [
         {
-          name: "Engr. Jade Mark Aliñab",
+          name: "Engr. Wilson Mark Aliñab",
           prof: "Civil Engineer",
           img: "member-1-sm.jpg",
         },
         {
-          name: "Ms. Natalia Florencia Carter, MBA",
+          name: "Ms. Florencia Abad, MBA",
           prof: "Procurement Manager",
           img: "member-2-sm.jpg",
         },
@@ -428,7 +428,7 @@ export default {
           img: "member-3-sm.jpg",
         },
         {
-          name: "Dr. Wilson Jeremiah Largo, MD",
+          name: "Dr. Jade Miah Largo, MD",
           prof: "Medical Doctor",
           img: "member-4-sm.jpg",
         },

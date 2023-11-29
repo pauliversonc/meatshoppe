@@ -1,5 +1,7 @@
 <template>
-  <h1 class="heading-one__wrapper">
+  <h1 class="heading-one__wrapper"
+      :class="[{'p-2': addPadding}]"
+  >
     <span class="heading-one">{{ headingText }}</span>
     <p class="heading-one__desc">{{ headingDesc }}</p>
   </h1>
@@ -17,6 +19,11 @@ export default {
       type: String,
       required: false,
     },
+    addPadding: {
+      type: Boolean,
+      required: false,
+      default: true,
+    }
   },
   data() {
     return {};
@@ -42,14 +49,33 @@ export default {
     color: $black-tint;
     // margin-top: 1rem;
     font-weight: normal;
+
+    @media only screen and (max-width: 37.5em) {
+      text-align: center;
+    }
   }
 
   &__wrapper {
     display: flex;
     flex-direction: column;
-    // align-items: center;
+    align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: 37.5em) {
+      background: rgba(255,255,255,0.5);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+  }
+
+  &__wrapper.p-2 {
+    @media only screen and (max-width: 37.5em) {
+      padding: 2rem;
+    }
   }
     
 }
+
+
 </style>
