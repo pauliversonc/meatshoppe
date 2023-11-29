@@ -1,36 +1,189 @@
 <template>
   <div class="no-product">
 
-      <div class="no-product__img-con">
-        <img class="no-product__img" src="../../assets/images/alerts/undraw_no_data_re_kwbl.svg" alt="Product Not found">
-      </div>
+    <div class="no-product__wrapper">
 
-      <BaseHeadingOne
-        headingText="No Products Found"
-        headingDesc="Apologies, the requested product is currently unavailable. You may explore alternatives below"
-        :add-padding="false"
+        <div class="no-product__img-con">
+          <img class="no-product__img" src="../../assets/images/alerts/undraw_no_data_re_kwbl.svg" alt="Product Not found">
+        </div>
+
+        <BaseHeadingOne
+          headingText="No Products Found"
+          headingDesc="Apologies, the requested product is currently unavailable. You may explore alternatives below"
+          :add-padding="false"
+        />
+
+
+
+    </div>
+
+    <div class="no-product__suggestions">
+      <BaseHeadingFive 
+      heading-title="You may also like"
+      :margin-bottom="true"
       />
 
+      <Carousel v-bind="settings" :breakpoints="breakpoints">
+        <Slide v-for="(product, index) in productsSuggestion"  :key="index">
+          <BaseProduct 
+          :id="product.id"
+          :name="product.name"
+          :description="product.description"
+          :price="product.price"
+          :discount-percentage="product.discountPercentage"
+          :rating="product.rating"
+          :stock="product.stock"
+          :brand="product.brand"
+          :category="product.category"
+          :thumbnail="product.thumbnail"
+          :images="product.images"
 
+          @add-to-cart = "handleAddToCart"
+          />
+        </Slide>
+
+        <template #addons>
+          <Navigation />
+        </template>
+      </Carousel>
+
+    </div>
 
   </div>
+
+  <BaseToast ref="toast"></BaseToast>
 </template>
+
+<script>
+import { Carousel, Navigation, Slide } from "vue3-carousel";
+import BaseToast from "../base/BaseToast.vue";
+import { takeMaxQty, formatCurrency } from '../../utils/common.js';
+export default {
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
+    BaseToast
+  },
+
+  created() {
+    this.fetchProducts();
+  },
+
+  data() {
+    return {
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "start",
+      },
+      // breakpoints are mobile first
+      // any settings not specified will fallback to the carousel settings
+      breakpoints: {
+        378: {
+          itemsToShow: 2,
+          snapAlign: "start",
+        },
+        543: {
+          itemsToShow: 3,
+          snapAlign: "start",
+        },
+
+        // 700px and up
+        769: {
+          itemsToShow: 4,
+          snapAlign: "start",
+        },
+        // 1024 and up
+        1041: {
+          itemsToShow: 5  ,
+          snapAlign: "start",
+        },
+      },
+
+      productsSuggestion: [],
+    }
+  },
+
+  methods: {
+    getMaxQty(id, weight = 1) {
+      const store = this.$store;
+      return takeMaxQty(id, store, weight);
+    },
+
+    formattedPrice(price) {
+      return formatCurrency(price);
+    },
+
+    fetchProducts() {
+      const featProducts = this.$store.getters['products/getFeatureProducts'];
+      this.productsSuggestion = featProducts;
+    },
+
+    handleAddToCart(id) {
+
+      const product = {
+        id,
+        weight: 1,
+        qty: 1,
+      }
+
+      // check max qty of the item/product
+      const item = this.getMaxQty(id);
+
+      // check if item has stock
+      if(item.stock) {
+
+        // check if item doesnt exceed the available stock
+        if (item.maxQty) {
+
+          // if available | check if product already exist in cart by using id and weight
+          // returns found object in cart or false
+          const retrievedProduct = this.$store.getters['cart/getProductCart'](product);
+          
+          // if product already exist on the cart // then increase
+          if (retrievedProduct) {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('Item has been added to your shopping cart');
+          
+          // else push new item
+          } else {
+            this.$store.dispatch('cart/addToCart', product);
+            this.$refs.toast.showToast('New item has been added to your shopping cart');
+          }
+
+        } else {
+          this.$refs.toast.showToast('Quantity in cart exceeds available stock');
+        }
+
+      } else {
+        this.$refs.toast.showToast('This product is out of stock');
+      }
+
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 
 .no-product {
-  padding-top: 7rem;
-
   padding: 11rem 2rem 6rem 2rem;
-  // height: calc(60vh - 7rem);
 
-  max-width: 120rem;
-  margin: 0 auto;
+  &__wrapper {
+    max-width: 120rem;
+    margin: 0 auto;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__suggestions {
+    padding-top: 9.6rem;
+    max-width: 120rem;
+    margin: 0 auto;
+  }
 
   &__img-con {
     width: 30%;
@@ -47,7 +200,11 @@
   &__img {
     width: 100%;
   }
-}
-</style>
 
-<!-- <img class="not-found__img" src="../../assets/images/alerts/undraw_page_not_found_re_e9o6.svg" alt="Error 404, Page not found"> -->
+}
+
+.carousel__slide {
+  padding: 0.5rem;
+}
+
+</style>
