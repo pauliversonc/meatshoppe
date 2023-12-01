@@ -239,10 +239,9 @@ export default {
 
   
   created() {
-
-    // console.log('created')
-    this.handleGetProduct(this.id); // product data
-                                    // check if product exist in cart
+    // get product data (single)
+    this.handleGetProduct(this.id); 
+    // get products (for suggestions)
     this.fetchProducts();
   },
 
@@ -297,8 +296,9 @@ export default {
 
   watch: {
     $route() {
-      this.handleGetProduct(this.id); // product data
-                                      // check if product exist in cart
+      // get product data (single)
+      this.handleGetProduct(this.id); 
+      // get products (for suggestions)
       this.fetchProducts();
     },
 

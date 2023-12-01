@@ -1,4 +1,4 @@
-import productData from "../../../data/ck-products.json";
+import productData from "../../../data/products.json";
 
 const productsState = {
   products: productData,

@@ -403,7 +403,7 @@
 </template>
 
 <script>
-import products from "../../data/ck-products.json";
+import products from "../../data/products.json";
 import BaseLoading from "../base/BaseLoading.vue";
 import BaseToast from "../base/BaseToast.vue";
 import { takeMaxQty } from '../../utils/common.js'

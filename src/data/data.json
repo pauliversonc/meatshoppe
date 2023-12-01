@@ -1,0 +1,572 @@
+[
+  {
+    "id": 1,
+    "name": "Beef Kaldereta Cut",
+    "description": "Indulge in the succulence of Beef Kaldereta Cut from TenderBite Emporium, a 14-pound masterpiece perfect for hearty dishes.",
+    "code": "012345678901",
+    "brand": "tenderbite emporium",
+    "weight": [1, 14],
+    "price": 388,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "kaldereta"
+    
+    
+  },
+  {
+    "id": 2,
+    "name": "Beef Ground Round",
+    "description": "Savor the versatility of Beef Ground Round from Carnivore Haven, a 24-pound choice ideal for mouthwatering burgers or rich meat sauces.",
+    "code": "123456789012",
+    "brand": "carnivore haven",
+    "weight": [1, 24],
+    "price": 648,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "ground"
+    
+    
+  },
+  {
+    "id": 3,
+    "name": "Beef Sirloin",
+    "description": "Experience the exquisite tenderness of Beef Sirloin from MeatMasters Boutique, a 22-pound cut renowned for its robust flavor.",
+    "code": "234567890123",
+    "brand": "meatmasters boutique",
+    "weight": [1, 22],
+    "price": 664,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "sirloin"
+    
+    
+  },
+  {
+    "id": 4,
+    "name": "Beef Prime Rib",
+    "description": "Delight in the perfect balance of marbling and savory goodness with a 12-pound Beef Prime Rib from GrillGlory Emporium.",
+    "code": "345678901234",
+    "brand": "grillglory emporium",
+    "weight": [1, 12],
+    "price": 1985,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "rib"
+    
+    
+  },
+  {
+    "id": 5,
+    "name": "Beef Loin Steak",
+    "description": "GrillGourmet Meats presents Beef Loin Steak, a 14-pound culinary delight known for its tenderness and rich flavor.",
+    "code": "456789012345",
+    "brand": "grillgourmet meats",
+    "weight": [1, 14],
+    "price": 1150,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "loin"
+    
+    
+  },
+  {
+    "id": 6,
+    "name": "Beef Marrow",
+    "description": "Enhance your culinary creations with Flavorfiesta Meats' Beef Marrow, a 10-pound treasure perfect for soups or spreading on crusty bread.",
+    "code": "567890123456",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 10],
+    "price": 317,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "marrow"
+    
+    
+  },
+  {
+    "id": 7,
+    "name": "Beef Shank",
+    "description": "SizzleCraft Provisions presents Beef Shank, a 12-pound cut ideal for slow-cooking and creating rich, savory broths.",
+    "code": "678901234567",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 12],
+    "price": 578,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "shank"
+    
+    
+  },
+  {
+    "id": 8,
+    "name": "Chicken Drumstick",
+    "description": "Cutabove Carnivores offers Chicken Drumsticks, 22 pounds of versatile and delicious poultry perfect for various culinary creations.",
+    "code": "789012345678",
+    "brand": "cutabove carnivores",
+    "weight": [1, 22],
+    "price": 224,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "drumstick"
+    
+    
+  },
+  {
+    "id": 9,
+    "name": "Chicken Feet",
+    "description": "SavoryCraze Butchery presents Chicken Feet, 20 pounds of poultry goodness perfect for making flavorful stocks and broths.",
+    "code": "890123456789",
+    "brand": "savorycraze butchery",
+    "weight": [1, 20],
+    "price": 140,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "feet"
+    
+    
+  },
+  {
+    "id": 10,
+    "name": "Chicken Breast Fillet",
+    "description": "TenderBite Emporium's Chicken Breast Fillet, a 16-pound offering of lean poultry ideal for a variety of culinary delights.",
+    "code": "901234567890",
+    "brand": "tenderbite emporium",
+    "weight": [1, 16],
+    "price": 180,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "breast"
+    
+    
+  },
+  {
+    "id": 11,
+    "name": "Chicken Wings 3 Joints",
+    "description": "Enjoy the succulence of Chicken Wings 3 Joints from MeatMasters Boutique, a 20-pound choice perfect for flavorful wing recipes.",
+    "code": "112233445566",
+    "brand": "meatmasters boutique",
+    "weight": [1, 20],
+    "price": 220,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "wings"
+    
+    
+  },
+  {
+    "id": 12,
+    "name": "Chicken Whole",
+    "description": "Experience the full flavor of Chicken Whole from Carnivore Haven, a 10-pound option perfect for roasting or braising.",
+    "code": "223344556677",
+    "brand": "carnivore haven",
+    "weight": [1, 10],
+    "price": 160,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "whole"
+    
+    
+  },
+  {
+    "id": 13,
+    "name": "Chicken Quarter Leg",
+    "description": "GrillGourmet Meats presents Chicken Quarter Leg, a 16-pound choice offering a balance of juicy dark and white meat.",
+    "code": "334455667788",
+    "brand": "grillgourmet meats",
+    "weight": [1, 16],
+    "price": 190,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "quarter leg"
+    
+    
+  },
+  {
+    "id": 14,
+    "name": "Chicken Liver",
+    "description": "SizzleCraft Provisions offers Chicken Liver, 18 pounds of rich and flavorful organ meat perfect for various culinary applications.",
+    "code": "445566778899",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 18],
+    "price": 251,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "liver"
+    
+    
+  },
+  {
+    "id": 15,
+    "name": "Chicken Neck Skin Out",
+    "description": "Cutabove Carnivores presents Chicken Neck Skin Out, a 14-pound option for those who appreciate lean poultry cuts.",
+    "code": "556677889900",
+    "brand": "cutabove carnivores",
+    "weight": [1, 14],
+    "price": 98,
+    "category": ["chicken","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "neck"
+    
+    
+  },
+  {
+    "id": 16,
+    "name": "Filipino Longganisa",
+    "description": "Flavorfiesta Meats introduces Filipino Longganisa, a 26-pound pack of delightful Filipino sausages, perfect for breakfast or any meal.",
+    "code": "667788990011",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 26],
+    "price": 315,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "longganisa"
+    
+    
+  },
+  {
+    "id": 17,
+    "name": "Filipino Lumpia",
+    "description": "TenderBite Emporium's Filipino Lumpia, a 24-pound offering of savory spring rolls, ready to be fried to perfection.",
+    "code": "778899001122",
+    "brand": "tenderbite emporium",
+    "weight": [1, 24],
+    "price": 400,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "lumpia"
+    
+    
+  },
+  {
+    "id": 18,
+    "name": "Beef Premium Patty",
+    "description": "GrillGlory Emporium presents Beef Premium Patty, a 20-pound pack of high-quality beef patties, perfect for grilling enthusiasts.",
+    "code": "889900112233",
+    "brand": "grillglory emporium",
+    "weight": [1, 20],
+    "price": 400,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "patty"
+    
+    
+  },
+  {
+    "id": 19,
+    "name": "Classic America Sausage",
+    "description": "SizzleCraft Provisions offers Classic America Sausage, a 22-pound pack of flavorful sausages inspired by classic American recipes.",
+    "code": "990011223344",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 22],
+    "price": 550,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "sausage"
+    
+    
+  },
+  {
+    "id": 20,
+    "name": "Classic American Meatballs",
+    "description": "Carnivore Haven presents Classic American Meatballs, 14 pounds of perfectly seasoned meatballs ready to be added to your favorite dishes.",
+    "code": "100000000001",
+    "brand": "carnivore haven",
+    "weight": [1, 14],
+    "price": 360,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "meatball"
+    
+    
+  },
+  {
+    "id": 21,
+    "name": "Chicken Sausage",
+    "description": "MeatMasters Boutique offers Chicken Sausage, a 16-pound pack of succulent poultry sausages, perfect for grilling or adding to pasta dishes.",
+    "code": "111111111112",
+    "brand": "meatmasters boutique",
+    "weight": [1, 16],
+    "price": 260,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "sausage"
+    
+    
+  },
+  {
+    "id": 22,
+    "name": "Pork Siomai",
+    "description": "Cutabove Carnivores introduces Pork Siomai, a 26-pound pack of delectable dumplings, perfect for steaming or frying.",
+    "code": "122222222223",
+    "brand": "cutabove carnivores",
+    "weight": [1, 26],
+    "price": 190,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "siomai"
+    
+    
+  },
+  {
+    "id": 23,
+    "name": "Classic Dumplings",
+    "description": "GrillGourmet Meats presents Classic Dumplings, a 12-pound pack of savory dumplings, ready to be cooked to perfection.",
+    "code": "133333333334",
+    "brand": "grillgourmet meats",
+    "weight": [1, 12],
+    "price": 500,
+    "category": ["ready-to-cook","frozen"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "dumplings"
+    
+    
+  },
+  {
+    "id": 24,
+    "name": "Pork Ground Round",
+    "description": "SizzleCraft Provisions offers Pork Ground Round, a 22-pound pack of versatile ground pork, perfect for various culinary creations.",
+    "code": "144444444445",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 22],
+    "price": 360,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "ground"
+    
+    
+  },
+  {
+    "id": 25,
+    "name": "Pork Sirloin Cutlet",
+    "description": "Flavorfiesta Meats presents Pork Sirloin Cutlet, a 16-pound offering of succulent pork cutlets, ideal for pan-frying or grilling.",
+    "code": "155555555556",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 16],
+    "price": 386,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "sirloin"
+    
+    
+  },
+  {
+    "id": 26,
+    "name": "Pork Samgyupsal Cut",
+    "description": "TenderBite Emporium's Pork Samgyup Cut, a 10-pound pack of thinly sliced pork perfect for creating your own Korean BBQ experience.",
+    "code": "166666666667",
+    "brand": "tenderbite emporium",
+    "weight": [1, 10],
+    "price": 420,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "samgyupsal"
+    
+    
+  },
+  {
+    "id": 27,
+    "name": "Pork Kasim",
+    "description": "Carnivore Haven presents Pork Kasim, a 12-pound cut of pork shoulder, perfect for slow-cooking and creating flavorful stews.",
+    "code": "177777777778",
+    "brand": "carnivore haven",
+    "weight": [1, 12],
+    "price": 300,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "kasim"
+    
+    
+  },
+  {
+    "id": 28,
+    "name": "Pork Knuckles",
+    "description": "MeatMasters Boutique offers Pork Knuckles, a 16-pound option for those seeking a rich and hearty addition to their culinary creations.",
+    "code": "188888888889",
+    "brand": "meatmasters boutique",
+    "weight": [1, 16],
+    "price": 260,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "feet"
+    
+    
+  },
+  {
+    "id": 29,
+    "name": "Pork Spare Ribs",
+    "description": "GrillGourmet Meats presents Pork Spare Ribs, a 14-pound pack of succulent ribs ready to be seasoned and grilled to perfection.",
+    "code": "199999999990",
+    "brand": "grillgourmet meats",
+    "weight": [1, 14],
+    "price": 300,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "ribs"
+    
+    
+  },
+  {
+    "id": 30,
+    "name": "Pork Liver",
+    "description": "Flavorfiesta Meats offers Pork Liver, 18 pounds of rich and flavorful organ meat, perfect for a variety of culinary applications.",
+    "code": "199899999990",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 18],
+    "price": 140,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "thumbnail": "p-butobuto.jpg",
+    "images": "p-butobuto.jpg",
+    "stock": 100,
+    "part" : "liver"
+    
+    
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
