@@ -9,9 +9,11 @@
     "price": 388,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-laman-1.jpg",
     "images": "b-laman-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-laman-1.jpg", "b-laman-2.jpg", "b-laman-3.jpg", "b-laman-4.jpg", "b-laman-5.jpg"],
+    "photoLg": ["b-laman-1.jpg", "b-laman-2.jpg", "b-laman-3.jpg", "b-laman-4.jpg", "b-laman-5.jpg"],
     "part" : "kaldereta"
     
     
@@ -26,9 +28,11 @@
     "price": 648,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-ground-1.jpg",
     "images": "b-ground-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-ground-1.jpg", "b-ground-2.jpg", "b-ground-3.jpg", "b-ground-4.jpg", "b-ground-5.jpg"],
+    "photoLg": ["b-ground-1.jpg", "b-ground-2.jpg", "b-ground-3.jpg", "b-ground-4.jpg", "b-ground-5.jpg"],
     "part" : "ground"
     
     
@@ -43,9 +47,11 @@
     "price": 664,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-sirloin-1.jpg",
     "images": "b-sirloin-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-sirloin-1.jpg", "b-sirloin-2.jpg", "b-sirloin-3.jpg", "b-sirloin-4.jpg", "b-sirloin-5.jpg"],
+    "photoLg": ["b-sirloin-1.jpg", "b-sirloin-2.jpg", "b-sirloin-3.jpg", "b-sirloin-4.jpg", "b-sirloin-5.jpg"],
     "part" : "sirloin"
     
     
@@ -60,9 +66,11 @@
     "price": 1985,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-rib-1.jpg",
     "images": "b-rib-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-rib-1.jpg", "b-rib-2.jpg", "b-rib-3.jpg", "b-rib-4.jpg", "b-rib-5.jpg"],
+    "photoLg": ["b-rib-1.jpg", "b-rib-2.jpg", "b-rib-3.jpg", "b-rib-4.jpg", "b-rib-5.jpg"],
     "part" : "rib"
     
     
@@ -77,9 +85,11 @@
     "price": 1150,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-steak-1.jpg",
     "images": "b-steak-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-steak-1.jpg", "b-steak-2.jpg", "b-steak-3.jpg", "b-steak-4.jpg", "b-steak-5.jpg"],
+    "photoLg": ["b-steak-1.jpg", "b-steak-2.jpg", "b-steak-3.jpg", "b-steak-4.jpg", "b-steak-5.jpg"],
     "part" : "loin"
     
     
@@ -94,9 +104,11 @@
     "price": 317,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-marrow-1.jpg",
     "images": "b-marrow-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-marrow-1.jpg", "b-marrow-2.jpg", "b-marrow-3.jpg", "b-marrow-4.jpg", "b-marrow-5.jpg"],
+    "photoLg": ["b-marrow-1.jpg", "b-marrow-2.jpg", "b-marrow-3.jpg", "b-marrow-4.jpg", "b-marrow-5.jpg"],
     "part" : "marrow"
     
     
@@ -111,9 +123,11 @@
     "price": 578,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "b-shank-1.jpg",
     "images": "b-shank-1.jpg",
-    "stock": 100,
+    "photoSm": ["b-shank-1.jpg", "b-shank-2.jpg", "b-shank-3.jpg", "b-shank-4.jpg", "b-shank-5.jpg"],
+    "photoLg": ["b-shank-1.jpg", "b-shank-2.jpg", "b-shank-3.jpg", "b-shank-4.jpg", "b-shank-5.jpg"],
     "part" : "shank"
     
     
@@ -128,9 +142,11 @@
     "price": 224,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-drum-1.jpg",
     "images": "c-drum-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-drum-1.jpg", "c-drum-2.jpg", "c-drum-3.jpg", "c-drum-4.jpg", "c-drum-5.jpg"],
+    "photoLg": ["c-drum-1.jpg", "c-drum-2.jpg", "c-drum-3.jpg", "c-drum-4.jpg", "c-drum-5.jpg"],
     "part" : "drumstick"
     
     
@@ -145,9 +161,11 @@
     "price": 140,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-feet-1.jpg",
     "images": "c-feet-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-feet-1.jpg", "c-feet-2.jpg", "c-feet-3.jpg", "c-feet-4.jpg", "c-feet-5.jpg"],
+    "photoLg": ["c-feet-1.jpg", "c-feet-2.jpg", "c-feet-3.jpg", "c-feet-4.jpg", "c-feet-5.jpg"],
     "part" : "feet"
     
     
@@ -162,9 +180,11 @@
     "price": 180,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-breast-1.jpg",
     "images": "c-breast-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-breast-1.jpg", "c-breast-2.jpg", "c-breast-3.jpg", "c-breast-4.jpg", "c-breast-5.jpg"],
+    "photoLg": ["c-breast-1.jpg", "c-breast-2.jpg", "c-breast-3.jpg", "c-breast-4.jpg", "c-breast-5.jpg"],
     "part" : "breast"
     
     
@@ -179,9 +199,11 @@
     "price": 220,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-wings-1.jpg",
     "images": "c-wings-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-wings-1.jpg", "c-wings-2.jpg", "c-wings-3.jpg", "c-wings-4.jpg", "c-wings-5.jpg"],
+    "photoLg": ["c-wings-1.jpg", "c-wings-2.jpg", "c-wings-3.jpg", "c-wings-4.jpg", "c-wings-5.jpg"],
     "part" : "wings"
     
     
@@ -196,9 +218,11 @@
     "price": 160,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-whole-1.jpg",
     "images": "c-whole-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-whole-1.jpg", "c-whole-2.jpg", "c-whole-3.jpg", "c-whole-4.jpg", "c-whole-5.jpg"],
+    "photoLg": ["c-whole-1.jpg", "c-whole-2.jpg", "c-whole-3.jpg", "c-whole-4.jpg", "c-whole-5.jpg"],
     "part" : "whole"
     
     
@@ -213,9 +237,11 @@
     "price": 190,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-ql-1.jpg",
     "images": "c-ql-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-ql-1.jpg", "c-ql-2.jpg", "c-ql-3.jpg", "c-ql-4.jpg", "c-ql-5.jpg"],
+    "photoLg": ["c-ql-1.jpg", "c-ql-2.jpg", "c-ql-3.jpg", "c-ql-4.jpg", "c-ql-5.jpg"],
     "part" : "quarter leg"
     
     
@@ -230,9 +256,11 @@
     "price": 251,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-liver-1.jpg",
     "images": "c-liver-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-liver-1.jpg", "c-liver-2.jpg", "c-liver-3.jpg", "c-liver-4.jpg", "c-liver-5.jpg"],
+    "photoLg": ["c-liver-1.jpg", "c-liver-2.jpg", "c-liver-3.jpg", "c-liver-4.jpg", "c-liver-5.jpg"],
     "part" : "liver"
     
     
@@ -247,9 +275,11 @@
     "price": 98,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "c-neck-1.jpg",
     "images": "c-neck-1.jpg",
-    "stock": 100,
+    "photoSm": ["c-neck-1.jpg", "c-neck-2.jpg", "c-neck-3.jpg", "c-neck-4.jpg", "c-neck-5.jpg"],
+    "photoLg": ["c-neck-1.jpg", "c-neck-2.jpg", "c-neck-3.jpg", "c-neck-4.jpg", "c-neck-5.jpg"],
     "part" : "neck"
     
     
@@ -264,9 +294,11 @@
     "price": 315,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-long-1.jpg",
     "images": "o-long-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-long-1.jpg", "o-long-2.jpg", "o-long-3.jpg", "o-long-4.jpg", "o-long-5.jpg"],
+    "photoLg": ["o-long-1.jpg", "o-long-2.jpg", "o-long-3.jpg", "o-long-4.jpg", "o-long-5.jpg"],
     "part" : "longganisa"
     
     
@@ -281,9 +313,11 @@
     "price": 400,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-lumpia-1.jpg",
     "images": "o-lumpia-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-lumpia-1.jpg", "o-lumpia-2.jpg", "o-lumpia-3.jpg", "o-lumpia-4.jpg", "o-lumpia-5.jpg"],
+    "photoLg": ["o-lumpia-1.jpg", "o-lumpia-2.jpg", "o-lumpia-3.jpg", "o-lumpia-4.jpg", "o-lumpia-5.jpg"],
     "part" : "lumpia"
     
     
@@ -298,9 +332,11 @@
     "price": 400,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-pat-1.jpg",
     "images": "o-pat-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-pat-1.jpg", "o-pat-2.jpg", "o-pat-3.jpg", "o-pat-4.jpg", "o-pat-5.jpg"],
+    "photoLg": ["o-pat-1.jpg", "o-pat-2.jpg", "o-pat-3.jpg", "o-pat-4.jpg", "o-pat-5.jpg"],
     "part" : "patty"
     
     
@@ -315,9 +351,11 @@
     "price": 550,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-sau-1.jpg",
     "images": "o-sau-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-sau-1.jpg", "o-sau-2.jpg", "o-sau-3.jpg", "o-sau-4.jpg", "o-sau-5.jpg"],
+    "photoLg": ["o-sau-1.jpg", "o-sau-2.jpg", "o-sau-3.jpg", "o-sau-4.jpg", "o-sau-5.jpg"],
     "part" : "sausage"
     
     
@@ -332,9 +370,11 @@
     "price": 360,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-balls-1.jpg",
     "images": "o-balls-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-balls-1.jpg", "o-balls-2.jpg", "o-balls-3.jpg", "o-balls-4.jpg", "o-balls-5.jpg"],
+    "photoLg": ["o-balls-1.jpg", "o-balls-2.jpg", "o-balls-3.jpg", "o-balls-4.jpg", "o-balls-5.jpg"],
     "part" : "meatball"
     
     
@@ -349,9 +389,11 @@
     "price": 260,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-hot-1.jpg",
     "images": "o-hot-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-hot-1.jpg", "o-hot-2.jpg", "o-hot-3.jpg", "o-hot-4.jpg", "o-hot-5.jpg"],
+    "photoLg": ["o-hot-1.jpg", "o-hot-2.jpg", "o-hot-3.jpg", "o-hot-4.jpg", "o-hot-5.jpg"],
     "part" : "sausage"
     
     
@@ -366,9 +408,11 @@
     "price": 190,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-siom-1.jpg",
     "images": "o-siom-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-siom-1.jpg", "o-siom-2.jpg", "o-siom-3.jpg", "o-siom-4.jpg", "o-siom-5.jpg"],
+    "photoLg": ["o-siom-1.jpg", "o-siom-2.jpg", "o-siom-3.jpg", "o-siom-4.jpg", "o-siom-5.jpg"],
     "part" : "siomai"
     
     
@@ -383,9 +427,11 @@
     "price": 500,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "o-dump-1.jpg",
     "images": "o-dump-1.jpg",
-    "stock": 100,
+    "photoSm": ["o-dump-1.jpg", "o-dump-2.jpg", "o-dump-3.jpg", "o-dump-4.jpg", "o-dump-5.jpg"],
+    "photoLg": ["o-dump-1.jpg", "o-dump-2.jpg", "o-dump-3.jpg", "o-dump-4.jpg", "o-dump-5.jpg"],
     "part" : "dumplings"
     
     
@@ -400,9 +446,11 @@
     "price": 360,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-ground-1.jpg",
     "images": "p-ground-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-ground-1.jpg", "p-ground-2.jpg", "p-ground-3.jpg", "p-ground-4.jpg", "p-ground-5.jpg"],
+    "photoLg": ["p-ground-1.jpg", "p-ground-2.jpg", "p-ground-3.jpg", "p-ground-4.jpg", "p-ground-5.jpg"],
     "part" : "ground"
     
     
@@ -417,9 +465,11 @@
     "price": 386,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-chop-1.jpg",
     "images": "p-chop-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-chop-1.jpg", "p-chop-2.jpg", "p-chop-3.jpg", "p-chop-4.jpg", "p-chop-5.jpg"],
+    "photoLg": ["p-chop-1.jpg", "p-chop-2.jpg", "p-chop-3.jpg", "p-chop-4.jpg", "p-chop-5.jpg"],
     "part" : "sirloin"
     
     
@@ -434,9 +484,11 @@
     "price": 420,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-samp-1.jpg",
     "images": "p-samp-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-samp-1.jpg", "p-samp-2.jpg", "p-samp-3.jpg", "p-samp-4.jpg", "p-samp-5.jpg"],
+    "photoLg": ["p-samp-1.jpg", "p-samp-2.jpg", "p-samp-3.jpg", "p-samp-4.jpg", "p-samp-5.jpg"],
     "part" : "samgyupsal"
     
     
@@ -451,9 +503,11 @@
     "price": 300,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-laman-1.jpg",
     "images": "p-laman-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-laman-1.jpg", "p-laman-2.jpg", "p-laman-3.jpg", "p-laman-4.jpg", "p-laman-5.jpg"],
+    "photoLg": ["p-laman-1.jpg", "p-laman-2.jpg", "p-laman-3.jpg", "p-laman-4.jpg", "p-laman-5.jpg"],
     "part" : "kasim"
     
     
@@ -468,9 +522,11 @@
     "price": 260,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-knu-1.jpg",
     "images": "p-knu-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-knu-1.jpg", "p-knu-2.jpg", "p-knu-3.jpg", "p-knu-4.jpg", "p-knu-5.jpg"],
+    "photoLg": ["p-knu-1.jpg", "p-knu-2.jpg", "p-knu-3.jpg", "p-knu-4.jpg", "p-knu-5.jpg"],
     "part" : "feet"
     
     
@@ -485,9 +541,11 @@
     "price": 300,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-ribs-1.jpg",
     "images": "p-ribs-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-ribs-1.jpg", "p-ribs-2.jpg", "p-ribs-3.jpg", "p-ribs-4.jpg", "p-ribs-5.jpg"],
+    "photoLg": ["p-ribs-1.jpg", "p-ribs-2.jpg", "p-ribs-3.jpg", "p-ribs-4.jpg", "p-ribs-5.jpg"],
     "part" : "ribs"
     
     
@@ -502,9 +560,11 @@
     "price": 140,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
+    "stock": 100,
     "thumbnail": "p-liver-1.jpg",
     "images": "p-liver-1.jpg",
-    "stock": 100,
+    "photoSm": ["p-liver-1.jpg", "p-liver-2.jpg", "p-liver-3.jpg", "p-liver-4.jpg", "p-liver-5.jpg"],
+    "photoLg": ["p-liver-1.jpg", "p-liver-2.jpg", "p-liver-3.jpg", "p-liver-4.jpg", "p-liver-5.jpg"],
     "part" : "liver"
     
     
