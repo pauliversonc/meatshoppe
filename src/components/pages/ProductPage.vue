@@ -6,7 +6,7 @@
 
           <Carousel :items-to-show="1" :wrap-around="false" v-model="currentSlide">
             <Slide v-for="(photo, index) in product.photoLg" :key="index">
-              <img class="carousel__item" :src="`/src/assets/images/goods/1/lg/${photo}`"
+              <img class="carousel__item" :src="`/src/assets/images/goods/${id}/lg/${photo}`"
               ref="zoomedImage"
               
               />
@@ -20,7 +20,7 @@
             ref="carousel"
           >
             <Slide v-for="(photo, index) in product.photoSm" :key="index">
-              <img class="carousel__thumbnail" @click="slideTo(index)" :src="`/src/assets/images/goods/1/sm/${photo}`"/>
+              <img class="carousel__thumbnail" @click="slideTo(index)" :src="`/src/assets/images/goods/${id}/sm/${photo}`"/>
             </Slide>
           </Carousel>
 
@@ -964,20 +964,18 @@ export default {
 
 
 .carousel__item {
-  min-height: 40rem;
+  height: 40rem;
   width: 100%;
   object-fit: cover;
   // border: 1px solid red;
   overflow: hidden;
   transition: transform .3s ease;
-
-
 }
 
 .carousel__thumbnail { 
-  min-height: 10rem;
+  height: 10rem;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
   // border: 1px solid red;
   cursor: pointer;
 }

@@ -24,9 +24,11 @@
     <div class="product__img-box">
       <img
         class="product__img"
-        :src="`/src/assets/images/goods/${id}/${thumbnail}`"
+        :src="`/src/assets/images/goods/${id}/sm/${thumbnail}`"
         :alt="`${description}`"
       />
+
+
 
       <ul class="product__tags">
         <li v-if="!stock" class="product__tag product__tag--sold">Sold Out</li>

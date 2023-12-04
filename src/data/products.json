@@ -1,430 +1,625 @@
 [
   {
     "id": 1,
-    "name": "Chicken Skin LAR 1kg or 15kg",
-    "description": "Indulge in the crispy delight of our Fresh Frozen Chicken Skin! Perfect for creating crunchy snacks or enhancing your recipes. Available in convenient 1-kilogram or bulk 15-kilogram packages.",
-    "code": "CK-SKIN-(LAR) (STD 15)",
-    "brand": "lar",
-    "weight": [1, 15],
-    "price": 8888,
-    "category": ["chicken", "frozen"],
-    "discountPercentage": 10,
-    "stock": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "skin"
+    "name": "Beef Kaldereta Cut Tenderbite Emporium 1kg or 14kg",
+    "description": "Indulge in the succulence of Beef Kaldereta Cut from TenderBite Emporium, a 14-pound masterpiece perfect for hearty dishes.",
+    "code": "012345678901",
+    "brand": "tenderbite emporium",
+    "weight": [1, 14],
+    "price": 388,
+    "category": ["beef","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "b-laman-1.jpg",
+    "images": "b-laman-1.jpg",
+    "photoSm": ["b-laman-1.jpg", "b-laman-2.jpg", "b-laman-3.jpg", "b-laman-4.jpg", "b-laman-5.jpg"],
+    "photoLg": ["b-laman-1.jpg", "b-laman-2.jpg", "b-laman-3.jpg", "b-laman-4.jpg", "b-laman-5.jpg"],
+    "part" : "kaldereta"
+    
+    
   },
   {
     "id": 2,
-    "name": "Chicken Liver Goncalves & Tortola 1kg or 15kg",
-    "description": "Experience the rich and savory flavor of our Fresh Frozen Chicken Liver from Goncalves & Tortola! Ideal for gourmet dishes. Choose from a 1-kilogram package for home cooks or a generous 15-kilogram option for professionals.",
-    "code": "CK-LIVER-(GONCALVES & TORTOLA/CANCAO) (STD 15)",
-    "brand": "goncalves & tortola",
-    "weight": [1, 15],
-    "price": 106,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Ground Round Carnivore Haven 1kg or 24kg",
+    "description": "Savor the versatility of Beef Ground Round from Carnivore Haven, a 24-pound choice ideal for mouthwatering burgers or rich meat sauces.",
+    "code": "123456789012",
+    "brand": "carnivore haven",
+    "weight": [1, 24],
+    "price": 648,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "liver"
+    "thumbnail": "b-ground-1.jpg",
+    "images": "b-ground-1.jpg",
+    "photoSm": ["b-ground-1.jpg", "b-ground-2.jpg", "b-ground-3.jpg", "b-ground-4.jpg", "b-ground-5.jpg"],
+    "photoLg": ["b-ground-1.jpg", "b-ground-2.jpg", "b-ground-3.jpg", "b-ground-4.jpg", "b-ground-5.jpg"],
+    "part" : "ground"
+    
+    
   },
   {
     "id": 3,
-    "name": "Chicken Liver Concao 1kg or 15kg",
-    "description": "Elevate your culinary creations with the premium quality of Fresh Frozen Chicken Liver from Concao! Available in either a convenient 1-kilogram package or a 15-kilogram bulk option for culinary experts.",
-    "code": "CK-LIVER-(GONCALVES & TORTOLA/CANCAO) (STD 15)",
-    "brand": "cancao",
-    "weight": [1, 15],
-    "price": 106,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Sirloin Meatmasters Boutique 1kg or 22kg",
+    "description": "Experience the exquisite tenderness of Beef Sirloin from MeatMasters Boutique, a 22-pound cut renowned for its robust flavor.",
+    "code": "234567890123",
+    "brand": "meatmasters boutique",
+    "weight": [1, 22],
+    "price": 664,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "liver"
+    "thumbnail": "b-sirloin-1.jpg",
+    "images": "b-sirloin-1.jpg",
+    "photoSm": ["b-sirloin-1.jpg", "b-sirloin-2.jpg", "b-sirloin-3.jpg", "b-sirloin-4.jpg", "b-sirloin-5.jpg"],
+    "photoLg": ["b-sirloin-1.jpg", "b-sirloin-2.jpg", "b-sirloin-3.jpg", "b-sirloin-4.jpg", "b-sirloin-5.jpg"],
+    "part" : "sirloin"
+    
+    
   },
   {
     "id": 4,
-    "name": "Chicken Fat C. Vale 1kg or 18kg",
-    "description": "Enhance the flavor of your dishes with the richness of Fresh Frozen Chicken Fat from C. Vale! Choose from a 1-kilogram package or go big with an 18-kilogram bulk supply.",
-    "code": "CK-FAT(CVALE) 18KG",
-    "brand": "c. vale",
-    "weight": [1, 18],
-    "price": 80,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Prime Rib Grillglory Emporium 1kg or 12kg",
+    "description": "Delight in the perfect balance of marbling and savory goodness with a 12-pound Beef Prime Rib from GrillGlory Emporium.",
+    "code": "345678901234",
+    "brand": "grillglory emporium",
+    "weight": [1, 12],
+    "price": 1985,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "fat"
+    "thumbnail": "b-rib-1.jpg",
+    "images": "b-rib-1.jpg",
+    "photoSm": ["b-rib-1.jpg", "b-rib-2.jpg", "b-rib-3.jpg", "b-rib-4.jpg", "b-rib-5.jpg"],
+    "photoLg": ["b-rib-1.jpg", "b-rib-2.jpg", "b-rib-3.jpg", "b-rib-4.jpg", "b-rib-5.jpg"],
+    "part" : "rib"
+    
+    
   },
   {
     "id": 5,
-    "name": "Chicken Feet Turosi 1kg or 20kg",
-    "description": "Add a unique twist to your recipes with our Fresh Frozen Chicken Feet from Turosi! Available in 1-kilogram packages for home cooks or a generous 20-kilogram supply for culinary professionals.",
-    "code": "CK-FEET-(TUROSI) (STD 20)",
-    "brand": "turosi",
-    "weight": [1, 20],
-    "price": 110,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Loin Steak GrillGourmet Meats 1kg or 14kg",
+    "description": "GrillGourmet Meats presents Beef Loin Steak, a 14-pound culinary delight known for its tenderness and rich flavor.",
+    "code": "456789012345",
+    "brand": "grillgourmet meats",
+    "weight": [1, 14],
+    "price": 1150,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "feet"
+    "thumbnail": "b-steak-1.jpg",
+    "images": "b-steak-1.jpg",
+    "photoSm": ["b-steak-1.jpg", "b-steak-2.jpg", "b-steak-3.jpg", "b-steak-4.jpg", "b-steak-5.jpg"],
+    "photoLg": ["b-steak-1.jpg", "b-steak-2.jpg", "b-steak-3.jpg", "b-steak-4.jpg", "b-steak-5.jpg"],
+    "part" : "loin"
+    
+    
   },
   {
     "id": 6,
-    "name": "Chicken Tails Seara 1kg or 15kg",
-    "description": "Discover the delectable taste of Fresh Frozen Chicken Tails from Seara! Perfect for exotic dishes. Select from a 1-kilogram package or stock up with a 15-kilogram bulk option.",
-    "code": "CK-TAILS(SEARA) [STD] 15kgs",
-    "brand": "seara",
-    "weight": [1, 15],
-    "price": 96,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Marrow Flavorfiesta Meats 1kg or 10kg",
+    "description": "Enhance your culinary creations with Flavorfiesta Meats' Beef Marrow, a 10-pound treasure perfect for soups or spreading on crusty bread.",
+    "code": "567890123456",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 10],
+    "price": 317,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "tails"
+    "thumbnail": "b-marrow-1.jpg",
+    "images": "b-marrow-1.jpg",
+    "photoSm": ["b-marrow-1.jpg", "b-marrow-2.jpg", "b-marrow-3.jpg", "b-marrow-4.jpg", "b-marrow-5.jpg"],
+    "photoLg": ["b-marrow-1.jpg", "b-marrow-2.jpg", "b-marrow-3.jpg", "b-marrow-4.jpg", "b-marrow-5.jpg"],
+    "part" : "marrow"
+    
+    
   },
   {
     "id": 7,
-    "name": "Chicken Tails Goncalves & Tortola 1kg or 15kg",
-    "description": "Savor the exquisite flavor of Fresh Frozen Chicken Tails from Goncalves & Tortola! Available in convenient 1-kilogram packages or larger 15-kilogram quantities for culinary aficionados.",
-    "code": "CK-TAILS-(GONCALVES & TORTOLA/CANCAO) (STD 15)",
-    "brand": "goncalves & tortola",
-    "weight": [1, 15],
-    "price": 96,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Shank Sizzlecraft Provisions 1kg or 12kg",
+    "description": "SizzleCraft Provisions presents Beef Shank, a 12-pound cut ideal for slow-cooking and creating rich, savory broths.",
+    "code": "678901234567",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 12],
+    "price": 578,
+    "category": ["beef","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "tails"
+    "thumbnail": "b-shank-1.jpg",
+    "images": "b-shank-1.jpg",
+    "photoSm": ["b-shank-1.jpg", "b-shank-2.jpg", "b-shank-3.jpg", "b-shank-4.jpg", "b-shank-5.jpg"],
+    "photoLg": ["b-shank-1.jpg", "b-shank-2.jpg", "b-shank-3.jpg", "b-shank-4.jpg", "b-shank-5.jpg"],
+    "part" : "shank"
+    
+    
   },
   {
     "id": 8,
-    "name": "Chicken Tails Cancao 1kg or 15kg",
-    "description": "Elevate your culinary creations with the premium quality of Fresh Frozen Chicken Tails from Cancao! Choose from a 1-kilogram package for home cooks or a generous 15-kilogram option for professionals.",
-    "code": "CK-TAILS-(GONCALVES & TORTOLA/CANCAO) (STD 15)",
-    "brand": "cancao",
-    "weight": [1, 15],
-    "price": 96,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Drumstick Cutabove Carnivores 1kg or 22kg",
+    "description": "Cutabove Carnivores offers Chicken Drumsticks, 22 pounds of versatile and delicious poultry perfect for various culinary creations.",
+    "code": "789012345678",
+    "brand": "cutabove carnivores",
+    "weight": [1, 22],
+    "price": 224,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "tails"
+    "thumbnail": "c-drum-1.jpg",
+    "images": "c-drum-1.jpg",
+    "photoSm": ["c-drum-1.jpg", "c-drum-2.jpg", "c-drum-3.jpg", "c-drum-4.jpg", "c-drum-5.jpg"],
+    "photoLg": ["c-drum-1.jpg", "c-drum-2.jpg", "c-drum-3.jpg", "c-drum-4.jpg", "c-drum-5.jpg"],
+    "part" : "drumstick"
+    
+    
   },
   {
     "id": 9,
-    "name": "Chicken Tails C. Vale 1kg or 15kg",
-    "description": "Enhance your dishes with the rich and succulent Fresh Frozen Chicken Tails from C. Vale! Available in either a convenient 1-kilogram package or a 15-kilogram bulk option.",
-    "code": "CK-TAILS (C.VALE) (STD 15)",
-    "brand": "c. vale",
-    "weight": [1, 15],
-    "price": 96,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Feet SavoryCraze Butchery 1kg or 20kg",
+    "description": "SavoryCraze Butchery presents Chicken Feet, 20 pounds of poultry goodness perfect for making flavorful stocks and broths.",
+    "code": "890123456789",
+    "brand": "savorycraze butchery",
+    "weight": [1, 20],
+    "price": 140,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "tails"
+    "thumbnail": "c-feet-1.jpg",
+    "images": "c-feet-1.jpg",
+    "photoSm": ["c-feet-1.jpg", "c-feet-2.jpg", "c-feet-3.jpg", "c-feet-4.jpg", "c-feet-5.jpg"],
+    "photoLg": ["c-feet-1.jpg", "c-feet-2.jpg", "c-feet-3.jpg", "c-feet-4.jpg", "c-feet-5.jpg"],
+    "part" : "feet"
+    
+    
   },
   {
     "id": 10,
-    "name": "Chicken MDM (Mechanically Deboned Meat) Aurora 1kg or 20kg",
-    "description": "Experience the convenience of our Fresh Frozen Chicken MDM (Mechanically Deboned Meat) from Aurora! Ideal for a wide range of dishes. Choose from a 1-kilogram package or stock up with a 20-kilogram supply.",
-    "code": "CK-MDM (AURORA) (STD 20)",
-    "brand": "aurora",
-    "weight": [1, 20],
-    "price": 54,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Breast Fillet Tenderbite Emporium 1kg or 16kg",
+    "description": "TenderBite Emporium's Chicken Breast Fillet, a 16-pound offering of lean poultry ideal for a variety of culinary delights.",
+    "code": "901234567890",
+    "brand": "tenderbite emporium",
+    "weight": [1, 16],
+    "price": 180,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "mdm"
+    "thumbnail": "c-breast-1.jpg",
+    "images": "c-breast-1.jpg",
+    "photoSm": ["c-breast-1.jpg", "c-breast-2.jpg", "c-breast-3.jpg", "c-breast-4.jpg", "c-breast-5.jpg"],
+    "photoLg": ["c-breast-1.jpg", "c-breast-2.jpg", "c-breast-3.jpg", "c-breast-4.jpg", "c-breast-5.jpg"],
+    "part" : "breast"
+    
+    
   },
   {
     "id": 11,
-    "name": "Chicken MDM (Mechanically Deboned Meat) Tyson 1kg or 18kg",
-    "description": "Enjoy the ease of cooking with Fresh Frozen Chicken MDM (Mechanically Deboned Meat) from Tyson! Perfect for various culinary creations. Available in 1-kilogram packages or larger 18-kilogram bulk quantities.",
-    "code": "CK MDM (TYSON) (STD 18.14)",
-    "brand": "tyson",
-    "weight": [1, 18],
-    "price": 63,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Wings 3 Joints Meatmasters Boutique 1kg or 20kg",
+    "description": "Enjoy the succulence of Chicken Wings 3 Joints from MeatMasters Boutique, a 20-pound choice perfect for flavorful wing recipes.",
+    "code": "112233445566",
+    "brand": "meatmasters boutique",
+    "weight": [1, 20],
+    "price": 220,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "mdm"
+    "thumbnail": "c-wings-1.jpg",
+    "images": "c-wings-1.jpg",
+    "photoSm": ["c-wings-1.jpg", "c-wings-2.jpg", "c-wings-3.jpg", "c-wings-4.jpg", "c-wings-5.jpg"],
+    "photoLg": ["c-wings-1.jpg", "c-wings-2.jpg", "c-wings-3.jpg", "c-wings-4.jpg", "c-wings-5.jpg"],
+    "part" : "wings"
+    
+    
   },
   {
     "id": 12,
-    "name": "Chicken Breast Fillet SLBL (Skin Less Bone Less) Copacol 1kg or 12kg",
-    "code": "CK BREAST SLBL (COPACOL) (STD 12)",
-    "description": "Delight in the tenderness of our Fresh Frozen Chicken Breast, Skin Less Bone Less, from Copacol! Perfect for lean and healthy meals. Choose from a 1-kilogram package or a family-sized 12-kilogram bulk option.",
-    "brand": "copacol",
-    "weight": [1, 12],
-    "price": 145,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Whole Carnivore Haven 1kg or 10kg",
+    "description": "Experience the full flavor of Chicken Whole from Carnivore Haven, a 10-pound option perfect for roasting or braising.",
+    "code": "223344556677",
+    "brand": "carnivore haven",
+    "weight": [1, 10],
+    "price": 160,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "breast"
+    "thumbnail": "c-whole-1.jpg",
+    "images": "c-whole-1.jpg",
+    "photoSm": ["c-whole-1.jpg", "c-whole-2.jpg", "c-whole-3.jpg", "c-whole-4.jpg", "c-whole-5.jpg"],
+    "photoLg": ["c-whole-1.jpg", "c-whole-2.jpg", "c-whole-3.jpg", "c-whole-4.jpg", "c-whole-5.jpg"],
+    "part" : "whole"
+    
+    
   },
   {
     "id": 13,
-    "name": "Chicken Leg Quarter Perdue 1kg or 15kg",
-    "description": "Experience the juiciness of our Fresh Frozen Chicken Leg Quarter from Perdue! Versatile for grilling or roasting. Available in 1-kilogram packages or a 15-kilogram bulk supply.",
-    "code": "CK-CLQ(PERDUE)-15kgs",
-    "brand": "perdue",
-    "weight": [1, 15],
-    "price": 116,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Quarter Leg Grillgourmet Meats 1kg or 16kg",
+    "description": "GrillGourmet Meats presents Chicken Quarter Leg, a 16-pound choice offering a balance of juicy dark and white meat.",
+    "code": "334455667788",
+    "brand": "grillgourmet meats",
+    "weight": [1, 16],
+    "price": 190,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "leg quarter"
+    "thumbnail": "c-ql-1.jpg",
+    "images": "c-ql-1.jpg",
+    "photoSm": ["c-ql-1.jpg", "c-ql-2.jpg", "c-ql-3.jpg", "c-ql-4.jpg", "c-ql-5.jpg"],
+    "photoLg": ["c-ql-1.jpg", "c-ql-2.jpg", "c-ql-3.jpg", "c-ql-4.jpg", "c-ql-5.jpg"],
+    "part" : "quarter leg"
+    
+    
   },
   {
     "id": 14,
-    "name": "Chicken Leg Quarter Lamex 1kg or 20kg",
-    "description": "Savor the succulence of our Fresh Frozen Chicken Leg Quarter from Lamex! Perfect for hearty meals. Choose from a 1-kilogram package or a generous 20-kilogram bulk option.",
-    "code": "CK-LEG-QUARTER-(LAMEX/GEORGES)",
-    "brand": "lamex",
-    "weight": [1, 20],
-    "price": 115,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Liver Sizzlecraft Provisions 1kg or 18kg",
+    "description": "SizzleCraft Provisions offers Chicken Liver, 18 pounds of rich and flavorful organ meat perfect for various culinary applications.",
+    "code": "445566778899",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 18],
+    "price": 251,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "leg quarter"
+    "thumbnail": "c-liver-1.jpg",
+    "images": "c-liver-1.jpg",
+    "photoSm": ["c-liver-1.jpg", "c-liver-2.jpg", "c-liver-3.jpg", "c-liver-4.jpg", "c-liver-5.jpg"],
+    "photoLg": ["c-liver-1.jpg", "c-liver-2.jpg", "c-liver-3.jpg", "c-liver-4.jpg", "c-liver-5.jpg"],
+    "part" : "liver"
+    
+    
   },
   {
     "id": 15,
-    "name": "Chicken Leg Quarter Georges 1kg or 20kg",
-    "description": "Indulge in the flavor of our Fresh Frozen Chicken Leg Quarter from Georges! Ideal for various culinary creations. Available in 1-kilogram packages or a substantial 20-kilogram supply.",
-    "code": "CK-LEG-QUARTER-(LAMEX/GEORGES)",
-    "brand": "georges",
-    "weight": [1, 20],
-    "price": 115,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Neck Skin Out Cutabove Carnivores 1kg or 14kg",
+    "description": "Cutabove Carnivores presents Chicken Neck Skin Out, a 14-pound option for those who appreciate lean poultry cuts.",
+    "code": "556677889900",
+    "brand": "cutabove carnivores",
+    "weight": [1, 14],
+    "price": 98,
+    "category": ["chicken","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "leg quarter"
+    "thumbnail": "c-neck-1.jpg",
+    "images": "c-neck-1.jpg",
+    "photoSm": ["c-neck-1.jpg", "c-neck-2.jpg", "c-neck-3.jpg", "c-neck-4.jpg", "c-neck-5.jpg"],
+    "photoLg": ["c-neck-1.jpg", "c-neck-2.jpg", "c-neck-3.jpg", "c-neck-4.jpg", "c-neck-5.jpg"],
+    "part" : "neck"
+    
+    
   },
   {
     "id": 16,
-    "name": "Chicken Drumettes Coopavel 1kg or 15kg",
-    "description": "Enjoy the convenience of our Fresh Frozen Chicken Drumettes from Coopavel! Perfect for snacking or appetizers. Available in 1-kilogram packages or a 15-kilogram bulk supply.",
-    "code": "CK-DRUMETTES (COOPAVEL) (STD 15)",
-    "brand": "coopavel",
-    "weight": [1, 15],
-    "price": 158,
-    "category": ["chicken", "frozen"],
+    "name": "Filipino Longganisa Flavorfiesta Meats 1kg or 26kg",
+    "description": "Flavorfiesta Meats introduces Filipino Longganisa, a 26-pound pack of delightful Filipino sausages, perfect for breakfast or any meal.",
+    "code": "667788990011",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 26],
+    "price": 315,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumettes"
+    "thumbnail": "o-long-1.jpg",
+    "images": "o-long-1.jpg",
+    "photoSm": ["o-long-1.jpg", "o-long-2.jpg", "o-long-3.jpg", "o-long-4.jpg", "o-long-5.jpg"],
+    "photoLg": ["o-long-1.jpg", "o-long-2.jpg", "o-long-3.jpg", "o-long-4.jpg", "o-long-5.jpg"],
+    "part" : "longganisa"
+    
+    
   },
   {
     "id": 17,
-    "name": "Chicken Drumettes Inghams 1kg or 15kg",
-    "description": "Satisfy your cravings with the deliciousness of our Fresh Frozen Chicken Drumettes from Inghams! Ideal for parties or quick meals. Choose from 1-kilogram packages or a 15-kilogram bulk option.",
-    "code": "CK-MINIDRUMS-(DRUMETTES)-(INGHAMS) (STD 15)",
-    "brand": "inghams",
-    "weight": [1, 15],
-    "price": 158,
-    "category": ["chicken", "frozen"],
+    "name": "Filipino Lumpia Tenderbite Emporium 1kg or 24kg",
+    "description": "TenderBite Emporium's Filipino Lumpia, a 24-pound offering of savory spring rolls, ready to be fried to perfection.",
+    "code": "778899001122",
+    "brand": "tenderbite emporium",
+    "weight": [1, 24],
+    "price": 400,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumettes"
+    "thumbnail": "o-lumpia-1.jpg",
+    "images": "o-lumpia-1.jpg",
+    "photoSm": ["o-lumpia-1.jpg", "o-lumpia-2.jpg", "o-lumpia-3.jpg", "o-lumpia-4.jpg", "o-lumpia-5.jpg"],
+    "photoLg": ["o-lumpia-1.jpg", "o-lumpia-2.jpg", "o-lumpia-3.jpg", "o-lumpia-4.jpg", "o-lumpia-5.jpg"],
+    "part" : "lumpia"
+    
+    
   },
   {
     "id": 18,
-    "name": "Chicken Drumettes Master Poultry 1kg or 15kg",
-    "description": "Elevate your gatherings with the delectable taste of our Fresh Frozen Chicken Drumettes from Master Poultry! Perfect for entertaining. Available in 1-kilogram packages or a 15-kilogram bulk supply.",
-    "code": "CK-DRUMETTES-(MASTER POULTRY) (STD 15)",
-    "brand": "master poultry",
-    "weight": [1, 15],
-    "price": 157,
-    "category": ["chicken", "frozen"],
+    "name": "Beef Premium Patty Grillglory Emporium 1kg or 20kg",
+    "description": "GrillGlory Emporium presents Beef Premium Patty, a 20-pound pack of high-quality beef patties, perfect for grilling enthusiasts.",
+    "code": "889900112233",
+    "brand": "grillglory emporium",
+    "weight": [1, 20],
+    "price": 400,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumettes"
+    "thumbnail": "o-pat-1.jpg",
+    "images": "o-pat-1.jpg",
+    "photoSm": ["o-pat-1.jpg", "o-pat-2.jpg", "o-pat-3.jpg", "o-pat-4.jpg", "o-pat-5.jpg"],
+    "photoLg": ["o-pat-1.jpg", "o-pat-2.jpg", "o-pat-3.jpg", "o-pat-4.jpg", "o-pat-5.jpg"],
+    "part" : "patty"
+    
+    
   },
   {
     "id": 19,
-    "name": "Chicken Drumstick Mountaire 1kg or 15kg",
-    "description": "Experience the deliciousness of our Fresh Frozen Chicken Drumsticks from Mountaire! Versatile for grilling or frying. Choose from 1-kilogram packages or a 15-kilogram bulk option.",
-    "code": "CK-DRUMSTICK-(MOUNTAIRE) (STD 15)",
-    "brand": "mountaire",
-    "weight": [1, 15],
-    "price": 122,
-    "category": ["chicken", "frozen"],
+    "name": "Classic America Sausage Sizzlecraft Provisions 1kg or 22kg",
+    "description": "SizzleCraft Provisions offers Classic America Sausage, a 22-pound pack of flavorful sausages inspired by classic American recipes.",
+    "code": "990011223344",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 22],
+    "price": 550,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumstick"
+    "thumbnail": "o-sau-1.jpg",
+    "images": "o-sau-1.jpg",
+    "photoSm": ["o-sau-1.jpg", "o-sau-2.jpg", "o-sau-3.jpg", "o-sau-4.jpg", "o-sau-5.jpg"],
+    "photoLg": ["o-sau-1.jpg", "o-sau-2.jpg", "o-sau-3.jpg", "o-sau-4.jpg", "o-sau-5.jpg"],
+    "part" : "sausage"
+    
+    
   },
   {
     "id": 20,
-    "name": "Chicken Drumstick Lilydale 1kg or 15kg",
-    "description": "Indulge in the savory flavor of our Fresh Frozen Chicken Drumsticks from Lilydale! Ideal for family meals. Available in 1-kilogram packages or a 15-kilogram bulk supply.",
-    "code": "CK-DRUMSTICK-(LILYDALE)-20KG",
-    "brand": "lilydale",
-    "weight": [1, 20],
-    "price": 122,
-    "category": ["chicken", "frozen"],
+    "name": "Classic American Meatballs Carnivore Haven 1kg or 14kg",
+    "description": "Carnivore Haven presents Classic American Meatballs, 14 pounds of perfectly seasoned meatballs ready to be added to your favorite dishes.",
+    "code": "100000000001",
+    "brand": "carnivore haven",
+    "weight": [1, 14],
+    "price": 360,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumstick"
+    "thumbnail": "o-balls-1.jpg",
+    "images": "o-balls-1.jpg",
+    "photoSm": ["o-balls-1.jpg", "o-balls-2.jpg", "o-balls-3.jpg", "o-balls-4.jpg", "o-balls-5.jpg"],
+    "photoLg": ["o-balls-1.jpg", "o-balls-2.jpg", "o-balls-3.jpg", "o-balls-4.jpg", "o-balls-5.jpg"],
+    "part" : "meatball"
+    
+    
   },
   {
     "id": 21,
-    "name": "Chicken Drumstick Plukon Maasmechelen 1kg or 10kg",
-    "description": "Enjoy the tender goodness of our Fresh Frozen Chicken Drumsticks from Plukon Maasmechelen! Perfect for a variety of dishes. Choose from 1-kilogram packages or a 10-kilogram bulk option.",
-    "code": "CK-DRUMSTICK-(PLUKON MAASMECHELEN) (STD 10)",
-    "brand": "plukon maasmechelen",
-    "weight": [1, 10],
-    "price": 122,
-    "category": ["chicken", "frozen"],
+    "name": "Chicken Sausage Meatmasters Boutique 1kg or 16kg",
+    "description": "MeatMasters Boutique offers Chicken Sausage, a 16-pound pack of succulent poultry sausages, perfect for grilling or adding to pasta dishes.",
+    "code": "111111111112",
+    "brand": "meatmasters boutique",
+    "weight": [1, 16],
+    "price": 260,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "drumstick"
+    "thumbnail": "o-hot-1.jpg",
+    "images": "o-hot-1.jpg",
+    "photoSm": ["o-hot-1.jpg", "o-hot-2.jpg", "o-hot-3.jpg", "o-hot-4.jpg", "o-hot-5.jpg"],
+    "photoLg": ["o-hot-1.jpg", "o-hot-2.jpg", "o-hot-3.jpg", "o-hot-4.jpg", "o-hot-5.jpg"],
+    "part" : "sausage"
+    
+    
   },
   {
     "id": 22,
-    "name": "Chicken Party Wings Mountaire 1kg or 18kg",
-    "description": "Celebrate in style with our Fresh Frozen Chicken Party Wings from Mountaire! Perfect for parties and gatherings. Available in 1-kilogram packages or a substantial 18-kilogram bulk supply.",
-    "code": "CK-ECONOMY-PARTY-WINGS-(MOUNTAIRE) (STD 18.14)",
-    "brand": "mountaire",
-    "weight": [1, 18],
-    "price": 138,
-    "category": ["chicken", "frozen"],
+    "name": "Pork Siomai Cutabove Carnivores 1kg or 26kg",
+    "description": "Cutabove Carnivores introduces Pork Siomai, a 26-pound pack of delectable dumplings, perfect for steaming or frying.",
+    "code": "122222222223",
+    "brand": "cutabove carnivores",
+    "weight": [1, 26],
+    "price": 190,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "wings"
+    "thumbnail": "o-siom-1.jpg",
+    "images": "o-siom-1.jpg",
+    "photoSm": ["o-siom-1.jpg", "o-siom-2.jpg", "o-siom-3.jpg", "o-siom-4.jpg", "o-siom-5.jpg"],
+    "photoLg": ["o-siom-1.jpg", "o-siom-2.jpg", "o-siom-3.jpg", "o-siom-4.jpg", "o-siom-5.jpg"],
+    "part" : "siomai"
+    
+    
   },
   {
     "id": 23,
-    "name": "Chicken Wings 3-Joint Fieldale Farms 1kg or 15kg",
-    "description": "Delight in the classic taste of our Fresh Frozen 3-Joint Chicken Wings from Fieldale Farms! Ideal for all occasions. Choose from 1-kilogram packages or a 15-kilogram bulk option.",
-    "code": "CK-WINGS-(FIELDALE FARMS) (STD 15)",
-    "brand": "fieldale farms",
-    "weight": [1, 15],
-    "price": 188,
-    "category": ["chicken", "frozen"],
+    "name": "Classic Dumplings Grillgourmet Meats 1kg or 12kg",
+    "description": "GrillGourmet Meats presents Classic Dumplings, a 12-pound pack of savory dumplings, ready to be cooked to perfection.",
+    "code": "133333333334",
+    "brand": "grillgourmet meats",
+    "weight": [1, 12],
+    "price": 500,
+    "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "wings"
+    "thumbnail": "o-dump-1.jpg",
+    "images": "o-dump-1.jpg",
+    "photoSm": ["o-dump-1.jpg", "o-dump-2.jpg", "o-dump-3.jpg", "o-dump-4.jpg", "o-dump-5.jpg"],
+    "photoLg": ["o-dump-1.jpg", "o-dump-2.jpg", "o-dump-3.jpg", "o-dump-4.jpg", "o-dump-5.jpg"],
+    "part" : "dumplings"
+    
+    
   },
   {
     "id": 24,
-    "name": "Chicken Wings 3-Joint Inghams 1kg or 15kg",
-    "description": "Satisfy your cravings with the delectable flavor of our Fresh Frozen 3-Joint Chicken Wings from Inghams! Perfect for game nights. Available in 1-kilogram packages or a 15-kilogram bulk supply.",
-    "code": "CK-WINGS-(INGHAMS) (STD 15)",
-    "brand": "inghams",
-    "weight": [1, 15],
-    "price": 189,
-    "category": ["chicken", "frozen"],
+    "name": "Pork Ground Round Sizzlecraft Provisions 1kg or 22kg",
+    "description": "SizzleCraft Provisions offers Pork Ground Round, a 22-pound pack of versatile ground pork, perfect for various culinary creations.",
+    "code": "144444444445",
+    "brand": "sizzlecraft provisions",
+    "weight": [1, 22],
+    "price": 360,
+    "category": ["pork","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "wings"
+    "thumbnail": "p-ground-1.jpg",
+    "images": "p-ground-1.jpg",
+    "photoSm": ["p-ground-1.jpg", "p-ground-2.jpg", "p-ground-3.jpg", "p-ground-4.jpg", "p-ground-5.jpg"],
+    "photoLg": ["p-ground-1.jpg", "p-ground-2.jpg", "p-ground-3.jpg", "p-ground-4.jpg", "p-ground-5.jpg"],
+    "part" : "ground"
+    
+    
   },
   {
     "id": 25,
-    "name": "Chicken Wings 3-Joint Poultry N More 1kg or 20kg",
-    "description": "Elevate your gatherings with the deliciousness of our Fresh Frozen 3-Joint Chicken Wings from Poultry N More! Ideal for parties and events. Choose from 1-kilogram packages or a generous 20-kilogram bulk option.",
-    "code": "CK-WINGS-(POULTRY N MORE) (STD 20)",
-    "brand": "poultry n more",
-    "weight": [1, 20],
-    "price": 189,
-    "category": ["chicken", "frozen"],
+    "name": "Pork Sirloin Cutlet Flavorfiesta Meats 1kg or 16kg",
+    "description": "Flavorfiesta Meats presents Pork Sirloin Cutlet, a 16-pound offering of succulent pork cutlets, ideal for pan-frying or grilling.",
+    "code": "155555555556",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 16],
+    "price": 386,
+    "category": ["pork","fresh"],
     "discountPercentage": 0,
     "stock": 100,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
-    "photoSm": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "photoLg": ["ck-wings-1.jpg", "ck-wings-2.jpg", "ck-wings-3.jpg", "ck-wings-4.jpg", "ck-wings-5.jpg"],
-    "part": "wings"
+    "thumbnail": "p-chop-1.jpg",
+    "images": "p-chop-1.jpg",
+    "photoSm": ["p-chop-1.jpg", "p-chop-2.jpg", "p-chop-3.jpg", "p-chop-4.jpg", "p-chop-5.jpg"],
+    "photoLg": ["p-chop-1.jpg", "p-chop-2.jpg", "p-chop-3.jpg", "p-chop-4.jpg", "p-chop-5.jpg"],
+    "part" : "sirloin"
+    
+    
+  },
+  {
+    "id": 26,
+    "name": "Pork Samgyupsal Cut Tenderbite Emporium 1kg or 10kg",
+    "description": "TenderBite Emporium's Pork Samgyup Cut, a 10-pound pack of thinly sliced pork perfect for creating your own Korean BBQ experience.",
+    "code": "166666666667",
+    "brand": "tenderbite emporium",
+    "weight": [1, 10],
+    "price": 420,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "p-samp-1.jpg",
+    "images": "p-samp-1.jpg",
+    "photoSm": ["p-samp-1.jpg", "p-samp-2.jpg", "p-samp-3.jpg", "p-samp-4.jpg", "p-samp-5.jpg"],
+    "photoLg": ["p-samp-1.jpg", "p-samp-2.jpg", "p-samp-3.jpg", "p-samp-4.jpg", "p-samp-5.jpg"],
+    "part" : "samgyupsal"
+    
+    
+  },
+  {
+    "id": 27,
+    "name": "Pork Kasim Carnivore Haven 1kg or 12kg",
+    "description": "Carnivore Haven presents Pork Kasim, a 12-pound cut of pork shoulder, perfect for slow-cooking and creating flavorful stews.",
+    "code": "177777777778",
+    "brand": "carnivore haven",
+    "weight": [1, 12],
+    "price": 300,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "p-laman-1.jpg",
+    "images": "p-laman-1.jpg",
+    "photoSm": ["p-laman-1.jpg", "p-laman-2.jpg", "p-laman-3.jpg", "p-laman-4.jpg", "p-laman-5.jpg"],
+    "photoLg": ["p-laman-1.jpg", "p-laman-2.jpg", "p-laman-3.jpg", "p-laman-4.jpg", "p-laman-5.jpg"],
+    "part" : "kasim"
+    
+    
+  },
+  {
+    "id": 28,
+    "name": "Pork Knuckles MeatMasters Boutique 1kg or 16kg",
+    "description": "MeatMasters Boutique offers Pork Knuckles, a 16-pound option for those seeking a rich and hearty addition to their culinary creations.",
+    "code": "188888888889",
+    "brand": "meatmasters boutique",
+    "weight": [1, 16],
+    "price": 260,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "p-knu-1.jpg",
+    "images": "p-knu-1.jpg",
+    "photoSm": ["p-knu-1.jpg", "p-knu-2.jpg", "p-knu-3.jpg", "p-knu-4.jpg", "p-knu-5.jpg"],
+    "photoLg": ["p-knu-1.jpg", "p-knu-2.jpg", "p-knu-3.jpg", "p-knu-4.jpg", "p-knu-5.jpg"],
+    "part" : "feet"
+    
+    
+  },
+  {
+    "id": 29,
+    "name": "Pork Spare Ribs GrillGourmet Meats 1kg or 14kg",
+    "description": "GrillGourmet Meats presents Pork Spare Ribs, a 14-pound pack of succulent ribs ready to be seasoned and grilled to perfection.",
+    "code": "199999999990",
+    "brand": "grillgourmet meats",
+    "weight": [1, 14],
+    "price": 300,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "p-ribs-1.jpg",
+    "images": "p-ribs-1.jpg",
+    "photoSm": ["p-ribs-1.jpg", "p-ribs-2.jpg", "p-ribs-3.jpg", "p-ribs-4.jpg", "p-ribs-5.jpg"],
+    "photoLg": ["p-ribs-1.jpg", "p-ribs-2.jpg", "p-ribs-3.jpg", "p-ribs-4.jpg", "p-ribs-5.jpg"],
+    "part" : "ribs"
+    
+    
+  },
+  {
+    "id": 30,
+    "name": "Pork Liver Flavorfiesta Meats 1kg or 18kg",
+    "description": "Flavorfiesta Meats offers Pork Liver, 18 pounds of rich and flavorful organ meat, perfect for a variety of culinary applications.",
+    "code": "199899999990",
+    "brand": "flavorfiesta meats",
+    "weight": [1, 18],
+    "price": 140,
+    "category": ["pork","fresh"],
+    "discountPercentage": 0,
+    "stock": 100,
+    "thumbnail": "p-liver-1.jpg",
+    "images": "p-liver-1.jpg",
+    "photoSm": ["p-liver-1.jpg", "p-liver-2.jpg", "p-liver-3.jpg", "p-liver-4.jpg", "p-liver-5.jpg"],
+    "photoLg": ["p-liver-1.jpg", "p-liver-2.jpg", "p-liver-3.jpg", "p-liver-4.jpg", "p-liver-5.jpg"],
+    "part" : "liver"
+    
+    
   }
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
