@@ -615,9 +615,6 @@ export default {
   },
 
   created() {
-    // console.log(this.$route)
-
-    // console.log(this.$route.query?.keyword);
     if(this.$route.query?.keyword)
     this.filters.search = this.$route.query?.keyword
   },
@@ -689,7 +686,6 @@ export default {
     },
 
     handleToggleCollapse(key) {
-      // console.log(collapseName)
       this.activeCollapse[key] = !this.activeCollapse[key]
     },
 
@@ -711,7 +707,6 @@ export default {
         
         // load more if scroll hits the bottom
         if(viewportDistanceToTop + viewportHeight >= searchPageHeight ) {
-          console.log('hits bottom');
           this.loadMore();
  
         }
@@ -779,7 +774,6 @@ export default {
     handleInputBlur(object){
       this.isMaxErr = false;
 
-      // console.log(a)
       const {key, value, error} = object;      
       
       // set the price from bit (base input text component)
@@ -802,13 +796,11 @@ export default {
     
         // check if you put value in min and not yet on max 
         if(min && !max) {
-          console.log('i put value on min but not on max')
           this.filters.price.tag = [`PHP >= ${min}`];
         } 
         
         // check if you put value in max and not yet on min
         else if (!min && max) {
-          console.log('i put value on max but not on min')
           this.filters.price.tag = [`PHP <= ${max}`];
         }
 
@@ -817,13 +809,11 @@ export default {
 
           // check if max value is greater than or equal to min
           if(max >= min) {
-            console.log('validated')
             this.filters.price.tag = [`PHP ${min} - PHP ${max}`];
           } 
           
           // if min is greater than max prompt error message
           else {
-            console.log("Max must be greater than Min");
             // this.$refs.bitmax.validateInput('max', true);
             this.filters.price.tag = [];
             this.isMaxErr = true;
@@ -835,7 +825,6 @@ export default {
       
       // else do nothing
       else {
-        console.log('wala ako value')
         this.filters.price.tag = [];
       }
 
@@ -879,8 +868,6 @@ export default {
     // clear all || create a filter tags above
     // Clear all tags / reset filtered tags
     clearFilter() {
-      console.log('shet')
-
       this.filters.category =
         this.filters.part =
         this.filters.brand =

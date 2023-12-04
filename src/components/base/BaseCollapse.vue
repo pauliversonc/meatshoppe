@@ -94,9 +94,7 @@ export default {
   },
 
   methods: {
-    baseToggleCollapse(collapseName) {
-      // console.log(collapseName)
-
+    baseToggleCollapse() {
       this.$emit('on-toggle-collapse', this.collapseName);
     }
   },

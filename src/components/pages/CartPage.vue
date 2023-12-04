@@ -287,7 +287,6 @@ export default {
       if(elTitle === null && elThumb === null) return
 
       const prod = event.target.closest('.cart-item').dataset.productId;
-      // console.log(prod.dataset.productId)
       const productId = +prod;
 
       this.$router.push(`/product/${productId}`);

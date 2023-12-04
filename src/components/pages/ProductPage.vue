@@ -621,7 +621,6 @@ export default {
       // else throw an error
       // this will throw an error for weight only
       else {
-        // console.log('please select weight')
         this.errors.weight = "Weight is required"
       }
 

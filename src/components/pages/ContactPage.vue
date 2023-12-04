@@ -273,7 +273,6 @@ export default {
       let canSubmit = true;
 
       for (const key in this.form) {
-        // console.log(!!!this.form[key] || !!this.errors[key])
         if (!!!this.form[key] || !!this.errors[key]) {
           canSubmit = false;
           break;

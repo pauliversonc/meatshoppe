@@ -29,32 +29,45 @@
           />
         </router-link>
 
-        <ul class="header__nav-lists" :class="{ show: isActive, pr: isActive }" @click="closeNav">
+        <ul
+          class="header__nav-lists"
+          :class="{ show: isActive, pr: isActive }"
+          @click="closeNav"
+        >
           <li class="header__nav-list">
-            <router-link class="header__nav-link" data-route="Home" to="/home">Home</router-link>
+            <router-link class="header__nav-link" data-route="Home" to="/home"
+              >Home</router-link
+            >
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" data-route="Shop" to="/search">Shop</router-link>
+            <router-link class="header__nav-link" data-route="Shop" to="/search"
+              >Shop</router-link
+            >
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" data-route="About" to="/about">About</router-link>
+            <router-link class="header__nav-link" data-route="About" to="/about"
+              >About</router-link
+            >
           </li>
           <li class="header__nav-list">
-            <router-link class="header__nav-link" data-route="Contact" to="/contact">Contact</router-link>
+            <router-link
+              class="header__nav-link"
+              data-route="Contact"
+              to="/contact"
+              >Contact</router-link
+            >
           </li>
         </ul>
       </div>
 
       <div class="header__links" :class="{ pr: isActive }">
-
         <div class="header__icon-link" @click="openSearchBar" role="button">
           <svg class="header__icon">
             <use xlink:href="../../assets/icons/sprite.svg#icon-search"></use>
           </svg>
         </div>
 
-        <div class="header__icon-link rel"  @click="goToCart" role="button">
-
+        <div class="header__icon-link rel" @click="goToCart" role="button">
           <svg class="header__icon">
             <use
               xlink:href="../../assets/icons/sprite.svg#icon-shopping-cart"
@@ -65,7 +78,6 @@
           <span class="header__icon-count" v-show="cartItemsCount">
             {{ cartItemsCount }}
           </span>
-
         </div>
 
         <div
@@ -128,30 +140,33 @@
             class="find__link"
             :class="{ active: index === search.selectedSuggestion }"
           >
-            <span>{{ item }}</span></a>
+            <span>{{ item }}</span></a
+          >
         </li>
       </ul>
 
       <div class="find__key-container" v-show="search.keyword.length > 0">
-        <a @click="handleSubmitSearch(this.search.keyword )" href="#" class="find__keyword"
+        <a
+          @click="handleSubmitSearch(this.search.keyword)"
+          href="#"
+          class="find__keyword"
           >See all "{{ this.search.keyword }}"</a
         >
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import { mapGetters} from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   name: "MeatshoppeTheHeader",
   computed: {
     ...mapGetters({
-      cartItemsCount: 'cart/getCartCount',
+      cartItemsCount: "cart/getCartCount",
     }),
-    
+
     filteredSuggestions() {
       // Filter suggestions based on the searchQuery
       const filtered = this.search.suggestions.filter((suggestion) =>
@@ -174,31 +189,20 @@ export default {
         selectedSuggestion: -1,
         // temp value, must be dynamic use vuex
         suggestions: [
-          "pizza",
-          "sushi",
-          "burger",
-          "pasta",
-          "tacos",
-          "salad",
-          "fried chicken",
-          "ice cream",
-          "steak",
-          "shrimp scampi",
-          "dim sum",
-          "burrito",
-          "lobster",
-          "ramen",
-          "chocolate cake",
-          "biryani",
-          "gyros",
-          "pho",
-          "pancakes",
-          "falafel",
-          "caesar salad",
-          "hot dog",
-          "sashimi",
-          "chicken tikka masala",
-          "pad thai",
+          "Beef",
+          "Chicken",
+          "Pork",
+          "Lamb",
+          "Turkey",
+          "Sausages",
+          "Bacon",
+          "Ham",
+          "Salami",
+          "Hot Dogs",
+          "Whole Chickens",
+          "Chicken Wings",
+          "Ground Turkey",
+          "Duck",
         ],
       },
     };
@@ -236,13 +240,13 @@ export default {
 
   methods: {
     closeNav(event) {
-      const link = event.target.closest('.header__nav-link');
-      if(this.isActive  && !!link) this.isActive = false;
-      else return
+      const link = event.target.closest(".header__nav-link");
+      if (this.isActive && !!link) this.isActive = false;
+      else return;
     },
 
     goToCart() {
-      this.$router.push('/cart');
+      this.$router.push("/cart");
     },
 
     toggle() {
@@ -267,33 +271,29 @@ export default {
         this.search.selectedSuggestion = 0;
       }
 
-      if(this.search.keyword.length > 0) {
+      if (this.search.keyword.length > 0) {
         // this.$router.push('search')
         this.$router.push({
-          name: 'search',
+          name: "search",
           query: {
-            keyword: this.search.keyword
+            keyword: this.search.keyword,
           },
         });
-
       }
       this.closeSearch();
-
     },
 
     // change route when suggetion in search is click
     handleSubmitSearch(item) {
       this.$router.push({
-        name: 'search',
+        name: "search",
         query: {
-          keyword: item
+          keyword: item,
         },
       });
 
       this.closeSearch();
     },
-
-    
 
     selectNext() {
       // if products is true
@@ -465,11 +465,7 @@ export default {
     @include link-animate;
   }
 
-
-
-
   &__links {
-    
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -506,17 +502,15 @@ export default {
       right: 0;
       transform: translate(0.6rem, -0.2rem);
       user-select: none;
-      font-size: .875rem;
+      font-size: 0.875rem;
 
       min-width: 0.6875rem;
       // height: 1rem;
       text-align: center;
       border-radius: 2.75rem;
-      padding: 0 .5rem;
-
+      padding: 0 0.5rem;
     }
   }
-
 
   // Burger button
   &__nav-menu {
@@ -671,7 +665,12 @@ export default {
       background-size: 300% 100%;
       color: $light-high;
       // background: $gradient;
-      background-image: linear-gradient(to right, $main-tint, $main, $main-shade);
+      background-image: linear-gradient(
+        to right,
+        $main-tint,
+        $main,
+        $main-shade
+      );
 
       .search__icon {
         fill: $white;
@@ -693,10 +692,10 @@ export default {
   font-family: inherit;
   font-weight: inherit;
   color: inherit;
-  
+
   width: 100%;
   height: 100%;
-  
+
   transition: border ease 0.4s;
   outline: none;
   // border: solid thin $dark-low;
@@ -724,5 +723,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>
