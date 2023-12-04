@@ -26,7 +26,7 @@
           <span class="offer__text">{{ text }}</span>
         </h3>
         <p class="offer__paragraph">{{ paragraph }}</p>
-        <BaseButton btn-text="Shop now" :btn-outline="true" />
+        <BaseButton btn-text="Shop now" :btn-outline="true" @click="changeRoute" />
       </div>
     </div>
   </div>
@@ -85,7 +85,16 @@ export default {
   },
 
   mounted() {},
-  methods: {},
+  methods: {
+    changeRoute() {
+      this.$router.push({
+        name: "search",
+        query: {
+          keyword: this.text,
+        },
+      });
+    },
+  },
 };
 </script>
 

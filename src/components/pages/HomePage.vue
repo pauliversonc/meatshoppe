@@ -14,7 +14,7 @@
 
     span="Special offer"
     sub-text="Rated Top Tier"
-    text="Pork Chop"
+    text="Sirloin"
     paragraph="Marbleized tenderness, awaiting culinary alchemy for succulent transformation"
     :align="true"
     image-name="offer-1-min.png"
@@ -46,7 +46,7 @@
 
     span="Special offer"
     sub-text="Succulent Grading"
-    text="Raw Steak"
+    text="Loin Steak"
     paragraph="With vibrant marbling and juicy anticipation, it's ready for the grill's fiery dance"
     :align="true"
     image-name="offer-3-min.png"
