@@ -203,7 +203,7 @@
     <br>
     Disclaimer: Some content may not be accurate.
     <br>
-    Images may be sourced from various places. Refer to <router-link to="/attribution" class="footer__cite">image citations</router-link> for details.
+    Images may be sourced from various places. Refer to <router-link to="/attribution" class="footer__cite">image attribution</router-link> for details.
 
       
       </span

@@ -235,6 +235,10 @@ import BaseToast from "../base/BaseToast.vue";
 
 export default {
   name: "MeatshoppeContactPage",
+  components: {
+    BaseToast,
+
+  },
   data() {
     return {
       form: {
