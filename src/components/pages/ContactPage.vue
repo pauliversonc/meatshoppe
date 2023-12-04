@@ -225,10 +225,13 @@
       </ul>
     </div>
   </div>
+
+  <BaseToast ref="toast"></BaseToast>
 </template>
 
 <script>
 import emailjs from 'emailjs-com';
+import BaseToast from "../base/BaseToast.vue";
 
 export default {
   name: "MeatshoppeContactPage",
@@ -259,11 +262,6 @@ export default {
   mounted() {},
 
   methods: {
-
-    // filterInput() {
-    //   this.inputText = this.inputText.replace(/\D/g, ''); // Remove non-digits
-    // },
-
     handleInputBlur(object){
       const {key, value, error} = object;
       this.form[key] = value;
@@ -284,17 +282,24 @@ export default {
 
       if (canSubmit) {
         // Perform your form submission action here
-        console.log("Form submitted!");
-
-        
         const form = this.$refs.form;
-
-
         emailjs.sendForm('service_myhdjor', 'template_aqn0ju3', form, 'h3c8Ellzwt0eddauB')
         .then((result) => {
             console.log('SUCCESS!', result.text);
-        }, (error) => {
-            console.log('FAILED...', error.text);
+            this.$refs.toast.showToast("Success! Your message has been sent – we'll be in touch shortly.");
+            // clear form
+
+            this.$refs.bitname.clearInput('name')
+            this.$refs.bitlname.clearInput('lname')
+            this.$refs.bitemail.clearInput('email')
+            this.$refs.bitcontact.clearInput('contact')
+            this.$refs.bitsubject.clearInput('subject')
+            this.$refs.bitbody.clearInput('body')
+
+
+          }, (error) => {
+            console.error(error)
+            this.$refs.toast.showToast("We're sorry, but it seems there was an issue. Please try again, and if the problem persists, feel free to contact our support team.");
         });
 
    
@@ -306,7 +311,7 @@ export default {
           // run validate input base on key
           this.$refs['bit'+key].validateInput(key);
         }
-        console.log("Form data is not valid. Please fix errors.");
+        this.$refs.toast.showToast("Form data is not valid. Please complete the form.");
       }
     },
   },

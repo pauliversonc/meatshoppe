@@ -108,8 +108,6 @@ export default {
       this.resetInputClass();
       this.checkRefs();
 
-      console.log(key)
-
       this.$emit('on-input-blur', {key, value: this.formKey, error: this.error});
     },
 
