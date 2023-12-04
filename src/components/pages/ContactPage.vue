@@ -173,7 +173,7 @@
             <p class="faq__body">
               Come say hello at our main store.
               <br>
-              <strong>Brgy. Conchu, Trece Martires City, Cavite</strong>
+              <strong>Trece Martires City, Cavite</strong>
             </p>
           </div>
         </li>
@@ -202,7 +202,7 @@
           <span class="faq__title faq__title--sm">Follow us</span>
           <ul class="social__lists">
             <li class="social__list">
-              <a class="social__link" href="#">
+              <a class="social__link" href="https://www.facebook.com/meatshoppe.OFCL" target="_blank">
                 <svg class="footer__icon">
                   <use
                     xlink:href="../../assets/icons/sprite.svg#icon-facebook"
@@ -212,7 +212,7 @@
             </li>
 
             <li class="social__list">
-              <a class="social__link" href="#">
+              <a class="social__link" href="https://instagram.com/meatshoppe.OFCL" target="_blank">
                 <svg class="footer__icon">
                   <use
                     xlink:href="../../assets/icons/sprite.svg#icon-instagram"

@@ -34,7 +34,7 @@
           <li class="footer__contact-list">
             <a
               target="_blank"
-              href="http://maps.google.com/?q=ECO Builders, 127, Trece Martires, Cavite"
+              href="https://www.google.com/maps/place/Trece+Martires,+Cavite/@14.2703383,120.8282022"
               class="footer__contact-link"
             >
               <svg class="footer__icon">
@@ -43,13 +43,13 @@
                 ></use>
               </svg>
 
-              Brgy Conchu, Trece Martires City, Cavite
+              Trece Martires City, Cavite
             </a>
           </li>
 
           <li class="footer__contact-list">
 
-            <a href="tel:415-201-6370" class="footer__contact-link"
+            <a href="tel:0915-543-6882" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-phone"></use>
@@ -95,8 +95,8 @@
         <ul class="footer__contact-wrap">
           <li class="footer__contact-list">
  
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
-              >
+            <a href="https://www.facebook.com/meatshoppe.OFCL" class="footer__contact-link"
+              target="_blank">
               <svg class="footer__icon">
               <use
                 xlink:href="../../assets/icons/sprite.svg#icon-facebook"
@@ -109,8 +109,8 @@
 
           <li class="footer__contact-list">
             
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
-              >
+            <a href="https://instagram.com/meatshoppe.OFCL" class="footer__contact-link"
+              target="_blank">
               <svg class="footer__icon">
               <use
                 xlink:href="../../assets/icons/sprite.svg#icon-instagram"
@@ -168,7 +168,7 @@
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-phone"></use>
-            </svg>+63 919 666 4541</a
+            </svg>+63 915 543 6882</a
             >
           </li>
         </ul>

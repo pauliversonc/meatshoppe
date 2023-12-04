@@ -1,16 +1,15 @@
 const cartState = {
   cart: [
-    {
-      "id": 2,
-      "weight": 15,
-      "qty": 6,
-    },
-    {
-      "id": 2,
-      "weight": 1,
-      "qty": 10,
-    },
-
+    // {
+    //   "id": 2,
+    //   "weight": 15,
+    //   "qty": 6,
+    // },
+    // {
+    //   "id": 2,
+    //   "weight": 1,
+    //   "qty": 10,
+    // },
   ],
 
   promoCodes: [
