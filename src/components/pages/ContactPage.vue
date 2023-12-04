@@ -51,7 +51,7 @@
             },
           }"
         >
-          <form action="#" @submit.prevent="submitForm" class="contact__form">
+          <form action="#" @submit.prevent="submitForm" class="contact__form" ref="form">
             <h3 class="contact__form-head" >We love to hear from you</h3>
             <p class="contact__form-para">Please be advised that the details you provided here are not to be disclosed publicly.</p>
 
@@ -228,6 +228,8 @@
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
   name: "MeatshoppeContactPage",
   data() {
@@ -269,7 +271,6 @@ export default {
 
     },
 
-
     submitForm() {
       let canSubmit = true;
 
@@ -284,6 +285,21 @@ export default {
       if (canSubmit) {
         // Perform your form submission action here
         console.log("Form submitted!");
+
+        
+        const form = this.$refs.form;
+
+
+        emailjs.sendForm('service_myhdjor', 'template_aqn0ju3', form, 'h3c8Ellzwt0eddauB')
+        .then((result) => {
+            console.log('SUCCESS!', result.text);
+        }, (error) => {
+            console.log('FAILED...', error.text);
+        });
+
+   
+        
+
       } else {
         for (const key in this.form) {
           // run the event from all of base input text base on ref

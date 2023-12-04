@@ -14,6 +14,7 @@
         @blur="validateInput(textName)"
         ref="bitInputRef"
         rows="5"
+        :name="textName"
       >
       </textarea>
 
@@ -26,6 +27,7 @@
         @focus="resetInputClass()"
         @blur="validateInput(textName)"
         ref="bitInputRef"
+        :name="textName"
 
 
         @input="filterInput"
