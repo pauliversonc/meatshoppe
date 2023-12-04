@@ -9,8 +9,8 @@
     "price": 388,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-laman-1.jpg",
+    "images": "b-laman-1.jpg",
     "stock": 100,
     "part" : "kaldereta"
     
@@ -26,8 +26,8 @@
     "price": 648,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-ground-1.jpg",
+    "images": "b-ground-1.jpg",
     "stock": 100,
     "part" : "ground"
     
@@ -43,8 +43,8 @@
     "price": 664,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-sirloin-1.jpg",
+    "images": "b-sirloin-1.jpg",
     "stock": 100,
     "part" : "sirloin"
     
@@ -60,8 +60,8 @@
     "price": 1985,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-rib-1.jpg",
+    "images": "b-rib-1.jpg",
     "stock": 100,
     "part" : "rib"
     
@@ -77,8 +77,8 @@
     "price": 1150,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-steak-1.jpg",
+    "images": "b-steak-1.jpg",
     "stock": 100,
     "part" : "loin"
     
@@ -94,8 +94,8 @@
     "price": 317,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-marrow-1.jpg",
+    "images": "b-marrow-1.jpg",
     "stock": 100,
     "part" : "marrow"
     
@@ -111,8 +111,8 @@
     "price": 578,
     "category": ["beef","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "b-shank-1.jpg",
+    "images": "b-shank-1.jpg",
     "stock": 100,
     "part" : "shank"
     
@@ -128,8 +128,8 @@
     "price": 224,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-drum-1.jpg",
+    "images": "c-drum-1.jpg",
     "stock": 100,
     "part" : "drumstick"
     
@@ -145,8 +145,8 @@
     "price": 140,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-feet-1.jpg",
+    "images": "c-feet-1.jpg",
     "stock": 100,
     "part" : "feet"
     
@@ -162,8 +162,8 @@
     "price": 180,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-breast-1.jpg",
+    "images": "c-breast-1.jpg",
     "stock": 100,
     "part" : "breast"
     
@@ -179,8 +179,8 @@
     "price": 220,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-wings-1.jpg",
+    "images": "c-wings-1.jpg",
     "stock": 100,
     "part" : "wings"
     
@@ -196,8 +196,8 @@
     "price": 160,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-whole-1.jpg",
+    "images": "c-whole-1.jpg",
     "stock": 100,
     "part" : "whole"
     
@@ -213,8 +213,8 @@
     "price": 190,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-ql-1.jpg",
+    "images": "c-ql-1.jpg",
     "stock": 100,
     "part" : "quarter leg"
     
@@ -230,8 +230,8 @@
     "price": 251,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-liver-1.jpg",
+    "images": "c-liver-1.jpg",
     "stock": 100,
     "part" : "liver"
     
@@ -247,8 +247,8 @@
     "price": 98,
     "category": ["chicken","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "c-neck-1.jpg",
+    "images": "c-neck-1.jpg",
     "stock": 100,
     "part" : "neck"
     
@@ -264,8 +264,8 @@
     "price": 315,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-long-1.jpg",
+    "images": "o-long-1.jpg",
     "stock": 100,
     "part" : "longganisa"
     
@@ -281,8 +281,8 @@
     "price": 400,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-lumpia-1.jpg",
+    "images": "o-lumpia-1.jpg",
     "stock": 100,
     "part" : "lumpia"
     
@@ -298,8 +298,8 @@
     "price": 400,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-pat-1.jpg",
+    "images": "o-pat-1.jpg",
     "stock": 100,
     "part" : "patty"
     
@@ -315,8 +315,8 @@
     "price": 550,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-sau-1.jpg",
+    "images": "o-sau-1.jpg",
     "stock": 100,
     "part" : "sausage"
     
@@ -332,8 +332,8 @@
     "price": 360,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-balls-1.jpg",
+    "images": "o-balls-1.jpg",
     "stock": 100,
     "part" : "meatball"
     
@@ -349,8 +349,8 @@
     "price": 260,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-hot-1.jpg",
+    "images": "o-hot-1.jpg",
     "stock": 100,
     "part" : "sausage"
     
@@ -366,8 +366,8 @@
     "price": 190,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-siom-1.jpg",
+    "images": "o-siom-1.jpg",
     "stock": 100,
     "part" : "siomai"
     
@@ -383,8 +383,8 @@
     "price": 500,
     "category": ["ready-to-cook","frozen"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "o-dump-1.jpg",
+    "images": "o-dump-1.jpg",
     "stock": 100,
     "part" : "dumplings"
     
@@ -400,8 +400,8 @@
     "price": 360,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-ground-1.jpg",
+    "images": "p-ground-1.jpg",
     "stock": 100,
     "part" : "ground"
     
@@ -417,8 +417,8 @@
     "price": 386,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-chop-1.jpg",
+    "images": "p-chop-1.jpg",
     "stock": 100,
     "part" : "sirloin"
     
@@ -434,8 +434,8 @@
     "price": 420,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-samp-1.jpg",
+    "images": "p-samp-1.jpg",
     "stock": 100,
     "part" : "samgyupsal"
     
@@ -451,8 +451,8 @@
     "price": 300,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-laman-1.jpg",
+    "images": "p-laman-1.jpg",
     "stock": 100,
     "part" : "kasim"
     
@@ -468,8 +468,8 @@
     "price": 260,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-knu-1.jpg",
+    "images": "p-knu-1.jpg",
     "stock": 100,
     "part" : "feet"
     
@@ -485,8 +485,8 @@
     "price": 300,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-ribs-1.jpg",
+    "images": "p-ribs-1.jpg",
     "stock": 100,
     "part" : "ribs"
     
@@ -502,8 +502,8 @@
     "price": 140,
     "category": ["pork","fresh"],
     "discountPercentage": 0,
-    "thumbnail": "p-butobuto.jpg",
-    "images": "p-butobuto.jpg",
+    "thumbnail": "p-liver-1.jpg",
+    "images": "p-liver-1.jpg",
     "stock": 100,
     "part" : "liver"
     
