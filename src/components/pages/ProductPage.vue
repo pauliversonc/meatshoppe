@@ -966,7 +966,7 @@ export default {
 .carousel__item {
   height: 40rem;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   // border: 1px solid red;
   overflow: hidden;
   transition: transform .3s ease;
