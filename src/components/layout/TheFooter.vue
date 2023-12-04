@@ -85,6 +85,9 @@
           <li class="footer__list">
             <router-link to="/search" class="footer__link">Shop</router-link>
           </li>
+          <li class="footer__list">
+            <router-link to="/contact" class="footer__link">Contact</router-link>
+          </li>
         </ul>
       </div>
 
@@ -195,10 +198,15 @@
       delay: 300
     },
   }"
-    
-    
-    >Copyright &#169; {{ yearNow }} Paul Iverson Cortez | Meatshoppe. All rights
-      reserved.</span
+    >
+    Copyright &#169; {{ yearNow }} | Meatshoppe. All rights reserved.
+    <br>
+    Disclaimer: Some content may not be accurate.
+    <br>
+    Images may be sourced from various places. Refer to <router-link to="/attribution" class="footer__cite">image citations</router-link> for details.
+
+      
+      </span
     >
   </div>
 </template>
@@ -366,6 +374,15 @@ export default {
     text-decoration: none;
     color: $black-tint;
     @include link-animate;
+  }
+
+  &__cite:link,
+  &__cite:visited {
+    // text-decoration: none;
+    color: $light-high;
+    font-style: italic;
+    
+    
   }
 
 

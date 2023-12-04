@@ -7,7 +7,7 @@ import searchRoute from './routes/searchRoute';
 import cartRoute from './routes/cartRoute';
 import productRoute from './routes/productRoute';
 import noProductRoute from './routes/noProductRoute';
-
+import attribRoute from "./routes/attribRoute";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,6 +20,7 @@ const router = createRouter({
     productRoute,
     noProductRoute,
     notFoundRoute,
+    attribRoute,
   ],
   scrollBehavior: () => ({
     top: 0,
