@@ -20,6 +20,7 @@
     }"
   >
     <header class="header" :class="{ pr: isSearchVisible }">
+
       <div class="header__nav">
         <router-link to="/home" class="header__logo-link">
           <img
@@ -92,6 +93,7 @@
           <div></div>
         </div>
       </div>
+
     </header>
   </div>
 
@@ -371,12 +373,15 @@ export default {
 @import "../../sass/mixins";
 .header {
   margin: 0 auto;
-  max-width: 120rem;
-  display: flex;
+  max-width: 100%;
   height: 100%;
+  display: flex;
   text-transform: uppercase;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+
+  border: 1px solid red;
 
   &.pr {
     @media only screen and (min-width: 78em) {
@@ -407,6 +412,8 @@ export default {
     align-items: center;
     justify-content: start;
     gap: 2rem;
+
+    border: 1px solid red;
   }
 
   &__logo-link {
@@ -471,6 +478,7 @@ export default {
     gap: 2rem;
     justify-content: start;
     // padding-right: 17px;
+    border: 1px solid red;
     &.pr {
       padding-right: 17px;
     }
