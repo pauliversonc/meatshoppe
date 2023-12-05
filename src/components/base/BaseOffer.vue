@@ -78,7 +78,7 @@ export default {
     bgImage() {
       return {
         backgroundImage: `url('${
-          "src/assets/images/offers/" + this.imageName
+          "/public/images/offers/" + this.imageName
         }')`,
       };
     },

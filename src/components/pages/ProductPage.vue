@@ -6,7 +6,7 @@
 
           <Carousel :items-to-show="1" :wrap-around="false" v-model="currentSlide">
             <Slide v-for="(photo, index) in product.photoLg" :key="index">
-              <img class="carousel__item" :src="`/src/assets/images/goods/${id}/lg/${photo}`"
+              <img class="carousel__item" :src="`/public/images/goods/${id}/lg/${photo}`"
               ref="zoomedImage"
               
               />
@@ -20,7 +20,7 @@
             ref="carousel"
           >
             <Slide v-for="(photo, index) in product.photoSm" :key="index">
-              <img class="carousel__thumbnail" @click="slideTo(index)" :src="`/src/assets/images/goods/${id}/sm/${photo}`"/>
+              <img class="carousel__thumbnail" @click="slideTo(index)" :src="`/public/images/goods/${id}/sm/${photo}`"/>
             </Slide>
           </Carousel>
 

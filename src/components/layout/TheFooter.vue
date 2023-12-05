@@ -22,8 +22,8 @@
       <div class="footer__logo-box">
         <img
           class="footer__logo"
-          src="../../assets/images/logo/logo.png"
-          alt="logo"
+          src="/public/images/logo/logo.png"
+          alt="Meatshoppe footer logo"
         />
       </div>
 

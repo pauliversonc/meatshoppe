@@ -24,9 +24,9 @@
         <Slide v-for="slide in 2" :key="slide">
 
           <picture>
-            <source :srcset="`/src/assets/images/banners/banner-${slide}-320.png`"  media="(max-width: 25em)">
-            <source :srcset="`/src/assets/images/banners/banner-${slide}-768.png`"  media="(min-width: 25.06em) and (max-width: 37.5em)">
-            <img class="hero__img" :src="`/src/assets/images/banners/banner-${slide}-1028.png`" :alt="slide">
+            <source :srcset="`/public/images/banners/banner-${slide}-320.png`"  media="(max-width: 25em)">
+            <source :srcset="`/public/images/banners/banner-${slide}-768.png`"  media="(min-width: 25.06em) and (max-width: 37.5em)">
+            <img class="hero__img" :src="`/public/images/banners/banner-${slide}-1028.png`" :alt="slide">
           </picture>
           
         </Slide>

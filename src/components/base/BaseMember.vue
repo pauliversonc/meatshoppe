@@ -20,7 +20,7 @@
   >
     <img
       class="member--img"
-      :src="`src/assets/images/about/${memberImg}`"
+      :src="`/public/images/about/${memberImg}`"
       alt=""
       srcset=""
     />

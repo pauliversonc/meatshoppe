@@ -102,7 +102,7 @@
 
           <img
             class="about__img"
-            src="../../assets/images/about/team-sm.png"
+            src="/public/images/about/team-sm.png"
             alt=""
             srcset=""
           />
@@ -182,7 +182,7 @@
 
           <img
             class="about__img"
-            src="../../assets/images/about/alignment-1.jpg"
+            src="/public/images/about/alignment-1.jpg"
             alt=""
             srcset=""
           />
@@ -304,7 +304,7 @@
 
           <img
             class="about__img"
-            src="../../assets/images/about/alignment-2.jpg"
+            src="/public/images/about/alignment-2.jpg"
             alt=""
             srcset=""
           />
@@ -343,7 +343,7 @@
 
           <img
             class="about__img"
-            src="../../assets/images/about/alignment-3.jpg"
+            src="/public/images/about/alignment-3.jpg"
             alt=""
             srcset=""
           />
@@ -468,7 +468,7 @@ export default {
 
     height: 37rem;
 
-    background-image: url(../../assets/images/about/about-us-xl.png);
+    background-image: url(/public/images/about/about-us-xl.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right;
