@@ -1,19 +1,12 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-// import AutoImport from 'unplugin-auto-import/vite'
-// import Components from 'unplugin-vue-components/vite'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
-// https://vitejs.dev/config/
-
-
+// vite.config.js
+import { defineConfig } from 'vite';
+import Vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  // base:'/meatshoppe/',
-  plugins: [vue()],
+  plugins: [Vue()],
   resolve: {
     alias: {
-      '@': '/src'
-    }
-  }
+      '@': '/src', // Adjust the alias based on your project structure
+    },
+  },
 });

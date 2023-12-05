@@ -32,7 +32,7 @@
       >
         <img
           class="category__img"
-          :src="`/public/images/categories/${category.catImgName}`"
+          :src="`public/images/categories/${category.catImgName}`"
           :alt="category.catImgName"
         />
 
