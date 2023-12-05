@@ -2,22 +2,7 @@
   <div
     class="header__wrapper"
     :class="{ active: scrollY >= 240 }"
-    v-motion
-    :initial="{
-      x: 200,
-      opacity: 0,
-    }"
-    :enter="{
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 250,
-        damping: 100,
-        mass: 1,
-        delay: 500,
-      },
-    }"
+    
   >
     <header class="header" :class="{ pr: isSearchVisible }">
 
@@ -373,13 +358,13 @@ export default {
 @import "../../sass/mixins";
 .header {
   margin: 0 auto;
-  max-width: 100%;
+  max-width: 120rem;
   height: 100%;
   display: flex;
   text-transform: uppercase;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
+  // overflow: hidden;
 
   border: 1px solid red;
 
@@ -422,7 +407,7 @@ export default {
   }
 
   &__logo {
-    height: 3rem;
+    height: 2rem;
   }
 
   &__nav-lists {
