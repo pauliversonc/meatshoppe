@@ -6,14 +6,14 @@
   >
     <div class="service-card__icon-box">
       <svg class="service-card__icon">
-        <use :xlink:href="iconHref"></use>
+        <use :xlink:href="`/icons/sprite.svg#icon-${this.serviceIcon}`"></use>
       </svg>
     </div>
     <span class="service-card__title">{{ serviceTitle }}</span>
     <span class="service-card__desc">{{ serviceDesc }}</span>
 
     <svg class="service-card__icon-bg">
-      <use :xlink:href="iconHref"></use>
+      <use :xlink:href="`/icons/sprite.svg#icon-${this.serviceIcon}`"></use>
     </svg>
   </div>
 </template>
@@ -28,11 +28,6 @@ export default {
     serviceMain: Boolean,
   },
 
-  computed: {
-    iconHref() {
-      return `/images/icons/sprite.svg#icon-${this.serviceIcon}`;
-    },
-  },
   data() {
     return {};
   },
