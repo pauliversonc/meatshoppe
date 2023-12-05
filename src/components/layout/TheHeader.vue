@@ -23,7 +23,7 @@
       <div class="header__nav">
         <router-link to="/home" class="header__logo-link">
           <img
-            src="/public/images/logo/logo.png"
+            src="/images/logo/logo.png"
             class="header__logo"
             alt="Meatshoppe icon"
           />

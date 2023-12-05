@@ -24,7 +24,7 @@
     <div class="product__img-box">
       <img
         class="product__img"
-        :src="`/public/images/goods/${id}/sm/${thumbnail}`"
+        :src="`/images/goods/${id}/sm/${thumbnail}`"
         :alt="`${description}`"
       />
 

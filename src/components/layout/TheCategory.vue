@@ -32,7 +32,7 @@
       >
         <img
           class="category__img"
-          :src="`public/images/categories/${category.catImgName}`"
+          :src="`/images/categories/${category.catImgName}`"
           :alt="category.catImgName"
         />
 
@@ -56,7 +56,7 @@
           <div class="category__card">
             <img
               class="category__img"
-              :src="`src/assets/images/categories/${category.catImgName}`"
+              :src="`/images/categories/${category.catImgName}`"
               :alt="category.catImgName"
             />
 

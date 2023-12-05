@@ -22,7 +22,7 @@
       <div class="footer__logo-box">
         <img
           class="footer__logo"
-          src="/public/images/logo/logo.png"
+          src="/images/logo/logo.png"
           alt="Meatshoppe footer logo"
         />
       </div>
