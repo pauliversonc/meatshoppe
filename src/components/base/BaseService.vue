@@ -30,7 +30,7 @@ export default {
 
   computed: {
     iconHref() {
-      return `src/assets/icons/sprite.svg#icon-${this.serviceIcon}`;
+      return `/images/icons/sprite.svg#icon-${this.serviceIcon}`;
     },
   },
   data() {

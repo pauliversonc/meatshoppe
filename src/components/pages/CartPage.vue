@@ -14,7 +14,7 @@
 
             <!-- left -->
             <figure class="cart-item__thumbnail-container">
-              <img class="cart-item__thumbnail" :src="`/public/images/goods/${product.id}/sm/${product.thumbnail}`" :alt="product.description">
+              <img class="cart-item__thumbnail" :src="`/images/goods/${product.id}/sm/${product.thumbnail}`" :alt="product.description">
             </figure>
 
             <!-- right flex-column-->
