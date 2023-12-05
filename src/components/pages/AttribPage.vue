@@ -120,6 +120,7 @@
   &__wrapper {
     max-width: 120rem;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   &__par {

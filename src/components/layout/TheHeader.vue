@@ -63,14 +63,14 @@
       <div class="header__links" :class="{ pr: isActive }">
         <div class="header__icon-link" @click="openSearchBar" role="button">
           <svg class="header__icon">
-            <use xlink:href="/public/icons/sprite.svg#icon-search"></use>
+            <use xlink:href="/icons/sprite.svg#icon-search"></use>
           </svg>
         </div>
 
         <div class="header__icon-link rel" @click="goToCart" role="button">
           <svg class="header__icon">
             <use
-              xlink:href="/public/icons/sprite.svg#icon-shopping-cart"
+              xlink:href="/icons/sprite.svg#icon-shopping-cart"
             ></use>
           </svg>
 
@@ -100,7 +100,7 @@
       <!-- form group search -->
       <form class="form-group" @submit.prevent="submitSearch">
         <svg class="form__icon form__icon--left">
-          <use xlink:href="/public/icons/sprite.svg#icon-search"></use>
+          <use xlink:href="/icons/sprite.svg#icon-search"></use>
         </svg>
         <input
           type="text"
@@ -119,7 +119,7 @@
           @click="clearSearch"
           v-show="search.keyword.length > 0"
         >
-          <use xlink:href="/public/icons/sprite.svg#icon-x"></use>
+          <use xlink:href="/icons/sprite.svg#icon-x"></use>
         </svg>
       </form>
       <!-- /.form group search -->
