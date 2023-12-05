@@ -20,7 +20,7 @@
   >
 
       <div class="not-found__img-con">
-        <img class="not-found__img" src="../../assets/images/alerts/undraw_page_not_found_re_e9o6.svg" alt="Error 404, Page not found">
+        <img class="not-found__img" src="/public/images/alerts/undraw_page_not_found_re_e9o6.svg" alt="Error 404, Page not found">
       </div>
 
       <BaseHeadingOne

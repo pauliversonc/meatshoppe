@@ -23,7 +23,7 @@
     >
 
         <div class="no-product__img-con">
-          <img class="no-product__img" src="../../assets/images/alerts/undraw_no_data_re_kwbl.svg" alt="Product Not found">
+          <img class="no-product__img" src="/public/images/alerts/undraw_no_data_re_kwbl.svg" alt="Product Not found">
         </div>
 
         <BaseHeadingOne
