@@ -48,7 +48,7 @@ export default {
 .toast-container {
   position: fixed;
   top: 10rem;
-  right: 4rem;
+  right: 2rem;
   z-index: 10;
   min-width: 36rem;
 

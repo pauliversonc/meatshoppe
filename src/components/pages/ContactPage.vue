@@ -52,6 +52,10 @@
           }"
         >
           <form action="#" @submit.prevent="submitForm" class="contact__form" ref="form">
+            <div class="contact__overlay" v-show="isLoading">
+              <BaseLoading class="modBaseLoading"></BaseLoading>
+            </div>
+
             <h3 class="contact__form-head" >We love to hear from you</h3>
             <p class="contact__form-para">Please be advised that the details you provided here are not to be disclosed publicly.</p>
 
@@ -232,12 +236,13 @@
 <script>
 import emailjs from 'emailjs-com';
 import BaseToast from "../base/BaseToast.vue";
+import BaseLoading from "../base/BaseLoading.vue";
 
 export default {
   name: "MeatshoppeContactPage",
   components: {
     BaseToast,
-
+    BaseLoading,
   },
   data() {
     return {
@@ -260,6 +265,8 @@ export default {
       },
 
       inputText: '',
+
+      isLoading: false,
     };
   },
 
@@ -275,6 +282,7 @@ export default {
 
     submitForm() {
       let canSubmit = true;
+      this.isLoading = true;
 
       for (const key in this.form) {
         if (!!!this.form[key] || !!this.errors[key]) {
@@ -289,26 +297,34 @@ export default {
         emailjs.sendForm('service_myhdjor', 'template_aqn0ju3', form, 'h3c8Ellzwt0eddauB')
         .then((result) => {
             console.log('SUCCESS!', result.text);
-            this.$refs.toast.showToast("Success! Your message has been sent – we'll be in touch shortly.");
-            // clear form
+            this.$refs.toast.showToast("Success! Your message has been sent.");
 
+            // Clear form
             this.$refs.bitname.clearInput('name')
             this.$refs.bitlname.clearInput('lname')
             this.$refs.bitemail.clearInput('email')
             this.$refs.bitcontact.clearInput('contact')
             this.$refs.bitsubject.clearInput('subject')
             this.$refs.bitbody.clearInput('body')
-
+            
+            // Hide loading state
+            this.isLoading = false;
 
           }, (error) => {
+            // Hide loading state
+            this.isLoading = false;
+
             console.error(error)
-            this.$refs.toast.showToast("We're sorry, but it seems there was an issue. Please try again, and if the problem persists, feel free to contact our support team.");
+            this.$refs.toast.showToast("Server Error! Please try again later.");
         });
 
    
         
 
       } else {
+        // Hide loading state
+        this.isLoading = false;
+
         for (const key in this.form) {
           // run the event from all of base input text base on ref
           // run validate input base on key
@@ -397,7 +413,6 @@ export default {
     box-shadow: $shadow;
     background-color: $light-high;
     // border: solid thin $dark-low;
-    padding: 2rem;
 
     //  715 = 44.6875 px below
     @media only screen and (max-width: 44.6875em) {
@@ -408,7 +423,26 @@ export default {
   &__form {
     display: grid;
     grid-template-columns: 1fr;
-    // gap: 1rem;
+    position: relative;
+    padding: 2rem;
+
+  }
+
+  &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.7);
+
+      .modBaseLoading {
+        transform: translateY(-25%);
+      }
   }
 
   &__form-head {
