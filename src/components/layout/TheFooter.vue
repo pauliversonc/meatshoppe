@@ -34,13 +34,13 @@
 
           <li class="footer__contact-list">
 
-            <a href="tel:0915-543-6882" class="footer__contact-link"
+            <a href="tel:639155436882" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-phone"></use>
             </svg>
               
-              +63 915 543 6882</a
+              +63 9155436882</a
             >
           </li>
 
@@ -117,7 +117,7 @@
         <ul class="footer__contact-wrap">
           <li class="footer__contact-list">
  
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
+            <a target="_blank" href="https://www.facebook.com/pauliversonc" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use
@@ -131,7 +131,7 @@
 
           <li class="footer__contact-list">
             
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
+            <a target="_blank" href="https://www.instagram.com/pauliversonc" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use
@@ -142,7 +142,7 @@
           </li>
           <li class="footer__contact-list">
            
-            <a href="mailto:ecobuilders@gmail.com" class="footer__contact-link"
+            <a href="mailto:pauliversonc@gmail.com" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-mail"></use>
@@ -152,11 +152,11 @@
 
           <li class="footer__contact-list">
            
-            <a href="tel:415-201-6370" class="footer__contact-link"
+            <a href="tel:639155436882" class="footer__contact-link"
               >
               <svg class="footer__icon">
               <use xlink:href="../../assets/icons/sprite.svg#icon-phone"></use>
-            </svg>+63 915 543 6882</a
+            </svg>+63 9155436882</a
             >
           </li>
         </ul>

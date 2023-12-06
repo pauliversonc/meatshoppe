@@ -18,7 +18,7 @@
     paragraph="Marbleized tenderness, awaiting culinary alchemy for succulent transformation"
     :align="true"
     image-name="offer-1-min.png"
-    :products="products"
+    :products="products.pork"
 
   ></TheProduct> 
 
@@ -35,7 +35,7 @@
     :align="false"
     image-name="offer-2-min.png"
 
-    :products="products"
+    :products="products.chicken"
 
   ></TheProduct>
 
@@ -51,7 +51,7 @@
     :align="true"
     image-name="offer-3-min.png"
 
-    :products="products"
+    :products="products.beef"
 
   ></TheProduct>
 
@@ -68,7 +68,7 @@
     :align="false"
     image-name="offer-4-min.png"
 
-    :products="products"
+    :products="products['ready-to-cook']"
 
   ></TheProduct>
 
@@ -93,8 +93,24 @@ export default {
   },
 
   created() {
-    const featProducts = this.$store.getters['products/getFeatureProducts'];
-    this.products = featProducts;
+    const separatedProducts = [];
+
+    // Get all products
+    const featProducts = this.$store.getters['products/getProducts'];
+    
+    featProducts.forEach(product => {
+      // Check if the category key exists in the separatedProducts object
+      if(!separatedProducts[product.category[0]]) {
+
+         // If it doesn't exist, create an empty array for that category
+        separatedProducts[product.category[0]] = [];
+      }
+
+      // Push the current product to the array corresponding to its category
+      separatedProducts[product.category[0]].push(product)
+    });
+
+    this.products = separatedProducts;
   },
 
   data() {
