@@ -61,7 +61,7 @@
             />
 
             <div class="category__card-overlay">
-              <BaseButton :btn-text="category.catBtnName" :btn-light="true"  />
+              <BaseButton :btn-text="category.catBtnName" :btn-light="true" @click="changeRouteBy(category.catBtnName)" />
             </div>
           </div>
           <!-- /.card -->
@@ -128,6 +128,7 @@ export default {
     handleResize() {
       // Update the isMobileView value based on the screen width
       this.isMobileView = window.innerWidth <= 400;
+
     },
   },
 

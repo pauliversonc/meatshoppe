@@ -1,11 +1,12 @@
 <template>
-  <!-- <TheHero></TheHero> -->
-  <!-- <TheCategory></TheCategory> -->
-  <!-- <TheService ></TheService> -->
-  <!-- <TheFeature></TheFeature> -->
-  <!-- <TheFiller></TheFiller> -->
+  <TheHero></TheHero> 
+  <TheCategory></TheCategory> 
 
-  <!-- <TheProduct
+  <!-- <TheService ></TheService> -->
+  <TheFeature></TheFeature> 
+  <TheFiller></TheFiller>
+
+ <TheProduct
     :paddingT="true"
 
     heading-span="Our Pork Products"
@@ -70,7 +71,7 @@
 
     :products="products"
 
-  ></TheProduct> -->
+  ></TheProduct>
 
 </template>
 

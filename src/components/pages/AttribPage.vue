@@ -115,6 +115,7 @@
 <style lang="scss" scoped>
 @import "../../sass/variables";
 .attrib {
+  overflow: hidden;
   padding: 14rem 2rem 8rem 2rem;
 
   &__wrapper {

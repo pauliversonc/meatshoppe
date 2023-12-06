@@ -1,22 +1,7 @@
 <template>
   <div class="footer__wrapper">
     <footer class="footer"
-    v-motion
-  :initial="{
-    x: 100,
-    opacity: 0,
-  }"
-  :enter="{
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 350,
-      damping: 100,
-      mass: 1,
-      delay: 300
-    },
-  }"
+
     
     >
       <div class="footer__logo-box">
@@ -181,23 +166,6 @@
 
   <div class="footer__adv">
     <span
-      
-    v-motion
-  :initial="{
-    x: -100,
-    opacity: 0,
-  }"
-  :enter="{
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 350,
-      damping: 100,
-      mass: 1,
-      delay: 300
-    },
-  }"
     >
     Copyright &#169; {{ yearNow }} | Meatshoppe. All rights reserved.
     <br>

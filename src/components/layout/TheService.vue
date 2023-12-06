@@ -1,25 +1,26 @@
 <template>
-  <div class="service__wrapper">
+  <div class="service__wrapper"
+  v-motion
+    :initial="{
+      x: 200,
+      opacity: 0,
+    }"
+    :enter="{
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 250,
+        damping: 100,
+        mass: 1,
+        delay: 1700,
+      },
+    }"
+  >
     <div class="service">
       <div
         class="service__headline"
-        v-motion
-        :initial="{
-          x: -200,
-          opacity: 0,
-        }"
 
-        :visibleOnce="{
-          x: 0,
-          opacity: 1,
-          transition: {
-            type: 'spring',
-            stiffness: 250,
-            damping: 100,
-            mass: 1,
-            delay: 400,
-          },
-        }"
       >
       
         <h3 class="service__heading">
@@ -31,23 +32,7 @@
       </div>
 
       <div class="service__card-box"
-      v-motion
-        :initial="{
-          x: 200,
-          opacity: 0,
-        }"
 
-        :visibleOnce="{
-          x: 0,
-          opacity: 1,
-          transition: {
-            type: 'spring',
-            stiffness: 250,
-            damping: 100,
-            mass: 1,
-            delay:400,
-          },
-        }"
       
       >
         <BaseService

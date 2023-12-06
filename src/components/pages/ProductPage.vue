@@ -654,6 +654,7 @@ export default {
 .page {
   // padding: 7rem 2rem 8rem 2rem;
   padding: 14rem 2rem 8rem 2rem;
+  overflow: hidden;
   
   &__wrapper {
     // border: 1px solid red;

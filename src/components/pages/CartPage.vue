@@ -5,7 +5,10 @@
 
       <!-- product list in cart -->
       <div class="cart-items-container" >
-        <BaseHeadingFour heading-four="Cart"></BaseHeadingFour>
+          <BaseHeadingFive 
+        heading-title="Cart"
+        :margin-bottom="true"
+        />
 
         <!-- wrapper flex-row-->
         <div class="cart-item__wrapper" v-if="productsDetails.length > 0" @click="goToProduct">
@@ -482,6 +485,8 @@ export default {
 @import "../../sass/mixins";
 .cart {
   padding: 14rem 2rem 8rem 2rem;
+  overflow: hidden;
+
 
   &__wrapper {
     max-width: 120rem;

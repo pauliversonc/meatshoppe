@@ -2,6 +2,8 @@
   <div
     class="header__wrapper"
     :class="{ active: scrollY >= 240 }">
+
+    
     <header class="header" :class="{ pr: isSearchVisible }">
 
       <div class="header__nav">
@@ -80,6 +82,7 @@
     </header>
   </div>
 
+  <!-- search bar -->
   <div class="find" @click="closeSearch2" v-show="isSearchVisible">
     <div class="find__container">
       <!-- form group search -->
@@ -140,6 +143,9 @@
       </div>
     </div>
   </div>
+  <!-- ./ search bar -->
+
+
 </template>
 
 <script>
@@ -363,19 +369,21 @@ export default {
   justify-content: space-between;
   align-items: center;
   // overflow: hidden;
+  position: relative;
+  padding: 0 2rem;
 
-  border: 1px solid red;
+  // border: 1px solid red;
 
   &__wrapper {
     position: fixed;
-    padding: 0 2rem;
+    
     height: 7rem;
     width: 100%;
     z-index: 10;
     transition: background-color 0.4s ease;
     backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
     border-bottom: solid thin $gray;
-    border: 5px solid green;
+    // border: 5px solid green;
     &.active {
       background-color: rgba($color: #ffffff, $alpha: 0.9);
     }
@@ -399,7 +407,7 @@ export default {
     justify-content: start;
     gap: 2rem;
 
-    border: 1px solid red;
+    // border: 1px solid red;
   }
 
   &__logo-link {
@@ -435,7 +443,7 @@ export default {
       transition: all 0.4s ease-out;
       font-size: 2.8rem;
 
-      transform: translateX(100%);
+      transform: translateX(120%);
     }
 
     &.show {
@@ -464,10 +472,10 @@ export default {
     gap: 2rem;
     justify-content: start;
     // padding-right: 17px;
-    border: 1px solid red;
-    &.pr {
-      padding-right: 17px;
-    }
+    // border: 1px solid red;
+    // &.pr {
+    //   padding-right: 17px;
+    // }
   }
 
   // Cart button
