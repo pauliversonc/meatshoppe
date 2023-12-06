@@ -330,7 +330,7 @@ export default {
           // run validate input base on key
           this.$refs['bit'+key].validateInput(key);
         }
-        this.$refs.toast.showToast("Form data is not valid. Please complete the form.");
+        this.$refs.toast.showToast("Incomplete form. Please fill out all required fields.");
       }
     },
   },
