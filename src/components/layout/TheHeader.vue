@@ -1,9 +1,7 @@
 <template>
   <div
     class="header__wrapper"
-    :class="{ active: scrollY >= 240 }"
-    
-  >
+    :class="{ active: scrollY >= 240 }">
     <header class="header" :class="{ pr: isSearchVisible }">
 
       <div class="header__nav">
@@ -358,7 +356,7 @@ export default {
 @import "../../sass/mixins";
 .header {
   margin: 0 auto;
-  max-width: 120rem;
+  // width: 120rem;
   height: 100%;
   display: flex;
   text-transform: uppercase;
@@ -367,6 +365,21 @@ export default {
   // overflow: hidden;
 
   border: 1px solid red;
+
+  &__wrapper {
+    position: fixed;
+    padding: 0 2rem;
+    height: 7rem;
+    width: 100%;
+    z-index: 10;
+    transition: background-color 0.4s ease;
+    backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
+    border-bottom: solid thin $gray;
+    border: 5px solid green;
+    &.active {
+      background-color: rgba($color: #ffffff, $alpha: 0.9);
+    }
+  }
 
   &.pr {
     @media only screen and (min-width: 78em) {
@@ -378,19 +391,7 @@ export default {
     }
   }
 
-  &__wrapper {
-    position: fixed;
-    padding: 0 2rem;
-    height: 7rem;
-    width: 100%;
-    z-index: 10;
-    transition: background-color 0.4s ease;
-    backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
-    border-bottom: solid thin $gray;
-    &.active {
-      background-color: rgba($color: #ffffff, $alpha: 0.9);
-    }
-  }
+
 
   &__nav {
     display: flex;
@@ -407,7 +408,7 @@ export default {
   }
 
   &__logo {
-    height: 2rem;
+    height: 3rem;
   }
 
   &__nav-lists {

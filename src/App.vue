@@ -2,7 +2,7 @@
   <TheHeader ></TheHeader>
 
 
-  <router-view></router-view>
+  <!-- <router-view></router-view> -->
   <!-- <TheHero></TheHero>
   <TheCategory></TheCategory>
   <TheService ></TheService>
@@ -79,7 +79,7 @@
 
 
 
-  <TheFooter></TheFooter>
+  <!-- <TheFooter></TheFooter> -->
 </template>
 
 <script>
