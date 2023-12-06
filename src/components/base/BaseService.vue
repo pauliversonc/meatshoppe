@@ -2,7 +2,6 @@
   <div
     class="service-card"
     :class="{ 'service-card--main': serviceMain }"
-
   >
     <div class="service-card__icon-box">
       <svg class="service-card__icon">
