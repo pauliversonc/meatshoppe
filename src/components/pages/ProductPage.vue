@@ -344,7 +344,7 @@ export default {
       },
 
       settings: {
-        itemsToShow: 1,
+        itemsToShow: 2,
         snapAlign: "start",
       },
       // breakpoints are mobile first
@@ -730,15 +730,15 @@ export default {
     // border: 1px solid blue;
     color: $black-tint;
     grid-column: 3;
-    margin-left: 4rem;
+    // margin-left: 4rem;
     // 1200 and below
     @media only screen and (max-width: 80em) {
-      margin-left: 2rem;
+      // margin-left: 2rem;
     }
 
     // 960 and below
     @media only screen and (max-width: 60em) {
-      margin-left: 1rem;
+      // margin-left: 1rem;
     }
 
     @include respond(tab-port) {
@@ -829,15 +829,15 @@ export default {
   &__form {
     padding: 1.4rem 0 ;
     grid-column: 3;
-    margin-left: 4rem;
+    // margin-left: 4rem;
 
     // 1200 and below
     @media only screen and (max-width: 80em) {
-      margin-left: 2rem;
+     // margin-left: 2rem;
     }
     // 960 and below
     @media only screen and (max-width: 60em) {
-      margin-left: 1rem;
+     // margin-left: 1rem;
     }
     @include respond(tab-port) {
       order: 3;
@@ -933,16 +933,16 @@ export default {
 
   &__collapse {
     grid-column: 3;
-    margin-left: 4rem;
+    // margin-left: 4rem;
 
     // 1200 and below
     @media only screen and (max-width: 80em) {
-      margin-left: 2rem;
+      // margin-left: 2rem;
     }
 
     // 960 and below
     @media only screen and (max-width: 60em) {
-      margin-left: 1rem;
+      // margin-left: 1rem;
     }
 
     @include respond(tab-port) {
