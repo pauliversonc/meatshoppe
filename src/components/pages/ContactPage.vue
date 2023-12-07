@@ -22,7 +22,7 @@
       >
         <span class="contact__subhead">CONTACT US</span>
         <span class="contact__mainhead"
-          >Get in Touch for Exceptional Service!</span
+          >Get in touch for exceptional service!</span
         >
         <p class="contact__para">
           Send us a message and we'll get your questions answered as soon as
@@ -197,7 +197,7 @@
             <p class="faq__body">
               Mon-Sat from 8am to 8pm.
               <br>
-              <strong>+63 915 543 6882</strong>
+              <strong>+63 9155436882</strong>
             </p>
           </div>
         </li>

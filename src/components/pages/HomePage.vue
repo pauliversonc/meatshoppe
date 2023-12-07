@@ -9,7 +9,7 @@
     :paddingT="true"
 
     heading-span="Our Pork Products"
-    heading-text="Succulent Pork Perfection Awaits"
+    heading-text="Succulent pork perfection awaits"
     heading-desc="Dive into deliciousness with our premium beef offerings"
 
     span="Special offer"
@@ -25,7 +25,7 @@
 
  <TheProduct
     heading-span="Our Chicken Products"
-    heading-text="Savor The Juiciness Of Our Amazing Chicken"
+    heading-text="Savor the juiciness of our amazing chicken"
     heading-desc="Delight in the brilliance of our best chicken range"
 
     span="Special offer"
@@ -41,7 +41,7 @@
 
   <TheProduct
     heading-span="Our Beef Products"
-    heading-text="Tender, Juicy Beef That Melts In Your Mouth"
+    heading-text="Tender, juicy beef that melts in your mouth"
     heading-desc="Explore excellence with our quality beef choices"
 
     span="Special offer"
@@ -58,7 +58,7 @@
 
   <TheProduct
     heading-span="Our ready to cook products"
-    heading-text="Convenience Meets Culinary Delight"
+    heading-text="Convenience meets culinary delight"
     heading-desc="Dine like a chef with our ready-to-cook creations"
 
     span="Special offer"
