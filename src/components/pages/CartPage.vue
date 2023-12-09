@@ -249,16 +249,16 @@ export default {
       ],
 
       settings: {
-        itemsToShow: 1,
+        itemsToShow: 2,
         snapAlign: "start",
       },
       // breakpoints are mobile first
       // any settings not specified will fallback to the carousel settings
       breakpoints: {
-        378: {
-          itemsToShow: 2,
-          snapAlign: "start",
-        },
+        // 378: {
+        //   itemsToShow: 2,
+        //   snapAlign: "start",
+        // },
         543: {
           itemsToShow: 3,
           snapAlign: "start",

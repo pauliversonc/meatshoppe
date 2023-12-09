@@ -160,15 +160,15 @@ export default {
       products: {},
 
       settings: {
-        itemsToShow: 1,
+        itemsToShow: 2,
         snapAlign: "start",
       },
 
       breakpoints: {
-        378: {
-          itemsToShow: 2,
-          snapAlign: "start",
-        },
+        // 378: {
+        //   itemsToShow: 2,
+        //   snapAlign: "start",
+        // },
 
         543: {
           itemsToShow: 3,
